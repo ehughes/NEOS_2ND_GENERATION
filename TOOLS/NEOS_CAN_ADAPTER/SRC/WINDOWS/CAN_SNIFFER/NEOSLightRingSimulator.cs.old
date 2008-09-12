@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+using CANInterfaceManagement;
+using System.Threading;
+
+namespace CAN_SNIFFER
+{
+    public partial class NEOSLightRingSimulator : Form
+    {
+       
+
+
+      
+        
+        public void Terminate()
+        {
+            CANProcessingThread.Abort();
+            
+        }
+
+        public NEOSLightRingSimulator()
+        {
+          
+        }
+
+      
+   
+
+}

@@ -1,0 +1,553 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : sans-serif;
+			color : white;
+			background-color : #21489e;
+			padding: 0.3em;
+		}
+		body {
+			font-family : verdana;
+		}
+		td, th {
+			padding: 0.5em;
+			text-align : center;
+			width : 18%;
+		}
+		th {
+			background-color : #A6CAF0;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+		}
+		
+		.DRC_summary_header {							
+			padding-bottom : 0.1em;
+			border : 0px solid black;							
+			width: 100%;
+                        align: right;
+                        
+		}
+
+		.DRC_summary_header_col1, 
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3
+		{
+			color : black;
+			font-size:150%;
+                        padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2: 0em;
+			border : 0px solid black;
+			width : auto;
+			vertical-align: top;
+			font-weight: bold;				
+		}
+		
+		.DRC_summary_header_col1 	
+		{		                       
+			text-align: right;
+                        width: auto;	
+		}
+
+		.DRC_summary_header_col2 	
+		{		
+			text-align: center;	
+		}
+
+		.DRC_summary_header_col3 	
+		{		
+			text-align: left;	
+		}
+
+
+		
+		.header_holder
+		{
+		Width = 100%;
+		border = 0px solid green;
+		padding = 0;
+		}
+		
+		
+		
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+			left:0;
+			top:0;
+			padding-top : 0.1em;			
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top
+
+		}
+		.front_matter {	
+			
+			margin-top: 5px;
+ 			margin-left: 0px;					 			
+ 			horizontal-align: left;
+		}
+				
+		
+		.front_matter_column1 {
+			width : 10em;	
+			text-align  : right;
+			padding-right:0.1em;
+			
+		}
+		
+		.front_matter_column2 {
+                        width: 0.1em;
+			align: center;
+			text-align : center;
+			margin-right  : 0.1em;	
+			margin-left   : 0.1em;
+		}
+		.front_matter_column3 {
+			width         : auto;  
+			text-align    : left;	
+			margin-right  : 0.5em;				
+		}
+		
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : right;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #EEEEE0 
+		}
+		tr.onmouseout_even { 
+			background-color : #F3F3E3   
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : lightYellow
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #008000 
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script></head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\PROGRAM FILES\ALTIUM DESIGNER 6\Templates\AD-rgb_logo_223x64.gif
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td Style="width:70%">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">3/14/2008</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">10:28:04 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3"><a href="file:///C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc" class="file"><acronym title="C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc">C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td Style="Width:30%">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3" style="color : red">59</td></tr>
+</table>
+</td>
+</table>
+<hr><a name="IDASAA0G"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAEBA0G">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDAWBA0G">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDA2BA0G">Width Constraint (Min=10mil) (Max=10mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDACCA0G">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">36</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAPUA0G">Broken-Net Constraint ( (All) )</a></td>
+<td class="column2">21</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDASLB0G">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">59</td>
+</tr>
+</table><br><hr><a name="IDAEBA0G"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad J1-B(11637.953mil,2953.622mil)  Multi-Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad J1-A(8882.047mil,2953.622mil)  Multi-Layer</acronym></a><br></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDACCA0G"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Clearance Constraint (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-34(10188.898mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-35(10208.582mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-8(9860.158mil,3969.212mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-9(9860.158mil,3949.528mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-10(9860.158mil,3929.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-9(9860.158mil,3949.528mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-73(10070.788mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-74(10051.102mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-12(9860.158mil,3890.472mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-11(9860.158mil,3910.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-10(9860.158mil,3929.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-11(9860.158mil,3910.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-13(9860.158mil,3870.788mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-12(9860.158mil,3890.472mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-25(10011.732mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-24(9992.048mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-26(10031.418mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-25(10011.732mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-27(10051.102mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-26(10031.418mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-32(10149.528mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-31(10129.842mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-30(10110.158mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-31(10129.842mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-33(10169.212mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-32(10149.528mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-33(10169.212mil,3660.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-34(10188.898mil,3660.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-57(10379.842mil,4047.952mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-58(10379.842mil,4067.638mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-59(10379.842mil,4087.322mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-58(10379.842mil,4067.638mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-51(10379.842mil,3929.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-52(10379.842mil,3949.528mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-50(10379.842mil,3910.158mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-51(10379.842mil,3929.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-49(10379.842mil,3890.472mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-50(10379.842mil,3910.158mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-48(10379.842mil,3870.788mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-49(10379.842mil,3890.472mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-47(10379.842mil,3851.102mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-48(10379.842mil,3870.788mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-72(10090.472mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-73(10070.788mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-71(10110.158mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-72(10090.472mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-70(10129.842mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-71(10110.158mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-69(10149.528mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-70(10129.842mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-62(10287.322mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-61(10307.008mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-63(10267.638mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-62(10287.322mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-64(10247.952mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-63(10267.638mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-68(10169.212mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-67(10188.898mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-66(10208.582mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-67(10188.898mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-69(10149.528mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-68(10169.212mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-55(10379.842mil,4008.582mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-54(10379.842mil,3988.898mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-56(10379.842mil,4028.268mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-55(10379.842mil,4008.582mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-56(10379.842mil,4028.268mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-57(10379.842mil,4047.952mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-65(10228.268mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-64(10247.952mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-65(10228.268mil,4179.842mil)  Top Layer</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Pad U2-66(10208.582mil,4179.842mil)  Top Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDAPUA0G"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Broken-Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_73</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U2-73    <br>     Subnet : U3-1     <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_72</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U2-72    <br>     Subnet : U3-4     <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_69</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-6     <br>     Subnet : U2-69    <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_68</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-10    <br>     Subnet : U2-68    <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_67</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-9     <br>     Subnet : U2-67    <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_66</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-2     <br>     Subnet : U2-66    <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_64</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-14    <br>     Subnet : U2-64    <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_63</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-11    <br>     Subnet : U2-63    <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_62</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-3     <br>     Subnet : U2-62    <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_61</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-5     <br>     Subnet : U2-61    <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_58</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-1     <br>     Subnet : U2-58    <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_57</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-13    <br>     Subnet : U2-57    <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_56</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-22    <br>     Subnet : U2-56    <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_55</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-23    <br>     Subnet : U2-55    <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetU2_34</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : U2-34    <br>     Subnet : U3-8     <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetR1_2</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : R1-2     <br>     Subnet : U3-7     <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetR1_1</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : R1-1     <br>     Subnet : U3-6     <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetJ14_1</acronym></a><br> is broken into 3 sub-nets. Routed To 0.00%<br>
+     Subnet : R2-2     <br>     Subnet : J14-1    <br>     Subnet : U2-9     <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net NetC4_2</acronym></a><br> is broken into 2 sub-nets. Routed To 0.00%<br>
+     Subnet : C4-2     <br>     Subnet : U2-49    <br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net GND</acronym></a><br> is broken into 23 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-21    <br>     Subnet : U5-7     <br>     Subnet : U5-18    <br>     Subnet : U5-26    <br>     Subnet : U5-25    <br>     Subnet : C9-1     <br>     Subnet : C7-1     <br>     Subnet : C8-1     <br>     Subnet : C10-1    <br>     Subnet : C11-1    <br>     Subnet : C5-1     <br>     Subnet : C3-1     <br>     Subnet : C6-1     <br>     Subnet : C4-1     <br>     Subnet : J14-3    <br>     Subnet : C2-1     <br>     Subnet : U3-2     <br>     Subnet : C1-1     <br>     Subnet : U2-11    <br>     Subnet : U2-26    <br>     Subnet : U2-31    <br>     Subnet : U2-70    <br>     Subnet : U2-51    <br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc;viewname=PCBEditor;Action=Area|Location1.X=-9999.9mil|Location2.X=49999.5mil|Location1.Y=-9999.9mil|Location2.Y=49999.5mil|Absolute=True">Net +3.3V</acronym></a><br> is broken into 18 sub-nets. Routed To 0.00%<br>
+     Subnet : U5-19    <br>     Subnet : U5-4     <br>     Subnet : C8-2     <br>     Subnet : C7-2     <br>     Subnet : C9-2     <br>     Subnet : C10-2    <br>     Subnet : C2-2     <br>     Subnet : C11-2    <br>     Subnet : C6-2     <br>     Subnet : C1-2     <br>     Subnet : R2-1     <br>     Subnet : J14-2    <br>     Subnet : U3-3     <br>     Subnet : U2-25    <br>     Subnet : U2-12    <br>     Subnet : U2-32    <br>     Subnet : U2-71    <br>     Subnet : U2-48    <br></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br></body>
+</html>

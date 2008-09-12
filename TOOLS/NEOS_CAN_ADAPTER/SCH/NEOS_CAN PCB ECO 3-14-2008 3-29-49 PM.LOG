@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=USBDP Pin=J1-11
+Added Pin To Net: NetName=USBDP Pin=J1-3

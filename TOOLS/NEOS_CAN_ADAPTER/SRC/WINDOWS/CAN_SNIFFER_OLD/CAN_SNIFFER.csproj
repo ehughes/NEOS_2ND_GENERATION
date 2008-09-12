@@ -1,0 +1,129 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AC11D4C9-CCDD-4266-84E2-4BF1F82DB6BC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CAN_SNIFFER</RootNamespace>
+    <AssemblyName>CAN_SNIFFER</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NationalInstruments.Common, Version=8.1.20.618, Culture=neutral, PublicKeyToken=4544464cdeaab541, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="NationalInstruments.UI, Version=8.1.20.472, Culture=neutral, PublicKeyToken=4544464cdeaab541, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NationalInstruments.UI.WindowsForms, Version=8.1.20.472, Culture=neutral, PublicKeyToken=4544464cdeaab541" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CANInterface.cs" />
+    <Compile Include="CANMessageEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NEOSLowLevelCtrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NEOSLowLevelCtrl.Designer.cs">
+      <DependentUpon>NEOSLowLevelCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IncomingCANMessageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageRouterControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageRouterControl.Designer.cs">
+      <DependentUpon>MessageRouterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NEOSAllaroundSimulator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NEOSAllaroundSimulator.Designer.cs">
+      <DependentUpon>NEOSAllaroundSimulator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NEOSMessages.cs" />
+    <Compile Include="SnifferMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SnifferMain.Designer.cs">
+      <DependentUpon>SnifferMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="NEOSLowLevelCtrl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NEOSLowLevelCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageRouterControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MessageRouterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NEOSAllaroundSimulator.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NEOSAllaroundSimulator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SnifferMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SnifferMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SystemMessageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

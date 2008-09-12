@@ -1,0 +1,40 @@
+Added Component: Designator=D1(LED_0805)
+Added Component: Designator=D2(LED_0805)
+Added Component: Designator=D3(LED_0805)
+Added Component: Designator=D4(LED_0805)
+Added Component: Designator=R8(0805)
+Added Component: Designator=R9(0805)
+Added Component: Designator=R10(0805)
+Added Component: Designator=R11(0805)
+Added Pin To Net: NetName=CAN_+12V Pin=D1-A
+Added Pin To Net: NetName=USB_VBUS Pin=D2-A
+Added Pin To Net: NetName=GND Pin=R8-1
+Added Pin To Net: NetName=GND Pin=R9-1
+Added Pin To Net: NetName=GND Pin=R10-1
+Added Pin To Net: NetName=GND Pin=R11-1
+Added Pin To Net: NetName=NetD1_C Pin=D1-C
+Added Pin To Net: NetName=NetD1_C Pin=R8-2
+Added Net: Name=NetD1_C
+Added Pin To Net: NetName=NetD2_C Pin=D2-C
+Added Pin To Net: NetName=NetD2_C Pin=R9-2
+Added Net: Name=NetD2_C
+Added Pin To Net: NetName=NetD3_A Pin=D3-A
+Added Pin To Net: NetName=NetD3_A Pin=U2-78
+Added Net: Name=NetD3_A
+Added Pin To Net: NetName=NetD3_C Pin=D3-C
+Added Pin To Net: NetName=NetD3_C Pin=R10-2
+Added Net: Name=NetD3_C
+Added Pin To Net: NetName=NetD4_A Pin=D4-A
+Added Pin To Net: NetName=NetD4_A Pin=U2-1
+Added Net: Name=NetD4_A
+Added Pin To Net: NetName=NetD4_C Pin=D4-C
+Added Pin To Net: NetName=NetD4_C Pin=R11-2
+Added Net: Name=NetD4_C
+Added Member To Class: ClassName=NEOS_CAN Member=Component D1 LED_0805
+Added Member To Class: ClassName=NEOS_CAN Member=Component D2 LED_0805
+Added Member To Class: ClassName=NEOS_CAN Member=Component D3 LED_0805
+Added Member To Class: ClassName=NEOS_CAN Member=Component D4 LED_0805
+Added Member To Class: ClassName=NEOS_CAN Member=Component R8 R
+Added Member To Class: ClassName=NEOS_CAN Member=Component R9 R
+Added Member To Class: ClassName=NEOS_CAN Member=Component R10 R
+Added Member To Class: ClassName=NEOS_CAN Member=Component R11 R

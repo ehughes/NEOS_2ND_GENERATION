@@ -1,0 +1,22 @@
+Change Component Comment : Designator=U2 Old Comment=dsPIC30F5013-20I/PT New Comment=dsPIC30F6014A
+Change Component Designator: OldDesignator=C12 NewDesignator=C13
+Added Component: Designator=C11(0805)
+Added Component: Designator=C12(0805)
+Added Pin To Net: NetName=GND Pin=C5-1
+Added Pin To Net: NetName=USB_VBUS Pin=C5-2
+Added Pin To Net: NetName=GND Pin=C11-1
+Added Pin To Net: NetName=GND Pin=C12-2
+Added Pin To Net: NetName=GND Pin=C13-1
+Added Pin To Net: NetName=USB_VBUS Pin=C13-2
+Added Pin To Net: NetName=USB_VBUS Pin=U1-1
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Pin To Net: NetName=CAN_+12V Pin=J1-6
+Added Net: Name=CAN_+12V
+Added Pin To Net: NetName=NetC11_2 Pin=C11-2
+Added Pin To Net: NetName=NetC11_2 Pin=U2-20
+Added Net: Name=NetC11_2
+Added Pin To Net: NetName=NetC12_1 Pin=C12-1
+Added Pin To Net: NetName=NetC12_1 Pin=U5-17
+Added Net: Name=NetC12_1
+Added Member To Class: ClassName=NEOS_CAN Member=Component C11 C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C13 C

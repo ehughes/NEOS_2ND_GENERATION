@@ -1,0 +1,4 @@
+Added Component: Designator=U4(HCM49)
+Added Pin To Net: NetName=NetC4_2 Pin=U4-1
+Added Pin To Net: NetName=NetC3_2 Pin=U4-2
+Added Member To Class: ClassName=NEOS_CAN Member=Component U4 CRYSTAL

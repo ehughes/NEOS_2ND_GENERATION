@@ -1,0 +1,187 @@
+Removed Pin From Net: NetName=VCC Pin=C1-1
+Removed Pin From Net: NetName=GND Pin=C1-2
+Removed Pin From Net: NetName=VCC Pin=C2-1
+Removed Pin From Net: NetName=GND Pin=C2-2
+Removed Pin From Net: NetName=VCC Pin=C3-1
+Removed Pin From Net: NetName=GND Pin=C3-2
+Removed Pin From Net: NetName=VCC Pin=C8-1
+Removed Pin From Net: NetName=GND Pin=C8-2
+Removed Pin From Net: NetName=GND Pin=C13-2
+Removed Pin From Net: NetName=VCC Pin=C42-1
+Removed Pin From Net: NetName=GND Pin=C42-2
+Removed Pin From Net: NetName=GND Pin=D3-1
+Removed Pin From Net: NetName=GND Pin=D4-1
+Removed Pin From Net: NetName=GND Pin=D5-1
+Removed Pin From Net: NetName=GND Pin=J13-4
+Removed Pin From Net: NetName=VCC Pin=J14-2
+Removed Pin From Net: NetName=NetJ14_1 Pin=R4-1
+Removed Pin From Net: NetName=VCC Pin=R4-2
+Removed Pin From Net: NetName=VCC Pin=R112-2
+Removed Pin From Net: NetName=VCC Pin=U2-12
+Removed Pin From Net: NetName=VCC Pin=U2-25
+Removed Pin From Net: NetName=VCC Pin=U2-32
+Removed Pin From Net: NetName=VCC Pin=U2-48
+Removed Pin From Net: NetName=VCC Pin=U2-71
+Removed Pin From Net: NetName=VCC Pin=U3-3
+Removed Pin From Net: NetName=GND Pin=U7-2
+Removed Pin From Net: NetName=VCC Pin=U7-3
+Removed Pin From Net: NetName=GND Pin=U16-3
+Removed Pin From Net: NetName=VCC Pin=U16-6
+Removed Pin From Net: NetName=VCC Pin=U16-7
+Removed Member From Class: ClassName=NEOS_CAN Member=C1
+Removed Member From Class: ClassName=NEOS_CAN Member=C1
+Removed Member From Class: ClassName=NEOS_CAN Member=C2
+Removed Member From Class: ClassName=NEOS_CAN Member=C2
+Removed Member From Class: ClassName=NEOS_CAN Member=C3
+Removed Member From Class: ClassName=NEOS_CAN Member=C3
+Removed Member From Class: ClassName=NEOS_CAN Member=C8
+Removed Member From Class: ClassName=NEOS_CAN Member=C8
+Removed Member From Class: ClassName=NEOS_CAN Member=C13
+Removed Member From Class: ClassName=NEOS_CAN Member=C13
+Removed Member From Class: ClassName=NEOS_CAN Member=C42
+Removed Member From Class: ClassName=NEOS_CAN Member=D3
+Removed Member From Class: ClassName=NEOS_CAN Member=D4
+Removed Member From Class: ClassName=NEOS_CAN Member=D5
+Removed Member From Class: ClassName=NEOS_CAN Member=J3
+Removed Member From Class: ClassName=NEOS_CAN Member=J3
+Removed Member From Class: ClassName=NEOS_CAN Member=J4
+Removed Member From Class: ClassName=NEOS_CAN Member=J4
+Removed Member From Class: ClassName=NEOS_CAN Member=J7
+Removed Member From Class: ClassName=NEOS_CAN Member=J7
+Removed Member From Class: ClassName=NEOS_CAN Member=J8
+Removed Member From Class: ClassName=NEOS_CAN Member=J8
+Removed Member From Class: ClassName=NEOS_CAN Member=J13
+Removed Member From Class: ClassName=NEOS_CAN Member=M10
+Removed Member From Class: ClassName=NEOS_CAN Member=M10
+Removed Member From Class: ClassName=NEOS_CAN Member=R4
+Removed Member From Class: ClassName=NEOS_CAN Member=R4
+Removed Member From Class: ClassName=NEOS_CAN Member=R5
+Removed Member From Class: ClassName=NEOS_CAN Member=R5
+Removed Member From Class: ClassName=NEOS_CAN Member=R8
+Removed Member From Class: ClassName=NEOS_CAN Member=R8
+Removed Member From Class: ClassName=NEOS_CAN Member=R112
+Removed Member From Class: ClassName=NEOS_CAN Member=U7
+Removed Member From Class: ClassName=NEOS_CAN Member=U7
+Removed Member From Class: ClassName=NEOS_CAN Member=U7
+Removed Member From Class: ClassName=NEOS_CAN Member=U7
+Removed Member From Class: ClassName=NEOS_CAN Member=U16
+Removed Member From Class: ClassName=NEOS_CAN Member=Y1
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=C?(0603)
+Added Component: Designator=R?(0805)
+Added Component: Designator=R?(0603)
+Added Component: Designator=U?(SOP65P780X200-28L)
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=VCC Pin=C?-2
+Added Pin To Net: NetName=NetJ14_1 Pin=R?-2
+Added Pin To Net: NetName=GND Pin=U?-7
+Added Pin To Net: NetName=GND Pin=U?-18
+Added Pin To Net: NetName=GND Pin=U?-21
+Added Pin To Net: NetName=GND Pin=U?-25
+Added Pin To Net: NetName=GND Pin=U?-26
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=C?-2
+Added Pin To Net: NetName=+3.3V Pin=J14-2
+Added Pin To Net: NetName=+3.3V Pin=R?-1
+Added Pin To Net: NetName=+3.3V Pin=U2-12
+Added Pin To Net: NetName=+3.3V Pin=U2-25
+Added Pin To Net: NetName=+3.3V Pin=U2-32
+Added Pin To Net: NetName=+3.3V Pin=U2-48
+Added Pin To Net: NetName=+3.3V Pin=U2-71
+Added Pin To Net: NetName=+3.3V Pin=U3-3
+Added Pin To Net: NetName=+3.3V Pin=U?-4
+Added Pin To Net: NetName=+3.3V Pin=U?-19
+Added Net: Name=+3.3V
+Added Pin To Net: NetName=NetC?_2 Pin=C?-2
+Added Pin To Net: NetName=NetC?_2 Pin=R?-2
+Added Pin To Net: NetName=NetC?_2 Pin=U?-2
+Added Net: Name=NetC?_2
+Added Pin To Net: NetName=NetJ_2 Pin=U?-16
+Added Net: Name=NetJ_2
+Added Pin To Net: NetName=NetJ_3 Pin=U?-15
+Added Net: Name=NetJ_3
+Added Pin To Net: NetName=NetR?_1 Pin=R?-1
+Added Pin To Net: NetName=NetR?_1 Pin=U2-50
+Added Net: Name=NetR?_1
+Added Pin To Net: NetName=NetR?_2 Pin=R?-2
+Added Pin To Net: NetName=NetR?_2 Pin=U3-7
+Added Net: Name=NetR?_2
+Added Pin To Net: NetName=NetU2_55 Pin=U2-55
+Added Pin To Net: NetName=NetU2_55 Pin=U?-23
+Added Net: Name=NetU2_55
+Added Pin To Net: NetName=NetU2_56 Pin=U2-56
+Added Pin To Net: NetName=NetU2_56 Pin=U?-22
+Added Net: Name=NetU2_56
+Added Pin To Net: NetName=NetU2_57 Pin=U2-57
+Added Pin To Net: NetName=NetU2_57 Pin=U?-13
+Added Net: Name=NetU2_57
+Added Pin To Net: NetName=NetU2_58 Pin=U2-58
+Added Pin To Net: NetName=NetU2_58 Pin=U?-1
+Added Net: Name=NetU2_58
+Added Pin To Net: NetName=NetU2_61 Pin=U2-61
+Added Pin To Net: NetName=NetU2_61 Pin=U?-5
+Added Net: Name=NetU2_61
+Added Pin To Net: NetName=NetU2_62 Pin=U2-62
+Added Pin To Net: NetName=NetU2_62 Pin=U?-3
+Added Net: Name=NetU2_62
+Added Pin To Net: NetName=NetU2_63 Pin=U2-63
+Added Pin To Net: NetName=NetU2_63 Pin=U?-11
+Added Net: Name=NetU2_63
+Added Pin To Net: NetName=NetU2_64 Pin=U2-64
+Added Pin To Net: NetName=NetU2_64 Pin=U?-14
+Added Net: Name=NetU2_64
+Added Pin To Net: NetName=NetU2_66 Pin=U2-66
+Added Pin To Net: NetName=NetU2_66 Pin=U?-2
+Added Net: Name=NetU2_66
+Added Pin To Net: NetName=NetU2_67 Pin=U2-67
+Added Pin To Net: NetName=NetU2_67 Pin=U?-9
+Added Net: Name=NetU2_67
+Added Pin To Net: NetName=NetU2_68 Pin=U2-68
+Added Pin To Net: NetName=NetU2_68 Pin=U?-10
+Added Net: Name=NetU2_68
+Added Pin To Net: NetName=NetU2_69 Pin=U2-69
+Added Pin To Net: NetName=NetU2_69 Pin=U?-6
+Added Net: Name=NetU2_69
+Added Pin To Net: NetName=VBUS Pin=U?-20
+Added Net: Name=VBUS
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component C? C
+Added Member To Class: ClassName=NEOS_CAN Member=Component R? R
+Added Member To Class: ClassName=NEOS_CAN Member=Component R? R
+Added Member To Class: ClassName=NEOS_CAN Member=Component R? R
+Added Member To Class: ClassName=NEOS_CAN Member=Component U? CRYSTAL
+Added Member To Class: ClassName=NEOS_CAN Member=Component U? FT245RL

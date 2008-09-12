@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=VCC Pin=J1-6
+Added Pin To Net: NetName=GND Pin=J1-9
+Added Pin To Net: NetName=NETLABEL9 Pin=J1-3
+Added Net: Name=NETLABEL9
+Added Pin To Net: NetName=NETLABEL10 Pin=J1-2
+Added Net: Name=NETLABEL10
+Added Pin To Net: NetName=NETLABEL11 Pin=J1-1
+Added Net: Name=NETLABEL11
+Added Pin To Net: NetName=USB_VBUS Pin=J1-4
+Added Pin To Net: NetName=USB_VBUS Pin=J2-1
+Added Pin To Net: NetName=USB_VBUS Pin=U5-20
+Added Net: Name=USB_VBUS
+Added Pin To Net: NetName=USBDM Pin=J1-10
+Added Pin To Net: NetName=USBDM Pin=J2-2
+Added Pin To Net: NetName=USBDM Pin=U5-16
+Added Net: Name=USBDM
+Added Pin To Net: NetName=USBDP Pin=J1-11
+Added Pin To Net: NetName=USBDP Pin=J2-3
+Added Pin To Net: NetName=USBDP Pin=U5-15
+Added Net: Name=USBDP

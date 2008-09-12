@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=TERM_CTRL Pin=R7-2
+Added Pin To Net: NetName=TERM_CTRL Pin=U2-41
+Added Net: Name=TERM_CTRL

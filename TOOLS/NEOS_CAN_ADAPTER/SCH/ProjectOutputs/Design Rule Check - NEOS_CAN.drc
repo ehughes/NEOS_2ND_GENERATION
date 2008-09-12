@@ -1,0 +1,142 @@
+Protel Design System Design Rule Check
+PCB File : C:\PlayworldTemp\NEOS_CAN_ADAPTER\SCH\NEOS_CAN.PcbDoc
+Date     : 3/14/2008
+Time     : 10:28:04 AM
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
+   Violation between Pad J1-B(11637.953mil,2953.622mil)  Multi-Layer
+   Violation between Pad J1-A(8882.047mil,2953.622mil)  Multi-Layer
+Rule Violations :2
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=10mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=10mil) (All),(All)
+   Violation between Pad U2-34(10188.898mil,3660.158mil)  Top Layer and 
+                     Pad U2-35(10208.582mil,3660.158mil)  Top Layer
+   Violation between Pad U2-8(9860.158mil,3969.212mil)  Top Layer and 
+                     Pad U2-9(9860.158mil,3949.528mil)  Top Layer
+   Violation between Pad U2-10(9860.158mil,3929.842mil)  Top Layer and 
+                     Pad U2-9(9860.158mil,3949.528mil)  Top Layer
+   Violation between Pad U2-73(10070.788mil,4179.842mil)  Top Layer and 
+                     Pad U2-74(10051.102mil,4179.842mil)  Top Layer
+   Violation between Pad U2-12(9860.158mil,3890.472mil)  Top Layer and 
+                     Pad U2-11(9860.158mil,3910.158mil)  Top Layer
+   Violation between Pad U2-10(9860.158mil,3929.842mil)  Top Layer and 
+                     Pad U2-11(9860.158mil,3910.158mil)  Top Layer
+   Violation between Pad U2-13(9860.158mil,3870.788mil)  Top Layer and 
+                     Pad U2-12(9860.158mil,3890.472mil)  Top Layer
+   Violation between Pad U2-25(10011.732mil,3660.158mil)  Top Layer and 
+                     Pad U2-24(9992.048mil,3660.158mil)  Top Layer
+   Violation between Pad U2-26(10031.418mil,3660.158mil)  Top Layer and 
+                     Pad U2-25(10011.732mil,3660.158mil)  Top Layer
+   Violation between Pad U2-27(10051.102mil,3660.158mil)  Top Layer and 
+                     Pad U2-26(10031.418mil,3660.158mil)  Top Layer
+   Violation between Pad U2-32(10149.528mil,3660.158mil)  Top Layer and 
+                     Pad U2-31(10129.842mil,3660.158mil)  Top Layer
+   Violation between Pad U2-30(10110.158mil,3660.158mil)  Top Layer and 
+                     Pad U2-31(10129.842mil,3660.158mil)  Top Layer
+   Violation between Pad U2-33(10169.212mil,3660.158mil)  Top Layer and 
+                     Pad U2-32(10149.528mil,3660.158mil)  Top Layer
+   Violation between Pad U2-33(10169.212mil,3660.158mil)  Top Layer and 
+                     Pad U2-34(10188.898mil,3660.158mil)  Top Layer
+   Violation between Pad U2-57(10379.842mil,4047.952mil)  Top Layer and 
+                     Pad U2-58(10379.842mil,4067.638mil)  Top Layer
+   Violation between Pad U2-59(10379.842mil,4087.322mil)  Top Layer and 
+                     Pad U2-58(10379.842mil,4067.638mil)  Top Layer
+   Violation between Pad U2-51(10379.842mil,3929.842mil)  Top Layer and 
+                     Pad U2-52(10379.842mil,3949.528mil)  Top Layer
+   Violation between Pad U2-50(10379.842mil,3910.158mil)  Top Layer and 
+                     Pad U2-51(10379.842mil,3929.842mil)  Top Layer
+   Violation between Pad U2-49(10379.842mil,3890.472mil)  Top Layer and 
+                     Pad U2-50(10379.842mil,3910.158mil)  Top Layer
+   Violation between Pad U2-48(10379.842mil,3870.788mil)  Top Layer and 
+                     Pad U2-49(10379.842mil,3890.472mil)  Top Layer
+   Violation between Pad U2-47(10379.842mil,3851.102mil)  Top Layer and 
+                     Pad U2-48(10379.842mil,3870.788mil)  Top Layer
+   Violation between Pad U2-72(10090.472mil,4179.842mil)  Top Layer and 
+                     Pad U2-73(10070.788mil,4179.842mil)  Top Layer
+   Violation between Pad U2-71(10110.158mil,4179.842mil)  Top Layer and 
+                     Pad U2-72(10090.472mil,4179.842mil)  Top Layer
+   Violation between Pad U2-70(10129.842mil,4179.842mil)  Top Layer and 
+                     Pad U2-71(10110.158mil,4179.842mil)  Top Layer
+   Violation between Pad U2-69(10149.528mil,4179.842mil)  Top Layer and 
+                     Pad U2-70(10129.842mil,4179.842mil)  Top Layer
+   Violation between Pad U2-62(10287.322mil,4179.842mil)  Top Layer and 
+                     Pad U2-61(10307.008mil,4179.842mil)  Top Layer
+   Violation between Pad U2-63(10267.638mil,4179.842mil)  Top Layer and 
+                     Pad U2-62(10287.322mil,4179.842mil)  Top Layer
+   Violation between Pad U2-64(10247.952mil,4179.842mil)  Top Layer and 
+                     Pad U2-63(10267.638mil,4179.842mil)  Top Layer
+   Violation between Pad U2-68(10169.212mil,4179.842mil)  Top Layer and 
+                     Pad U2-67(10188.898mil,4179.842mil)  Top Layer
+   Violation between Pad U2-66(10208.582mil,4179.842mil)  Top Layer and 
+                     Pad U2-67(10188.898mil,4179.842mil)  Top Layer
+   Violation between Pad U2-69(10149.528mil,4179.842mil)  Top Layer and 
+                     Pad U2-68(10169.212mil,4179.842mil)  Top Layer
+   Violation between Pad U2-55(10379.842mil,4008.582mil)  Top Layer and 
+                     Pad U2-54(10379.842mil,3988.898mil)  Top Layer
+   Violation between Pad U2-56(10379.842mil,4028.268mil)  Top Layer and 
+                     Pad U2-55(10379.842mil,4008.582mil)  Top Layer
+   Violation between Pad U2-56(10379.842mil,4028.268mil)  Top Layer and 
+                     Pad U2-57(10379.842mil,4047.952mil)  Top Layer
+   Violation between Pad U2-65(10228.268mil,4179.842mil)  Top Layer and 
+                     Pad U2-64(10247.952mil,4179.842mil)  Top Layer
+   Violation between Pad U2-65(10228.268mil,4179.842mil)  Top Layer and 
+                     Pad U2-66(10208.582mil,4179.842mil)  Top Layer
+Rule Violations :36
+
+Processing Rule : Broken-Net Constraint ( (All) )
+   Violation between Net NetU2_73 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U2-73         Subnet : U3-1     
+   Violation between Net NetU2_72 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U2-72         Subnet : U3-4     
+   Violation between Net NetU2_69 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-6          Subnet : U2-69    
+   Violation between Net NetU2_68 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-10         Subnet : U2-68    
+   Violation between Net NetU2_67 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-9          Subnet : U2-67    
+   Violation between Net NetU2_66 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-2          Subnet : U2-66    
+   Violation between Net NetU2_64 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-14         Subnet : U2-64    
+   Violation between Net NetU2_63 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-11         Subnet : U2-63    
+   Violation between Net NetU2_62 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-3          Subnet : U2-62    
+   Violation between Net NetU2_61 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-5          Subnet : U2-61    
+   Violation between Net NetU2_58 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-1          Subnet : U2-58    
+   Violation between Net NetU2_57 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-13         Subnet : U2-57    
+   Violation between Net NetU2_56 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-22         Subnet : U2-56    
+   Violation between Net NetU2_55 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U5-23         Subnet : U2-55    
+   Violation between Net NetU2_34 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : U2-34         Subnet : U3-8     
+   Violation between Net NetR1_2 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : R1-2          Subnet : U3-7     
+   Violation between Net NetR1_1 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : R1-1          Subnet : U3-6     
+   Violation between Net NetJ14_1 is broken into 3 sub-nets. Routed To 0.00%
+     Subnet : R2-2          Subnet : J14-1         Subnet : U2-9     
+   Violation between Net NetC4_2 is broken into 2 sub-nets. Routed To 0.00%
+     Subnet : C4-2          Subnet : U2-49    
+   Violation between Net GND is broken into 23 sub-nets. Routed To 0.00%
+     Subnet : U5-21         Subnet : U5-7          Subnet : U5-18         Subnet : U5-26         Subnet : U5-25         Subnet : C9-1          Subnet : C7-1          Subnet : C8-1          Subnet : C10-1         Subnet : C11-1         Subnet : C5-1          Subnet : C3-1          Subnet : C6-1          Subnet : C4-1          Subnet : J14-3         Subnet : C2-1          Subnet : U3-2          Subnet : C1-1          Subnet : U2-11         Subnet : U2-26         Subnet : U2-31         Subnet : U2-70         Subnet : U2-51    
+   Violation between Net +3.3V is broken into 18 sub-nets. Routed To 0.00%
+     Subnet : U5-19         Subnet : U5-4          Subnet : C8-2          Subnet : C7-2          Subnet : C9-2          Subnet : C10-2         Subnet : C2-2          Subnet : C11-2         Subnet : C6-2          Subnet : C1-2          Subnet : R2-1          Subnet : J14-2         Subnet : U3-3          Subnet : U2-25         Subnet : U2-12         Subnet : U2-32         Subnet : U2-71         Subnet : U2-48    
+Rule Violations :21
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+
+Violations Detected : 59
+Time Elapsed        : 00:00:00

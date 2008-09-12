@@ -1,0 +1,6 @@
+Added Component: Designator=R8(0805)
+Added Pin To Net: NetName=GND Pin=R8-2
+Added Pin To Net: NetName=NetD1_C Pin=D1-C
+Added Pin To Net: NetName=NetD1_C Pin=R8-1
+Added Net: Name=NetD1_C
+Added Member To Class: ClassName=NEOS_CAN Member=Component R8 R

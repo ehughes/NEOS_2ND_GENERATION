@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=+3.3V Pin=U5-19
+Added Component: Designator=Q2(SOT95P245X145-3L)
+Added Component: Designator=R12(0805)
+Added Component: Designator=R13(0805)
+Added Pin To Net: NetName=GND Pin=Q2-2
+Added Pin To Net: NetName=+3.3V Pin=R12-1
+Added Pin To Net: NetName=NetQ2_1 Pin=Q2-1
+Added Pin To Net: NetName=NetQ2_1 Pin=R13-1
+Added Net: Name=NetQ2_1
+Added Pin To Net: NetName=NetQ2_3 Pin=Q2-3
+Added Pin To Net: NetName=NetQ2_3 Pin=R12-2
+Added Pin To Net: NetName=NetQ2_3 Pin=U5-19
+Added Net: Name=NetQ2_3
+Added Pin To Net: NetName=USB_RESET Pin=R13-2
+Added Net: Name=USB_RESET
+Added Member To Class: ClassName=NEOS_CAN Member=Component Q2 NPN_SOT23
+Added Member To Class: ClassName=NEOS_CAN Member=Component R12 R
+Added Member To Class: ClassName=NEOS_CAN Member=Component R13 R

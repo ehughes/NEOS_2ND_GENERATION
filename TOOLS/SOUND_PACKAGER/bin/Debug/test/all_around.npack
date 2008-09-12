@@ -1,0 +1,33 @@
+#define SELECTION_BUTTON	       3  
+#define COUNT_DOWN			2
+#define BUTTON_FEEDBACK		1
+
+
+#define SOUNDS_PATH sounds\selection
+
+sound[SELECTION_BUTTON]=SOUNDS_PATH\SelectionButton.wav  ;   
+sound[COUNT_DOWN]=SOUNDS_PATH\CountDown.wav;   //lkjlkj
+sound[BUTTON_FEEDBACK]=SOUNDS_PATH\ButtonFeedBack.wav; 
+//sound[4]=sounds\sine.wav;
+
+
+sound[5]=SOUNDS_PATH\ButtonFeedBack.wav;  
+
+
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

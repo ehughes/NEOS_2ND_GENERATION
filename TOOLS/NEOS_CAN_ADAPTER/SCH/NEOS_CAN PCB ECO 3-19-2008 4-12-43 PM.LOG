@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=NetJ1_8 Pin=R1-1
+Added Component: Designator=Q1(SOT95P245X145-3L)
+Added Component: Designator=R6(0805)
+Added Component: Designator=R7(0805)
+Added Pin To Net: NetName=GND Pin=Q1-2
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-1
+Added Pin To Net: NetName=NetQ1_1 Pin=R7-1
+Added Net: Name=NetQ1_1
+Added Pin To Net: NetName=NetQ1_3 Pin=Q1-3
+Added Pin To Net: NetName=NetQ1_3 Pin=R6-1
+Added Net: Name=NetQ1_3
+Added Pin To Net: NetName=NetR1_1 Pin=R1-1
+Added Net: Name=NetR1_1
+Added Pin To Net: NetName=NetR6_2 Pin=R6-2
+Added Net: Name=NetR6_2
+Added Member To Class: ClassName=NEOS_CAN Member=Component Q1 NPN_SOT23
+Added Member To Class: ClassName=NEOS_CAN Member=Component R6 R
+Added Member To Class: ClassName=NEOS_CAN Member=Component R7 R
+Removed Pin From Net: NetName=NetJ1_5 Pin=R1-2
+Added Pin To Net: NetName=NetJ1_8 Pin=R1-2

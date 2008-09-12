@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "npack", "npack.csproj", "{9D2A1992-85F2-4DDF-A3C5-939B4E660F2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D2A1992-85F2-4DDF-A3C5-939B4E660F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D2A1992-85F2-4DDF-A3C5-939B4E660F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D2A1992-85F2-4DDF-A3C5-939B4E660F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D2A1992-85F2-4DDF-A3C5-939B4E660F2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

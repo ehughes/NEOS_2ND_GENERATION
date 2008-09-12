@@ -1,0 +1,21 @@
+Change Component Footprint: Designator=C6 Old Footprint=0603 New Footprint=0805
+Change Component Footprint: Designator=C5 Old Footprint=0603 New Footprint=1206
+Added Component: Designator=C12(0805)
+Added Component: Designator=J(1-1470156)
+Added Component: Designator=R3(0805)
+Added Component: Designator=U4(HCM49)
+Added Pin To Net: NetName=GND Pin=C12-1
+Added Pin To Net: NetName=VBUS Pin=J-1
+Added Pin To Net: NetName=NetJ_2 Pin=J-2
+Added Pin To Net: NetName=NetJ_3 Pin=J-3
+Added Pin To Net: NetName=GND Pin=J-4
+Added Pin To Net: NetName=GND Pin=J-5
+Added Pin To Net: NetName=GND Pin=J-6
+Added Pin To Net: NetName=NetR3_1 Pin=R3-1
+Added Pin To Net: NetName=NetC3_2 Pin=R3-2
+Added Pin To Net: NetName=NetC4_2 Pin=U4-1
+Added Pin To Net: NetName=NetC3_2 Pin=U4-2
+Added Member To Class: ClassName=NEOS_CAN Member=Component C12 C
+Added Member To Class: ClassName=NEOS_CAN Member=Component J CONN RCPT USB TYPE B R/A PCB
+Added Member To Class: ClassName=NEOS_CAN Member=Component R3 R
+Added Member To Class: ClassName=NEOS_CAN Member=Component U4 CRYSTAL

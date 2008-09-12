@@ -1,0 +1,57 @@
+Added Component: Designator=C1(C0805)
+Added Component: Designator=C3(C0805)
+Added Component: Designator=C8(C0805)
+Added Component: Designator=C13(C0805)
+Added Component: Designator=J3(WIRE_14GA)
+Added Component: Designator=J4(WIRE_14GA)
+Added Component: Designator=J7(WIRE_14GA)
+Added Component: Designator=J8(WIRE_14GA)
+Added Component: Designator=M10(MHole#8)
+Added Component: Designator=R4(R0805)
+Added Component: Designator=R5(R1206)
+Added Component: Designator=R8(R0805)
+Added Component: Designator=U3(SOIC 8)
+Added Component: Designator=U7(D-PAK / TO-252AA)
+Added Pin To Net: NetName=VCC Pin=C1-1
+Added Pin To Net: NetName=GND Pin=C1-2
+Added Pin To Net: NetName=VCC Pin=C3-1
+Added Pin To Net: NetName=GND Pin=C3-2
+Added Pin To Net: NetName=VCC Pin=C8-1
+Added Pin To Net: NetName=GND Pin=C8-2
+Added Pin To Net: NetName=NetC13_1 Pin=C13-1
+Added Pin To Net: NetName=GND Pin=C13-2
+Added Pin To Net: NetName=NetJ3_1 Pin=J3-1
+Added Pin To Net: NetName=NetJ4_1 Pin=J4-1
+Added Pin To Net: NetName=NetJ3_1 Pin=J7-1
+Added Pin To Net: NetName=NetJ4_1 Pin=J8-1
+Added Pin To Net: NetName=NetJ14_1 Pin=R4-1
+Added Pin To Net: NetName=VCC Pin=R4-2
+Added Pin To Net: NetName=NetJ4_1 Pin=R5-1
+Added Pin To Net: NetName=NetJ3_1 Pin=R5-2
+Added Pin To Net: NetName=NetR8_1 Pin=R8-1
+Added Pin To Net: NetName=NetC16_1 Pin=R8-2
+Added Pin To Net: NetName=NetU2_73 Pin=U3-1
+Added Pin To Net: NetName=GND Pin=U3-2
+Added Pin To Net: NetName=VCC Pin=U3-3
+Added Pin To Net: NetName=NetU2_72 Pin=U3-4
+Added Pin To Net: NetName=NetJ4_1 Pin=U3-6
+Added Pin To Net: NetName=NetJ3_1 Pin=U3-7
+Added Pin To Net: NetName=NetU2_34 Pin=U3-8
+Added Pin To Net: NetName=NetC13_1 Pin=U7-1
+Added Pin To Net: NetName=GND Pin=U7-2
+Added Pin To Net: NetName=VCC Pin=U7-3
+Added Member To Class: ClassName=NEOS_CAN Member=Component C1 .1uF 50V
+Added Member To Class: ClassName=NEOS_CAN Member=Component C3 .1uF 50V
+Added Member To Class: ClassName=NEOS_CAN Member=Component C8 .1uF 50V
+Added Member To Class: ClassName=NEOS_CAN Member=Component C13 .1uF 50V
+Added Member To Class: ClassName=NEOS_CAN Member=Component J3 *
+Added Member To Class: ClassName=NEOS_CAN Member=Component J4 *
+Added Member To Class: ClassName=NEOS_CAN Member=Component J7 *
+Added Member To Class: ClassName=NEOS_CAN Member=Component J8 *
+Added Member To Class: ClassName=NEOS_CAN Member=Component M10 Mounting Hole #8 Screw
+Added Member To Class: ClassName=NEOS_CAN Member=Component R4 RS/ERJ6ENF1002VP
+Added Member To Class: ClassName=NEOS_CAN Member=Component R5 RS/ERJ8ENF1210VP
+Added Member To Class: ClassName=NEOS_CAN Member=Component R8 RS/ERJ6GEYJ0R00VP
+Added Member To Class: ClassName=NEOS_CAN Member=Component U3 
+Added Member To Class: ClassName=NEOS_CAN Member=Component U7 LP2950CDT-3.3
+Added Room: Name=NEOS_CAN

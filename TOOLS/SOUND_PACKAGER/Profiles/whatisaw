@@ -1,0 +1,40 @@
+Line [1] has a macro TRAIN with a value of 9
+Line [2] has a macro BOAT with a value of 2
+Line [3] has a macro SOUNDS_PATH with a value of sounds\horse
+Line [4] started a multi-line comment
+Line [5] is part of a multi-line comment
+Line [6] is part of a multi-line comment
+Line [7] ended a multi-line comment
+Line [8] started a multi-line comment
+Line [8] ended a multi-line comment
+Line [9] has a macro replace of SOUNDS_PATH to sounds\horse
+Line [9] has a sound sounds\horse\whinny.wav   at sound number 0
+Line [10] had a statement (sound[1]=SOUNDS_PATH\trot.wav;   ) with a single line comment
+Line [10] has a macro replace of SOUNDS_PATH to sounds\horse
+Line [10] has a sound sounds\horse\trot.wav at sound number 1
+Line [11] has a macro replace of SOUNDS_PATH to sounds\horse
+Line [11] has a sound sounds\horse\gallop_fast.wav at sound number 2
+Line [12] has a macro replace of SOUNDS_PATH to sounds\horse
+Line [12] has a sound sounds\horse\HorseMusic.wav at sound number 3
+Line [13] is blank
+Line [14] has a macro replace of SOUNDS_PATH to sounds\horse
+Line [14] has a sound sounds\horse\snort.wav at sound number 4
+Line [15] has a macro replace of SOUNDS_PATH to sounds\horse
+Line [15] has a sound sounds\horse\sine440.wav at sound number 5
+Line [16] is blank
+Line [17] is blank
+Line [18] is blank
+Line [19] is blank
+Line [20] started a multi-line comment
+Line [21] is part of a multi-line comment
+Line [22] is part of a multi-line comment
+Line [23] is part of a multi-line comment
+Line [24] is part of a multi-line comment
+Line [25] is part of a multi-line comment
+Line [26] is part of a multi-line comment
+Line [27] is part of a multi-line comment
+Line [28] is part of a multi-line comment
+Line [29] is part of a multi-line comment
+Line [30] ended a multi-line comment
+Line [31] is blank
+Line [32] is blank

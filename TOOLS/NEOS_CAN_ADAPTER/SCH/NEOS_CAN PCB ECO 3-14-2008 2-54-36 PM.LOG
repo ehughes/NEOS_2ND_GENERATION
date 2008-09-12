@@ -1,0 +1,6 @@
+Added Component: Designator=U1(SOT223)
+Added Pin To Net: NetName=VCC Pin=U1-1
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Pin To Net: NetName=GND Pin=U1-3
+Added Pin To Net: NetName=+3.3V Pin=U1-4
+Added Member To Class: ClassName=NEOS_CAN Member=Component U1 LM2937

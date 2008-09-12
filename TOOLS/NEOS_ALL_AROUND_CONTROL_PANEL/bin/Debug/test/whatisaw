@@ -1,0 +1,42 @@
+Line [1] has a macro SELECTION_BUTTON with a value of 3
+Line [2] has a macro COUNT_DOWN with a value of 2
+Line [3] has a macro BUTTON_FEEDBACK with a value of 1
+Line [4] is blank
+Line [5] is blank
+Line [6] has a macro SOUNDS_PATH with a value of sounds\selection
+Line [7] is blank
+Line [8] has a macro replace of SELECTION_BUTTON to 3
+Line [8] has a macro replace of SOUNDS_PATH to sounds\selection
+Line [8] has a sound sounds\selection\SelectionButton.wav   at sound number 3
+Line [9] had a statement (sound[COUNT_DOWN]=SOUNDS_PATH\CountDown.wav;   ) with a single line comment
+Line [9] has a macro replace of COUNT_DOWN to 2
+Line [9] has a macro replace of SOUNDS_PATH to sounds\selection
+Line [9] has a sound sounds\selection\CountDown.wav at sound number 2
+Line [10] has a macro replace of BUTTON_FEEDBACK to 1
+Line [10] has a macro replace of SOUNDS_PATH to sounds\selection
+Line [10] has a sound sounds\selection\ButtonFeedBack.wav at sound number 1
+Line [11] is a single line comment
+Line [12] is blank
+Line [13] is blank
+Line [14] has a macro replace of SOUNDS_PATH to sounds\selection
+Line [14] has a sound sounds\selection\ButtonFeedBack.wav at sound number 5
+Line [15] is blank
+Line [16] is blank
+Line [17] is blank
+Line [18] is blank
+Line [19] is blank
+Line [20] is blank
+Line [21] is blank
+Line [22] is blank
+Line [23] is blank
+Line [24] is blank
+Line [25] is blank
+Line [26] is blank
+Line [27] is blank
+Line [28] is blank
+Line [29] is blank
+Line [30] is blank
+Line [31] is blank
+Line [32] is blank
+Line [33] is blank
+Line [34] is blank
