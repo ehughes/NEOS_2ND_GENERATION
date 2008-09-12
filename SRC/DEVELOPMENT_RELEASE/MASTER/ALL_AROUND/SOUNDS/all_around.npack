@@ -1,0 +1,183 @@
+#define GLOBAL_SOUNDS_PATH				sounds\Global
+
+#define SELECTION_SOUNDS_PATH			sounds\selection
+#define LIGHT_GRABBER_PATH				sounds\LightGrabber
+#define ZIG_ZAG_PATH				      sounds\ZigZag
+#define NINJA_PATH				      sounds\Ninja
+#define RODEO_PATH				      sounds\Rodeo
+#define MARATHON_PATH			      sounds\Marathon
+#define DOUBLE_DOTS_PATH                       sounds\DoubleDots
+#define FIRE_FIGHTER_PATH                      sounds\FireFighter
+
+#define SURROUND_SOUND_PATH                    sounds\SurroundSound
+
+
+
+sound[0]=SELECTION_SOUNDS_PATH\SelectionButton.wav;   
+sound[1]=SELECTION_SOUNDS_PATH\CountDown.wav; 
+sound[4]=GLOBAL_SOUNDS_PATH\ButtonFeedBack.wav; 
+sound[5]=GLOBAL_SOUNDS_PATH\Ending.wav; 
+sound[6]=GLOBAL_SOUNDS_PATH\MainTheme_L.wav; 
+sound[7]=GLOBAL_SOUNDS_PATH\MainTheme_LS.wav; 
+sound[8]=GLOBAL_SOUNDS_PATH\MainTheme_R.wav; 
+sound[9]=GLOBAL_SOUNDS_PATH\MainTheme_RS.wav; 
+sound[128]=GLOBAL_SOUNDS_PATH\BuildUp_A.wav;
+sound[129]=GLOBAL_SOUNDS_PATH\BuildUp_B.wav;
+sound[130]=GLOBAL_SOUNDS_PATH\Heartbeat.wav;
+ 
+//sound[8]=GLOBAL_SOUNDS_PATH\thump2.wav; 
+ 
+sound[10]=LIGHT_GRABBER_PATH\Nodes\Node0.wav;
+sound[11]=LIGHT_GRABBER_PATH\Nodes\Node1.wav;
+sound[12]=LIGHT_GRABBER_PATH\Nodes\Node2.wav;
+sound[13]=LIGHT_GRABBER_PATH\Nodes\Node3.wav;
+sound[14]=LIGHT_GRABBER_PATH\Nodes\Node4.wav;
+sound[15]=LIGHT_GRABBER_PATH\Nodes\Node5.wav;
+sound[16]=LIGHT_GRABBER_PATH\Nodes\Node6.wav;
+sound[17]=LIGHT_GRABBER_PATH\Nodes\Node7.wav;
+sound[18]=LIGHT_GRABBER_PATH\BonusSound.wav;
+sound[19]=LIGHT_GRABBER_PATH\LightGrabberBackGroundMusic.wav;
+sound[20]=LIGHT_GRABBER_PATH\LightGrabberBackGroundMusic_Bonus.wav;
+sound[21]=LIGHT_GRABBER_PATH\LG_End.wav;
+
+
+				
+
+//sound[30]=ZIG_ZAG_PATH\ZigZagBackgroundMusic.wav;
+sound[31]=ZIG_ZAG_PATH\ball_serve.wav;
+sound[32]=ZIG_ZAG_PATH\ball_hit.wav;
+sound[33]=ZIG_ZAG_PATH\ball_bounce.wav;
+sound[34]=ZIG_ZAG_PATH\ZigZagSFX1.wav;
+sound[35]=ZIG_ZAG_PATH\ZigZagSFX2.wav;
+sound[36]=ZIG_ZAG_PATH\ZigZagSFX3.wav;
+sound[37]=ZIG_ZAG_PATH\ZigZagSFX4.wav;
+sound[38]=ZIG_ZAG_PATH\ZigZagSFX5.wav;
+sound[39]=ZIG_ZAG_PATH\ZigZagSFX6.wav;
+sound[40]=ZIG_ZAG_PATH\ZigZagSFX7.wav;
+sound[41]=ZIG_ZAG_PATH\ZigZagSFX8.wav;
+sound[42]=ZIG_ZAG_PATH\ZigZagSFX9.wav;
+sound[43]=ZIG_ZAG_PATH\ZigZagSFX10.wav;
+sound[44]=ZIG_ZAG_PATH\ZigZagBackgroundMusic_A.wav;
+sound[45]=ZIG_ZAG_PATH\ZigZagBackgroundMusic_B.wav;
+sound[46]=ZIG_ZAG_PATH\ZigZagEnd.wav;
+
+
+
+
+
+
+
+sound[50]=NINJA_PATH\NinjaBackground.wav;
+sound[51]=NINJA_PATH\ninja_button_01.wav;
+sound[52]=NINJA_PATH\ninja_button_02.wav;
+sound[53]=NINJA_PATH\ninja_button_03.wav;
+sound[54]=NINJA_PATH\ninja_button_04.wav;
+sound[55]=NINJA_PATH\ninja_button_05.wav;
+sound[56]=NINJA_PATH\ninja_button_06.wav;
+sound[57]=NINJA_PATH\ninja_button_07.wav;
+sound[58]=NINJA_PATH\ninja_button_08.wav;
+sound[59]=NINJA_PATH\ninja_QuickHit_01.wav;
+sound[60]=NINJA_PATH\ninja_QuickHit_02.wav;
+sound[61]=NINJA_PATH\ninja_QuickHit_03.wav;
+sound[62]=NINJA_PATH\ninja_QuickHit_04.wav;
+sound[63]=NINJA_PATH\ninja_QuickHit_05.wav;
+sound[64]=NINJA_PATH\ninja_BigHit_01.wav;
+sound[65]=NINJA_PATH\ninja_BigHit_02.wav;
+sound[66]=NINJA_PATH\ninja_BigHit_03.wav;
+sound[67]=NINJA_PATH\ninja_BigHit_04.wav;
+sound[68]=NINJA_PATH\ninja_BigHit_05.wav;
+sound[69]=NINJA_PATH\ninja_HugeHit_01.wav;
+sound[70]=NINJA_PATH\ninja_HugeHit_02.wav;
+sound[71]=NINJA_PATH\ninja_HugeHit_03.wav;
+sound[72]=NINJA_PATH\ninja_HugeHit_04.wav;
+sound[73]=NINJA_PATH\ninja_HugeHit_05.wav;
+sound[74]=NINJA_PATH\ninja_BadGong_01.wav;
+
+
+
+sound[80]=RODEO_PATH\rodeo_CrissCross_01.wav;
+sound[81]=RODEO_PATH\rodeo_SolidWall_01.wav;
+sound[82]=RODEO_PATH\rodeo_TopBottom_01.wav;
+//sound[83]=RODEO_PATH\RodeoBackground.wav;
+sound[84]=RODEO_PATH\RodeoBackground_a.wav;
+sound[85]=RODEO_PATH\RodeoBackground_b.wav;
+sound[86]=RODEO_PATH\RodeoEnd.wav;
+
+
+
+
+
+
+sound[90]=MARATHON_PATH\Marathon_Intro.wav;
+sound[91]=MARATHON_PATH\Marathon_Level_Fanfare.wav;
+sound[92]=MARATHON_PATH\Marathon_Section_1.wav;
+sound[93]=MARATHON_PATH\Marathon_Section_2.wav;
+sound[94]=MARATHON_PATH\Marathon_Section_3.wav;
+sound[95]=MARATHON_PATH\Marathon_Section_4.wav;
+sound[96]=MARATHON_PATH\Marathon_Ending_Fanfare.wav;
+sound[97]=MARATHON_PATH\Marathon_Jump.wav;
+sound[98]=MARATHON_PATH\Marathon_Hit.wav;
+
+sound[99]=MARATHON_PATH\Buzzer.wav;
+
+
+
+sound [100] = DOUBLE_DOTS_PATH\DDBackground.wav;
+sound [101] = DOUBLE_DOTS_PATH\DDButtonFx.wav;
+sound [102] = DOUBLE_DOTS_PATH\DDCorrect.wav;
+sound [103] = DOUBLE_DOTS_PATH\DDIncorrect.wav;
+sound [104] = DOUBLE_DOTS_PATH\DDEnd.wav;
+
+
+
+sound [110] = FIRE_FIGHTER_PATH\FF_Background.wav;
+sound [111] = FIRE_FIGHTER_PATH\FF_FireOn.wav;
+sound [112] = FIRE_FIGHTER_PATH\FF_WaterHit.wav;
+sound [113] = FIRE_FIGHTER_PATH\FF_WaterMiss.wav;
+sound [114] = FIRE_FIGHTER_PATH\FF_End.wav;
+
+
+sound[150]=SURROUND_SOUND_PATH\Rock\Bass1A.wav;  
+sound[151]=SURROUND_SOUND_PATH\Rock\Bass1B.wav;  
+sound[152]=SURROUND_SOUND_PATH\Rock\Bass1C.wav;  
+sound[153]=SURROUND_SOUND_PATH\Rock\Bass2A.wav;  
+sound[154]=SURROUND_SOUND_PATH\Rock\Bass2B.wav;  
+sound[155]=SURROUND_SOUND_PATH\Rock\Bass2C.wav;  
+sound[156]=SURROUND_SOUND_PATH\Rock\Drums1A.wav;
+sound[157]=SURROUND_SOUND_PATH\Rock\Drums1B.wav;
+sound[158]=SURROUND_SOUND_PATH\Rock\Drums1C.wav;
+sound[159]=SURROUND_SOUND_PATH\Rock\Drums2A.wav;
+sound[160]=SURROUND_SOUND_PATH\Rock\Drums2B.wav;
+sound[161]=SURROUND_SOUND_PATH\Rock\Drums2C.wav;
+sound[162]=SURROUND_SOUND_PATH\Rock\Gtr1A.wav;
+sound[163]=SURROUND_SOUND_PATH\Rock\Gtr1B.wav;
+sound[164]=SURROUND_SOUND_PATH\Rock\Gtr1C.wav;
+sound[165]=SURROUND_SOUND_PATH\Rock\Gtr2A.wav;
+sound[166]=SURROUND_SOUND_PATH\Rock\Gtr2B.wav;
+sound[167]=SURROUND_SOUND_PATH\Rock\Gtr2C.wav;
+sound[168]=SURROUND_SOUND_PATH\Rock\Gtr3A.wav;
+sound[169]=SURROUND_SOUND_PATH\Rock\Gtr3B.wav;
+sound[170]=SURROUND_SOUND_PATH\Rock\Gtr3C.wav;
+sound[171]=SURROUND_SOUND_PATH\Rock\Gtr4A.wav;
+sound[172]=SURROUND_SOUND_PATH\Rock\Gtr4B.wav;
+sound[173]=SURROUND_SOUND_PATH\Rock\Gtr4C.wav;
+sound[174]=SURROUND_SOUND_PATH\Rock\RockBackground.wav;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

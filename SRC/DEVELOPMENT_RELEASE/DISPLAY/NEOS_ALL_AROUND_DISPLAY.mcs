@@ -1,0 +1,293 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\spi.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File001]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\main.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File002]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\asmroutines.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g
+TraceCmdString=
+DebugOptions=--defsym=__DEBUG=1
+[File003]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\DataEEPROM.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={DE18EB1A-B46B-486B-B96F-A811A635DFAC}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g
+TraceCmdString=
+DebugOptions=--defsym=__DEBUG=1
+[File004]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\can.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File005]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\UART.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File006]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\EEPROM.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File007]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\ADC.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File008]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\LED-Display.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File009]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\Audio.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File010]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\Timer.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File011]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\SystemUtilities.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File012]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\__Game_RootGame0.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File013]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\_RootButtonHandler.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File014]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\_GameProcess.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File015]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\__Game_AddressSetup.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File016]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\__Game_Diagnostic.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File017]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\__Game_FullPower.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File018]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\_GameVariables.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File019]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\SRC\OBJ\_LightShows.o
+Folder=Intermediary
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=-g -Wall
+TraceCmdString=
+DebugOptions=-D__DEBUG
+[File020]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\.\HEX\NEOS_ALL_AROUND_DISPLAY.cof
+Folder=Output
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=--heap=0 --stack=200 --defsym=__ICD2RAM=1 -Map="$(TARGETBASE).map" --report-mem --cref -o"$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD2=1 --defsym=__ICD2RAM=1
+[File021]
+Location=E:\ELI\PRODUCTION\NEOS_ALL_AROUND\SRC\Development Release\DISPLAY\.\HEX\NEOS_ALL_AROUND_DISPLAY.hex
+Folder=Output
+DeviceName=dsPIC30F6014A
+LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
+LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
+LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
+SOLK=<src>|SRC\spi.c|SRC\main.c|SRC\asmroutines.s|SRC\DataEEPROM.s|SRC\can.c|SRC\UART.c|SRC\EEPROM.c|SRC\ADC.c|SRC\LED-Display.c|SRC\Audio.c|SRC\Timer.c|SRC\SystemUtilities.c|SRC\__Game_RootGame0.c|SRC\_RootButtonHandler.c|SRC\_GameProcess.c|SRC\__Game_AddressSetup.c|SRC\__Game_Diagnostic.c|SRC\__Game_FullPower.c|SRC\_GameVariables.c|SRC\_LightShows.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SuiteArgsString=
+ToolArgsString=--heap=0 --stack=200 --defsym=__ICD2RAM=1 -Map="$(TARGETBASE).map" --report-mem --cref -o"$(TARGETBASE).$(TARGETSUFFIX)"
+TraceCmdString=
+DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD2=1 --defsym=__ICD2RAM=1
+[TOOL_LOC_STAMPS]
+tool_loc{DE18EB1A-B46B-486B-B96F-A811A635DFAC}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
+tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+tool_loc{433C3D55-811D-409D-A6BF-159CF9355B42}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe

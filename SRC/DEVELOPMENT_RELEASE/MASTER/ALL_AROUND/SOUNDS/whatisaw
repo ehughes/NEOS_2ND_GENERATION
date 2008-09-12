@@ -1,0 +1,298 @@
+Line [1] has a macro GLOBAL_SOUNDS_PATH with a value of sounds\Global
+Line [2] is blank
+Line [3] has a macro SELECTION_SOUNDS_PATH with a value of sounds\selection
+Line [4] has a macro LIGHT_GRABBER_PATH with a value of sounds\LightGrabber
+Line [5] has a macro ZIG_ZAG_PATH with a value of sounds\ZigZag
+Line [6] has a macro NINJA_PATH with a value of sounds\Ninja
+Line [7] has a macro RODEO_PATH with a value of sounds\Rodeo
+Line [8] has a macro MARATHON_PATH with a value of sounds\Marathon
+Line [9] has a macro DOUBLE_DOTS_PATH with a value of sounds\DoubleDots
+Line [10] has a macro FIRE_FIGHTER_PATH with a value of sounds\FireFighter
+Line [11] is blank
+Line [12] has a macro SURROUND_SOUND_PATH with a value of sounds\SurroundSound
+Line [13] is blank
+Line [14] is blank
+Line [15] is blank
+Line [16] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
+Line [16] has a sound sounds\selection\SelectionButton.wav at sound number 0
+Line [17] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
+Line [17] has a sound sounds\selection\CountDown.wav at sound number 1
+Line [18] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [18] has a sound sounds\Global\ButtonFeedBack.wav at sound number 4
+Line [19] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [19] has a sound sounds\Global\Ending.wav at sound number 5
+Line [20] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [20] has a sound sounds\Global\MainTheme_L.wav at sound number 6
+Line [21] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [21] has a sound sounds\Global\MainTheme_LS.wav at sound number 7
+Line [22] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [22] has a sound sounds\Global\MainTheme_R.wav at sound number 8
+Line [23] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [23] has a sound sounds\Global\MainTheme_RS.wav at sound number 9
+Line [24] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [24] has a sound sounds\Global\BuildUp_A.wav at sound number 128
+Line [25] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [25] has a sound sounds\Global\BuildUp_B.wav at sound number 129
+Line [26] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [26] has a sound sounds\Global\Heartbeat.wav at sound number 130
+Line [27] is blank
+Line [28] is a single line comment
+Line [29] is blank
+Line [30] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [30] has a sound sounds\LightGrabber\Nodes\Node0.wav at sound number 10
+Line [31] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [31] has a sound sounds\LightGrabber\Nodes\Node1.wav at sound number 11
+Line [32] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [32] has a sound sounds\LightGrabber\Nodes\Node2.wav at sound number 12
+Line [33] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [33] has a sound sounds\LightGrabber\Nodes\Node3.wav at sound number 13
+Line [34] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [34] has a sound sounds\LightGrabber\Nodes\Node4.wav at sound number 14
+Line [35] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [35] has a sound sounds\LightGrabber\Nodes\Node5.wav at sound number 15
+Line [36] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [36] has a sound sounds\LightGrabber\Nodes\Node6.wav at sound number 16
+Line [37] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [37] has a sound sounds\LightGrabber\Nodes\Node7.wav at sound number 17
+Line [38] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [38] has a sound sounds\LightGrabber\BonusSound.wav at sound number 18
+Line [39] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [39] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic.wav at sound number 19
+Line [40] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [40] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic_Bonus.wav at sound number 20
+Line [41] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [41] has a sound sounds\LightGrabber\LG_End.wav at sound number 21
+Line [42] is blank
+Line [43] is blank
+Line [44] is blank
+Line [45] is blank
+Line [46] is a single line comment
+Line [47] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [47] has a sound sounds\ZigZag\ball_serve.wav at sound number 31
+Line [48] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [48] has a sound sounds\ZigZag\ball_hit.wav at sound number 32
+Line [49] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [49] has a sound sounds\ZigZag\ball_bounce.wav at sound number 33
+Line [50] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [50] has a sound sounds\ZigZag\ZigZagSFX1.wav at sound number 34
+Line [51] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [51] has a sound sounds\ZigZag\ZigZagSFX2.wav at sound number 35
+Line [52] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [52] has a sound sounds\ZigZag\ZigZagSFX3.wav at sound number 36
+Line [53] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [53] has a sound sounds\ZigZag\ZigZagSFX4.wav at sound number 37
+Line [54] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [54] has a sound sounds\ZigZag\ZigZagSFX5.wav at sound number 38
+Line [55] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [55] has a sound sounds\ZigZag\ZigZagSFX6.wav at sound number 39
+Line [56] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [56] has a sound sounds\ZigZag\ZigZagSFX7.wav at sound number 40
+Line [57] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [57] has a sound sounds\ZigZag\ZigZagSFX8.wav at sound number 41
+Line [58] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [58] has a sound sounds\ZigZag\ZigZagSFX9.wav at sound number 42
+Line [59] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [59] has a sound sounds\ZigZag\ZigZagSFX10.wav at sound number 43
+Line [60] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [60] has a sound sounds\ZigZag\ZigZagBackgroundMusic_A.wav at sound number 44
+Line [61] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [61] has a sound sounds\ZigZag\ZigZagBackgroundMusic_B.wav at sound number 45
+Line [62] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [62] has a sound sounds\ZigZag\ZigZagEnd.wav at sound number 46
+Line [63] is blank
+Line [64] is blank
+Line [65] is blank
+Line [66] is blank
+Line [67] is blank
+Line [68] is blank
+Line [69] is blank
+Line [70] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [70] has a sound sounds\Ninja\NinjaBackground.wav at sound number 50
+Line [71] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [71] has a sound sounds\Ninja\ninja_button_01.wav at sound number 51
+Line [72] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [72] has a sound sounds\Ninja\ninja_button_02.wav at sound number 52
+Line [73] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [73] has a sound sounds\Ninja\ninja_button_03.wav at sound number 53
+Line [74] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [74] has a sound sounds\Ninja\ninja_button_04.wav at sound number 54
+Line [75] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [75] has a sound sounds\Ninja\ninja_button_05.wav at sound number 55
+Line [76] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [76] has a sound sounds\Ninja\ninja_button_06.wav at sound number 56
+Line [77] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [77] has a sound sounds\Ninja\ninja_button_07.wav at sound number 57
+Line [78] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [78] has a sound sounds\Ninja\ninja_button_08.wav at sound number 58
+Line [79] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [79] has a sound sounds\Ninja\ninja_QuickHit_01.wav at sound number 59
+Line [80] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [80] has a sound sounds\Ninja\ninja_QuickHit_02.wav at sound number 60
+Line [81] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [81] has a sound sounds\Ninja\ninja_QuickHit_03.wav at sound number 61
+Line [82] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [82] has a sound sounds\Ninja\ninja_QuickHit_04.wav at sound number 62
+Line [83] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [83] has a sound sounds\Ninja\ninja_QuickHit_05.wav at sound number 63
+Line [84] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [84] has a sound sounds\Ninja\ninja_BigHit_01.wav at sound number 64
+Line [85] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [85] has a sound sounds\Ninja\ninja_BigHit_02.wav at sound number 65
+Line [86] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [86] has a sound sounds\Ninja\ninja_BigHit_03.wav at sound number 66
+Line [87] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [87] has a sound sounds\Ninja\ninja_BigHit_04.wav at sound number 67
+Line [88] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [88] has a sound sounds\Ninja\ninja_BigHit_05.wav at sound number 68
+Line [89] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [89] has a sound sounds\Ninja\ninja_HugeHit_01.wav at sound number 69
+Line [90] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [90] has a sound sounds\Ninja\ninja_HugeHit_02.wav at sound number 70
+Line [91] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [91] has a sound sounds\Ninja\ninja_HugeHit_03.wav at sound number 71
+Line [92] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [92] has a sound sounds\Ninja\ninja_HugeHit_04.wav at sound number 72
+Line [93] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [93] has a sound sounds\Ninja\ninja_HugeHit_05.wav at sound number 73
+Line [94] has a macro replace of NINJA_PATH to sounds\Ninja
+Line [94] has a sound sounds\Ninja\ninja_BadGong_01.wav at sound number 74
+Line [95] is blank
+Line [96] is blank
+Line [97] is blank
+Line [98] has a macro replace of RODEO_PATH to sounds\Rodeo
+Line [98] has a sound sounds\Rodeo\rodeo_CrissCross_01.wav at sound number 80
+Line [99] has a macro replace of RODEO_PATH to sounds\Rodeo
+Line [99] has a sound sounds\Rodeo\rodeo_SolidWall_01.wav at sound number 81
+Line [100] has a macro replace of RODEO_PATH to sounds\Rodeo
+Line [100] has a sound sounds\Rodeo\rodeo_TopBottom_01.wav at sound number 82
+Line [101] is a single line comment
+Line [102] has a macro replace of RODEO_PATH to sounds\Rodeo
+Line [102] has a sound sounds\Rodeo\RodeoBackground_a.wav at sound number 84
+Line [103] has a macro replace of RODEO_PATH to sounds\Rodeo
+Line [103] has a sound sounds\Rodeo\RodeoBackground_b.wav at sound number 85
+Line [104] has a macro replace of RODEO_PATH to sounds\Rodeo
+Line [104] has a sound sounds\Rodeo\RodeoEnd.wav at sound number 86
+Line [105] is blank
+Line [106] is blank
+Line [107] is blank
+Line [108] is blank
+Line [109] is blank
+Line [110] is blank
+Line [111] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [111] has a sound sounds\Marathon\Marathon_Intro.wav at sound number 90
+Line [112] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [112] has a sound sounds\Marathon\Marathon_Level_Fanfare.wav at sound number 91
+Line [113] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [113] has a sound sounds\Marathon\Marathon_Section_1.wav at sound number 92
+Line [114] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [114] has a sound sounds\Marathon\Marathon_Section_2.wav at sound number 93
+Line [115] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [115] has a sound sounds\Marathon\Marathon_Section_3.wav at sound number 94
+Line [116] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [116] has a sound sounds\Marathon\Marathon_Section_4.wav at sound number 95
+Line [117] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [117] has a sound sounds\Marathon\Marathon_Ending_Fanfare.wav at sound number 96
+Line [118] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [118] has a sound sounds\Marathon\Marathon_Jump.wav at sound number 97
+Line [119] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [119] has a sound sounds\Marathon\Marathon_Hit.wav at sound number 98
+Line [120] is blank
+Line [121] has a macro replace of MARATHON_PATH to sounds\Marathon
+Line [121] has a sound sounds\Marathon\Buzzer.wav at sound number 99
+Line [122] is blank
+Line [123] is blank
+Line [124] is blank
+Line [125] has a macro replace of DOUBLE_DOTS_PATH to sounds\DoubleDots
+Line [125] has a sound sounds\DoubleDots\DDBackground.wav at sound number 100
+Line [126] has a macro replace of DOUBLE_DOTS_PATH to sounds\DoubleDots
+Line [126] has a sound sounds\DoubleDots\DDButtonFx.wav at sound number 101
+Line [127] has a macro replace of DOUBLE_DOTS_PATH to sounds\DoubleDots
+Line [127] has a sound sounds\DoubleDots\DDCorrect.wav at sound number 102
+Line [128] has a macro replace of DOUBLE_DOTS_PATH to sounds\DoubleDots
+Line [128] has a sound sounds\DoubleDots\DDIncorrect.wav at sound number 103
+Line [129] has a macro replace of DOUBLE_DOTS_PATH to sounds\DoubleDots
+Line [129] has a sound sounds\DoubleDots\DDEnd.wav at sound number 104
+Line [130] is blank
+Line [131] is blank
+Line [132] is blank
+Line [133] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
+Line [133] has a sound sounds\FireFighter\FF_Background.wav at sound number 110
+Line [134] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
+Line [134] has a sound sounds\FireFighter\FF_FireOn.wav at sound number 111
+Line [135] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
+Line [135] has a sound sounds\FireFighter\FF_WaterHit.wav at sound number 112
+Line [136] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
+Line [136] has a sound sounds\FireFighter\FF_WaterMiss.wav at sound number 113
+Line [137] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
+Line [137] has a sound sounds\FireFighter\FF_End.wav at sound number 114
+Line [138] is blank
+Line [139] is blank
+Line [140] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [140] has a sound sounds\SurroundSound\Rock\Bass1A.wav at sound number 150
+Line [141] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [141] has a sound sounds\SurroundSound\Rock\Bass1B.wav at sound number 151
+Line [142] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [142] has a sound sounds\SurroundSound\Rock\Bass1C.wav at sound number 152
+Line [143] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [143] has a sound sounds\SurroundSound\Rock\Bass2A.wav at sound number 153
+Line [144] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [144] has a sound sounds\SurroundSound\Rock\Bass2B.wav at sound number 154
+Line [145] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [145] has a sound sounds\SurroundSound\Rock\Bass2C.wav at sound number 155
+Line [146] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [146] has a sound sounds\SurroundSound\Rock\Drums1A.wav at sound number 156
+Line [147] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [147] has a sound sounds\SurroundSound\Rock\Drums1B.wav at sound number 157
+Line [148] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [148] has a sound sounds\SurroundSound\Rock\Drums1C.wav at sound number 158
+Line [149] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [149] has a sound sounds\SurroundSound\Rock\Drums2A.wav at sound number 159
+Line [150] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [150] has a sound sounds\SurroundSound\Rock\Drums2B.wav at sound number 160
+Line [151] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [151] has a sound sounds\SurroundSound\Rock\Drums2C.wav at sound number 161
+Line [152] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [152] has a sound sounds\SurroundSound\Rock\Gtr1A.wav at sound number 162
+Line [153] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [153] has a sound sounds\SurroundSound\Rock\Gtr1B.wav at sound number 163
+Line [154] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [154] has a sound sounds\SurroundSound\Rock\Gtr1C.wav at sound number 164
+Line [155] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [155] has a sound sounds\SurroundSound\Rock\Gtr2A.wav at sound number 165
+Line [156] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [156] has a sound sounds\SurroundSound\Rock\Gtr2B.wav at sound number 166
+Line [157] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [157] has a sound sounds\SurroundSound\Rock\Gtr2C.wav at sound number 167
+Line [158] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [158] has a sound sounds\SurroundSound\Rock\Gtr3A.wav at sound number 168
+Line [159] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [159] has a sound sounds\SurroundSound\Rock\Gtr3B.wav at sound number 169
+Line [160] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [160] has a sound sounds\SurroundSound\Rock\Gtr3C.wav at sound number 170
+Line [161] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [161] has a sound sounds\SurroundSound\Rock\Gtr4A.wav at sound number 171
+Line [162] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [162] has a sound sounds\SurroundSound\Rock\Gtr4B.wav at sound number 172
+Line [163] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [163] has a sound sounds\SurroundSound\Rock\Gtr4C.wav at sound number 173
+Line [164] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [164] has a sound sounds\SurroundSound\Rock\RockBackground.wav at sound number 174
+Line [165] is blank
+Line [166] is blank
+Line [167] is blank
+Line [168] is blank
+Line [169] is blank
+Line [170] is blank
+Line [171] is blank
+Line [172] is blank
+Line [173] is blank
+Line [174] is blank
+Line [175] is blank
+Line [176] is blank
+Line [177] is blank
+Line [178] is blank
+Line [179] is blank
+Line [180] is blank
+Line [181] is blank
+Line [182] is blank
+Line [183] is blank
