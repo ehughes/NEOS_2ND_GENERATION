@@ -1,0 +1,68 @@
+Protel Design System Design Rule Check
+PCB File : E:\ELI\DEVELOPMENT\NEOS_ALL_AROUND\SCH\Master-Slave\Master-Slave.PcbDoc
+Date     : 9/4/2008
+Time     : 9:13:37 AM
+
+Processing Rule : Short-Circuit Constraint (Allowed=Yes) ((InNet('VCC'))),(InNet('VDD'))
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=5mil) ((HasFootprint('TQFP-80')) Or (HasFootprint('TSSOP\10')) Or (HasFootprint('QFN28'))),(All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=0mil) (Max=250mil) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=200mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7.5mil) (All),(All)
+   Violation between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer and 
+                     Pad J6-1(-670mil,546.635mil)  Multi-Layer
+   Violation between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer and 
+                     Pad J5-1(-147.766mil,850mil)  Multi-Layer
+   Violation between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer and 
+                     Pad J2-1(-815mil,290.637mil)  Multi-Layer
+   Violation between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer and 
+                     Pad J1-1(147.968mil,850mil)  Multi-Layer
+Rule Violations :4
+
+Processing Rule : Broken-Net Constraint ( (All) )
+   Violation between Isolated copper: Split Plane  (VCC)  on Power. Dead copper detected. Copper area is : 1.2E5 sq. mils
+   Violation between Isolated copper: Split Plane  (VCC)  on Power. Dead copper detected. Copper area is : 7E3 sq. mils
+   Violation between Isolated copper: Split Plane  (VCC)  on Power. Dead copper detected. Copper area is : 3.4E3 sq. mils
+   Violation between Isolated copper: Split Plane  (NetC18_1)  on Power. Dead copper detected. Copper area is : 2.2E2 sq. mils
+   Violation between Isolated copper: Split Plane  (GND)  on Ground. Dead copper detected. Copper area is : 7E3 sq. mils
+   Violation between Isolated copper: Split Plane  (GND)  on Ground. Dead copper detected. Copper area is : 3.4E3 sq. mils
+   Violation between Isolated copper: Split Plane  (GND)  on Ground. Copper island connected to pads/vias detected. Copper area is : 4E2 sq. mils
+   Violation between Isolated copper: Split Plane  (GND)  on Ground. Copper island connected to pads/vias detected. Copper area is : 3.7E2 sq. mils
+   Violation between Isolated copper: Split Plane  (GND)  on Ground. Dead copper detected. Copper area is : 2.2E2 sq. mils
+Rule Violations :9
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+   Violation between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer and 
+                     Pad J6-1(-670mil,546.635mil)  Multi-Layer
+   Violation between Board Cutout (Multi-Layer)Region (0 hole(s)) Multi-Layer and 
+                     Pad J5-1(-147.766mil,850mil)  Multi-Layer
+Rule Violations :2
+
+Processing Rule : Width Constraint (Min=10mil) (Max=150mil) (Preferred=40mil) (InNetClass('Class_Power'))
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=150mil) (Preferred=10mil) ((InNet('NetJ3_1') or InNet('NetJ4_1')))
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=15mil) ((InPolygon AND InNet('GND'))),(Not InNet('GND'))
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=1500mil) (HasFootprint('MHole#8') or HasFootprint('MHole250') or (IsPad and InNet('NoNet')))
+Rule Violations :0
+
+
+Violations Detected : 15
+Time Elapsed        : 00:00:02

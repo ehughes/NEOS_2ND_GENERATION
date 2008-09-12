@@ -1,0 +1,11 @@
+Added Component: Designator=C9(C1206)
+Added Component: Designator=C14(C1206)
+Added Component: Designator=C19(C1206)
+Added Pin To Net: NetName=GND Pin=C9-1
+Added Pin To Net: NetName=NetC6_1 Pin=C9-2
+Added Pin To Net: NetName=GND Pin=C14-1
+Added Pin To Net: NetName=GND Pin=C19-1
+Added Pin To Net: NetName=VCC Pin=C19-2
+Added Pin To Net: NetName=NetC14_2 Pin=C14-2
+Added Pin To Net: NetName=NetC14_2 Pin=U5-6
+Added Net: Name=NetC14_2

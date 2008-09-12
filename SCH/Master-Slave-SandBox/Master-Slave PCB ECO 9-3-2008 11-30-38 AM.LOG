@@ -1,0 +1,19 @@
+Removed Pin From Net: NetName=VCC Pin=C3-1
+Removed Pin From Net: NetName=GND Pin=C3-2
+Removed Pin From Net: NetName=VAMP Pin=C25-1
+Removed Pin From Net: NetName=GND Pin=C25-2
+Removed Pin From Net: NetName=VAMP Pin=C27-1
+Removed Pin From Net: NetName=GND Pin=C27-2
+Removed Pin From Net: NetName=VAMP Pin=C28-1
+Removed Pin From Net: NetName=GND Pin=C28-2
+Removed Pin From Net: NetName=VAMP Pin=C32-1
+Removed Pin From Net: NetName=GND Pin=C32-2
+Removed Pin From Net: NetName=NetC47_1 Pin=C47-1
+Removed Pin From Net: NetName=NetC47_2 Pin=C47-2
+Removed Pin From Net: NetName=NetC50_1 Pin=C50-1
+Removed Pin From Net: NetName=GND Pin=C50-2
+Removed Pin From Net: NetName=VCC Pin=C51-1
+Removed Pin From Net: NetName=GND Pin=C51-2
+Change Net Name : Old Net Name=NetC47_1 New Net Name=NetC49_1
+Change Net Name : Old Net Name=NetC47_2 New Net Name=NetU14_8
+Change Net Name : Old Net Name=NetC50_1 New Net Name=NetR15_1

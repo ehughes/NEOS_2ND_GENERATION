@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=GND Pin=C24-2
+Removed Pin From Net: NetName=GND Pin=R11-1
+Added Component: Designator=C?(C1206)
+Added Component: Designator=C?(C1206)
+Added Component: Designator=C?(C1206)
+Added Component: Designator=C?(C1206)
+Added Component: Designator=C?(C1206)
+Added Component: Designator=C?(C1206)
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=VAMP Pin=C?-2
+Added Pin To Net: NetName=VAMP Pin=C?-2
+Added Pin To Net: NetName=VAMP Pin=C?-2
+Added Pin To Net: NetName=VAMP Pin=C?-2
+Added Pin To Net: NetName=VAMP Pin=C?-2
+Added Pin To Net: NetName=VAMP Pin=C?-2

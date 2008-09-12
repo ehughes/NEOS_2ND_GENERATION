@@ -1,0 +1,38 @@
+Added Component: Designator=C47(C0805)
+Added Component: Designator=C48(C0805)
+Added Component: Designator=C49(C0805)
+Added Component: Designator=C50(C0805)
+Added Component: Designator=R11(R0805)
+Added Component: Designator=R12(R0805)
+Added Component: Designator=R36(R0805)
+Added Component: Designator=R37(R0805)
+Added Component: Designator=U18(SOT95P245X145-5L)
+Added Pin To Net: NetName=GND Pin=C49-2
+Added Pin To Net: NetName=NetR15_1 Pin=C50-1
+Added Pin To Net: NetName=VCC Pin=R11-1
+Added Pin To Net: NetName=GND Pin=R37-1
+Added Pin To Net: NetName=GND Pin=U18-2
+Added Pin To Net: NetName=VCC Pin=U18-5
+Change Net Name : Old Net Name=NetR15_1 New Net Name=NetC50_1
+Added Pin To Net: NetName=NetC47_1 Pin=C47-1
+Added Pin To Net: NetName=NetC47_1 Pin=C49-1
+Added Net: Name=NetC47_1
+Added Pin To Net: NetName=NetC47_2 Pin=C47-2
+Added Pin To Net: NetName=NetC47_2 Pin=U14-8
+Added Pin To Net: NetName=NetC47_2 Pin=U18-1
+Added Pin To Net: NetName=NetC47_2 Pin=U18-4
+Added Net: Name=NetC47_2
+Added Pin To Net: NetName=NetC48_1 Pin=C48-1
+Added Pin To Net: NetName=NetC48_1 Pin=R11-2
+Added Pin To Net: NetName=NetC48_1 Pin=R12-1
+Added Pin To Net: NetName=NetC48_1 Pin=R37-2
+Added Net: Name=NetC48_1
+Added Pin To Net: NetName=NetC48_2 Pin=C48-2
+Added Pin To Net: NetName=NetC48_2 Pin=U5-10
+Added Net: Name=NetC48_2
+Added Pin To Net: NetName=NetR12_2 Pin=R12-2
+Added Pin To Net: NetName=NetR12_2 Pin=R36-1
+Added Net: Name=NetR12_2
+Added Pin To Net: NetName=NetR36_2 Pin=R36-2
+Added Pin To Net: NetName=NetR36_2 Pin=U18-3
+Added Net: Name=NetR36_2

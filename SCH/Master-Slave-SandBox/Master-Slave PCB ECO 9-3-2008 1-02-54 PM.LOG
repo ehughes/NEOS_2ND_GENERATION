@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=NetC18_1 Pin=C22-1
+Removed Pin From Net: NetName=NetC30_1 Pin=C31-1
+Added Pin To Net: NetName=+5V_GREEN Pin=C22-1
+Added Net: Name=+5V_GREEN
+Added Pin To Net: NetName=+5V_RED Pin=C31-1
+Added Net: Name=+5V_RED

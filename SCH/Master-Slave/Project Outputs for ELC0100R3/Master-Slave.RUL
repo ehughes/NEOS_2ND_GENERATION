@@ -1,0 +1,10 @@
+DRC Rules Export File for PCB: E:\ELI\DEVELOPMENT\NEOS_ALL_AROUND\SCH\Master-Slave\Master-Slave.PcbDoc
+RuleKind=Clearance|RuleName=Clearance_Poly_Gnd|Scope=Board|Minimum=15.00
+RuleKind=Width|RuleName=Width_Can|Scope=Board|Minimum=10.00
+RuleKind=Width|RuleName=Width_Power|Scope=Board|Minimum=10.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit|Scope=Board|Allowed=0
+RuleKind=Clearance|RuleName=Clearance|Scope=Board|Minimum=7.50
+RuleKind=Width|RuleName=Width|Scope=Board|Minimum=10.00
+RuleKind=SolderMaskExpansion|RuleName=SolderMaskExpansion|Scope=Board|Minimum=4.00
+RuleKind=Clearance|RuleName=Clearance_MicroPads|Scope=Board|Minimum=5.00
+RuleKind=ShortCircuit|RuleName=ShortCircuit_VDD_VCC|Scope=Board|Allowed=1

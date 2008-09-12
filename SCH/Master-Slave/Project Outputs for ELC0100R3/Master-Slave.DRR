@@ -1,0 +1,27 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: Master-Slave.PcbDoc   9/4/2008  10:10:21 AM
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : Master-Slave.TXT
+EIA File   : Master-Slave.DRL
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        12mil (0.3048mm)         Round          316              353.79 Inch (8986.14 mm)
+T2        15mil (0.381mm)          Round          67               299.31 Inch (7602.42 mm)
+T3        24mil (0.6096mm)         Round          5                283.07 Inch (7190.06 mm)
+T4        40mil (1.016mm)          Round          4                281.70 Inch (7155.11 mm)
+T5        45mil (1.143mm)          Round          4                283.79 Inch (7208.24 mm)
+T6        62mil (1.5748mm)         Round          6                286.64 Inch (7280.77 mm)
+T7        91mil (2.3114mm)         Round          2                281.73 Inch (7155.95 mm)
+T8        125mil (3.175mm)         Round          13               289.13 Inch (7344.02 mm)
+T9        169mil (4.2926mm)        Round          1                283.60 Inch (7203.56 mm)
+T10       125mil (3.175mm)         Round          28        NPTH   301.53 Inch (7658.80 mm)
+T11       169mil (4.2926mm)        Round          14        NPTH   300.26 Inch (7626.63 mm)
+T12       250mil (6.35mm)          Round          10        NPTH   293.94 Inch (7465.95 mm)
+T13       390mil (9.906mm)         Round          4         NPTH   295.47 Inch (7504.95 mm)
+---------------------------------------------------------------------------
+Totals                                            474              3833.96 Inch (97382.61 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

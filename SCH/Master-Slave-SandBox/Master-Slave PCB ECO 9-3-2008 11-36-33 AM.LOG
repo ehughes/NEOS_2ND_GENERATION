@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=NetC1_2 Pin=C13-1
+Removed Pin From Net: NetName=GND Pin=C13-2
+Removed Pin From Net: NetName=NetC27_2 Pin=C49-1
+Removed Pin From Net: NetName=GND Pin=C49-2
