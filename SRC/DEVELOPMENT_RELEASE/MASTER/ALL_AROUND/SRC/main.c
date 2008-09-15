@@ -102,6 +102,7 @@ int main (void)
 				AudioStreamCheck();	
 				SystemsDiagnostics();
 				MasterButtonCheck();
+				ProcessIncomingUSBMessages();
 			break;
 			
 		

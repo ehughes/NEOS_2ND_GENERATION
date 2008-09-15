@@ -12,7 +12,7 @@
 #include "GameMapping.h"
 #include "InternalButtonSoundMapping.h"
 #include "TimerRoutines.h"
-
+#include "config.h"
 
 //*************************************************
 //*******Game Parameters***************************
@@ -115,7 +115,9 @@ void TeatherBall(void)
 	{
 		
 		case INIT:
-			ResetAudioAndLEDS();
+		
+			ResetToGameSelector();
+		/*	ResetAudioAndLEDS();
 			
 			MAIN_GAME_TIMER = 0;
 			
@@ -165,7 +167,10 @@ void TeatherBall(void)
 				if(LightPosition &0x01)
 				{
 					LightPosition++;
-					LightPosition &= 0x7;
+					if(LightPosition > (NUM_BUTTONS-1))
+					{
+						LightPosition = 0;
+					}
 				}
 				
 				BallPosition = (DWORD)(LightPosition)<<16;
@@ -187,7 +192,7 @@ void TeatherBall(void)
 				P2ScoreDisplayState = SCORE_NORMAL;
 				ScoreManagerEnabled = TRUE;
 			}
-			
+			*/
 			
 		break;
 		
@@ -259,13 +264,27 @@ void TeatherBall(void)
 			if(BallDirection == RIGHT)
 			{	
 				BallPosition += BallSpeed;
+				
+		
+				if(BallPosition > 0x0005FFFF)
+				{
+					BallPosition =   BallPosition - 0x60000 ;	
+				}
 			}
 			else
 			{
 				BallPosition -= BallSpeed;	
+				
+				BallPosition &=  0x0007FFFF;
+				if(BallPosition > 0x0005FFFF)
+				{
+					BallPosition =  BallPosition - 0x2000;	
+				}
+				
+				
 			}
 			
-			BallPosition &= 0x0007FFFF;
+		
 		
 			LightPosition = BallPosition>>16;
 			
@@ -279,21 +298,29 @@ void TeatherBall(void)
 			
 				if(BallDirection)
 				{
-					CurrentBounceSound++;
-					CurrentBounceSound&= 0x7;	
+					
+					if(CurrentBounceSound == (NUM_BUTTONS-1))
+					{
+						CurrentBounceSound = 0;	
+					}
+					else
+					{
+						CurrentBounceSound++;	
+					}
 				}
 				else
 				{
-					CurrentBounceSound--;
-					CurrentBounceSound&= 0x7;
+					if(CurrentBounceSound == 0)
+					{
+					//	CurrentBounceSound = (NUM_BUTTONS-1);	
+					}
+					else
+					{
+						CurrentBounceSound--;
+					}
 			    }
 			
-		//		CurrentBounceSound++;
-			
-		//		if(CurrentBounceSound > 7)
-		//		{
-		//			CurrentBounceSound =0;	
-		//		}
+	
 				//Only update if the position has changed one whole tick so we don't flood the CAN bus)	
 				RevolutionTicks++;
 			}

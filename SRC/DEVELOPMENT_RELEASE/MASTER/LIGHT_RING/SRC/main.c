@@ -57,7 +57,7 @@ _FGS(GEN_PROT)
 
 int main (void)
 {
-	WORD i;
+
 	void (*JumpToResetVector)() = 0x0;
 	
 	RCONbits.WDTO=0;	//Reset this if wake by watchdog

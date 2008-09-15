@@ -80,9 +80,7 @@
 //*************************************************
 #define BACKGROUND_MUSIC_STREAM 0
 #define MAINTHEME_L_STREAM		0
-#define MAINTHEME_LS_STREAM		1
-#define MAINTHEME_R_STREAM		2
-#define MAINTHEME_RS_STREAM		3	
+#define MAINTHEME_R_STREAM		1
 
 //*************************************************
 //*******Game Variables****************************
@@ -465,10 +463,9 @@ void MusicWake()
 
 void PlaySelectorSound()
 {
-	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,0xFF,1,0,0xFF,1);
-	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,0xFF,1,1,0xFF,1);
-	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,0xFF,1,2,0xFF,1);
-	PlayInternalNodeSound(6,INTERNAL_SOUND_SELECTION,0xFF,1,3,0xFF,1);
+	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,0xFF,1,MAINTHEME_L_STREAM,0xFF,1);
+	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,0xFF,1,MAINTHEME_L_STREAM,0xFF,1);
+	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,0xFF,1,MAINTHEME_R_STREAM,0xFF,1);
 	
 	SELECT_TO_START_TIMER = 0;
 }
@@ -505,6 +502,15 @@ void UpdateGameSettings()
 			
 		break;
 		
+		
+			case GAME_JAM_CIRCLE:
+		
+			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
+			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
+			CurrentGameSettings.FinaleMusicVolume = 0xA0;
+			
+		break;
+		
 	
 		default:
 			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
@@ -534,26 +540,18 @@ void StartMainThemeMusic()
 	AudioNodeEnable(1,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,0xFF,0xFF);
 	SendNodeNOP();	
 	
-	AudioNodeEnable(2,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,0xFF,0xFF);
+	AudioNodeEnable(2,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,0xFF,0xFF);
 	SendNodeNOP();	
-	AudioNodeEnable(3,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,0xFF,0xFF);
+	AudioNodeEnable(3,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,0xFF,0xFF);
 	
 	AudioNodeEnable(4,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,0xFF,0xFF);
 	SendNodeNOP();	
 	AudioNodeEnable(5,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,0xFF,0xFF);
 	SendNodeNOP();	
-	
-	AudioNodeEnable(6,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,0xFF,0xFF);
-	SendNodeNOP();	
-	AudioNodeEnable(7,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,0xFF,0xFF);
-	SendNodeNOP();	
-	
 
 	
 	EAudioPlaySound(MAINTHEME_L_STREAM	,MAINTHEME_L_WAV);
-	EAudioPlaySound(MAINTHEME_LS_STREAM	,MAINTHEME_LS_WAV);
 	EAudioPlaySound(MAINTHEME_R_STREAM	,MAINTHEME_R_WAV);
-	EAudioPlaySound(MAINTHEME_RS_STREAM	,MAINTHEME_RS_WAV);
 	
 		
 

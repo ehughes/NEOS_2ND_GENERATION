@@ -516,7 +516,7 @@ void PlayBootupSound()
 {
 
  	BYTE k;
- 	for(k=0;k<4;k++)
+ 	for(k=0;k<3;k++)
 	{
 	AudioNodeEnable((2*k),0,0,AUDIO_ON_BEFORE_TIMEOUT,BUILDUP_A_WAV_LENGTH,0xFF,0);
 	SendNodeNOP();

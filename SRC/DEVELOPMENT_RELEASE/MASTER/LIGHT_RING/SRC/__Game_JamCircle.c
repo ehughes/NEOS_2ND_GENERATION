@@ -1,3 +1,4 @@
+#include "__Game_JamCircle.h"
 #include "SystemVariables.h"
 #include "_GameVariables.h"
 #include "_RootButtonHandler.h"
@@ -20,7 +21,6 @@
 
 #define NUM_SOUNDS_PER_BUTTON	3
 #define ROCK					1
-
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
 //*************************************************
@@ -32,9 +32,9 @@
 //******** GAME STATE MACROS*** *******************
 //*************************************************
 
-#define SURROUND_SOUND			0x01
-#define SURROUND_SOUND_SELECT	0x02
-#define SURROUND_SOUND_END		0x03
+#define JAM_CIRCLE			0x01
+#define JAM_CIRCLE_SELECT	0x02
+#define JAM_CIRCLE_END		0x03
 
 
 
@@ -46,12 +46,13 @@
 #define SOUND_CHANNEL0_TIMER	GPTimer[1]
 #define SOUND_CHANNEL1_TIMER	GPTimer[2]
 #define SOUND_CHANNEL2_TIMER	GPTimer[3]
+#define SHOW_TIMER				GPTimer[4]
 
 
 //*************************************************
 //*******Game Variables****************************
 //*************************************************
-WORD SurroundSoundsBaseLocation = 150;
+WORD JamCirclesBaseLocation = 150;
 
 BYTE NextAvailableSoundChannel = 0;
 
@@ -65,9 +66,9 @@ struct {
 
 struct{
 	
-	WORD Index[NUM_BUTTONS][NUM_SOUNDS_PER_BUTTON];
-	DWORD Length[NUM_BUTTONS][NUM_SOUNDS_PER_BUTTON];
-	BYTE Offset[0];
+	WORD Index[NUM_BUTTONS];
+	DWORD Length[NUM_BUTTONS];
+	
 } ButtonSound ;
 	
 
@@ -75,8 +76,8 @@ struct{
 //*******Game Helper Function Declarations*********
 //*************************************************
 
-void InitSurroundSoundChannels();
-void InitButtonSounds(BYTE SurroundSoundProfile);
+void InitJamCircleChannels();
+void InitButtonSounds(BYTE JamCircleProfile);
 
 
 
@@ -89,13 +90,13 @@ void JamCircle(void)
 		
 		case INIT:
 				
-			GameState = SURROUND_SOUND_SELECT;					
+			GameState = JAM_CIRCLE_SELECT;					
 		
 		break;
 		
 		
 		
-		case SURROUND_SOUND_SELECT:
+		case JAM_CIRCLE_SELECT:
 		
 			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ROCKBACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
 			SendNodeNOP();	
@@ -104,12 +105,12 @@ void JamCircle(void)
 			InitButtonSounds(ROCK);
 			
 			MAIN_GAME_TIMER = 0;
-			GameState = SURROUND_SOUND;
-		
+			GameState = JAM_CIRCLE;
+		SHOW_TIMER = 0;
 		break;
 		
 		
-		case SURROUND_SOUND:
+		case JAM_CIRCLE:
 		
 		
 			if(SOUND_CHANNEL0_TIMER > SoundChannelInfo[0].CurrentSoundLength)
@@ -130,12 +131,18 @@ void JamCircle(void)
 				SoundChannelInfo[2].CurrentSoundLength = 0xFFFF;
 			}
 			
+			if(SHOW_TIMER> 50)
+			{
+				SHOW_TIMER = 0;
+				LEDSendMessage(ENABLE_ALL, RED, LEDOFF, 50, 50);
+				
+			}
 			
 		
 		
 			if(MAIN_GAME_TIMER>ROCKBACKGROUND_WAV_LENGTH)
 			{
-				GameState = SURROUND_SOUND_END;
+				GameState = JAM_CIRCLE_END;
 				AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ENDING_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
 				SendNodeNOP();	
 				EAudioPlaySound(BACKGROUND_MUSIC_STREAM,ENDING_WAV);
@@ -147,7 +154,7 @@ void JamCircle(void)
 		
 		
 		
-		case SURROUND_SOUND_END:
+		case JAM_CIRCLE_END:
 	
 		if(MAIN_GAME_TIMER>ENDING_WAV_LENGTH)
 			{
@@ -168,42 +175,15 @@ void JamCircle(void)
 
 void OnButtonPressJamCircle(unsigned char button)
 {
+	
+	LEDSendMessage(button, YELLOW, LEDOFF, 50, 50);
+	
+	if(GameState == JAM_CIRCLE)
+	{
 
 	if(SoundChannelInfo[NextAvailableSoundChannel].Active == TRUE)
 	{
-		
-		
-		if(SoundChannelInfo[NextAvailableSoundChannel].ButtonAssignment == button)
-		{
-			
-			
-		}
-		else
-		{
-				ButtonSound.Offset[button]++;
-				if(ButtonSound.Offset[button] >  (NUM_SOUNDS_PER_BUTTON-1))
-				{
-					ButtonSound.Offset[button] = 0;
-				}
-				
-			
-			
-		}
-		
-		
 		AudioNodeEnable(SoundChannelInfo[NextAvailableSoundChannel].ButtonAssignment,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
-	
-		
-	}
-	else
-	{
-		ButtonSound.Offset[button]++;
-		if(ButtonSound.Offset[button] >  (NUM_SOUNDS_PER_BUTTON-1))
-		{
-			ButtonSound.Offset[button] = 0;
-		}
-		
-		
 	}
 	
 		switch(NextAvailableSoundChannel)
@@ -217,7 +197,7 @@ void OnButtonPressJamCircle(unsigned char button)
 			break;
 			
 			case 2:
-			SOUND_CHANNEL2_TIMER =0;
+				SOUND_CHANNEL2_TIMER =0;
 			break;
 			
 			default:
@@ -228,14 +208,12 @@ void OnButtonPressJamCircle(unsigned char button)
 		SoundChannelInfo[NextAvailableSoundChannel].Active = TRUE;
 		SoundChannelInfo[NextAvailableSoundChannel].ButtonAssignment = button;
 		
-		SoundChannelInfo[NextAvailableSoundChannel].CurrentSoundLength = ButtonSound.Length[button][ButtonSound.Offset[button]];
+		SoundChannelInfo[NextAvailableSoundChannel].CurrentSoundLength = ButtonSound.Length[button];
 		
 		AudioNodeEnable(button,NextAvailableSoundChannel,BACKGROUND_MUSIC_STREAM,1,1,SoundChannelInfo[NextAvailableSoundChannel].CurrentSoundLength,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 		SendNodeNOP();	
-		EAudioPlaySound(NextAvailableSoundChannel,ButtonSound.Index[button][ButtonSound.Offset[button]]);
+		EAudioPlaySound(NextAvailableSoundChannel,ButtonSound.Index[button]);
 		
-		
-	
 		
 		NextAvailableSoundChannel++;
 		
@@ -243,15 +221,11 @@ void OnButtonPressJamCircle(unsigned char button)
 		{
 			NextAvailableSoundChannel = 0;	
 		}
-		
+	}
 
-
-	
 }
 
-
-
-void InitSurroundSoundChannels()
+void InitJamCircleChannels()
 {
 	BYTE i;
 
@@ -268,71 +242,26 @@ void InitSurroundSoundChannels()
 
 }	
 
-void InitButtonSounds(BYTE SurroundSoundProfile)
+void InitButtonSounds(BYTE JamCircleProfile)
 {
-
-	BYTE i;
-	
-	for(i=0;i<NUM_SOUNDS_PER_BUTTON;i++)
-	{
-			
-		ButtonSound.Offset[i] = 0;
-	}
-
-	switch(SurroundSoundProfile)
+	switch(JamCircleProfile)
 	{
 		
 		case ROCK:
-			ButtonSound.Index[0][0] = BASS1A_WAV;
-			ButtonSound.Index[0][1] = BASS1B_WAV;
-			ButtonSound.Index[0][2] = BASS1C_WAV;
-			ButtonSound.Index[1][0] = BASS2A_WAV;
-			ButtonSound.Index[1][1] = BASS2B_WAV;
-			ButtonSound.Index[1][2] = BASS2C_WAV;
-			ButtonSound.Index[2][0] = DRUMS1A_WAV;
-			ButtonSound.Index[2][1] = DRUMS1B_WAV;
-			ButtonSound.Index[2][2] = DRUMS1C_WAV;
-			ButtonSound.Index[3][0] = DRUMS2A_WAV;
-			ButtonSound.Index[3][1] = DRUMS2B_WAV;
-			ButtonSound.Index[3][2] = DRUMS2C_WAV;
-			ButtonSound.Index[4][0] = GTR1A_WAV;
-			ButtonSound.Index[4][1] = GTR1B_WAV;
-		    ButtonSound.Index[4][2] = GTR1C_WAV;
-			ButtonSound.Index[5][0] = GTR2A_WAV;
-			ButtonSound.Index[5][1] = GTR2B_WAV;
-			ButtonSound.Index[5][2] = GTR2C_WAV;
-			ButtonSound.Index[6][0] = GTR3A_WAV;
-			ButtonSound.Index[6][1] = GTR3B_WAV;
-			ButtonSound.Index[6][2] = GTR3C_WAV;
-			ButtonSound.Index[7][0] = GTR4A_WAV;
-			ButtonSound.Index[7][1] = GTR4B_WAV;
-			ButtonSound.Index[7][2] = GTR4C_WAV;
-			
-			ButtonSound.Length[0][0] = BASS1A_WAV_LENGTH;
-			ButtonSound.Length[0][1] = BASS1B_WAV_LENGTH;
-			ButtonSound.Length[0][2] = BASS1C_WAV_LENGTH;
-			ButtonSound.Length[1][0] = BASS2A_WAV_LENGTH;
-			ButtonSound.Length[1][1] = BASS2B_WAV_LENGTH;
-			ButtonSound.Length[1][2] = BASS2C_WAV_LENGTH;
-			ButtonSound.Length[2][0] = DRUMS1A_WAV_LENGTH;
-			ButtonSound.Length[2][1] = DRUMS1B_WAV_LENGTH;
-			ButtonSound.Length[2][2] = DRUMS1C_WAV_LENGTH;
-			ButtonSound.Length[3][0] = DRUMS2A_WAV_LENGTH;
-			ButtonSound.Length[3][1] = DRUMS2B_WAV_LENGTH;
-			ButtonSound.Length[3][2] = DRUMS2C_WAV_LENGTH;
-			ButtonSound.Length[4][0] = GTR1A_WAV_LENGTH;
-			ButtonSound.Length[4][1] = GTR1B_WAV_LENGTH;
-		    ButtonSound.Length[4][2] = GTR1C_WAV_LENGTH;
-			ButtonSound.Length[5][0] = GTR2A_WAV_LENGTH;
-			ButtonSound.Length[5][1] = GTR2B_WAV_LENGTH;
-			ButtonSound.Length[5][2] = GTR2C_WAV_LENGTH;
-			ButtonSound.Length[6][0] = GTR3A_WAV_LENGTH;
-			ButtonSound.Length[6][1] = GTR3B_WAV_LENGTH;
-			ButtonSound.Length[6][2] = GTR3C_WAV_LENGTH;
-			ButtonSound.Length[7][0] = GTR4A_WAV_LENGTH;
-			ButtonSound.Length[7][1] = GTR4B_WAV_LENGTH;
-			ButtonSound.Length[7][2] = GTR4C_WAV_LENGTH;
-			
+			ButtonSound.Index[0] = GTR1A_WAV;
+			ButtonSound.Index[1] = GTR2A_WAV;
+		    ButtonSound.Index[2] = GTR3A_WAV;
+			ButtonSound.Index[3] = GTR4A_WAV;
+			ButtonSound.Index[4] = BASS1A_WAV;
+			ButtonSound.Index[5] = BASS1B_WAV;
+
+			ButtonSound.Length[0] = GTR1A_WAV_LENGTH;
+			ButtonSound.Length[1] = GTR2A_WAV_LENGTH;
+		    ButtonSound.Length[2] = GTR3A_WAV_LENGTH;
+			ButtonSound.Length[3] = GTR4A_WAV_LENGTH;
+			ButtonSound.Length[4] = BASS1A_WAV_LENGTH;
+			ButtonSound.Length[5] = BASS1B_WAV_LENGTH;
+		
 			
 		break;
 		
@@ -344,4 +273,3 @@ void InitButtonSounds(BYTE SurroundSoundProfile)
 	
 	
 }	
-
