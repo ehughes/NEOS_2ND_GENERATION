@@ -30,7 +30,7 @@
 #define BALL_SPEED_CIELING	((DWORD)(0x1C00))	
 #define BALL_SPEED_FLOOR	((DWORD)(0x0800))
 #define BALL_SPEED_DECELERATION_FACTOR ((DWORD)(0xFB00)) //0.16 Fraction
-#define ESCAPE_FACTOR 	0x200
+#define ESCAPE_FACTOR 	0x400
 #define SERVE_FLASH_TIME	25
 #define SERVE_AUDIO_TIME	200
 #define TEATHER_BALL_GAME_LENGTH 		ZIGZAGBACKGROUNDMUSIC_A_WAV_LENGTH
@@ -62,8 +62,8 @@
 
 #define TEATHER_BALL_1P_START	0x01
 #define TEATHER_BALL_SERVE		0x02
-#define TEATHER_BALL_1P			0x03
-#define TEATHER_BALL_2P			0x04
+#define TEATHER_BALL			0x03
+
 #define TEATHER_BALL_END			0x05
 
 //*************************************************
@@ -83,6 +83,8 @@ static BYTE BallCaptures = 0;
 //used for counting how many times the ball has bounced in between hits
 static WORD RevolutionTicks=0;
 
+BYTE Player1ServeLocation;
+BYTE Player2ServeLocation;
 
 
 //*************************************************
@@ -92,14 +94,11 @@ static WORD RevolutionTicks=0;
 void PlayButtonFeebackSound(BYTE button);
 void TeatherBallPlayBounceSound(BYTE button);
 void TeatherBallPlayHitSound(BYTE button);
-void FlashServe(BYTE P1Location);
+void FlashServe();
 void  PlayServeSound(BYTE P1Button);
-void UpdateP1BallLight(BYTE OldPosition, BYTE NewPosition);
-void UpdateP1P2BallLight(BYTE OldPosition, BYTE NewPosition);
-void TeatherBallPlayP1HitSound(BYTE button);
+void UpdateBallLight(BYTE OldPosition, BYTE NewPosition);
 void TeatherBallPlayP2HitSound(BYTE button);
-void ScoreDecrement2P();
-
+void TeatherBallPlayP1HitSound(BYTE button);
 void InitTeatherBallStereoStreams();
 BYTE GetTeatherBallBackgroundStream(BYTE button);
 
@@ -116,24 +115,20 @@ void TeatherBall(void)
 		
 		case INIT:
 		
-			ResetToGameSelector();
-		/*	ResetAudioAndLEDS();
-			
 			MAIN_GAME_TIMER = 0;
 			
-			if(GamePlayers == 1)
-			{
-				GameState = TEATHER_BALL_SERVE;
+			GameState = TEATHER_BALL_SERVE;
 				BallDirection = SelectRandomDirection();
 				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
 				
-					//Make sure light is on the bottom
-				if(LightPosition &0x01)
-				{
-					LightPosition++;
-					LightPosition &= 0x7;
-				}
 				
+				Player1ServeLocation = LightPosition;
+				Player2ServeLocation = Player1ServeLocation + (NUM_BUTTONS/2);
+	 			 if(Player2ServeLocation > (NUM_BUTTONS-1))
+				 {
+					Player2ServeLocation -= NUM_BUTTONS;	 
+				 }
+										
 				BallPosition = ((DWORD)(LightPosition))<<16;
 				BallOwner = PLAYER_1;
 				BallSpeed = BALL_SPEED_CIELING;
@@ -151,48 +146,12 @@ void TeatherBall(void)
 				
 								
 				SERVE_FLASH_TIMER = 0;
-				SERVE_AUDIO_TIMER =SERVE_AUDIO_TIME+1;
-				
-				P1ScoreDisplayState = SCORE_NORMAL;
-				P2ScoreDisplayState = SCORE_BLANK;
-				ScoreManagerEnabled = TRUE;
-			}
-			else
-			{
-				GameState = TEATHER_BALL_SERVE;
-				BallDirection = SelectRandomDirection();
-				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
-				
-				//Make sure light is on the bottom
-				if(LightPosition &0x01)
-				{
-					LightPosition++;
-					if(LightPosition > (NUM_BUTTONS-1))
-					{
-						LightPosition = 0;
-					}
-				}
-				
-				BallPosition = (DWORD)(LightPosition)<<16;
-				BallSpeed = BALL_SPEED_CIELING;
-				PHYSICS_UPDATE_TIMER = 0;
-			 	MAIN_GAME_TIMER = 0;
-				SERVE_FLASH_TIMER = 0;
-				SERVE_AUDIO_TIMER =SERVE_AUDIO_TIME+1;
-				Player2Score = 0;
-				Player1Score = 0;
-				BallCaptures = 0;
-				LastButtonHit = 0xFF;
-				RevolutionTicks=0;
-  			     
-				InitTeatherBallStereoStreams();
-				
+				SERVE_AUDIO_TIMER = SERVE_AUDIO_TIME+1;
 				
 				P1ScoreDisplayState = SCORE_NORMAL;
 				P2ScoreDisplayState = SCORE_NORMAL;
 				ScoreManagerEnabled = TRUE;
-			}
-			*/
+	
 			
 		break;
 		
@@ -201,14 +160,7 @@ void TeatherBall(void)
 		
 			if(MAIN_GAME_TIMER>TEATHER_BALL_GAME_LENGTH)
 			{
-				if(GamePlayers == 1)
-				{
-					GameState = TEATHER_BALL_1P;
-				}
-				else
-				{
-					GameState = TEATHER_BALL_2P;
-				}
+				GameState = TEATHER_BALL;
 			}
 		
 		
@@ -230,106 +182,7 @@ void TeatherBall(void)
 		break;
 		
 		
-		case TEATHER_BALL_1P:
-			
-		if(MAIN_GAME_TIMER>TEATHER_BALL_GAME_LENGTH)
-		{
-			GameState = TEATHER_BALL_END;
-			MAIN_GAME_TIMER = 0;
-			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM_A,BACKGROUND_MUSIC_STREAM_A,AUDIO_ON_BEFORE_TIMEOUT,ENDING_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
-			SendNodeNOP();	
-			EAudioPlaySound(BACKGROUND_MUSIC_STREAM_A,ENDING_WAV);		
-			LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,50);
-			
-				P1ScoreDisplayState = SCORE_FLASHING;
-				P2ScoreDisplayState = SCORE_BLANK;
-			
-		}
-		
-		if(PHYSICS_UPDATE_TIMER > 1)
-		{
-			PHYSICS_UPDATE_TIMER = 0;
-		
-			if(BallSpeed > BALL_SPEED_FLOOR)
-			{
-				BallSpeed = (BallSpeed * BALL_SPEED_DECELERATION_FACTOR)>>16;
-			}
-			else
-			{
-				BallSpeed = BALL_SPEED_FLOOR;		
-			}
-						
-			OldLightPosition = LightPosition;
-			
-			if(BallDirection == RIGHT)
-			{	
-				BallPosition += BallSpeed;
-				
-		
-				if(BallPosition > 0x0005FFFF)
-				{
-					BallPosition =   BallPosition - 0x60000 ;	
-				}
-			}
-			else
-			{
-				BallPosition -= BallSpeed;	
-				
-				BallPosition &=  0x0007FFFF;
-				if(BallPosition > 0x0005FFFF)
-				{
-					BallPosition =  BallPosition - 0x2000;	
-				}
-				
-				
-			}
-			
-		
-		
-			LightPosition = BallPosition>>16;
-			
-			if(LightPosition != OldLightPosition)
-			{
-				UpdateP1BallLight(OldLightPosition,LightPosition);
-		
-				CurrentBounceSound = LightPosition;		
-				TeatherBallPlayBounceSound(LightPosition);
-			
-			
-				if(BallDirection)
-				{
-					
-					if(CurrentBounceSound == (NUM_BUTTONS-1))
-					{
-						CurrentBounceSound = 0;	
-					}
-					else
-					{
-						CurrentBounceSound++;	
-					}
-				}
-				else
-				{
-					if(CurrentBounceSound == 0)
-					{
-					//	CurrentBounceSound = (NUM_BUTTONS-1);	
-					}
-					else
-					{
-						CurrentBounceSound--;
-					}
-			    }
-			
-	
-				//Only update if the position has changed one whole tick so we don't flood the CAN bus)	
-				RevolutionTicks++;
-			}
-			
-		}
-		
-		break;	
-		
-		case TEATHER_BALL_2P:
+		case TEATHER_BALL:
 			
 		if(MAIN_GAME_TIMER>TEATHER_BALL_GAME_LENGTH)
 		{
@@ -378,39 +231,71 @@ void TeatherBall(void)
 			if(BallDirection == RIGHT)
 			{	
 				BallPosition += BallSpeed;
+				
+		
+				if(BallPosition > 0x0005FFFF)
+				{
+					BallPosition =   BallPosition - 0x60000 ;	
+				}
 			}
 			else
 			{
 				BallPosition -= BallSpeed;	
+				
+				BallPosition &=  0x0007FFFF;
+				if(BallPosition > 0x0005FFFF)
+				{
+					BallPosition =  BallPosition - 0x20000;	
+				}
+				
+				
 			}
 			
-			BallPosition &= 0x0007FFFF;
+		
 		
 			LightPosition = BallPosition>>16;
 			
-			//Only update if the position has changed one whole tick so we don't flood the CAN bus)
 			if(LightPosition != OldLightPosition)
 			{
-				UpdateP1P2BallLight(OldLightPosition,LightPosition);
+				UpdateBallLight(OldLightPosition,LightPosition);
+		
+				CurrentBounceSound = LightPosition;		
 				TeatherBallPlayBounceSound(LightPosition);
-				
-				if(BallOwner == PLAYER_1)
+			
+			
+				if(BallDirection)
 				{
-					CurrentBounceSound++;
-					CurrentBounceSound&= 0x7;	
+					
+					if(CurrentBounceSound == (NUM_BUTTONS-1))
+					{
+						CurrentBounceSound = 0;	
+					}
+					else
+					{
+						CurrentBounceSound++;	
+					}
 				}
 				else
 				{
-					CurrentBounceSound--;
-					CurrentBounceSound&= 0x7;
+					if(CurrentBounceSound == 0)
+					{
+						CurrentBounceSound = (NUM_BUTTONS-1);	
+					}
+					else
+					{
+						CurrentBounceSound--;
+					}
 			    }
-				
-				ScoreDecrement2P();
-			 }
+			
+	
+				//Only update if the position has changed one whole tick so we don't flood the CAN bus)	
+				RevolutionTicks++;
+			}
 			
 		}
 		
 		break;	
+		
 	
 	
 		
@@ -429,71 +314,6 @@ void TeatherBall(void)
 }
 
 
-void ScoreDecrement2P()
-{
-			
-				RevolutionTicks++;
-				
-				
-				if(RevolutionTicks > 15)
-				{
-					if(RevolutionTicks< 22)
-					{
-						if(BallOwner == PLAYER_1) 
-						{
-						 	if((Player1Score>0) && (Player1Score>TWO_REVOLUTION_SCORE_DECREMENT))
-							{ 
-								Player1Score-=TWO_REVOLUTION_SCORE_DECREMENT;
-							}
-							else
-							{
-								Player1Score = 0;
-							}
-						 				 
-						if	(BallOwner == PLAYER_2) 
-						{ 
-							if((Player2Score>0) && (Player2Score>TWO_REVOLUTION_SCORE_DECREMENT))
-							{ 
-								Player2Score-=TWO_REVOLUTION_SCORE_DECREMENT;
-							}
-							else
-							{
-								Player2Score = 0;
-							}
-						}
-					}
-					else
-					{
-						if(BallOwner == PLAYER_1)
-						 {
-						 	 if((Player1Score>0)  && (Player1Score>THREE_REVOLUTION_SCORE_DECREMENT))
-						 	 {
-						    	Player1Score-=THREE_REVOLUTION_SCORE_DECREMENT;
-						   	 }
-						     else
-						  	 {
-						    	Player1Score = 0;	
-						  	 }
-						 }
-						 if(BallOwner == PLAYER_2)
-						  {
-						 	  if((Player2Score>0)  && (Player2Score>THREE_REVOLUTION_SCORE_DECREMENT))
-						   		{
-						    		Player2Score-=THREE_REVOLUTION_SCORE_DECREMENT;
-						  		}
-						  	   else
-						  		{
-								    Player2Score = 0;	
-							 	}
-						  }
-					}
-				
-				}
-			}
-
-	
-}	
-
 void OnButtonPressTeatherBall(unsigned char button)
 {
 
@@ -502,34 +322,28 @@ switch(GameState)
 	
 	case TEATHER_BALL_SERVE:
 	
-	if(GamePlayers == 2)
-	{
-	    if(button == (BallPosition>>16))
+		if(button == Player1ServeLocation)
 		{
-			Player1Score += SERVE_SCORE_TWO_PLAYER;
-			BallOwner = PLAYER_2;
-			GameState = TEATHER_BALL_2P;
-	    	TeatherBallPlayP1HitSound(button);	
-		}
-		else if(button == (((BallPosition>>16)+4)&0x7))
-		{
-			BallPosition = ((DWORD)(button)<<16);
-			Player2Score += SERVE_SCORE_TWO_PLAYER;
+			LightPosition = Player1ServeLocation;
+			BallPosition = ((DWORD)(LightPosition))<<16;
+			
 			BallOwner = PLAYER_1;
-			GameState = TEATHER_BALL_2P;
-		       TeatherBallPlayP2HitSound(button);	
-	
-		}
-		}
-	else
-		{
-			GameState = TEATHER_BALL_1P;
+			GameState = TEATHER_BALL;
 			TeatherBallPlayP1HitSound(button);
+		}
+		else if (button == Player2ServeLocation)
+		{
+			LightPosition = Player2ServeLocation;
+			BallPosition = ((DWORD)(LightPosition))<<16;
+			
+			BallOwner = PLAYER_2;
+			GameState = TEATHER_BALL;
+			TeatherBallPlayP2HitSound(button);
 		}
 	
 	break;
 
-	case TEATHER_BALL_1P:
+	case TEATHER_BALL:
 		if(button == LightPosition)
 		{
 				
@@ -568,67 +382,10 @@ switch(GameState)
 				BallSpeed = BALL_SPEED_CIELING;
 			}
 			
-			
-			
-			LastButtonHit = button;
-			
-			RevolutionTicks = 0;
-			
-			TeatherBallPlayP1HitSound(button);
-			BallDirection++;
-			BallDirection &= 0x01;
-	
-			Player1Score += HIT_SCORE_ONE_PLAYER;
-		
-		}
-	break;	
-	
-	   case TEATHER_BALL_2P:
-		if(button == LightPosition)
-		{
-				
-			if((LastButtonHit != 0xFF) && (RevolutionTicks < 4))
-			{
-				switch(RevolutionTicks)
-				{
-					
-					case 1:
-						BallSpeed = BALL_SPEED_CIELING + (BallCaptures*ESCAPE_FACTOR);
-						BallCaptures++;
-					break;
-					
-					case 2:
-						BallSpeed = BALL_SPEED_CIELING + (BallCaptures*(ESCAPE_FACTOR>>1));
-						BallCaptures++;
-					break;
-					
-					case 3:
-						BallSpeed = BALL_SPEED_CIELING + (BallCaptures*(ESCAPE_FACTOR>>2));
-						BallCaptures++;
-					break;
-					
-					default:
-						BallSpeed = BALL_SPEED_CIELING;	
-						BallCaptures=0;	
-					break;
-					
-					}
-					
-			}
-			else
-			
-			{
-				BallCaptures=0;	
-				BallSpeed = BALL_SPEED_CIELING;
-			}
-								
-		
-			
-		
 			BallDirection++;
 			BallDirection &= 0x01;
 			CurrentBounceSound = 0;
-					
+			
 			if(BallOwner == PLAYER_1)
 			{
 				TeatherBallPlayP2HitSound(button);
@@ -689,8 +446,9 @@ switch(GameState)
 			
 			LastButtonHit = button;
 			RevolutionTicks = 0;	
-		}
-	break;
+	}
+	break;	
+	
 	
 
 	default:
@@ -700,27 +458,18 @@ switch(GameState)
 	
 }
 
-void FlashServe(BYTE P1Location)
+void FlashServe()
 {
-	 LEDSendMessage(P1Location,RED,RED,SERVE_FLASH_TIME>>1,0);
-	 if(GamePlayers == 2)
-	 {
-	 	LEDSendMessage((P1Location+4)&0x7,GREEN,GREEN,SERVE_FLASH_TIME>>1,0);
-	}
+	LEDSendMessage(Player1ServeLocation,RED,RED,SERVE_FLASH_TIME>>1,0);
+ 	LEDSendMessage(Player2ServeLocation,GREEN,GREEN,SERVE_FLASH_TIME>>1,0);
 }	 
 
 
-void UpdateP1BallLight(BYTE OldPosition, BYTE NewPosition)
-{
-	LEDSendMessage(OldPosition,RED,LEDOFF,0,LED_FADE_OUT_TIME);
-		LEDSendMessage(NewPosition,LEDOFF,RED,0,LED_FADE_IN_TIME);
-}
-
-
-void UpdateP1P2BallLight(BYTE OldPosition, BYTE NewPosition)
+void UpdateBallLight(BYTE OldPosition, BYTE NewPosition)
 {
 	if(BallOwner == PLAYER_1)
 	{
+		
 		LEDSendMessage(OldPosition,RED,LEDOFF,0,LED_FADE_OUT_TIME);
 		LEDSendMessage(NewPosition,LEDOFF,RED,0,LED_FADE_IN_TIME);
 		
@@ -732,6 +481,8 @@ void UpdateP1P2BallLight(BYTE OldPosition, BYTE NewPosition)
 		
 	}
 }
+
+
 
 
 void TeatherBallPlayP1HitSound(BYTE button)
@@ -747,6 +498,7 @@ void TeatherBallPlayP1HitSound(BYTE button)
 
 void TeatherBallPlayP2HitSound(BYTE button)
 {
+	
 	BYTE Stream;
 	Stream = GetTeatherBallBackgroundStream(button);
 	
@@ -861,7 +613,7 @@ void InitTeatherBallStereoStreams()
 {
  BYTE k,Stream;
  
- for(k=0;k<8;k++)
+ for(k=0;k<NUM_BUTTONS;k++)
  {
 	Stream = GetTeatherBallBackgroundStream(k);
 	AudioNodeEnable(k,Stream,Stream,AUDIO_ON_BEFORE_TIMEOUT,ZIGZAGBACKGROUNDMUSIC_A_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);

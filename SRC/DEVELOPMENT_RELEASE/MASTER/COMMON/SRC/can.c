@@ -62,7 +62,9 @@ void CANQueueInit()
 
 }	
 
+//7642076
 
+//Robert martz
 WORD GetNumMessagesInQueue(CANMessageQueue *MessageQueue)
 {
 	if(MessageQueue->ReadPtr > 	MessageQueue->WritePtr)
@@ -291,6 +293,14 @@ void CANRxProcess(void)
 					
 					
 				}
+				
+				
+				if((IncomingCANMsg.Data[0] == NODE_SUPPLY_VOLTAGE_RESPONSE) && (IncomingCANMsg.Data[1]!= MASTER_NODE_ADDRESS))
+				{
+					MyNodes[IncomingCANMsg.Data[1]].BusVoltage = ((WORD)(IncomingCANMsg.Data[3])<<8)  + ((WORD)(IncomingCANMsg.Data[2]));
+					
+				}
+				
 				if(IncomingCANMsg.Data[1] == MASTER_NODE_ADDRESS)
 					{
 								

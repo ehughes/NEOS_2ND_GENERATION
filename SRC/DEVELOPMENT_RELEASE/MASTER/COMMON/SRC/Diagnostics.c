@@ -25,9 +25,11 @@ CANMsg DiagnosticCANMsg;
 #define COMPLETION_WAIT_TIMER	GPTimer[4]
 #define RESPONSE_RESET_TIMER	GPTimer[5]
 
-
 #define PONG_RESPONSE_TIME 	400
 #define PING_DELAY_TIME 10  
+#define DATA_RATE_THRES 320
+
+
 
 volatile BYTE NumPongs;
 volatile NodeInfo MyNodes[NUM_BUTTONS];
@@ -40,7 +42,7 @@ BYTE NodeToPing;
 BYTE NodeToAddress = 0;
 WORD BusVoltage = 0;
 WORD BusVoltageMeasurementCnt = 0;
-BYTE PowerSequenceState=0;
+BYTE PowerSequenceButton=0;
 DWORD PacketsRecieved = 0;
 DWORD PacketsSent = 0;
 
@@ -52,7 +54,7 @@ volatile BOOL WaitingForTestDataResponse = FALSE;
 
 BYTE DataRateMeasurementCount = 0;
 BYTE CurrentNodeForBusMeasurement = 0;
-
+BYTE ErrorFlash = 0;
 
 #define CHECK_FOR_ALL_NODES_PRESENT 	1
 #define PING_NODES						2
@@ -66,15 +68,19 @@ BYTE CurrentNodeForBusMeasurement = 0;
 #define EXIT_ADDRESS_SETUP 				10
 #define CHECK_POWER						11
 #define POWER_SEQUENCE					12
+#define POWER_SEQUENCE_NOTHING			13
+#define POWER_SEQUENCE_BUTTONS			14
+#define POWER_SEQUENCE_SCORE_DISPLAY	15
 
-#define DATA_BUS_TEST					13
-#define NEXT_DATA_BUS_TEST			14
-#define CHECK_FOR_TEST_DATA_RESPONSE	15
+#define POWER_SEQUENCE_EVERYTHING		16
+#define BOOTUP_SOUND					17
+#define DATA_BUS_TEST					18
+#define NEXT_DATA_BUS_TEST				19
+#define CHECK_FOR_TEST_DATA_RESPONSE	20
+#define DISPLAY_DATA_RATE_ERROR			21
 
 
-#define CMD_SET_BUFFER_ACCEPTANCE_FLAG		16
-#define CMD_CLEAR_BUFFER_ACCEPTANCE_FLAG	17
-#define CMD_READ_NODE_GP_BUFFER				18
+
 
 #define VBUS_10V				3100
 
@@ -82,10 +88,10 @@ void DiagnosticsPlayButtonFeebackSound();
 void PlayBootupSound();
 void WriteTestDataToNode(BYTE Node);
 
-
+void RequestNodeVoltages();
 void ResetNodeDataRateInfo();
 void ResetNodeBusVoltageInfo();
-
+WORD GetVoltageDrop();
 
 void EnterAddressingMode()
 {
@@ -104,7 +110,7 @@ void SystemsDiagnostics()
 		case INIT:
 		
 			DiagnosticsState = CHECK_FOR_ALL_NODES_PRESENT;
-			//DiagnosticsState = DATA_BUS_TEST;
+		//	DiagnosticsState = DATA_BUS_TEST;
 			
 		break;
 		
@@ -114,16 +120,21 @@ void SystemsDiagnostics()
 			InhibitAudio = TRUE;
 			DataRateMeasurementCount = 0;
 			CurrentNodeForBusMeasurement = 0;
+			ResetNodeDataRateInfo();
 		break;
 		
+	
 		
 		case NEXT_DATA_BUS_TEST:
 		
 		
 			if(DataRateMeasurementCount < 4)
 			{
+				LEDSendVariable(DISPLAY_DIA, DIAGNOSTIC_DATA_RATE_BASE_CODE + CurrentNodeForBusMeasurement);
+				LEDSendMessage(CurrentNodeForBusMeasurement,YELLOW,YELLOW,0,0);
+				
 				LoopBackResponse = TRUE;
-				WriteTestDataToNode(0);
+				WriteTestDataToNode(CurrentNodeForBusMeasurement);
 				DiagnosticsState = CHECK_FOR_TEST_DATA_RESPONSE;
 				PacketsRecieved = 0;
 				PacketsSent = 0;
@@ -131,9 +142,31 @@ void SystemsDiagnostics()
 			}
 			else
 			{
-				LEDSendVariable(DISPLAY_DIA,  MyNodes[CurrentNodeForBusMeasurement].DataRate/100);
-				DiagnosticsState = DATA_BUS_TEST;
-				ResetNodeDataRateInfo();
+				MyNodes[CurrentNodeForBusMeasurement].DataRate = MyNodes[CurrentNodeForBusMeasurement].DataRate/100;
+				
+				if(MyNodes[CurrentNodeForBusMeasurement].DataRate < DATA_RATE_THRES)
+				{
+					DiagnosticsState = DISPLAY_DATA_RATE_ERROR;	
+					DIAGNOSTIC_TIMER = 0xFFFE;
+					
+				}
+				else
+				{
+					LEDSendMessage(CurrentNodeForBusMeasurement,LEDOFF,LEDOFF,0,0);
+					CurrentNodeForBusMeasurement++;
+					if(CurrentNodeForBusMeasurement >= NUM_BUTTONS)
+					{
+							InhibitAudio = FALSE;
+						DiagnosticsState = CHECK_POWER;
+					}
+					else
+					{
+						DiagnosticsState = NEXT_DATA_BUS_TEST;
+						ResetNodeDataRateInfo();
+						DataRateMeasurementCount = 0;
+						
+					}
+				}
 			}
 		
 	
@@ -145,25 +178,45 @@ void SystemsDiagnostics()
 			if(DIAGNOSTIC_TIMER >= 25)
 			{
 				DIAGNOSTIC_TIMER = 0;
-				AverageBusSpeed	= (PacketsSent + PacketsRecieved) * 2;
+				AverageBusSpeed	= (PacketsSent + PacketsRecieved) *32 ;
 				
 				if(AverageBusSpeed > MyNodes[CurrentNodeForBusMeasurement].DataRate)
 				{
 				   MyNodes[CurrentNodeForBusMeasurement].DataRate = AverageBusSpeed;
 				}
 			
+			
 				DiagnosticsState = NEXT_DATA_BUS_TEST;
 				DataRateMeasurementCount++;
 			}
 		 	if(	LoopBackResponse == TRUE)
 		 	{
-				 WriteTestDataToNode(0);
+				 WriteTestDataToNode(CurrentNodeForBusMeasurement);
 				 LoopBackResponse = FALSE;
 				 PacketsSent++;
 			}
 		break;
 		
+		case DISPLAY_DATA_RATE_ERROR:
+		
+		if(DIAGNOSTIC_TIMER>100)
+		{
+			DIAGNOSTIC_TIMER = 0;
 			
+			if(ErrorFlash == 0)
+			{
+				ErrorFlash = 1;	
+				LEDSendVariable(DISPLAY_ERR, DIAGNOSTIC_DATA_RATE_BASE_CODE + CurrentNodeForBusMeasurement);
+				
+			}
+			else
+			{
+				ErrorFlash = 0;	
+				LEDSendVariable(DISPLAY_ERR, MyNodes[CurrentNodeForBusMeasurement].DataRate);
+			}
+		}
+		
+		break;
 		
 		case CHECK_FOR_ALL_NODES_PRESENT:
 			InhibitAudio = FALSE;
@@ -217,7 +270,7 @@ void SystemsDiagnostics()
 				//	SystemMode = GAME_ACTIVE;
 				//	GameState=BOOT;			
 				//	GameSelected = GAME_ROOT_GAME0;
-					DiagnosticsState = CHECK_POWER;
+					DiagnosticsState = DATA_BUS_TEST;
 					SystemMode = SYSTEM_DIAGNOSTICS;
 				
 				}
@@ -319,111 +372,194 @@ void SystemsDiagnostics()
 			ResetLeds();
 			ScoreSendLights(DISPLAY_ADDRESS, 0x00,0x00);
 			CANQueueTxMessage(0x70,DISPLAY_ADDRESS + (0x00 << 8),0x0000,0x0000,0x0000);
-			
-			DiagnosticsState = POWER_SEQUENCE;
-			PowerSequenceState = 0;
+			LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE);
+			DiagnosticsState = POWER_SEQUENCE_NOTHING;
+			PowerSequenceButton = 0;
 			DIAGNOSTIC_TIMER = 0;
 			BusVoltage = 0;
 			BusVoltageMeasurementCnt = 0;
 							
 		break;
 		
-		case POWER_SEQUENCE:
 		
-		if(DIAGNOSTIC_TIMER > 5)
-		{
-			DIAGNOSTIC_TIMER = 0;
-			BusVoltage += ADCRead();
-			BusVoltageMeasurementCnt++;	
-		}
-				
-		if(BusVoltageMeasurementCnt >15 )
-		{
-			BusVoltage = BusVoltage>>4;
-			DIAGNOSTIC_TIMER = 0;
+		case POWER_SEQUENCE_NOTHING:
+		
+			if(DIAGNOSTIC_TIMER > 5)
+				{
+					DIAGNOSTIC_TIMER = 0;
+					BusVoltage += ADCRead();
+					RequestNodeVoltages();
+					BusVoltageMeasurementCnt++;	
+				}
+						
+			if(BusVoltageMeasurementCnt >15 )
+				{
+					BusVoltage = BusVoltage>>4;
+					DIAGNOSTIC_TIMER = 0;
 					
-			switch(PowerSequenceState)
-			{
-			 	case 0:case 1:case 2:case 3:case 4:case 5:case 6:case 7:
-										
 					if(BusVoltage>VBUS_10V)
 					{
-						LEDSendMessage(PowerSequenceState,YELLOW,YELLOW,0,0);
-						PowerSequenceState++;	
+						PowerSequenceButton = 0;
+						LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
+						DiagnosticsState = POWER_SEQUENCE_BUTTONS;
+						BusVoltage = 0;
+						DIAGNOSTIC_TIMER = 0;
+						BusVoltageMeasurementCnt=0;
+						LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + PowerSequenceButton);
+				
 					}
 					else
 					{
-						ErrorCode = POWER_ERROR_BASE_CODE + PowerSequenceState;
+						ErrorCode = POWER_ERROR_BASE_CODE;
 						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
 					}
-					//Test
-				break;
+				}
 				
-				case 8:
-					if(BusVoltage>VBUS_10V)
-					{
-						ScoreSendLights(DISPLAY_ADDRESS, 0xFFFF,0xFFFF);
-						CANQueueTxMessage(0x70,DISPLAY_ADDRESS + (0xFF << 8),0xFFFF,0xFFFF,0xFFFF);
-						PowerSequenceState++;	
-					}
-					else
-					{
-						ErrorCode = POWER_ERROR_BASE_CODE + PowerSequenceState;
-						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
-					}
-				break;
-			
-			
-				case 9:
-				
-					if(BusVoltage>VBUS_10V)
-					{
-						PlayBootupSound();	
-						PowerSequenceState++;	
-						BOOTUP_SOUND_TIMER = 0;
-					}
-					else
-					{
-						ErrorCode = POWER_ERROR_BASE_CODE + PowerSequenceState;
-						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
-					}
-				
-				break;
-			
-				case 10:
-				
-					if(BusVoltage>VBUS_10V)
-					{						
-						if(BOOTUP_SOUND_TIMER>BUILDUP_A_WAV_LENGTH )
-						{
-							ResetAudioAndLEDS();
-							GameState =  INIT;
-							GameSelected = GAME_ROOT_GAME0;
-							SystemMode = GAME_ACTIVE;
-							CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
-							CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
-						}
-					}
-					else
-					{
-						AudioOffAllNodes();
-						ErrorCode = POWER_ERROR_BASE_CODE + PowerSequenceState;
-						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
-					}
-				
-				break;
-							
-				default:
-					PowerSequenceState =0;
-					break;	
-			}
-			
-			BusVoltage = 0;
-			DIAGNOSTIC_TIMER = 0;
-			BusVoltageMeasurementCnt=0;
-		}
+	      break;
 		
+		
+		
+		case POWER_SEQUENCE_BUTTONS:
+		
+			if(DIAGNOSTIC_TIMER > 5)
+			{
+				DIAGNOSTIC_TIMER = 0;
+				BusVoltage += ADCRead();
+				RequestNodeVoltages();
+				BusVoltageMeasurementCnt++;	
+				LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + PowerSequenceButton);
+			}
+					
+			if(BusVoltageMeasurementCnt >15 )
+			{
+				BusVoltage = BusVoltage>>4;
+				DIAGNOSTIC_TIMER = 0;
+				
+				if(BusVoltage>VBUS_10V)
+					{
+						PowerSequenceButton++;
+					
+						if(	PowerSequenceButton == NUM_BUTTONS)
+						{
+							ScoreSendLights(DISPLAY_ADDRESS, 0xFFFF,0xFFFF);
+							CANQueueTxMessage(0x70,DISPLAY_ADDRESS + (0xFF << 8),0xFFFF,0xFFFF,0xFFFF);
+							DiagnosticsState = POWER_SEQUENCE_SCORE_DISPLAY;
+								BusVoltage = 0;
+						
+						}
+						else
+						{
+							LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
+							LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + PowerSequenceButton);
+						}
+						
+						BusVoltage = 0;
+						DIAGNOSTIC_TIMER = 0;
+						BusVoltageMeasurementCnt=0;
+				
+					}
+				else
+					{
+						ErrorCode = POWER_ERROR_BASE_CODE + PowerSequenceButton + 1;
+						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
+					}
+				
+				
+				
+				}
+				
+				
 		break;
+		
+		
+		case POWER_SEQUENCE_SCORE_DISPLAY:
+		
+			if(DIAGNOSTIC_TIMER > 5)
+			{
+				DIAGNOSTIC_TIMER = 0;
+				BusVoltage += ADCRead();
+				RequestNodeVoltages();
+				BusVoltageMeasurementCnt++;	
+			}
+					
+			if(BusVoltageMeasurementCnt >15 )
+			{
+				BusVoltage = BusVoltage>>4;
+				DIAGNOSTIC_TIMER = 0;
+				
+				if(BusVoltage>VBUS_10V)
+					{
+						BOOTUP_SOUND_TIMER = 0;
+						DiagnosticsState = POWER_SEQUENCE_EVERYTHING;
+						BusVoltage = 0;
+						DIAGNOSTIC_TIMER = 0;
+						BusVoltageMeasurementCnt=0;
+						LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + POWER_SEQUENCE_EVERYTHING_CODE);
+						
+					}
+				else
+					{
+						ErrorCode = POWER_ERROR_BASE_CODE + POWER_SEQUENCE_DISPLAY_CODE;
+						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
+					}
+			}
+	
+		break;
+		
+		case POWER_SEQUENCE_EVERYTHING:
+		
+			if(DIAGNOSTIC_TIMER > 5)
+			{
+				DIAGNOSTIC_TIMER = 0;
+				BusVoltage += ADCRead();
+				BusVoltageMeasurementCnt++;	
+				RequestNodeVoltages();
+			}
+					
+			if(BusVoltageMeasurementCnt >15 )
+			{
+				BusVoltage = BusVoltage>>4;
+				DIAGNOSTIC_TIMER = 0;
+				
+			   if(BusVoltage>VBUS_10V)
+				{						
+					if(GetVoltageDrop() > VBUS_10V)
+					{
+						DiagnosticsState = BOOTUP_SOUND;
+						PlayBootupSound();
+					}
+					else
+					{
+						ErrorCode = POWER_ERROR_BASE_CODE + POWER_SEQUENCE_CHECK_BUS_DROP;
+						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;
+					}
+					
+				}
+				else
+				{
+					AudioOffAllNodes();
+					ErrorCode = POWER_ERROR_BASE_CODE + POWER_SEQUENCE_EVERYTHING_CODE;
+					DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
+				}
+			}
+		break;
+		
+		
+		case BOOTUP_SOUND:
+		
+			if(BOOTUP_SOUND_TIMER>BUILDUP_A_WAV_LENGTH)
+			{
+				ResetAudioAndLEDS();
+				GameState =  INIT;
+				GameSelected = GAME_ROOT_GAME0;
+				SystemMode = GAME_ACTIVE;
+				CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
+				CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
+			}
+						
+		break;
+		
+		
 				
 		default:
 			SystemMode = SYSTEM_DIAGNOSTICS;
@@ -516,6 +652,8 @@ void PlayBootupSound()
 {
 
  	BYTE k;
+ 	
+ 	
  	for(k=0;k<3;k++)
 	{
 	AudioNodeEnable((2*k),0,0,AUDIO_ON_BEFORE_TIMEOUT,BUILDUP_A_WAV_LENGTH,0xFF,0);
@@ -523,11 +661,13 @@ void PlayBootupSound()
 	AudioNodeEnable(((2*k)+1),1,1,AUDIO_ON_BEFORE_TIMEOUT,BUILDUP_B_WAV_LENGTH,0xFF,0);
 	SendNodeNOP();
  	}
-	
+	InhibitAudio = FALSE;               
 	SendNodeNOP();	
 	EAudioPlaySound(0,BUILDUP_A_WAV );
 	SendNodeNOP();
-	EAudioPlaySound(1,BUILDUP_B_WAV);	
+	EAudioPlaySound(1,BUILDUP_B_WAV);
+		
+	BOOTUP_SOUND_TIMER = 0;
 
 }	
 
@@ -552,3 +692,33 @@ void WriteTestDataToNode(BYTE Node)
 
 
 
+void RequestNodeVoltages()
+{
+	BYTE i;
+	
+	for(i=0;i<NUM_BUTTONS;i++)
+	{
+		InitCANMsg(&DiagnosticCANMsg);
+		DiagnosticCANMsg.SID = NODE_OPERATIONS;
+		DiagnosticCANMsg.Data[1] = i;
+		DiagnosticCANMsg.Data[0] = NODE_READ_SUPPLY_VOLTAGE;		
+		CANMesssageEnqueue((CANMessageQueue *)&CANTxQueue,&DiagnosticCANMsg);	
+	}
+}	
+
+WORD GetVoltageDrop()
+{
+	WORD MinVoltage = 0xFFFF;
+	BYTE i;
+	
+	for(i=0;i<NUM_BUTTONS;i++)
+	{
+		if(MyNodes[i].BusVoltage < MinVoltage)
+		{
+			MinVoltage = MyNodes[i].BusVoltage;
+		}
+	}
+	
+	return MinVoltage;
+	
+}	

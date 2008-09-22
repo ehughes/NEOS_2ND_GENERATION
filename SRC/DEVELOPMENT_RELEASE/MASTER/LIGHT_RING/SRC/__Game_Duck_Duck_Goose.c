@@ -50,10 +50,31 @@ void DuckDuckGoose(void)
 		
 		case INIT:
 				
-			ResetToGameSelector();					
+		//	ResetToGameSelector();					
+		
+			GPTimer[0] = 0;
+			GameState = 2;
+		break;
+		
+		case 1:
+		if(GPTimer[0] >200)
+		{
+			LEDSendMessage(0xFF,GREEN,GREEN,0,0);
+			GameState = 2;	
+			GPTimer[0] = 0;	
+		}
 		
 		break;
 		
+			case 2:
+		if(GPTimer[0] >200)
+		{
+			LEDSendMessage(0xFF,RED,RED,0,0);
+			GameState = 1;	
+			GPTimer[0] = 0;	
+		}
+		
+		break;
 	
 		default:
 			

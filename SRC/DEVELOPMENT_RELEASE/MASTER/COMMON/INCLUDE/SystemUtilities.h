@@ -20,7 +20,7 @@ void ResetLeds(void);
 void ResetGameVariables (void);
 
 BYTE RandomButton(BYTE Exclude1, BYTE Exlude2);
-BYTE LGRandomButton(BYTE Exclude1, BYTE Exclude2);
+
 void InitRandomButton();
 	
 #define NO_EXCLUDE 0xFF

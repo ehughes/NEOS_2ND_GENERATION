@@ -146,6 +146,8 @@ BYTE RandomButton(BYTE Exclude1, BYTE Exclude2)
 	
 	BYTE RandomButton=0;
 	BYTE Retries = 0;
+	BYTE i;
+	
 	
 	//RandomButton=rand()&0x07;
 	
@@ -157,40 +159,24 @@ BYTE RandomButton(BYTE Exclude1, BYTE Exclude2)
 		RandomButton = (BYTE)(rand()) % NUM_BUTTONS;
 	}
 	
-	PreviousRandomButton2 = PreviousRandomButton1;
+	if(Retries >= MAX_RANDOM_RETRIES)
+	{
+		for(i=0;i<NUM_BUTTONS;i++)
+		{
+			if((i!=PreviousRandomButton1)&&(i!=Exclude1)& (i!=Exclude2))
+			{
+			 	RandomButton = i;
+			 	break;
+			}
+		}
+		
+	}
+	
 	PreviousRandomButton1 = RandomButton;
 	
 	return RandomButton;
 }
 
-BYTE LGPreviousRandomButton = 0;
-
-BYTE LGRandomButton(BYTE Exclude1, BYTE Exclude2)
-{
-	
-	BYTE RandomButton=0;
-	BYTE Retries = 0;
-	
-//	RandomButton=rand()&0x07;
-	RandomButton = (BYTE)(rand()) % NUM_BUTTONS;
-
-	while(((RandomButton == LGPreviousRandomButton) || (RandomButton == Exclude1) || (RandomButton == Exclude2)) && (Retries<MAX_RANDOM_RETRIES) )
-	{
-		Retries++;
-	//	RandomButton=rand()&0x07;
-	RandomButton = (BYTE)(rand()) % NUM_BUTTONS;
-	
-	}
-	
-	if(Retries == MAX_RANDOM_RETRIES)
-	{
-		RandomButton = 0;
-	}
-		
-	LGPreviousRandomButton = RandomButton;
-	
-	return RandomButton;
-}
 
 BYTE SelectRandomDirection()
 {
