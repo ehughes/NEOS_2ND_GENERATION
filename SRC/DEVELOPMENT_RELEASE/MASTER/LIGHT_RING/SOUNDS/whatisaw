@@ -4,7 +4,7 @@ Line [3] has a macro SELECTION_SOUNDS_PATH with a value of sounds\selection
 Line [4] has a macro LIGHT_GRABBER_PATH with a value of sounds\LightGrabber
 Line [5] has a macro ZIG_ZAG_PATH with a value of sounds\ZigZag
 Line [6] has a macro SURROUND_SOUND_PATH with a value of sounds\SurroundSound
-Line [7] is blank
+Line [7] has a macro DUCK_DUCK_GOOSE_PATH with a value of sounds\DuckDuckGoose
 Line [8] is blank
 Line [9] is blank
 Line [10] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
@@ -12,101 +12,107 @@ Line [10] has a sound sounds\selection\SelectionButton.wav at sound number 0
 Line [11] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
 Line [11] has a sound sounds\selection\CountDown.wav at sound number 1
 Line [12] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [12] has a sound sounds\Global\ButtonFeedBack.wav at sound number 4
+Line [12] has a sound sounds\Global\ButtonFeedBack.wav at sound number 2
 Line [13] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [13] has a sound sounds\Global\Ending.wav at sound number 5
+Line [13] has a sound sounds\Global\Ending.wav at sound number 3
 Line [14] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [14] has a sound sounds\Global\MainTheme_L.wav at sound number 6
-Line [15] is a single line comment
+Line [14] has a sound sounds\Global\MainTheme_L.wav at sound number 4
+Line [15] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [15] has a sound sounds\Global\MainTheme_R.wav at sound number 5
 Line [16] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [16] has a sound sounds\Global\MainTheme_R.wav at sound number 8
-Line [17] is a single line comment
+Line [16] has a sound sounds\Global\BuildUp_A.wav at sound number 6
+Line [17] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [17] has a sound sounds\Global\BuildUp_B.wav at sound number 7
 Line [18] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [18] has a sound sounds\Global\BuildUp_A.wav at sound number 128
-Line [19] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [19] has a sound sounds\Global\BuildUp_B.wav at sound number 129
-Line [20] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [20] has a sound sounds\Global\Heartbeat.wav at sound number 130
-Line [21] is blank
+Line [18] has a sound sounds\Global\Heartbeat.wav at sound number 8
+Line [19] is blank
+Line [20] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [20] has a sound sounds\LightGrabber\Nodes\Node0.wav at sound number 10
+Line [21] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [21] has a sound sounds\LightGrabber\Nodes\Node1.wav at sound number 11
 Line [22] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [22] has a sound sounds\LightGrabber\Nodes\Node0.wav at sound number 10
+Line [22] has a sound sounds\LightGrabber\Nodes\Node2.wav at sound number 12
 Line [23] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [23] has a sound sounds\LightGrabber\Nodes\Node1.wav at sound number 11
+Line [23] has a sound sounds\LightGrabber\Nodes\Node3.wav at sound number 13
 Line [24] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [24] has a sound sounds\LightGrabber\Nodes\Node2.wav at sound number 12
+Line [24] has a sound sounds\LightGrabber\Nodes\Node4.wav at sound number 14
 Line [25] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [25] has a sound sounds\LightGrabber\Nodes\Node3.wav at sound number 13
+Line [25] has a sound sounds\LightGrabber\Nodes\Node5.wav at sound number 15
 Line [26] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [26] has a sound sounds\LightGrabber\Nodes\Node4.wav at sound number 14
+Line [26] has a sound sounds\LightGrabber\Nodes\Node6.wav at sound number 16
 Line [27] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [27] has a sound sounds\LightGrabber\Nodes\Node5.wav at sound number 15
+Line [27] has a sound sounds\LightGrabber\Nodes\Node7.wav at sound number 17
 Line [28] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [28] has a sound sounds\LightGrabber\Nodes\Node6.wav at sound number 16
+Line [28] has a sound sounds\LightGrabber\BonusSound.wav at sound number 18
 Line [29] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [29] has a sound sounds\LightGrabber\Nodes\Node7.wav at sound number 17
+Line [29] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic.wav at sound number 19
 Line [30] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [30] has a sound sounds\LightGrabber\BonusSound.wav at sound number 18
+Line [30] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic_Bonus.wav at sound number 20
 Line [31] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [31] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic.wav at sound number 19
-Line [32] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [32] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic_Bonus.wav at sound number 20
-Line [33] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [33] has a sound sounds\LightGrabber\LG_End.wav at sound number 21
-Line [34] is blank
-Line [35] is a single line comment
+Line [31] has a sound sounds\LightGrabber\LG_End.wav at sound number 21
+Line [32] is blank
+Line [33] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [33] has a sound sounds\ZigZag\ball_serve.wav at sound number 31
+Line [34] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [34] has a sound sounds\ZigZag\ball_hit.wav at sound number 32
+Line [35] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [35] has a sound sounds\ZigZag\ball_bounce.wav at sound number 33
 Line [36] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [36] has a sound sounds\ZigZag\ball_serve.wav at sound number 31
+Line [36] has a sound sounds\ZigZag\ZigZagSFX1.wav at sound number 34
 Line [37] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [37] has a sound sounds\ZigZag\ball_hit.wav at sound number 32
+Line [37] has a sound sounds\ZigZag\ZigZagSFX2.wav at sound number 35
 Line [38] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [38] has a sound sounds\ZigZag\ball_bounce.wav at sound number 33
+Line [38] has a sound sounds\ZigZag\ZigZagSFX3.wav at sound number 36
 Line [39] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [39] has a sound sounds\ZigZag\ZigZagSFX1.wav at sound number 34
+Line [39] has a sound sounds\ZigZag\ZigZagSFX4.wav at sound number 37
 Line [40] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [40] has a sound sounds\ZigZag\ZigZagSFX2.wav at sound number 35
+Line [40] has a sound sounds\ZigZag\ZigZagSFX5.wav at sound number 38
 Line [41] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [41] has a sound sounds\ZigZag\ZigZagSFX3.wav at sound number 36
+Line [41] has a sound sounds\ZigZag\ZigZagSFX6.wav at sound number 39
 Line [42] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [42] has a sound sounds\ZigZag\ZigZagSFX4.wav at sound number 37
+Line [42] has a sound sounds\ZigZag\ZigZagSFX7.wav at sound number 40
 Line [43] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [43] has a sound sounds\ZigZag\ZigZagSFX5.wav at sound number 38
+Line [43] has a sound sounds\ZigZag\ZigZagSFX8.wav at sound number 41
 Line [44] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [44] has a sound sounds\ZigZag\ZigZagSFX6.wav at sound number 39
+Line [44] has a sound sounds\ZigZag\ZigZagSFX9.wav at sound number 42
 Line [45] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [45] has a sound sounds\ZigZag\ZigZagSFX7.wav at sound number 40
+Line [45] has a sound sounds\ZigZag\ZigZagSFX10.wav at sound number 43
 Line [46] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [46] has a sound sounds\ZigZag\ZigZagSFX8.wav at sound number 41
+Line [46] has a sound sounds\ZigZag\ZigZagBackgroundMusic_A.wav at sound number 44
 Line [47] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [47] has a sound sounds\ZigZag\ZigZagSFX9.wav at sound number 42
+Line [47] has a sound sounds\ZigZag\ZigZagBackgroundMusic_B.wav at sound number 45
 Line [48] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [48] has a sound sounds\ZigZag\ZigZagSFX10.wav at sound number 43
-Line [49] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [49] has a sound sounds\ZigZag\ZigZagBackgroundMusic_A.wav at sound number 44
-Line [50] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [50] has a sound sounds\ZigZag\ZigZagBackgroundMusic_B.wav at sound number 45
-Line [51] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [51] has a sound sounds\ZigZag\ZigZagEnd.wav at sound number 46
-Line [52] is blank
-Line [53] is blank
-Line [54] is blank
+Line [48] has a sound sounds\ZigZag\ZigZagEnd.wav at sound number 46
+Line [49] is blank
+Line [50] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [50] has a sound sounds\SurroundSound\Rock\Bass1A.wav at sound number 50
+Line [51] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [51] has a sound sounds\SurroundSound\Rock\Bass1B.wav at sound number 51
+Line [52] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [52] has a sound sounds\SurroundSound\Rock\Bass1C.wav at sound number 52
+Line [53] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [53] has a sound sounds\SurroundSound\Rock\Gtr1A.wav at sound number 62
+Line [54] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [54] has a sound sounds\SurroundSound\Rock\Gtr2A.wav at sound number 65
 Line [55] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [55] has a sound sounds\SurroundSound\Rock\Bass1A.wav at sound number 150
+Line [55] has a sound sounds\SurroundSound\Rock\Gtr3A.wav at sound number 68
 Line [56] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [56] has a sound sounds\SurroundSound\Rock\Bass1B.wav at sound number 151
+Line [56] has a sound sounds\SurroundSound\Rock\Gtr4A.wav at sound number 71
 Line [57] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [57] has a sound sounds\SurroundSound\Rock\Bass1C.wav at sound number 152
-Line [58] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [58] has a sound sounds\SurroundSound\Rock\Gtr1A.wav at sound number 162
-Line [59] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [59] has a sound sounds\SurroundSound\Rock\Gtr2A.wav at sound number 165
-Line [60] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [60] has a sound sounds\SurroundSound\Rock\Gtr3A.wav at sound number 168
-Line [61] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [61] has a sound sounds\SurroundSound\Rock\Gtr4A.wav at sound number 171
-Line [62] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [62] has a sound sounds\SurroundSound\Rock\RockBackground.wav at sound number 174
-Line [63] is blank
-Line [64] is blank
+Line [57] has a sound sounds\SurroundSound\Rock\RockBackground.wav at sound number 74
+Line [58] is blank
+Line [59] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [59] has a sound sounds\DuckDuckGoose\DuckChaseMusic.wav at sound number 80
+Line [60] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [60] has a sound sounds\DuckDuckGoose\DuckHit.wav at sound number 81
+Line [61] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [61] has a sound sounds\DuckDuckGoose\Goose.wav at sound number 82
+Line [62] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [62] has a sound sounds\DuckDuckGoose\GooseCall.wav at sound number 83
+Line [63] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [63] has a sound sounds\DuckDuckGoose\GooseChaseMusic.wav at sound number 84
+Line [64] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [64] has a sound sounds\DuckDuckGoose\GooseHit.wav at sound number 85
 Line [65] is blank
 Line [66] is blank
 Line [67] is blank
@@ -126,3 +132,5 @@ Line [80] is blank
 Line [81] is blank
 Line [82] is blank
 Line [83] is blank
+Line [84] is blank
+Line [85] is blank

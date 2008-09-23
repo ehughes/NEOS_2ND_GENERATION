@@ -82,12 +82,15 @@ int main (void)
 	InitPacketProcess();
 	InitScoreDisplayerManager();
 	ADCInit();
-	srand(5647);
+	srand(ADCRead());
 	ResetAudioAndLEDS();
 
-	SystemMode = SYSTEM_DIAGNOSTICS;
-	DiagnosticsState = INIT;
+	//SystemMode = SYSTEM_DIAGNOSTICS;
+	//DiagnosticsState = INIT;
 	
+	SystemMode = GAME_ACTIVE;
+	GameState = INIT;
+	GameSelected = GAME_ROOT_GAME0;
 	
 	while (1)
 	{	

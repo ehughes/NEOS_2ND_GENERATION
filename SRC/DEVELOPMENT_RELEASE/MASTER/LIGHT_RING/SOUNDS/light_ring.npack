@@ -4,20 +4,18 @@
 #define LIGHT_GRABBER_PATH				sounds\LightGrabber
 #define ZIG_ZAG_PATH				      sounds\ZigZag
 #define SURROUND_SOUND_PATH                    sounds\SurroundSound
-
+#define DUCK_DUCK_GOOSE_PATH                   sounds\DuckDuckGoose
 
 
 sound[0]=SELECTION_SOUNDS_PATH\SelectionButton.wav;   
 sound[1]=SELECTION_SOUNDS_PATH\CountDown.wav; 
-sound[4]=GLOBAL_SOUNDS_PATH\ButtonFeedBack.wav; 
-sound[5]=GLOBAL_SOUNDS_PATH\Ending.wav; 
-sound[6]=GLOBAL_SOUNDS_PATH\MainTheme_L.wav; 
-//sound[7]=GLOBAL_SOUNDS_PATH\MainTheme_LS.wav; 
-sound[8]=GLOBAL_SOUNDS_PATH\MainTheme_R.wav; 
-//sound[9]=GLOBAL_SOUNDS_PATH\MainTheme_RS.wav; 
-sound[128]=GLOBAL_SOUNDS_PATH\BuildUp_A.wav;
-sound[129]=GLOBAL_SOUNDS_PATH\BuildUp_B.wav;
-sound[130]=GLOBAL_SOUNDS_PATH\Heartbeat.wav;
+sound[2]=GLOBAL_SOUNDS_PATH\ButtonFeedBack.wav; 
+sound[3]=GLOBAL_SOUNDS_PATH\Ending.wav; 
+sound[4]=GLOBAL_SOUNDS_PATH\MainTheme_L.wav; 
+sound[5]=GLOBAL_SOUNDS_PATH\MainTheme_R.wav; 
+sound[6]=GLOBAL_SOUNDS_PATH\BuildUp_A.wav;
+sound[7]=GLOBAL_SOUNDS_PATH\BuildUp_B.wav;
+sound[8]=GLOBAL_SOUNDS_PATH\Heartbeat.wav;
  
 sound[10]=LIGHT_GRABBER_PATH\Nodes\Node0.wav;
 sound[11]=LIGHT_GRABBER_PATH\Nodes\Node1.wav;
@@ -32,7 +30,6 @@ sound[19]=LIGHT_GRABBER_PATH\LightGrabberBackGroundMusic.wav;
 sound[20]=LIGHT_GRABBER_PATH\LightGrabberBackGroundMusic_Bonus.wav;
 sound[21]=LIGHT_GRABBER_PATH\LG_End.wav;
 
-//sound[30]=ZIG_ZAG_PATH\ZigZagBackgroundMusic.wav;
 sound[31]=ZIG_ZAG_PATH\ball_serve.wav;
 sound[32]=ZIG_ZAG_PATH\ball_hit.wav;
 sound[33]=ZIG_ZAG_PATH\ball_bounce.wav;
@@ -50,17 +47,22 @@ sound[44]=ZIG_ZAG_PATH\ZigZagBackgroundMusic_A.wav;
 sound[45]=ZIG_ZAG_PATH\ZigZagBackgroundMusic_B.wav;
 sound[46]=ZIG_ZAG_PATH\ZigZagEnd.wav;
 
+sound[50]=SURROUND_SOUND_PATH\Rock\Bass1A.wav;  
+sound[51]=SURROUND_SOUND_PATH\Rock\Bass1B.wav;  
+sound[52]=SURROUND_SOUND_PATH\Rock\Bass1C.wav;  
+sound[62]=SURROUND_SOUND_PATH\Rock\Gtr1A.wav;
+sound[65]=SURROUND_SOUND_PATH\Rock\Gtr2A.wav;
+sound[68]=SURROUND_SOUND_PATH\Rock\Gtr3A.wav;
+sound[71]=SURROUND_SOUND_PATH\Rock\Gtr4A.wav;
+sound[74]=SURROUND_SOUND_PATH\Rock\RockBackground.wav;
 
-
-sound[150]=SURROUND_SOUND_PATH\Rock\Bass1A.wav;  
-sound[151]=SURROUND_SOUND_PATH\Rock\Bass1B.wav;  
-sound[152]=SURROUND_SOUND_PATH\Rock\Bass1C.wav;  
-sound[162]=SURROUND_SOUND_PATH\Rock\Gtr1A.wav;
-sound[165]=SURROUND_SOUND_PATH\Rock\Gtr2A.wav;
-sound[168]=SURROUND_SOUND_PATH\Rock\Gtr3A.wav;
-sound[171]=SURROUND_SOUND_PATH\Rock\Gtr4A.wav;
-sound[174]=SURROUND_SOUND_PATH\Rock\RockBackground.wav;
-
+sound[80]=DUCK_DUCK_GOOSE_PATH\DuckChaseMusic.wav;
+sound[81]=DUCK_DUCK_GOOSE_PATH\DuckHit.wav;
+sound[82]=DUCK_DUCK_GOOSE_PATH\Goose.wav;
+sound[83]=DUCK_DUCK_GOOSE_PATH\GooseCall.wav;
+sound[84]=DUCK_DUCK_GOOSE_PATH\GooseChaseMusic.wav;
+sound[85]=DUCK_DUCK_GOOSE_PATH\GooseHit.wav;
+ 
 
 
 
