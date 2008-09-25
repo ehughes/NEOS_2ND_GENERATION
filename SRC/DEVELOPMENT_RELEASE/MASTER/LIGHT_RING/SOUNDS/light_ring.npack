@@ -5,7 +5,7 @@
 #define ZIG_ZAG_PATH				      sounds\ZigZag
 #define SURROUND_SOUND_PATH                    sounds\SurroundSound
 #define DUCK_DUCK_GOOSE_PATH                   sounds\DuckDuckGoose
-
+#define COMET_PATH                   sounds\Comet
 
 sound[0]=SELECTION_SOUNDS_PATH\SelectionButton.wav;   
 sound[1]=SELECTION_SOUNDS_PATH\CountDown.wav; 
@@ -53,8 +53,8 @@ sound[52]=SURROUND_SOUND_PATH\Rock\Bass1C.wav;
 sound[62]=SURROUND_SOUND_PATH\Rock\Gtr1A.wav;
 sound[65]=SURROUND_SOUND_PATH\Rock\Gtr2A.wav;
 sound[68]=SURROUND_SOUND_PATH\Rock\Gtr3A.wav;
-sound[71]=SURROUND_SOUND_PATH\Rock\Gtr4A.wav;
-sound[74]=SURROUND_SOUND_PATH\Rock\RockBackground.wav;
+sound[69]=SURROUND_SOUND_PATH\Rock\Gtr4A.wav;
+sound[70]=SURROUND_SOUND_PATH\Rock\RockBackground.wav;
 
 sound[80]=DUCK_DUCK_GOOSE_PATH\DuckChaseMusic.wav;
 sound[81]=DUCK_DUCK_GOOSE_PATH\DuckHit.wav;
@@ -63,6 +63,13 @@ sound[83]=DUCK_DUCK_GOOSE_PATH\GooseCall.wav;
 sound[84]=DUCK_DUCK_GOOSE_PATH\GooseChaseMusic.wav;
 sound[85]=DUCK_DUCK_GOOSE_PATH\GooseHit.wav;
  
+
+sound[90]=COMET_PATH\CometBackground.wav;
+sound[91]=COMET_PATH\LaserBlast.wav;
+sound[92]=COMET_PATH\Miss.wav;
+sound[93]=COMET_PATH\NewComet.wav;
+
+
 
 
 

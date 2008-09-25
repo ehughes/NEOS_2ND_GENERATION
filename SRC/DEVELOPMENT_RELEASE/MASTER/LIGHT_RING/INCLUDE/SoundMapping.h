@@ -88,9 +88,9 @@
 #define GTR2A_WAV_LENGTH                                              404
 #define GTR3A_WAV                                                     68
 #define GTR3A_WAV_LENGTH                                              475
-#define GTR4A_WAV                                                     71
+#define GTR4A_WAV                                                     69
 #define GTR4A_WAV_LENGTH                                              472
-#define ROCKBACKGROUND_WAV                                            74
+#define ROCKBACKGROUND_WAV                                            70
 #define ROCKBACKGROUND_WAV_LENGTH                                     4613
 #define DUCKCHASEMUSIC_WAV                                            80
 #define DUCKCHASEMUSIC_WAV_LENGTH                                     133
@@ -104,6 +104,15 @@
 #define GOOSECHASEMUSIC_WAV_LENGTH                                    4119
 #define GOOSEHIT_WAV                                                  85
 #define GOOSEHIT_WAV_LENGTH                                           38
+#define COMETBACKGROUND_WAV                                           90
+#define COMETBACKGROUND_WAV_LENGTH                                    4500
+#define LASERBLAST_WAV                                                91
+#define LASERBLAST_WAV_LENGTH                                         120
+#define MISS_WAV                                                      92
+#define MISS_WAV_LENGTH                                               37
+#define NEWCOMET_WAV                                                  93
+#define NEWCOMET_WAV_LENGTH                                           50
 
 
 #endif
+

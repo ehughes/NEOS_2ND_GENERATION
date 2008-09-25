@@ -5,7 +5,7 @@ Line [4] has a macro LIGHT_GRABBER_PATH with a value of sounds\LightGrabber
 Line [5] has a macro ZIG_ZAG_PATH with a value of sounds\ZigZag
 Line [6] has a macro SURROUND_SOUND_PATH with a value of sounds\SurroundSound
 Line [7] has a macro DUCK_DUCK_GOOSE_PATH with a value of sounds\DuckDuckGoose
-Line [8] is blank
+Line [8] has a macro COMET_PATH with a value of sounds\Comet
 Line [9] is blank
 Line [10] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
 Line [10] has a sound sounds\selection\SelectionButton.wav at sound number 0
@@ -97,9 +97,9 @@ Line [54] has a sound sounds\SurroundSound\Rock\Gtr2A.wav at sound number 65
 Line [55] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
 Line [55] has a sound sounds\SurroundSound\Rock\Gtr3A.wav at sound number 68
 Line [56] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [56] has a sound sounds\SurroundSound\Rock\Gtr4A.wav at sound number 71
+Line [56] has a sound sounds\SurroundSound\Rock\Gtr4A.wav at sound number 69
 Line [57] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [57] has a sound sounds\SurroundSound\Rock\RockBackground.wav at sound number 74
+Line [57] has a sound sounds\SurroundSound\Rock\RockBackground.wav at sound number 70
 Line [58] is blank
 Line [59] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
 Line [59] has a sound sounds\DuckDuckGoose\DuckChaseMusic.wav at sound number 80
@@ -115,10 +115,14 @@ Line [64] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
 Line [64] has a sound sounds\DuckDuckGoose\GooseHit.wav at sound number 85
 Line [65] is blank
 Line [66] is blank
-Line [67] is blank
-Line [68] is blank
-Line [69] is blank
-Line [70] is blank
+Line [67] has a macro replace of COMET_PATH to sounds\Comet
+Line [67] has a sound sounds\Comet\CometBackground.wav at sound number 90
+Line [68] has a macro replace of COMET_PATH to sounds\Comet
+Line [68] has a sound sounds\Comet\LaserBlast.wav at sound number 91
+Line [69] has a macro replace of COMET_PATH to sounds\Comet
+Line [69] has a sound sounds\Comet\Miss.wav at sound number 92
+Line [70] has a macro replace of COMET_PATH to sounds\Comet
+Line [70] has a sound sounds\Comet\NewComet.wav at sound number 93
 Line [71] is blank
 Line [72] is blank
 Line [73] is blank
@@ -134,3 +138,10 @@ Line [82] is blank
 Line [83] is blank
 Line [84] is blank
 Line [85] is blank
+Line [86] is blank
+Line [87] is blank
+Line [88] is blank
+Line [89] is blank
+Line [90] is blank
+Line [91] is blank
+Line [92] is blank

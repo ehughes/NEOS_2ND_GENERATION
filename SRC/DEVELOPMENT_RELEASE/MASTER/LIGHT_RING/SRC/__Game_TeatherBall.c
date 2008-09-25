@@ -84,6 +84,8 @@ static BYTE BallCaptures = 0;
 static WORD RevolutionTicks=0;
 
 BYTE Player1ServeLocation;
+			
+	
 BYTE Player2ServeLocation;
 
 

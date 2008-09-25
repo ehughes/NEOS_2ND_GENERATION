@@ -85,12 +85,12 @@ int main (void)
 	srand(ADCRead());
 	ResetAudioAndLEDS();
 
-	//SystemMode = SYSTEM_DIAGNOSTICS;
-	//DiagnosticsState = INIT;
+	SystemMode = SYSTEM_DIAGNOSTICS;
+	DiagnosticsState = INIT;
 	
-	SystemMode = GAME_ACTIVE;
-	GameState = INIT;
-	GameSelected = GAME_ROOT_GAME0;
+	//SystemMode = GAME_ACTIVE;
+	//GameState = INIT;
+	//GameSelected = GAME_ROOT_GAME0;
 	
 	while (1)
 	{	

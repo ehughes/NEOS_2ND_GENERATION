@@ -21,6 +21,8 @@ void ResetGameVariables (void);
 
 BYTE RandomButton(BYTE Exclude1, BYTE Exlude2);
 
+
+
 void InitRandomButton();
 	
 #define NO_EXCLUDE 0xFF

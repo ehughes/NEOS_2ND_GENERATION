@@ -310,7 +310,7 @@ void PlayGooseSound(BYTE button)
 {
 	AudioNodeEnable(button,HIT_SFX_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,GOOSE_WAV_LENGTH,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
-	EAudioPlaySound(HIT_SFX_STREAM,GOOSE_WAV  );
+	EAudioPlaySound(HIT_SFX_STREAM,GOOSE_WAV );
 	
 }	
 
@@ -342,7 +342,7 @@ void MoveDuck()
 	
 void MoveGoose()
 {
-	LEDSendMessage(GOOSE_DIRECTION,LEDOFF,LEDOFF,0, 0);
+	LEDSendMessage(GOOSE_POSITION,LEDOFF,LEDOFF,0, 0);
 	
 	if(MovesUntilSwitch == 0)
 	{
@@ -380,3 +380,5 @@ void MoveGoose()
 	LEDSendMessage(GOOSE_POSITION,RED,RED,0, 0);
 	LEDSendMessage(GOOSE_POSITION,RED,RED,0, 0);
 }	
+
+

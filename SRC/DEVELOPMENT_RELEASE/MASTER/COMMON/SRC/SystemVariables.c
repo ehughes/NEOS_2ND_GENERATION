@@ -16,3 +16,5 @@ void InitSystemVariables()
 SystemMode = GAME_ACTIVE;
 	
 }	
+
+
