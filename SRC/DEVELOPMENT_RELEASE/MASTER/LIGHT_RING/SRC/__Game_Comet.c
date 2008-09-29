@@ -202,30 +202,31 @@ void Comet(void)
 
 void OnButtonPressComet(unsigned char button)
 {
-
-	if(button == TailLightPosition)
+	if(GameState == COMET_CHASE)
 	{
-		PlayCometHit(button);
-		
-		CometSize--;
-	
-		Player1Score += COMET_HIT_POINT;
-		
-		if(CometSize ==0)
+		if(button == TailLightPosition)
 		{
-			Player1Score += COMET_CLEAR_POINT;
-			GameState = BUILD_COMET;
-			LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
-			COMET_BUILD_TIMER = 0xFFFF;
-			GenerateNextComet();
-			CometSpeed -= COMET_SPEED_INCREMENT;
+			PlayCometHit(button);
+			
+			CometSize--;
+		
+			Player1Score += COMET_HIT_POINT;
+			
+			if(CometSize ==0)
+			{
+				Player1Score += COMET_CLEAR_POINT;
+				GameState = BUILD_COMET;
+				LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+				COMET_BUILD_TIMER = 0xFFFF;
+				GenerateNextComet();
+				CometSpeed -= COMET_SPEED_INCREMENT;
+			}
 		}
-	}
-	else
-	{
-		PlayCometMiss(button);
-	}
-	
+		else
+		{
+			PlayCometMiss(button);
+		}
+	}	
 }
 
 void GenerateNextComet()

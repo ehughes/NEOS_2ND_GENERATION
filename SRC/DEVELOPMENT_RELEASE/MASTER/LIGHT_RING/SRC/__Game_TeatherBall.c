@@ -329,7 +329,7 @@ switch(GameState)
 			LightPosition = Player1ServeLocation;
 			BallPosition = ((DWORD)(LightPosition))<<16;
 			
-			BallOwner = PLAYER_1;
+			BallOwner = PLAYER_2;
 			GameState = TEATHER_BALL;
 			TeatherBallPlayP1HitSound(button);
 		}
@@ -338,7 +338,7 @@ switch(GameState)
 			LightPosition = Player2ServeLocation;
 			BallPosition = ((DWORD)(LightPosition))<<16;
 			
-			BallOwner = PLAYER_2;
+			BallOwner = PLAYER_1;
 			GameState = TEATHER_BALL;
 			TeatherBallPlayP2HitSound(button);
 		}
