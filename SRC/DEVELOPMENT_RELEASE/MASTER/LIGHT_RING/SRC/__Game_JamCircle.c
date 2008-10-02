@@ -21,6 +21,9 @@
 
 #define NUM_SOUNDS_PER_BUTTON	3
 #define ROCK					1
+#define NUM_SOUND_CHANNELS	3
+
+
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
 //*************************************************
@@ -56,6 +59,8 @@ WORD JamCirclesBaseLocation = 150;
 
 BYTE NextAvailableSoundChannel = 0;
 
+#define NO_MATCH	0xFF
+
 struct {
 	
 		BOOL Active;
@@ -80,6 +85,9 @@ void InitJamCircleChannels();
 void InitButtonSounds(BYTE JamCircleProfile);
 
 
+void ResetSoundChannelTimer(BYTE  Channel);
+BYTE MatchButtonToActiveSoundChannel(BYTE button);
+BYTE GetNextSoundChannel(BYTE button);
 
 
 void JamCircle(void)
@@ -113,28 +121,36 @@ void JamCircle(void)
 		case JAM_CIRCLE:
 		
 		
-			if(SOUND_CHANNEL0_TIMER > SoundChannelInfo[0].CurrentSoundLength)
+			if((SOUND_CHANNEL0_TIMER > SoundChannelInfo[0].CurrentSoundLength) && (SoundChannelInfo[0].Active == TRUE))
 			{
 				SoundChannelInfo[0].Active = FALSE;
-				SoundChannelInfo[0].CurrentSoundLength = 0xFFFF;
+				
+			//	AudioNodeEnable(SoundChannelInfo[0].ButtonAssignment,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ROCKBACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
+				AudioReSync(SoundChannelInfo[0].ButtonAssignment);
 			}
 			
-			if(SOUND_CHANNEL1_TIMER > SoundChannelInfo[0].CurrentSoundLength)
+			if((SOUND_CHANNEL1_TIMER > SoundChannelInfo[0].CurrentSoundLength) && (SoundChannelInfo[10].Active == TRUE) )
 			{
 				SoundChannelInfo[1].Active = FALSE;
-				SoundChannelInfo[1].CurrentSoundLength = 0xFFFF;
+			//	AudioNodeEnable(SoundChannelInfo[1].ButtonAssignment,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ROCKBACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
+				AudioReSync(SoundChannelInfo[1].ButtonAssignment);
 			}
 			
-			if(SOUND_CHANNEL2_TIMER > SoundChannelInfo[0].CurrentSoundLength)
+			if((SOUND_CHANNEL2_TIMER > SoundChannelInfo[0].CurrentSoundLength) && (SoundChannelInfo[2].Active == TRUE))
 			{
 				SoundChannelInfo[2].Active = FALSE;
-				SoundChannelInfo[2].CurrentSoundLength = 0xFFFF;
+			//	AudioNodeEnable(SoundChannelInfo[2].ButtonAssignment,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ROCKBACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
+				AudioReSync(SoundChannelInfo[2].ButtonAssignment);
 			}
 			
 			if(SHOW_TIMER> 50)
 			{
+				int i;
+				
 				SHOW_TIMER = 0;
 				LEDSendMessage(ENABLE_ALL, RED, LEDOFF, 50, 50);
+				
+				
 				
 			}
 			
@@ -175,18 +191,71 @@ void JamCircle(void)
 
 void OnButtonPressJamCircle(unsigned char button)
 {
+	BYTE SoundChannelTemp;
 	
-	LEDSendMessage(button, YELLOW, LEDOFF, 50, 50);
 	
 	if(GameState == JAM_CIRCLE)
 	{
+    	LEDSendMessage(button, YELLOW, LEDOFF, 50, 50);
 
-	if(SoundChannelInfo[NextAvailableSoundChannel].Active == TRUE)
-	{
-		AudioNodeEnable(SoundChannelInfo[NextAvailableSoundChannel].ButtonAssignment,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
-	}
+		//See if this button alread has a sound
+		
+		SoundChannelTemp = MatchButtonToActiveSoundChannel(button);
+		
+		if(SoundChannelTemp!=NO_MATCH)
+		{
+			//if the button already maps to a sound, then just start a new one at the same button
+			
+			SoundChannelInfo[SoundChannelTemp].Active = TRUE;
+			SoundChannelInfo[SoundChannelTemp].ButtonAssignment = button;
+			
+			SoundChannelInfo[SoundChannelTemp].CurrentSoundLength = ButtonSound.Length[button];
+			
+			ResetSoundChannelTimer(SoundChannelTemp);
+			
+			AudioNodeEnable(button,SoundChannelTemp,BACKGROUND_MUSIC_STREAM,1,1,SoundChannelInfo[SoundChannelTemp].CurrentSoundLength,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+			SendNodeNOP();	
+			EAudioPlaySound(SoundChannelTemp,ButtonSound.Index[button]);
+			
+		}
+		else
+		{
+			SoundChannelTemp = GetNextSoundChannel(button);
+		
+			//First Turn off the old button (if there is one)
+			
+			if(SoundChannelInfo[SoundChannelTemp].Active == TRUE)
+			{
+			//	AudioNodeEnable(SoundChannelInfo[SoundChannelTemp].ButtonAssignment,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ROCKBACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
+			
+			}
+			
+			SoundChannelInfo[SoundChannelTemp].Active = TRUE;
+			SoundChannelInfo[SoundChannelTemp].ButtonAssignment = button;
+			
+			SoundChannelInfo[SoundChannelTemp].CurrentSoundLength = ButtonSound.Length[button];
+			
+			ResetSoundChannelTimer(SoundChannelTemp);
+			
+			AudioNodeEnable(button,SoundChannelTemp,BACKGROUND_MUSIC_STREAM,1,1,SoundChannelInfo[SoundChannelTemp].CurrentSoundLength,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+			SendNodeNOP();	
+			EAudioPlaySound(SoundChannelTemp,ButtonSound.Index[button]);
+			
+			
+			
+		}
+		
 	
-		switch(NextAvailableSoundChannel)
+	}
+
+
+
+}
+
+
+void ResetSoundChannelTimer(BYTE  Channel)
+{
+		switch(Channel)
 		{
 			case 0:
 				SOUND_CHANNEL0_TIMER =0; 
@@ -204,26 +273,56 @@ void OnButtonPressJamCircle(unsigned char button)
 			break;	
 			
 		}
-		
-		SoundChannelInfo[NextAvailableSoundChannel].Active = TRUE;
-		SoundChannelInfo[NextAvailableSoundChannel].ButtonAssignment = button;
-		
-		SoundChannelInfo[NextAvailableSoundChannel].CurrentSoundLength = ButtonSound.Length[button];
-		
-		AudioNodeEnable(button,NextAvailableSoundChannel,BACKGROUND_MUSIC_STREAM,1,1,SoundChannelInfo[NextAvailableSoundChannel].CurrentSoundLength,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
-		SendNodeNOP();	
-		EAudioPlaySound(NextAvailableSoundChannel,ButtonSound.Index[button]);
-		
-		
-		NextAvailableSoundChannel++;
-		
-		if(NextAvailableSoundChannel > 2)
+}	
+
+BYTE MatchButtonToActiveSoundChannel(BYTE button)
+{
+	BYTE i;
+	
+	for(i=0;i<NUM_SOUND_CHANNELS;i++)
+	{
+		if(SoundChannelInfo[i].Active == TRUE)
 		{
-			NextAvailableSoundChannel = 0;	
+			if(SoundChannelInfo[i].ButtonAssignment == button)
+			{
+				return i;	
+			}
+			
 		}
 	}
+	
+	return NO_MATCH;
+}	
 
-}
+BYTE GetNextSoundChannel(BYTE button)
+{
+	BYTE Temp;
+	BYTE i;
+	
+	Temp = MatchButtonToActiveSoundChannel(button);
+	
+	
+	//if the button already has a sound channel mapped , just reuse it
+	if(Temp != NO_MATCH)
+	{
+		return i;
+	}
+	
+	Temp = NO_MATCH;
+	
+	for(i=0;i<NUM_SOUND_CHANNELS;i++)
+	{
+		if(SoundChannelInfo[i].Active == FALSE)
+		{
+			return i;
+		}	
+	}
+	
+	//if we are here then all channels are used up.  Just pick a Random one
+	
+	return (rand()%3);
+
+}	
 
 void InitJamCircleChannels()
 {
