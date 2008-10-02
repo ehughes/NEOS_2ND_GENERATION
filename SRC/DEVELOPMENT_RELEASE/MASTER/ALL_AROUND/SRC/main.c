@@ -53,7 +53,7 @@ _FWDT (WDT_ON & WDTPSA_8 & WDTPSB_16);		//Watchdog now ON (3.9 Hz)
 _FBORPOR(MCLR_EN & PWRT_OFF);   /* Enable MCLR reset pin and turn off the power-up timers. */
 _FGS(GEN_PROT)
 
-
+#define BOOT_TIMER GPTimer[0]
 
 int main (void)
 {
@@ -85,9 +85,8 @@ int main (void)
 	srand(5647);
 	ResetAudioAndLEDS();
 
-	SystemMode = SYSTEM_DIAGNOSTICS;
-	DiagnosticsState = INIT;
-	
+	SystemMode = SYSTEM_BOOT;
+	BOOT_TIMER = 0;
 	
 	while (1)
 	{	
@@ -95,6 +94,23 @@ int main (void)
 		
 		switch(SystemMode)
 		{
+			
+			case SYSTEM_BOOT:
+			
+			if(BOOT_TIMER > 200)
+			{
+				
+				SystemMode = SYSTEM_DIAGNOSTICS;
+				DiagnosticsState = INIT;
+				
+			}
+			
+			ProcessIncomingUSBMessages();
+			
+			break;
+			
+			
+			
 			case SYSTEM_DIAGNOSTICS:
 				rand();				
 				CANTransmitCheck();	

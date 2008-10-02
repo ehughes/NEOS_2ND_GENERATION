@@ -53,7 +53,7 @@ _FWDT (WDT_ON & WDTPSA_8 & WDTPSB_16);		//Watchdog now ON (3.9 Hz)
 _FBORPOR(MCLR_EN & PWRT_OFF);   /* Enable MCLR reset pin and turn off the power-up timers. */
 _FGS(GEN_PROT)
 
-
+#define BOOT_TIMER GPTimer[0]
 
 int main (void)
 {
@@ -85,12 +85,7 @@ int main (void)
 	srand(ADCRead());
 	ResetAudioAndLEDS();
 
-	SystemMode = SYSTEM_DIAGNOSTICS;
-	DiagnosticsState = INIT;
-	
-	//SystemMode = GAME_ACTIVE;
-	//GameState = INIT;
-	//GameSelected = GAME_ROOT_GAME0;
+	SystemMode = SYSTEM_BOOT;
 	
 	while (1)
 	{	
@@ -98,6 +93,22 @@ int main (void)
 		
 		switch(SystemMode)
 		{
+			
+			case SYSTEM_BOOT:
+			
+			if(BOOT_TIMER > 200)
+			{
+				
+				SystemMode = SYSTEM_DIAGNOSTICS;
+				DiagnosticsState = INIT;
+				
+			}
+			
+			ProcessIncomingUSBMessages();
+			
+			break;
+			
+			
 			case SYSTEM_DIAGNOSTICS:
 				rand();				
 				CANTransmitCheck();	
