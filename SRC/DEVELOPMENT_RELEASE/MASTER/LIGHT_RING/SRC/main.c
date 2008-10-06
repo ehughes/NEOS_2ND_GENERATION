@@ -85,9 +85,13 @@ int main (void)
 	srand(ADCRead());
 	ResetAudioAndLEDS();
 
-	SystemMode = SYSTEM_DIAGNOSTICS;
-	GameState = INIT;
+	//SystemMode = SYSTEM_DIAGNOSTICS;
+	//GameState = INIT;
 	
+	
+	SystemMode = SYSTEM_BOOT;
+	BOOT_TIMER = 0;
+
 	while (1)
 	{	
 		CLEAR_WATCHDOG;
