@@ -51,6 +51,11 @@ void OnButtonPress(unsigned char button)
 					OnButtonPressDuckDuckGoose(button);
 				break;
 				
+				case GAME_FLIP_FLOP:
+					OnButtonPressFlipFlop(button);	
+				break;
+					
+				
 				default:
 				break;
 			}  

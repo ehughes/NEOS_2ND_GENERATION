@@ -4,6 +4,7 @@
 #include "__Game_JamCircle.h"
 #include "__Game_Duck_Duck_Goose.h"
 #include "__Game_Comet.h"
+#include "__Game_FlipFlop.h"
 
 #ifndef _GAMES_H
 #define _GAMES_H
@@ -14,5 +15,6 @@
 #define GAME_DUCKDUCKGOOSE    0x03
 #define GAME_TEATHERBALL	  0x04
 #define GAME_COMET			  0x05
+#define GAME_FLIP_FLOP			  0x06
 
 #endif

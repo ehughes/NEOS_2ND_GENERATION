@@ -121,7 +121,7 @@ void TeatherBall(void)
 			
 			GameState = TEATHER_BALL_SERVE;
 				BallDirection = SelectRandomDirection();
-				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
+				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE,NO_EXCLUDE);
 				
 				
 				Player1ServeLocation = LightPosition;
@@ -332,6 +332,7 @@ switch(GameState)
 			BallOwner = PLAYER_2;
 			GameState = TEATHER_BALL;
 			TeatherBallPlayP1HitSound(button);
+			Player1Score += SERVE_SCORE_TWO_PLAYER;
 		}
 		else if (button == Player2ServeLocation)
 		{
@@ -341,6 +342,7 @@ switch(GameState)
 			BallOwner = PLAYER_1;
 			GameState = TEATHER_BALL;
 			TeatherBallPlayP2HitSound(button);
+			Player2Score += SERVE_SCORE_TWO_PLAYER;
 		}
 	
 	break;

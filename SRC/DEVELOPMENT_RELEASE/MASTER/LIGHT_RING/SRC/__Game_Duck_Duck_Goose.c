@@ -31,7 +31,7 @@
 //*************************************************
 
 #define	HIT_SFX_STREAM 2
-#define	BACKGROUND_MUSIC_STREAM 3
+#define	BACKGROUND_MUSIC_STREAM 0
 
 
 //*************************************************
@@ -99,7 +99,7 @@ void DuckDuckGoose(void)
 		
 		case DUCK_CHASE_INIT:
 		
-			DUCK_POSITION = RandomButton(NO_EXCLUDE, NO_EXCLUDE);	
+			DUCK_POSITION = RandomButton(NO_EXCLUDE, NO_EXCLUDE,NO_EXCLUDE);	
 			DUCK_DIRECTION = SelectRandomDirection();
 			NumDucks = 3 + (rand()&0x03);
 			DUCK_LIGHT_TIMER = 0xFFFF;
@@ -238,22 +238,23 @@ void OnButtonPressDuckDuckGoose(unsigned char button)
 void MoveToGooseChase()
 {
 	GameState = GOOSE_CHASE;
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,GOOSECHASEMUSIC_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
-	SendNodeNOP();	
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,GOOSECHASEMUSIC_WAV);
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKDUCK_FULLCHASE_WAV);
 	GOOSE_RUN_TIMER = 0;
 	GOOSE_MUSIC_TIMER = 0;
 	MovesUntilSwitch = 0;
 	LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0, 0);
+	
+	GOOSE_DIRECTION  = rand()&0x01;
 }	
 
 
 void MoveToGooseCall()
 {
 	GameState = GOOSE_CALL;
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,GOOSECALL_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,GOOSECALL_WAV);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKDUCK_BACKGROUND_GOOSE_QUACKS_WAV);
 	DUCK_LIGHT_TIMER = 0xFFFF;
 	GOOSE_RUN_TIMER = 0xFFFF;
 }
@@ -274,14 +275,14 @@ void MoveToDuckDuckGooseEnd()
 void FlashDuckLight()
 {
 	
-	LEDSendMessage(DUCK_POSITION,YELLOW,LEDOFF,DUCK_LIGHT_FLASH_INTERVAL,0);
+	LEDSendMessage(DUCK_POSITION,YELLOW,LEDOFF,DUCK_LIGHT_FLASH_INTERVAL>>1,0);
 	
 }	
 
 void FlashGooseLight()
 {
 	
-	LEDSendMessage(GOOSE_POSITION,RED,LEDOFF,DUCK_LIGHT_FLASH_INTERVAL,0);
+	LEDSendMessage(GOOSE_POSITION,RED,LEDOFF,DUCK_LIGHT_FLASH_INTERVAL>>1,0);
 	
 }
 
@@ -294,8 +295,7 @@ void StartDuckChaseMusic()
 {
 	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKCHASEMUSIC_WAV);
-			
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKDUCK_BACKGROUND_QUACKS_WAV);
 }		
 
 void PlayDuckHitSound(BYTE button)
@@ -303,7 +303,6 @@ void PlayDuckHitSound(BYTE button)
 	AudioNodeEnable(button,HIT_SFX_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,DUCKHIT_WAV_LENGTH,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
 	EAudioPlaySound(HIT_SFX_STREAM,DUCKHIT_WAV  );
-	
 }	
 
 void PlayGooseSound(BYTE button)
@@ -344,16 +343,6 @@ void MoveGoose()
 {
 	LEDSendMessage(GOOSE_POSITION,LEDOFF,LEDOFF,0, 0);
 	
-	if(MovesUntilSwitch == 0)
-	{
-		MovesUntilSwitch = (rand()&0x3);		
-		GOOSE_DIRECTION = SelectRandomDirection();
-	}
-	else
-	{
-		MovesUntilSwitch--;	
-	}
-	
 	if(GOOSE_DIRECTION)
 	{
 		if(GOOSE_POSITION == (NUM_BUTTONS-1))
@@ -380,5 +369,4 @@ void MoveGoose()
 	LEDSendMessage(GOOSE_POSITION,RED,RED,0, 0);
 	LEDSendMessage(GOOSE_POSITION,RED,RED,0, 0);
 }	
-
 

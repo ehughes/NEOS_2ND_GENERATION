@@ -173,7 +173,7 @@ void Comet(void)
 			
 			}
 			
-			if(MAIN_GAME_TIMER > COMETBACKGROUND_WAV_LENGTH)
+			if(MAIN_GAME_TIMER >= COMETBACKGROUND_WAV_LENGTH-20)
 			{
 				MoveToCometEnd();
 			}
@@ -242,7 +242,7 @@ void InitFirstComet()
 {
 	CometSpeed = COMET_INITIAL_SPEED;
 	CometDirection = SelectRandomDirection();	
-	TailLightPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE);
+	TailLightPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE,NO_EXCLUDE);
 	CometSize = 0;
 	GameState = BUILD_COMET;
 }	

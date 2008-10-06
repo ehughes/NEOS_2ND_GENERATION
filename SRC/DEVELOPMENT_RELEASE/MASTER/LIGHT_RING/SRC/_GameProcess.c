@@ -34,6 +34,9 @@ void GameProcess(void)
 			Comet();
 		break;
 		
+		case GAME_FLIP_FLOP:
+			FlipFlop();
+		break;
 		default:
 			ResetToGameSelector();
 		break;
