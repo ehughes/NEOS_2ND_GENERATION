@@ -80,6 +80,10 @@ void ResetLeds(void)
 	{
 		LEDSendMessage(temp,0,0,0,0,0,0,0,0);	
 	}
+	
+	CANQueueTxMessage(0x70,DISPLAY_ADDRESS,0,0,0);
+	ScoreSendLights(DISPLAY_ADDRESS,  0,0x0);	
+		
 }
 
 
@@ -141,7 +145,7 @@ void InitRandomButton()
 	PreviousRandomButton2 = 0xFF;
 }	
 
-BYTE RandomButton(BYTE Exclude1, BYTE Exclude2)
+BYTE RandomButton(BYTE Exclude1, BYTE Exclude2, BYTE Exclude3)
 {
 	
 	BYTE RandomButton=0;
@@ -153,7 +157,7 @@ BYTE RandomButton(BYTE Exclude1, BYTE Exclude2)
 	
 	RandomButton = (BYTE)(rand()) % NUM_BUTTONS;
 	
-	while(((RandomButton == PreviousRandomButton1) || (RandomButton == Exclude1) || (RandomButton == Exclude2)) && (Retries<MAX_RANDOM_RETRIES) )
+	while(((RandomButton == PreviousRandomButton1) || (RandomButton == Exclude1) || (RandomButton == Exclude2) || (RandomButton == Exclude3)) && (Retries<MAX_RANDOM_RETRIES) )
 	{
 		Retries++;
 		RandomButton = (BYTE)(rand()) % NUM_BUTTONS;
@@ -163,7 +167,7 @@ BYTE RandomButton(BYTE Exclude1, BYTE Exclude2)
 	{
 		for(i=0;i<NUM_BUTTONS;i++)
 		{
-			if((i!=PreviousRandomButton1)&&(i!=Exclude1)& (i!=Exclude2))
+			if((i!=PreviousRandomButton1)&&(i!=Exclude1)&&(i!=Exclude2)&&(i!=Exclude3))
 			{
 			 	RandomButton = i;
 			 	break;

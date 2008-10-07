@@ -159,7 +159,7 @@ void Ninja(void)
 				ScoreManagerEnabled = FALSE;
 				Player1Score = 0;
 				Player2Score = 0;
-				RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE);
+				RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
 					
 				P1ScoreDisplayState = SCORE_NORMAL;
 				P2ScoreDisplayState = SCORE_BLANK;
@@ -184,7 +184,7 @@ void Ninja(void)
 				
 				P1ScoreDisplayState = SCORE_NORMAL;
 				P2ScoreDisplayState = SCORE_NORMAL;
-				RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE);
+				RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
 			}
 			
 			ScoreManagerEnabled = TRUE;
@@ -1002,7 +1002,7 @@ void GetRandomNinjaPattern(NinjaPattern *NewNinjaPattern)
 	for(i=0;i<NewNinjaPattern->PatternLength;i++)
 	{
 			
-		NewNinjaPattern->Pattern[i] = RandomButton(NO_EXCLUDE, NO_EXCLUDE);
+		NewNinjaPattern->Pattern[i] = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
 	}
 	
 }	

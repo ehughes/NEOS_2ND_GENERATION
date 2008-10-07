@@ -87,6 +87,9 @@ int main (void)
 
 	SystemMode = SYSTEM_BOOT;
 	BOOT_TIMER = 0;
+
+//	SystemMode = GAME_ACTIVE;
+//	GameState = INIT;
 	
 	while (1)
 	{	

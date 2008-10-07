@@ -124,7 +124,7 @@ void ZigZag(void)
 			{
 				GameState = ZIG_ZAG_SERVE;
 				BallDirection = SelectRandomDirection();
-				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
+				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE, NO_EXCLUDE);
 				
 					//Make sure light is on the bottom
 				if(LightPosition &0x01)
@@ -160,7 +160,7 @@ void ZigZag(void)
 			{
 				GameState = ZIG_ZAG_SERVE;
 				BallDirection = SelectRandomDirection();
-				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
+				LightPosition = RandomButton(NO_EXCLUDE,NO_EXCLUDE, NO_EXCLUDE);
 				
 				//Make sure light is on the bottom
 				if(LightPosition &0x01)

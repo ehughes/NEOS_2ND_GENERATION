@@ -109,6 +109,9 @@ void SystemsDiagnostics()
 	{
 		case INIT:
 		
+			RED_LED_ON;
+			GREEN_LED_OFF;
+		
 			DiagnosticsState = CHECK_FOR_ALL_NODES_PRESENT;
 		//	DiagnosticsState = DATA_BUS_TEST;
 			
@@ -402,6 +405,7 @@ void SystemsDiagnostics()
 						PowerSequenceButton = 0;
 						LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
 						DiagnosticsState = POWER_SEQUENCE_BUTTONS;
+						LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
 						BusVoltage = 0;
 						DIAGNOSTIC_TIMER = 0;
 						BusVoltageMeasurementCnt=0;
@@ -451,6 +455,7 @@ void SystemsDiagnostics()
 						{
 							LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
 							LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + PowerSequenceButton);
+							LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
 						}
 						
 						BusVoltage = 0;

@@ -133,7 +133,7 @@ void LightGrabber(void)
 			{
 				
 				
-				P1_CurrentLightToGrab = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
+				P1_CurrentLightToGrab = RandomButton(NO_EXCLUDE,NO_EXCLUDE, NO_EXCLUDE);
 		    	LightGrabberPlayNodeSound(PLAYER_1,P1_CurrentLightToGrab,FALSE);
 		  	    FlashP1LightToGrab(P1_CurrentLightToGrab);
 		  	    GameState = LIGHT_GRABBER_1P;
@@ -156,8 +156,8 @@ void LightGrabber(void)
 			}
 			else
 			{
-				P1_CurrentLightToGrab = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
-		    	P2_CurrentLightToGrab = RandomButton(P1_CurrentLightToGrab,NO_EXCLUDE);
+				P1_CurrentLightToGrab = RandomButton(NO_EXCLUDE,NO_EXCLUDE, NO_EXCLUDE);
+		    	P2_CurrentLightToGrab = RandomButton(P1_CurrentLightToGrab,NO_EXCLUDE, NO_EXCLUDE);
 		    		    	
 		    	LightGrabberPlayNodeSound(PLAYER_1,P1_CurrentLightToGrab,FALSE);
 		  	    LightGrabberPlayNodeSound(PLAYER_2,P2_CurrentLightToGrab,FALSE);
@@ -243,7 +243,7 @@ void LightGrabber(void)
 			
 		if(BONUS_INTERVAL_TIMER > BONUS_POINT_INTERVAL_1P)
 			{
-				BonusLocation = RandomButton(P1_CurrentLightToGrab,NO_EXCLUDE);
+				BonusLocation = RandomButton(P1_CurrentLightToGrab,NO_EXCLUDE, NO_EXCLUDE);
 				BonusActive = TRUE;	
 				FlashBonus(PLAYER_1,BonusLocation);
 				LightGrabberPlayBonusSound(BonusLocation);
@@ -319,7 +319,7 @@ void LightGrabber(void)
 				{
 					BonusOwner = PLAYER_1;
 				}
-				BonusLocation = RandomButton(P1_CurrentLightToGrab,P2_CurrentLightToGrab);
+				BonusLocation = RandomButton(P1_CurrentLightToGrab,P2_CurrentLightToGrab, NO_EXCLUDE);
 				BonusActive = TRUE;	
 				FlashBonus(BonusOwner,BonusLocation);
 				LightGrabberPlayBonusSound(BonusLocation);
@@ -384,11 +384,11 @@ void OnButtonPressLightGrabber(unsigned char button)
 				
 					if(BonusActive == TRUE)
 					{
-						P1_CurrentLightToGrab = RandomButton(BonusLocation,NO_EXCLUDE);
+						P1_CurrentLightToGrab = RandomButton(BonusLocation,NO_EXCLUDE,button);
 					}
 					else
 					{
-						P1_CurrentLightToGrab = RandomButton(button,NO_EXCLUDE);
+						P1_CurrentLightToGrab = RandomButton(button,NO_EXCLUDE, NO_EXCLUDE);
 					}
 					
 				    LightGrabberPlayNodeSound(PLAYER_1,P1_CurrentLightToGrab , FALSE);
@@ -421,11 +421,11 @@ void OnButtonPressLightGrabber(unsigned char button)
 				
 					if(BonusActive == TRUE)
 					{
-						P1_CurrentLightToGrab = RandomButton(P2_CurrentLightToGrab,BonusLocation);
+						P1_CurrentLightToGrab = RandomButton(P2_CurrentLightToGrab,BonusLocation,button);
 					}
 					else
 					{
-						P1_CurrentLightToGrab = RandomButton(P2_CurrentLightToGrab,NO_EXCLUDE);
+						P1_CurrentLightToGrab = RandomButton(P2_CurrentLightToGrab,NO_EXCLUDE,button);
 					}
 					
 				  LightGrabberPlayNodeSound(PLAYER_1,P1_CurrentLightToGrab , FALSE);
@@ -464,11 +464,11 @@ void OnButtonPressLightGrabber(unsigned char button)
 				
 					if(BonusActive == TRUE)
 					{
-						P2_CurrentLightToGrab = RandomButton(P1_CurrentLightToGrab,BonusLocation);
+						P2_CurrentLightToGrab = RandomButton(P1_CurrentLightToGrab,BonusLocation,button);
 					}
 					else
 					{
-						P2_CurrentLightToGrab = RandomButton(P1_CurrentLightToGrab,NO_EXCLUDE);
+						P2_CurrentLightToGrab = RandomButton(P1_CurrentLightToGrab,NO_EXCLUDE,button);
 					}
 					
 				  LightGrabberPlayNodeSound(PLAYER_2,P2_CurrentLightToGrab , FALSE);
@@ -726,7 +726,7 @@ void MoveToLightGrabberLastNote()
 
 void MoveToLightGrabberBonusLevel()
 {
-	P1_CurrentLightToGrab = RandomButton(NO_EXCLUDE,NO_EXCLUDE);
+	P1_CurrentLightToGrab = RandomButton(NO_EXCLUDE,NO_EXCLUDE,NO_EXCLUDE);
 	LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
 	MAIN_GAME_TIMER = 0;
 	GameState = LIGHT_GRABBER_1P;

@@ -256,12 +256,12 @@ void GetNextDots()
 {
 	if(GamePlayers == 1)
 	{
-		Dots[0] = RandomButton(NO_EXCLUDE, NO_EXCLUDE);
+		Dots[0] = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
 		Dots[1] = (Dots[0]+1)&0x07;
 	}
 	else
 	{
-		Dots[0] = RandomButton(NO_EXCLUDE, NO_EXCLUDE);
+		Dots[0] = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
 		Dots[1] = (Dots[0]+4)&0x07;	
 	}
 	DotHit[0] = FALSE;

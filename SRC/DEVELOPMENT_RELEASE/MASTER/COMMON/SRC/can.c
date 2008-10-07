@@ -62,9 +62,7 @@ void CANQueueInit()
 
 }	
 
-//7642076
 
-//Robert martz
 WORD GetNumMessagesInQueue(CANMessageQueue *MessageQueue)
 {
 	if(MessageQueue->ReadPtr > 	MessageQueue->WritePtr)

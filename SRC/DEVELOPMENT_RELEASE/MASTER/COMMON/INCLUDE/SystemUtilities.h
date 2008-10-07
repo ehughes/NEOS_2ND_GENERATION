@@ -19,9 +19,9 @@ void ResetAudioAndLEDS(void);
 void ResetLeds(void);
 void ResetGameVariables (void);
 
-BYTE RandomButton(BYTE Exclude1, BYTE Exlude2);
 
 
+BYTE RandomButton(BYTE Exclude1, BYTE Exclude2, BYTE Exclude3);
 
 void InitRandomButton();
 	

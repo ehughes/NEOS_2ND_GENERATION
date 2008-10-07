@@ -296,6 +296,7 @@ if(ScoreManagerEnabled == TRUE)
 			
 			if(Player1Score > 999)
 			{ 
+				Player1Score = 999;
 				P1ScoreOutput = 999;
 			}
 			else
@@ -339,6 +340,7 @@ if(ScoreManagerEnabled == TRUE)
 			
 			if(Player2Score > 999)
 			{ 
+				Player2Score = 999;
 				P2ScoreOutput = 999;
 			}
 			else
