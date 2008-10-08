@@ -23,7 +23,7 @@ extern BOOL InhibitAudio;
 #define SYSTEM_IDLE					0x02
 #define SYSTEM_SOFTWARE_RESET		0x03
 #define SYSTEM_DIAGNOSTICS			0x04
-#define SYSTEM_BOOT					0x0FE
+#define SYSTEM_BOOT					0xFE
 
 
 #define GP_BUFFER_SIZE	512

@@ -84,9 +84,11 @@ int main (void)
 	ADCInit();
 	srand(ADCRead());
 	ResetAudioAndLEDS();
-
-	//SystemMode = SYSTEM_DIAGNOSTICS;
-	//GameState = INIT;
+	ResetAllSlaves();
+	CANTransmitCheck();	
+	
+//	SystemMode = SYSTEM_DIAGNOSTICS;
+//	GameState = INIT;
 	
 	
 	SystemMode = SYSTEM_BOOT;
@@ -115,9 +117,12 @@ int main (void)
 			
 			
 			case SYSTEM_DIAGNOSTICS:
+				
 				rand();				
+				ProcessIncomingUSBMessages();
 				CANTransmitCheck();	
 				CANRxProcess();
+				ProcessIncomingUSBMessages();
 				AudioStreamCheck();	
 				SystemsDiagnostics();
 				MasterButtonCheck();
@@ -153,6 +158,7 @@ int main (void)
 			break;
 
 			case SYSTEM_SOFTWARE_RESET:
+				rand();
 				JumpToResetVector();
 			break;
 			

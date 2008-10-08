@@ -84,6 +84,8 @@ int main (void)
 	ADCInit();
 	srand(5647);
 	ResetAudioAndLEDS();
+	ResetAllSlaves();
+	CANTransmitCheck();	
 
 	SystemMode = SYSTEM_BOOT;
 	BOOT_TIMER = 0;
@@ -118,6 +120,7 @@ int main (void)
 				rand();				
 				CANTransmitCheck();	
 				CANRxProcess();
+				ProcessIncomingUSBMessages();
 				AudioStreamCheck();	
 				SystemsDiagnostics();
 				MasterButtonCheck();
@@ -154,6 +157,7 @@ int main (void)
 			break;
 
 			case SYSTEM_SOFTWARE_RESET:
+				rand();
 				JumpToResetVector();
 			break;
 			

@@ -443,7 +443,7 @@ void ProcessPacket()
 		
 				
 		case SOFTWARE_RESET:
-	
+				SystemMode = SYSTEM_SOFTWARE_RESET;
 		break;
 		
 	

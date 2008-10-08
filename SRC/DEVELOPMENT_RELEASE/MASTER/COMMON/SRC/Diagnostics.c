@@ -560,6 +560,7 @@ void SystemsDiagnostics()
 				SystemMode = GAME_ACTIVE;
 				CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
 				CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
+				ResetAllSlaves();
 			}
 						
 		break;
