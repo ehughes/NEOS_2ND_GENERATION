@@ -28,14 +28,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AllAroundControlPanel.exe" size="126976">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AllAroundControlPanel.exe" size="122880">
       <assemblyIdentity name="AllAroundControlPanel" version="2.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>eFylTGSbWqBjGjnG88TUGuEBqnM=</dsig:DigestValue>
+        <dsig:DigestValue>chXbroWQJEmGsHklkawo0MXF+TQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

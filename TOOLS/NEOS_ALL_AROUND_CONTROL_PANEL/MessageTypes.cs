@@ -4,8 +4,6 @@ using System.Collections;
 
 namespace PlayworldMessages
  {
-
-
     public static class SystemModes
     {
 
@@ -17,8 +15,6 @@ namespace PlayworldMessages
     public static class MessageTypes
     {
         //Define Message Types here
-
-       
 
        public const byte UNKNOWN_COMMAND           =0x01;
        public const byte GET_FIRMWARE_VERSION      =0x02;

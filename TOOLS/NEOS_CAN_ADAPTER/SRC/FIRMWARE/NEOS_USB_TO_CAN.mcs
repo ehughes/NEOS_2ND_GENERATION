@@ -2,7 +2,7 @@
 MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
 Version=1.0
 [File000]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\main.o
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\main.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -15,7 +15,7 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=
 [File001]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Timer.o
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Timer.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -28,7 +28,7 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=
 [File002]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Can.o
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Can.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -41,7 +41,7 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=
 [File003]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\BoardSupport.o
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\BoardSupport.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -54,7 +54,7 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=
 [File004]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\PacketDetect.o
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\PacketDetect.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -67,7 +67,7 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=
 [File005]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\CRC.o
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\CRC.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -80,7 +80,7 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=
 [File006]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\SystemVariables.o
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\SystemVariables.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -93,7 +93,7 @@ ToolArgsString=-g -Wall
 TraceCmdString=
 DebugOptions=
 [File007]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.cof
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.cof
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -106,7 +106,7 @@ ToolArgsString=--heap=0 --stack=200 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDI
 TraceCmdString=
 DebugOptions=
 [File008]
-Location=C:\Documents and Settings\laptop_admin\Desktop\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.hex
+Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.hex
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}

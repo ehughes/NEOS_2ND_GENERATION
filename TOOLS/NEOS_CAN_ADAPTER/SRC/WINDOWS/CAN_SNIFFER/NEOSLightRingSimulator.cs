@@ -32,7 +32,7 @@ namespace CAN_SNIFFER
         Image SelectorPanelBackground = new Bitmap("LightRingSelectorPanel.bmp");
 
         ButtonLocation[] SelectorButtonLocation = new ButtonLocation[7];
-
+        int ButtonPressRejectCnt;
        
          const byte  LIGHT_GRABBER_2P_BUTTON	=	0;
          const byte  START_BUTTON 			=	    1;
@@ -303,6 +303,8 @@ namespace CAN_SNIFFER
             Rectangle SrcRec = new Rectangle(P1, new Size(SelectorPanelBackground.Size.Width,SelectorPanelBackground.Size.Height));
             Rectangle DestRec = new Rectangle(P1,new Size(SelectorPanel.Size.Width,SelectorPanel.Size.Height));
 
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
             e.Graphics.DrawImage(SelectorPanelBackground, DestRec, SrcRec, GraphicsUnit.Pixel);
 
            
@@ -416,10 +418,15 @@ namespace CAN_SNIFFER
     
         void NEOSButtonHit(byte Button)
         {
-            NEOSMessages.BUTTON_PRESS_PARAMS.Node = Button;
-            CANMessage Outgoing = NEOSMessages.AssembleNEOSCANMessage(NEOSMessages.BUTTON_PRESSED);
 
-            TxCANMessageQueue.Enqueue(Outgoing);
+            if (ButtonPressRejectCnt > 25)
+            {
+                ButtonPressRejectCnt = 0;
+                NEOSMessages.BUTTON_PRESS_PARAMS.Node = Button;
+                CANMessage Outgoing = NEOSMessages.AssembleNEOSCANMessage(NEOSMessages.BUTTON_PRESSED);
+
+                TxCANMessageQueue.Enqueue(Outgoing);
+            }
 
         }
 
@@ -466,11 +473,16 @@ namespace CAN_SNIFFER
 
 
                                     byte Red = (byte)((NextMessage.CANData[0] & 0x3f) );
-                                    byte Green = (byte)(((((NextMessage.CANData[1] & 0xf) << 2) | ((NextMessage.CANData[0] & 0xC0) >> 2)) )*0x3f);
+                                    byte Green = (byte)(((((NextMessage.CANData[1] & 0xf) << 6) | ((NextMessage.CANData[0] & 0xC0) >> 6)) )*0x3f);
 
                                     Red = (byte)(Red * 4);
 
                                     Green = (byte)(Green * 4);
+
+                                    if (Green > 0)
+                                    {
+                                        Green++;
+                                    }
 
                                     short LEDTimeOut = (short)(((NextMessage.CANData[4] >> 4) & 0xf) | ((NextMessage.CANData[5] & 0x3f) << 4));
 
@@ -712,7 +724,7 @@ namespace CAN_SNIFFER
             for (int i = 0; i < NUM_BUTTONS; i++)
             {
                 LEDS[i].Value = true;
-                LEDS[i].OnColor = Color.FromArgb((byte)MyNEOSButtonLEDS[i].Red, (byte)MyNEOSButtonLEDS[i].Green, 0);
+                LEDS[i].OnColor = Color.FromArgb((int)MyNEOSButtonLEDS[i].Red, (int)MyNEOSButtonLEDS[i].Green, 0);
                             
             }
             SelectorPanel.Invalidate();
@@ -748,7 +760,7 @@ namespace CAN_SNIFFER
 
         private void ButtonStateTimer_Tick(object sender, EventArgs e)
         {
-
+            ButtonPressRejectCnt++;
             LEDTimeoutCheck();
             PerformFade();
             HitIndicator();

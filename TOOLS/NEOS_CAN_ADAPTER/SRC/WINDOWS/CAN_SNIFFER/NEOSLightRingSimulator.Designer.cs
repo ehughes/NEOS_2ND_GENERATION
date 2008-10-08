@@ -66,7 +66,7 @@ namespace CAN_SNIFFER
             this.BUTTON_LED5.OffColor = System.Drawing.Color.Black;
             this.BUTTON_LED5.Size = new System.Drawing.Size(37, 37);
             this.BUTTON_LED5.TabIndex = 21;
-            this.BUTTON_LED5.Click += new System.EventHandler(this.NEOSButtonHit_5);
+           
             // 
             // BUTTON_LED1
             // 
@@ -76,7 +76,7 @@ namespace CAN_SNIFFER
             this.BUTTON_LED1.OffColor = System.Drawing.Color.Black;
             this.BUTTON_LED1.Size = new System.Drawing.Size(37, 37);
             this.BUTTON_LED1.TabIndex = 20;
-            this.BUTTON_LED1.Click += new System.EventHandler(this.NEOSButtonHit_1);
+           
             // 
             // BUTTON_LED3
             // 
@@ -86,7 +86,7 @@ namespace CAN_SNIFFER
             this.BUTTON_LED3.OffColor = System.Drawing.Color.Black;
             this.BUTTON_LED3.Size = new System.Drawing.Size(37, 37);
             this.BUTTON_LED3.TabIndex = 18;
-            this.BUTTON_LED3.Click += new System.EventHandler(this.NEOSButtonHit_3);
+       
             // 
             // BUTTON_LED2
             // 
@@ -96,7 +96,7 @@ namespace CAN_SNIFFER
             this.BUTTON_LED2.OffColor = System.Drawing.Color.Black;
             this.BUTTON_LED2.Size = new System.Drawing.Size(37, 37);
             this.BUTTON_LED2.TabIndex = 16;
-            this.BUTTON_LED2.Click += new System.EventHandler(this.NEOSButtonHit_2);
+       
             // 
             // BUTTON_LED4
             // 
@@ -106,7 +106,7 @@ namespace CAN_SNIFFER
             this.BUTTON_LED4.OffColor = System.Drawing.Color.Black;
             this.BUTTON_LED4.Size = new System.Drawing.Size(37, 37);
             this.BUTTON_LED4.TabIndex = 15;
-            this.BUTTON_LED4.Click += new System.EventHandler(this.NEOSButtonHit_4);
+      
             // 
             // BUTTON_LED0
             // 
@@ -116,8 +116,7 @@ namespace CAN_SNIFFER
             this.BUTTON_LED0.OffColor = System.Drawing.Color.Black;
             this.BUTTON_LED0.Size = new System.Drawing.Size(37, 37);
             this.BUTTON_LED0.TabIndex = 14;
-            this.BUTTON_LED0.Value = true;
-            this.BUTTON_LED0.Click += new System.EventHandler(this.NEOSButtonHit_0);
+      
             // 
             // UIUpdateTimer
             // 

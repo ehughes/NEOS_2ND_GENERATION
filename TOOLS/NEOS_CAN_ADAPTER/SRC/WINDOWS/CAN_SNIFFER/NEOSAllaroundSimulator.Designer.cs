@@ -116,6 +116,7 @@ namespace CAN_SNIFFER
             this.BUTTON_LED1.OffColor = System.Drawing.Color.Black;
             this.BUTTON_LED1.Size = new System.Drawing.Size(37, 37);
             this.BUTTON_LED1.TabIndex = 11;
+          
             // 
             // BUTTON_LED5
             // 
@@ -148,7 +149,7 @@ namespace CAN_SNIFFER
             this.SelectorPanel.TabStop = false;
             this.SelectorPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SelectorPanel_MouseDown);
             // 
-            // NEOSAllaroundSimulator
+            // NEOSALLAroundSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -164,7 +165,7 @@ namespace CAN_SNIFFER
             this.Controls.Add(this.BUTTON_LED0);
             this.MaximumSize = new System.Drawing.Size(604, 500);
             this.MinimumSize = new System.Drawing.Size(604, 500);
-            this.Name = "NEOSAllaroundSimulator";
+            this.Name = "NEOSALLAroundSimulator";
             this.Text = "NEOS All Around Simulator";
             this.Load += new System.EventHandler(this.NEOSCtrlPanel_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NEOSCtrlPanel_FormClosing);

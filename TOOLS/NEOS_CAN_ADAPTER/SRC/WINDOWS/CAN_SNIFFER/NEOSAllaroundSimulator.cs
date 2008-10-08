@@ -137,7 +137,7 @@ namespace CAN_SNIFFER
             LEDS[6] = BUTTON_LED6;
             LEDS[7] = BUTTON_LED7;
 
-
+            
             LEDS[0].Click +=new EventHandler(NEOSButtonHit_0);
             LEDS[1].Click += new EventHandler(NEOSButtonHit_1);
             LEDS[2].Click += new EventHandler(NEOSButtonHit_2);
@@ -352,6 +352,7 @@ namespace CAN_SNIFFER
  	        Point P1 = new Point(0, 0);
             Rectangle SrcRec = new Rectangle(P1, new Size(SelectorPanelBackground.Size.Width,SelectorPanelBackground.Size.Height));
             Rectangle DestRec = new Rectangle(P1,new Size(SelectorPanel.Size.Width,SelectorPanel.Size.Height));
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             e.Graphics.DrawImage(SelectorPanelBackground, DestRec, SrcRec, GraphicsUnit.Pixel);
 
@@ -535,8 +536,8 @@ namespace CAN_SNIFFER
                                 case NEOSMessages.LED_COMMAND:
 
 
-                                    byte Red = (byte)((NextMessage.CANData[0] & 0x3f) );
-                                    byte Green = (byte)(((((NextMessage.CANData[1] & 0xf) << 2) | ((NextMessage.CANData[0] & 0xC0) >> 2)) )*0x3f);
+                                    byte Red = (byte)((NextMessage.CANData[0] & 0x3f));
+                                    byte Green = (byte)(((((NextMessage.CANData[1] & 0xf) << 6) | ((NextMessage.CANData[0] & 0xC0) >> 6))) * 0x3f);
 
                                     Red = (byte)(Red * 4);
 
@@ -825,6 +826,7 @@ namespace CAN_SNIFFER
                     //    LEDS[i].Value = false;
                    // }
 
+                
                     LEDS[i].OnColor = Color.FromArgb((byte)MyNEOSButtonLEDS[i].Red, (byte)MyNEOSButtonLEDS[i].Green, 0);
                             
             }
@@ -858,6 +860,8 @@ namespace CAN_SNIFFER
                 return Math.Sqrt(Math.Pow((P2.X - P1.X),2) + Math.Pow((P2.Y - P1.Y),2));
             }
         }
+
+       
 
 
 

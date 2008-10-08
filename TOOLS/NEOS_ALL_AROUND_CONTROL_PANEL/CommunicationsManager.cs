@@ -12,47 +12,47 @@ using Microsoft.Win32;
 using PlayworldMessages;
 using Playworld;
 
+
 namespace HardwareInterfaceManagement
+{
+
+    public delegate void PacketProcessor(byte[] Data);
+
+    public class CommunicationsManager
     {
 
-     public class CommunicationsManager
-        {
+   
 
-        private int ManagementState = 0 ;
+        private int ManagementState = 0;
         public SerialPort MyConnection;
-	   
+
         const int WAITING_FOR_CONNECT_COMMAND = 0x00;
         const int SCANNING_FOR_MODULE = 0x01;
         const int CONNECTING = 0x02;
         const int CONNECTION_ACTIVE = 0x03;
         const int WAIT_FOR_RECONNECT = 0x04;
-	    const int RECONNECT_PERIOD = 1000;
+        const int RECONNECT_PERIOD = 1000;
 
-        public bool ConnectionActive=false;
+        public bool ConnectionActive = false;
         private string RegistryCOMPortRecord;
 
         private bool AttemptToConnect = false;
 
-        public Queue<byte> OutGoing = new Queue<byte>();
-        public Queue<byte> Incoming = new Queue<byte>();
-
         public PacketDetect MyPacketDetector;
 
-         byte[] StreamBuffer = new byte[512];
-        
-        public int BytesRead =0;
+        byte[] StreamBuffer = new byte[512];
+
+        public int BytesRead = 0;
 
         //This routine does the job of maintaining an active link.  
-        private string[] ManagerMessages = { "Disconnected [Press Blue USB Icon to Connect]", "Connecting", "Connected", "Waiting before retry", "Connection Exception" };
-        public string ConnectionStatus; 
+        private string[] ManagerMessages = { "Disconnected ", "Connecting", "Connected", "Waiting before retry", "Connection Exception" };
+        public string ConnectionStatus;
         private Thread CommunicationsManagerThread;
 
-        public AllAroundControlPanel MainControlPanel;
-       
         public CommunicationsManager()
-            {
+        {
             ManagementState = WAITING_FOR_CONNECT_COMMAND;
-          
+
             ConnectionStatus = ManagerMessages[0];
             ConnectionActive = false;
 
@@ -60,200 +60,186 @@ namespace HardwareInterfaceManagement
             CommunicationsManagerThread = new Thread(new ThreadStart(Tick));
             CommunicationsManagerThread.Priority = ThreadPriority.Highest;
             CommunicationsManagerThread.Start();
-            
-            }
 
-         public void SetParentReference(AllAroundControlPanel PassMe)
-             {
-             MainControlPanel = PassMe;
-             }
+        }
+
 
         public void Tick()
+        {
+
+            while (true)
             {
-               
-                while (true)
+
+                Thread.Sleep(10);
+                //This Entire Routine Needs to be in a try catch for Virtual Com ports.  
+                try
                 {
 
-                    Thread.Sleep(10);
-                    //This Entire Routine Needs to be in a try catch for Virtual Com ports.  
-                    try
+                    //here is the main state machine 
+
+                    switch (ManagementState)
                     {
 
-                        //here is the main state machine 
 
-                        switch (ManagementState)
-                        {
-                        
-                            
-                            case WAITING_FOR_CONNECT_COMMAND:
-                                ConnectionStatus = ManagerMessages[0];
-                                if (AttemptToConnect == true)
-                                    {
-                                    ManagementState = SCANNING_FOR_MODULE;
-                                    AttemptToConnect = false;
-                                  
-                                    }
-                                else
-                                    {
-                                    ManagementState = WAITING_FOR_CONNECT_COMMAND;
-                                    }
+                        case WAITING_FOR_CONNECT_COMMAND:
+                            ConnectionStatus = ManagerMessages[0];
+                            if (AttemptToConnect == true)
+                            {
+                                ManagementState = SCANNING_FOR_MODULE;
+                                AttemptToConnect = false;
 
-                                break;
-                            
-                            case SCANNING_FOR_MODULE:
+                            }
+                            else
+                            {
+                                ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                            }
 
-                                //First, check to see if there is a Virutalcom port available in the registry
-                                ConnectionActive = false;
-                                ConnectionStatus = ManagerMessages[1];
+                            break;
 
-                                if (Environment.OSVersion.Version.Major == 6)
+                        case SCANNING_FOR_MODULE:
+
+                            //First, check to see if there is a Virutalcom port available in the registry
+                            ConnectionActive = false;
+                            ConnectionStatus = ManagerMessages[1];
+
+                            if (Environment.OSVersion.Version.Major == 6)
+                            {
+                                RegistryCOMPortRecord = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Enum\\USB\\Vid_10c4&Pid_ea60\\0001\\Device Parameters", "PortName", "Nope!");
+                            }
+                            else
+                            {
+                                RegistryCOMPortRecord = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Enum\\USB\\Vid_10c4&Pid_ea60&Mi_00\\0001_00\\Device Parameters", "PortName", "Nope!");
+                            }
+                            //now see what com  ports are available in the system
+
+                            string[] AvailablePorts = SerialPort.GetPortNames();
+
+
+                            if (RegistryCOMPortRecord == null)
+                            {
+                                ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                                //MessageBox.Show("It doesn't appear that a Talking Bob Module is connected.  Try disconnecting and reconnecting USB cable.", "Error Connecting to Talking Bob Module");
+                            }
+                            else
+                            {
+                                int i;
+                                for (i = 0; i < AvailablePorts.Length; i++)
                                 {
-                                  RegistryCOMPortRecord = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Enum\\USB\\Vid_10c4&Pid_ea60\\0001\\Device Parameters", "PortName", "Nope!");
-                                }
-                                else
-                                {
-                                  RegistryCOMPortRecord = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Enum\\USB\\Vid_10c4&Pid_ea60&Mi_00\\0001_00\\Device Parameters", "PortName", "Nope!");
-                                }
-                                //now see what com  ports are available in the system
-
-                                string[] AvailablePorts = SerialPort.GetPortNames();
-
-
-                                if (RegistryCOMPortRecord == null)
-                                {
-                                     ManagementState = WAITING_FOR_CONNECT_COMMAND;
-                                     //MessageBox.Show("It doesn't appear that a Talking Bob Module is connected.  Try disconnecting and reconnecting USB cable.", "Error Connecting to Talking Bob Module");
-                                }
-                                else
-                                {
-                                    int i;
-                                    for (i = 0; i < AvailablePorts.Length; i++)
+                                    if (RegistryCOMPortRecord == AvailablePorts[i])
                                     {
-                                        if (RegistryCOMPortRecord == AvailablePorts[i])
-                                        {
-                                            ManagementState = CONNECTING;
-                                            break;
-                                        }
-                                        else
-                                        {
-                                             ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                                        ManagementState = CONNECTING;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        ManagementState = WAITING_FOR_CONNECT_COMMAND;
 
-                                           
-                                                  
-                                        }
+
 
                                     }
+
                                 }
+                            }
 
-                                break;
+                            break;
 
-                            case CONNECTING:
-                                ConnectionStatus = ManagerMessages[1];
-                                ConnectionActive = false;
+                        case CONNECTING:
+                            ConnectionStatus = ManagerMessages[1];
+                            ConnectionActive = false;
 
-                                try
-                                    {
-                                    MyConnection = new SerialPort();
-                                    MyConnection.PortName = RegistryCOMPortRecord;
-                                    MyConnection.BaudRate = 128000;
-                                    MyConnection.DataBits = 8;
-                                    MyConnection.StopBits = StopBits.One;
-                                    MyConnection.Handshake = Handshake.None;
-                                    MyConnection.Open();
-                                    ManagementState = CONNECTION_ACTIVE;
-                                    BytesRead = 0;                                                                    
-                                    }
-
-                                catch
-                                    {
-                                    Thread.Sleep(RECONNECT_PERIOD);
-                                    ManagementState = WAITING_FOR_CONNECT_COMMAND;
-
-                                    }
-                                break;
-
-                            case CONNECTION_ACTIVE:
- 
-                                ConnectionActive = true;
-                                ConnectionStatus = ManagerMessages[2];
+                            try
+                            {
+                                MyConnection = new SerialPort();
+                                MyConnection.PortName = RegistryCOMPortRecord;
+                                MyConnection.BaudRate = 128000;
+                                MyConnection.DataBits = 8;
+                                MyConnection.StopBits = StopBits.One;
+                                MyConnection.Handshake = Handshake.None;
+                                MyConnection.Open();
                                 ManagementState = CONNECTION_ACTIVE;
+                                BytesRead = 0;
+                            }
 
-
-
-                                int  BytesToGrab = MyConnection.BytesToRead;
-
-                                if (BytesToGrab > 0)
-                                {
-
-                                    if (BytesToGrab > 512)
-                                    {
-                                        BytesToGrab = 512;
-                                    }
-                                    
-
-                                    MyConnection.Read(StreamBuffer,0,BytesToGrab);
-                                    BytesRead += BytesToGrab;
-                                   
-                                        try
-                                        {
-
-                                            for(int e=0;e<BytesToGrab;e++)
-                                            {
-                                                MyPacketDetector.ParseStream(StreamBuffer[e]);
-                                                if(IncomingPacket.PacketFound == true)
-                                                {
-                                                    IncomingPacket.PacketFound = false;
-                                                    MainControlPanel.ProcessPacket();
-                                                }
-                                            }
-                                        }
-                                        catch 
-                                        {
-                                           
-                                        }
-                                    
-                                   }
-
-                                break;
-
-                            case WAIT_FOR_RECONNECT:
-                                                              
+                            catch
+                            {
                                 Thread.Sleep(RECONNECT_PERIOD);
                                 ManagementState = WAITING_FOR_CONNECT_COMMAND;
-                                break;
 
-                            default:
-                                ConnectionActive = false;
-                                AttemptToConnect = false;
-                                ConnectionStatus = ManagerMessages[0];
-                                ManagementState = WAITING_FOR_CONNECT_COMMAND;
-                                break;
+                            }
+                            break;
 
-                        }
+                        case CONNECTION_ACTIVE:
+
+                            ConnectionActive = true;
+                            ConnectionStatus = ManagerMessages[2];
+                            ManagementState = CONNECTION_ACTIVE;
+
+                            int BytesToGrab = MyConnection.BytesToRead;
+
+                            if (BytesToGrab > 0)
+                            {
+
+                                if (BytesToGrab > 512)
+                                {
+                                    BytesToGrab = 512;
+                                }
+
+                                MyConnection.Read(StreamBuffer, 0, BytesToGrab);
+                                BytesRead += BytesToGrab;
+
+                                try
+                                {
+                                    for (int e = 0; e < BytesToGrab; e++)
+                                    {
+                                        MyPacketDetector.ParseStream(StreamBuffer[e]);
+                                        
+                                    }
+                                }
+                                catch
+                                {
+
+                                }
+
+                            }
+
+                            break;
+
+                        case WAIT_FOR_RECONNECT:
+
+                            Thread.Sleep(RECONNECT_PERIOD);
+                            ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                            break;
+
+                        default:
+                            ConnectionActive = false;
+                            AttemptToConnect = false;
+                            ConnectionStatus = ManagerMessages[0];
+                            ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                            break;
 
                     }
 
-                    catch 
-                    {
-
-                        ConnectionActive = false;
-                        ConnectionStatus = ManagerMessages[4];
-                        Thread.Sleep(RECONNECT_PERIOD);
-                        //this Exception is important to catch.  THis will allow a graceful recovery if someone
-                        //pulls the plug  
-                        ManagementState = WAITING_FOR_CONNECT_COMMAND;
-                    }
                 }
 
+                catch
+                {
+
+                    ConnectionActive = false;
+                    ConnectionStatus = ManagerMessages[4];
+                    Thread.Sleep(RECONNECT_PERIOD);
+                    ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                }
             }
 
+        }
 
 
 
 
-       public void Write(byte[] BufOut)
+
+        public void Write(byte[] BufOut)
         {
-           
+
 
             if (ConnectionActive == true)
             {
@@ -262,38 +248,38 @@ namespace HardwareInterfaceManagement
 
         }
 
-       public void Close()
+        public void Close()
         {
             if (MyConnection != null)
             {
 
-            try
+                try
                 {
 
-                MyConnection.Close();
-                ConnectionStatus = ManagerMessages[0];
-                ConnectionActive = false;
-                ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                    MyConnection.Close();
+                    ConnectionStatus = ManagerMessages[0];
+                    ConnectionActive = false;
+                    ManagementState = WAITING_FOR_CONNECT_COMMAND;
                 }
-            catch
+                catch
                 {
                 }
-          }
+            }
         }
 
-         public void Terminate()
-         {
+        public void Terminate()
+        {
 
-           
+
             CommunicationsManagerThread.Abort();
             this.Close();
 
-         }
-         public void ConnectToTalkingBob()
-             {
+        }
+        public void Connect()
+        {
 
-                 AttemptToConnect = true;
-            }
+            AttemptToConnect = true;
+        }
 
     }
 
@@ -333,9 +319,8 @@ namespace HardwareInterfaceManagement
     public class PacketDetect
     {
 
-        //   static Packet IncomingPacket;
+        public event PacketProcessor MyPacketProccessor;
 
-        public Queue<byte[]> PacketQueue = new Queue<byte[]>();
         public bool Enable = false;
 
         //State Machine Macros
@@ -349,34 +334,16 @@ namespace HardwareInterfaceManagement
         const byte GRAB_CRC_LOW = 0x05;
         const byte GRAB_CRC_HIGH = 0x06;
 
-        const byte SCAN_FOR_SYNC1 = 0x00;
-        const byte SCAN_FOR_SYNC2 = 0x01;
-        const byte GRAB_XCH_HIGH = 0x02;
-        const byte GRAB_XCH_LOW = 0x03;
-        const byte GRAB_YCH_HIGH = 0x04;
-        const byte GRAB_YCH_LOW = 0x05;
-        const byte GRAB_XCH_PEAK = 0x06;
-        const byte GRAB_YCH_PEAK = 0x07;
-
         byte[] Temp = new byte[1024];
 
         protected byte DetectState = SCAN_FOR_HEADER1;
         protected ushort DataCnt = 0;
         protected ushort CheckCRC = 0;
 
-
-        protected byte NextADCByte;
-
-        protected ushort XCH;
-        protected ushort YCH;
-
-
         public int PacketsIn = 0;
 
         public void ParseStream(byte DataIn)
         {
-
-
             switch (DetectState)
             {
 
@@ -386,13 +353,13 @@ namespace HardwareInterfaceManagement
                         DetectState = SCAN_FOR_HEADER2;
                         IncomingPacket.Header1 = DataIn;
                         Temp[0] = DataIn;
-                         IncomingPacket.PacketFound = false;
+                        IncomingPacket.PacketFound = false;
 
                     }
                     else
                     {
                         DetectState = SCAN_FOR_HEADER1;
-                         IncomingPacket.PacketFound = false;
+                        IncomingPacket.PacketFound = false;
                     }
 
 
@@ -416,12 +383,10 @@ namespace HardwareInterfaceManagement
                 case GRAB_LENGTH_LOW:
 
                     IncomingPacket.Length = (ushort)DataIn;
+
                     Temp[2] = DataIn;
 
-
                     DetectState = GRAB_LENGTH_HIGH;
-
-
 
                     break;
 
@@ -430,8 +395,6 @@ namespace HardwareInterfaceManagement
                     DataCnt = 0;
                     Temp[3] = DataIn;
                     DetectState = GRAB_PAYLOAD;
-
-
                     break;
 
 
@@ -466,42 +429,32 @@ namespace HardwareInterfaceManagement
 
                 case GRAB_CRC_HIGH:
 
-                    lock (PacketQueue)
+                    IncomingPacket.CRC += (ushort)(((ushort)(DataIn)) << 8);
+                    DetectState = SCAN_FOR_HEADER1;
+
+                    CheckCRC = CRC.Calculate(Temp, (ushort)(IncomingPacket.Length + 4));
+
+                    if (CheckCRC == IncomingPacket.CRC)
                     {
-                        IncomingPacket.CRC += (ushort)(((ushort)(DataIn)) << 8);
-                        DetectState = SCAN_FOR_HEADER1;
-
-                            CheckCRC = CRC.Calculate(Temp, (ushort)(IncomingPacket.Length + 4));
-
-                            if (CheckCRC == IncomingPacket.CRC)
+                        PacketsIn++;
+                      
+                            if (MyPacketProccessor != null)
                             {
-                                int i;
-                                //if we get a good packet, pass it into the Packet Queue
-
-                              /*  byte[] NewPacket = new byte[IncomingPacket.Length];
-
-                                for (i = 0; i < IncomingPacket.Length; i++)
+                                byte[] NextPacketToProcess = new byte[IncomingPacket.Length];
+                                for (int p = 0; p < IncomingPacket.Length; p++)
                                 {
-                                    NewPacket[i] = IncomingPacket.Payload[i];
+                                    NextPacketToProcess[p] = IncomingPacket.Payload[p];
+
                                 }
-                                PacketQueue.Enqueue(NewPacket);*/
-
-                                PacketsIn++;
-
-                                IncomingPacket.PacketFound = true;
-                            }
-                         else
-                            {
-                                //IF a bad packet comes in, put a 1 byte payload of =0xff
-                                // to indicate it
-                                //byte[] NewPacket = new byte[1];
-                                //NewPacket[0] = 0xFF;
-                                //PacketQueue.Enqueue(NewPacket);
-                                IncomingPacket.PacketFound = false;
+                                MyPacketProccessor(NextPacketToProcess);
                             }
 
-                        }
-                    
+                      }
+                    else
+                    {
+                        IncomingPacket.PacketFound = false;
+                    }
+
                     break;
 
 
@@ -509,15 +462,9 @@ namespace HardwareInterfaceManagement
                     DetectState = SCAN_FOR_HEADER1;
                     break;
 
-
             }
 
         }
 
-
-
-
     }
-
-
 }

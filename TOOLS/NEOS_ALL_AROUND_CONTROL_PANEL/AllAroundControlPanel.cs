@@ -70,8 +70,6 @@ namespace Playworld
         {
             InitializeComponent();
 
-            MyCommunicationsManager.SetParentReference(this);
-
             MySystemMessageView.MdiParent = this;
             MySystemMessageView.Show();
 
@@ -86,56 +84,19 @@ namespace Playworld
 
             DownloadingKeyFile = false;
 
+            MyCommunicationsManager.MyPacketDetector.MyPacketProccessor += new PacketProcessor(ProcessIncomingPacket);
+          
         }
 
 
-        public void ProcessPacket()
+        public void ProcessIncomingPacket(byte [] IncomingPacketData)
         {
 
-            switch (IncomingPacket.Payload[0])
+            switch (IncomingPacketData[0])
             {
 
                 case MessageTypes.UNKNOWN_COMMAND:
-                    if (IncomingPacket.Length == 1)
-                    {
-                    }
-                    else
-                    {
-                    }
-                    break;
-
-                case MessageTypes.GET_FIRMWARE_VERSION:
-
-                    if (IncomingPacket.Length == 3)
-                    {
-                        MessageBox.Show("Sound Module Firmware Version: " + IncomingPacket.Payload[1] + "." + IncomingPacket.Payload[2]);
-
-                    }
-                    else
-                    {
-
-                        MessageBox.Show("Malformed GET_FIRMWARE_VERSION packet recieved");
-                    }
-
-                    break;
-
              
-
-
-
-                case MessageTypes.READ_FLASH_PAGE:
-                    if (IncomingPacket.Length == 257)
-                    {
-
-                    }
-                    else
-                    {
-                    }
-
-                    break;
-
-
-
                 case MessageTypes.FLASH_WRITING_COMPLETE:
                     if (IncomingPacket.Length == 1)
                     {
@@ -230,15 +191,6 @@ namespace Playworld
 
             fs.Position = 0;
             KeyCheck = br.ReadUInt32();
-
-            /*    if (KeyCheck != 0xFF01AAFF)
-                    {
-                    MessageBox.Show("This File is not a valid Spring Rider key file!");
-                    DownloadingKeyFile = false;
-                    return ;
-
-                    }*/
-
 
             PutNEOSInFLASHMode();
             PutNEOSInFLASHMode();
@@ -719,7 +671,7 @@ namespace Playworld
 
             if (MyCommunicationsManager.ConnectionActive == false)
             {
-                MyCommunicationsManager.ConnectToTalkingBob();
+                MyCommunicationsManager.Connect();
             }
 
             else

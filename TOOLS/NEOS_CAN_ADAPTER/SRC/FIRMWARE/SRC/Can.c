@@ -139,12 +139,21 @@ void __attribute__((__interrupt__,,__auto_psv__)) _C1Interrupt(void)
 	_C1IF=0;    /* Clear interrupt flag to acknowledge */    
 	//Check both Recieve Buffers
 	WORD TempSID;
+	BYTE TempVal;
 	
 	if (C1INTFbits.RX0IF==1)
-	{
+	{ 
 		TempSID = C1RX0SID>>2;
+		TempVal = C1RX0B1 &0xFF;
+		
+		if((TempSID == 0x2f2) && (TempVal == 0x07 || TempVal == 0x08))
+		{
+		 //Reject the Node Operation  NODE_LOOP_BACK && RESPONSE Messages	
+			
+		}
+	
 		//only non audio streaming messages get into the queue
-		if(!((TempSID>=CAN_REJECTION_RANGE_LOW) && (TempSID<=CAN_REJECTION_RANGE_HIGH)))
+		else if(!((TempSID>=CAN_REJECTION_RANGE_LOW) && (TempSID<=CAN_REJECTION_RANGE_HIGH)))
 		{
 						
 			RxIRQCANMsg.SID = TempSID;

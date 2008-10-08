@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEOS_PRODUCTION_PROGRAMMER", "NEOS_PRODUCTION_PROGRAMMER.csproj", "{301BBFE2-F6FE-43C9-932D-8FACB178C142}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NEOS_PRODUCTION_PROGRAMMER_INSTALLER", "NEOS_PRODUCTION_PROGRAMMER_INSTALLER\NEOS_PRODUCTION_PROGRAMMER_INSTALLER.vdproj", "{65ED8D1D-F6F6-4500-9725-FBE3DD0877C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{301BBFE2-F6FE-43C9-932D-8FACB178C142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301BBFE2-F6FE-43C9-932D-8FACB178C142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301BBFE2-F6FE-43C9-932D-8FACB178C142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301BBFE2-F6FE-43C9-932D-8FACB178C142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65ED8D1D-F6F6-4500-9725-FBE3DD0877C5}.Debug|Any CPU.ActiveCfg = Debug
+		{65ED8D1D-F6F6-4500-9725-FBE3DD0877C5}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
