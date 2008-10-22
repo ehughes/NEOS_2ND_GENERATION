@@ -121,7 +121,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
 		 break;
 		 
 		case INTERNAL_AUDIO:
-			DCIIntTemp = (WORD)(*InternalSoundPtr);
+			DCIIntTemp = (WORD)((SIGNED_BYTE)(*InternalSoundPtr));
 		
 			DCIIntTemp *= (InternalSoundVolume+1);
 	
