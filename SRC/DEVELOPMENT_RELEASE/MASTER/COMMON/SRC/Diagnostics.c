@@ -56,33 +56,14 @@ BYTE DataRateMeasurementCount = 0;
 BYTE CurrentNodeForBusMeasurement = 0;
 BYTE ErrorFlash = 0;
 
-#define CHECK_FOR_ALL_NODES_PRESENT 	1
-#define PING_NODES						2
-#define WAIT_FOR_PONGS					3
-#define DISPLAY_ERROR_CODE_FOREVER		4
-#define ADDRESS_BUTTONS					5
-#define INIT_ADDRESS_ON_DISPLAY 		6
-#define ADDRESS_NEXT_NODE	 			7
-#define WAIT_FOR_ADDRESSING_REPONSE	 	8
-#define CHECK_FOR_ADDRESSING_COMPLETION 9 
-#define EXIT_ADDRESS_SETUP 				10
-#define CHECK_POWER						11
-#define POWER_SEQUENCE					12
-#define POWER_SEQUENCE_NOTHING			13
-#define POWER_SEQUENCE_BUTTONS			14
-#define POWER_SEQUENCE_SCORE_DISPLAY	15
 
-#define POWER_SEQUENCE_EVERYTHING		16
-#define BOOTUP_SOUND					17
-#define DATA_BUS_TEST					18
-#define NEXT_DATA_BUS_TEST				19
-#define CHECK_FOR_TEST_DATA_RESPONSE	20
-#define DISPLAY_DATA_RATE_ERROR			21
 
 
 
 
 #define VBUS_10V				3100
+#define VBUS_8V				2480
+
 
 void DiagnosticsPlayButtonFeebackSound();
 void PlayBootupSound();
@@ -309,12 +290,15 @@ void SystemsDiagnostics()
 			 }
 		
 		break;
-		
+
 		
 		case DISPLAY_ERROR_CODE_FOREVER:
 		
+		if(DIAGNOSTIC_TIMER > 50)
+		{
+			DIAGNOSTIC_TIMER = 0;
 			LEDSendVariable(DISPLAY_ERR, ErrorCode);
-		
+		}
 		break;
 		
 		
@@ -400,7 +384,7 @@ void SystemsDiagnostics()
 					BusVoltage = BusVoltage>>4;
 					DIAGNOSTIC_TIMER = 0;
 					
-					if(BusVoltage>VBUS_10V)
+					if(BusVoltage>VBUS_8V)
 					{
 						PowerSequenceButton = 0;
 						LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
@@ -439,7 +423,7 @@ void SystemsDiagnostics()
 				BusVoltage = BusVoltage>>4;
 				DIAGNOSTIC_TIMER = 0;
 				
-				if(BusVoltage>VBUS_10V)
+				if(BusVoltage>VBUS_8V)
 					{
 						PowerSequenceButton++;
 					
@@ -492,7 +476,7 @@ void SystemsDiagnostics()
 				BusVoltage = BusVoltage>>4;
 				DIAGNOSTIC_TIMER = 0;
 				
-				if(BusVoltage>VBUS_10V)
+				if(BusVoltage>VBUS_8V)
 					{
 						BOOTUP_SOUND_TIMER = 0;
 						DiagnosticsState = POWER_SEQUENCE_EVERYTHING;
@@ -526,9 +510,9 @@ void SystemsDiagnostics()
 				BusVoltage = BusVoltage>>4;
 				DIAGNOSTIC_TIMER = 0;
 				
-			   if(BusVoltage>VBUS_10V)
+			   if(BusVoltage>VBUS_8V)
 				{						
-					if(GetVoltageDrop() > VBUS_10V)
+					if(GetVoltageDrop() > VBUS_8V)
 					{
 						DiagnosticsState = BOOTUP_SOUND;
 						PlayBootupSound();
@@ -560,7 +544,7 @@ void SystemsDiagnostics()
 				SystemMode = GAME_ACTIVE;
 				CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
 				CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
-				ResetAllSlaves();
+				
 			}
 						
 		break;

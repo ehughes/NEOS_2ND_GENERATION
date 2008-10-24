@@ -10,6 +10,7 @@ DWORD MyUID;
 
 BOOL InhibitAudio = FALSE;
 
+
 void InitSystemVariables()
 {
 

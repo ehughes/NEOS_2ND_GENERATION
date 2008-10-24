@@ -230,14 +230,14 @@ void AudioNodeEnable(unsigned char node, unsigned char stream1, unsigned char st
 {
 
 	//Scale volumes by global value
-	unsigned int volint;
+//	unsigned int volint;
 	unsigned int w1,w3;
 
-	volint = volume1 * (AudioGlobalVolume+1);
-	volume1 = volint >> 8;
+//	volint = volume1 * (AudioGlobalVolume+1);
+//	volume1 = volint >> 8;
 
-	volint = volume2 * (AudioGlobalVolume+1);
-	volume2 = volint >> 8;
+//	volint = volume2 * (AudioGlobalVolume+1);
+//	volume2 = volint >> 8;
 
 	w1= node + (stream1<<8) + (stream2<<10) + (status1<<12) + (status2<<13);
 	w3 = volume1 + (volume2<<8);
@@ -297,7 +297,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
 	t1 = RXBUF3;
 		
 TXBUF0 =	t2 ;			//Right channel
-TXBUF1 =t2 ;			//Left channel							// Left Channel/
+TXBUF1 	=t2 ;			//Left channel							// Left Channel/
 TXBUF2 =t2 ;			//Right Channel
 TXBUF3 =	t2 ;			// Left channel							// Left Channel
 

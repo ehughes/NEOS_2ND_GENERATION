@@ -4,22 +4,29 @@
 #include "DataEEPROM.h"
 #include "SystemUtilities.h"
 
+#define GLOBAL_VOLUME_INDEX_MAX 0	
+#define GLOBAL_VOLUME_INDEX_MIN	10
+ BYTE EEDefaults[8] = {0,GLOBAL_VOLUME_INDEX_MAX,63,0,0,0,0,0};
+ BYTE EELowLimits[8] = {0,GLOBAL_VOLUME_INDEX_MIN,3,0,0,0,0,0};
+ BYTE EEHighLimits[8] = {255,GLOBAL_VOLUME_INDEX_MAX,63,255,255,255,255,255};
+
+BYTE VolumeIndexTable[11] = {0,25,51,76,102,127,153,178,204,229,255};
 
 
-unsigned int EEDefaults[8] = {0,255,63,0,0,0,0,0};
-unsigned int EELowLimits[8] = {0,12,3,0,0,0,0,0};
-unsigned int EEHighLimits[8] = {255,255,63,255,255,255,255,255};
+//BYTE VolumeIndexTable[11] = {0,7,17,28,43,61,84,114,150,197,255};
+
+
 
 //EEPROM VARIABLES
 unsigned char MyNodeNumber;		//0-31 number assigned to this node for gameplay
-unsigned char AudioGlobalVolume=GLOBALVOLUMEINIT;
-unsigned char AudioBackgroundVolume=BACKGROUNDVOLUMEINIT;
-unsigned char NoAnnoy=0;			//When =1 it is silent in idle mode & no snoring
-unsigned char RedBrightness=63;
-unsigned char GreenBrightness=63;
-unsigned char ScoreBrightness=63;
+BYTE AudioGlobalVolume=GLOBALVOLUMEINIT;
+BYTE AudioBackgroundVolume=BACKGROUNDVOLUMEINIT;
+BYTE NoAnnoy=0;			//When =1 it is silent in idle mode & no snoring
+BYTE RedBrightness=63;
+BYTE GreenBrightness=63;
+BYTE ScoreBrightness=63;
 
-
+BYTE AudioGlobalVolumeIndex = 10;
 
 void EEStoreVariable(unsigned int index,  int value)
 {
@@ -38,7 +45,9 @@ int EEReadVariable(unsigned int index)
 
 void EERecover(void)
 {
-	AudioGlobalVolume=EERecoverVariable(1);
+	AudioGlobalVolumeIndex=EERecoverVariable(AUDIO_VOLUME_INDEX_LOCATION);
+	AudioGlobalVolume = VolumeIndexTable[AudioGlobalVolumeIndex];
+	
 	RedBrightness=EERecoverVariable(2) & 0x3F;
 	GreenBrightness=RedBrightness;
 	ScoreBrightness=RedBrightness;

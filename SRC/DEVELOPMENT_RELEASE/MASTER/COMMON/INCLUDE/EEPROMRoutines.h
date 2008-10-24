@@ -1,3 +1,5 @@
+#include "DataTypes.h"
+
 #ifndef _EEPROMROUTINES_H
 #define _EEPROMROUTINES_H
 
@@ -10,17 +12,22 @@ void EESaveGameCount(void);
 void EERecover(void);
 unsigned int EERecoverVariable(unsigned int index);
 
-extern unsigned int EEDefaults[8] ;
-extern unsigned int EELowLimits[8] ;
-extern unsigned int EEHighLimits[8];
+extern BYTE EEDefaults[8];
+extern BYTE EELowLimits[8];
+extern BYTE EEHighLimits[8];
 
-extern unsigned char MyNodeNumber;		//0-31 number assigned to this node for gameplay
-extern unsigned char AudioGlobalVolume;
-extern unsigned char AudioBackgroundVolume;
-extern unsigned char NoAnnoy;			//When =1 it is silent in idle mode & no snoring
-extern unsigned char RedBrightness;
-extern unsigned char GreenBrightness;
-extern unsigned char ScoreBrightness;
+extern BYTE MyNodeNumber;		//0-31 number assigned to this node for gameplay
+extern BYTE AudioGlobalVolume;
+extern BYTE AudioBackgroundVolume;
+extern BYTE NoAnnoy;			//When =1 it is silent in idle mode & no snoring
+extern BYTE RedBrightness;
+extern BYTE GreenBrightness;
+extern BYTE ScoreBrightness;
+
+extern BYTE AudioGlobalVolumeIndex;
+extern BYTE VolumeIndexTable[11];
+
+#define AUDIO_VOLUME_INDEX_LOCATION 1
 
 #endif
 
