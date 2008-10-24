@@ -96,8 +96,24 @@ void OnMasterSwitchPress(void)
 	switch(SystemMode)
 	{
 		case SYSTEM_DIAGNOSTICS:
-			DiagnosticsState = INIT;
-		break;
+		
+			switch(DiagnosticsState)
+			{
+				case EXIT_ADDRESS_SETUP:
+				case CHECK_FOR_ADDRESSING_COMPLETION:
+				case WAIT_FOR_ADDRESSING_REPONSE:
+				case ADDRESS_NEXT_NODE:
+				case INIT_ADDRESS_ON_DISPLAY:
+				case ADDRESS_BUTTONS:
+				break;
+				
+				default:
+						DiagnosticsState = INIT;
+				break;		
+				
+			}
+			
+			break;
 		
 		default:
 		case GAME_ACTIVE:
@@ -108,7 +124,7 @@ void OnMasterSwitchPress(void)
 				break;
 				
 				default:
-					GameState = BOOT;
+					
 					ResetToGameSelector();
 				break;
 				

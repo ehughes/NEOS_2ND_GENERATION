@@ -23,8 +23,8 @@
 #define MAIN_SELECTOR			0x02
 #define SELECT_TO_START_DELAY	0x03
 #define COUNT_DOWN_TO_GAME 		0x04
-
 #define SLEEP					0x05				
+#define BOOT_DELAY				0x06
 
 #define MUSIC_IDLE					0
 #define MUSIC_MAIN_THEME			1
@@ -177,34 +177,42 @@ void Root_Game0 (void)
 		case INIT:
 			RED_LED_OFF;
 			GREEN_LED_ON;
+			
 			ResetAudioAndLEDS();
-			GameState = MAIN_SELECTOR;
+		
 			ScoreManagerEnabled = FALSE;
 			SpinSeg1 = 0;
 			SpinSeg2 = 2;
 			Color1 =0;
 			Color2 =0;
+			ScoreSendLights(248,  1<<(PendingGameSelection),0x0);
+			MusicState = MUSIC_IDLE;
+			InitSoundEffectChannels();
+			InitLightRingSoundEffects();
+			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
+			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
+	
+			GameState = BOOT_DELAY;
+			
 			GAME_BUTTON_ANIMATION_TIMER = 0;
 			MAIN_GAME_TIMER = 0;
 			SCORE_DISPLAY_ANIMATION_TIMER=0;
 			SELECTOR_SPIN_ANIMATION_TIMER=0;
 			START_BUTTON_ANIMATION_TIMER=0;
-			
-		    ScoreSendLights(248,  1<<(PendingGameSelection),0x0);
-		
-			InitSoundEffectChannels();
-			InitLightRingSoundEffects();
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
-			MAIN_GAME_TIMER = 0;
-			MusicState = MUSIC_MAIN_THEME;
-			MUSIC_TIMER = 0;
-			StartMainThemeMusic();
-			StartMainThemeMusic();
-			
 					
 		break;
 		
+		case BOOT_DELAY:
+		
+			if(MAIN_GAME_TIMER >100)
+			{
+				MusicWake();
+				
+				MAIN_GAME_TIMER = 0;	
+				GameState = MAIN_SELECTOR;
+			}
+		
+		break;
 
 		
 		case SLEEP:
@@ -226,7 +234,7 @@ void Root_Game0 (void)
 				break;
 				
 				case MUSIC_MAIN_THEME:
-					if(MUSIC_TIMER > LIGHTRINGMAINTHEME_L_WAV_LENGTH - 25)
+					if(MUSIC_TIMER > (LIGHTRINGMAINTHEME_L_WAV_LENGTH - 75))
 					{
 						MusicState = MUSIC_IDLE;
 						AudioOffAllNodes();
@@ -448,6 +456,7 @@ void OnButtonPressRootGame0(unsigned char button)
 		case SLEEP:
 			
 			MoveToMainSelector();
+			MusicState = MUSIC_IDLE;
 			MusicWake();
 			ScoreSendLights(248,  1<<(PendingGameSelection),0x0);
 			
@@ -500,6 +509,7 @@ void OnSelectPressRootGame0(unsigned char button)
 		case SLEEP:
 			MoveToMainSelector();
 			MAIN_GAME_TIMER = 0;
+			MusicState = MUSIC_IDLE;
 			MusicWake();
 			if(button == START_BUTTON)
 			{
