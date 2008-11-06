@@ -22,6 +22,7 @@ void ResetGameVariables (void);
 
 
 BYTE RandomButton(BYTE Exclude1, BYTE Exclude2, BYTE Exclude3);
+BYTE RandomButton4Exclude(BYTE Exclude1, BYTE Exclude2, BYTE Exclude3,BYTE Exclude4);
 
 void InitRandomButton();
 	

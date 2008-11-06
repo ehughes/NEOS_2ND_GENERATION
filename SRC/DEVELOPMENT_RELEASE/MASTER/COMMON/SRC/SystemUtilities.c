@@ -182,6 +182,39 @@ BYTE RandomButton(BYTE Exclude1, BYTE Exclude2, BYTE Exclude3)
 }
 
 
+BYTE RandomButton4Exclude(BYTE Exclude1, BYTE Exclude2, BYTE Exclude3,BYTE Exclude4)
+{
+	
+	BYTE RandomButton=0;
+	BYTE Retries = 0;
+	BYTE i;
+	
+	RandomButton = (BYTE)(rand()) % NUM_BUTTONS;
+	
+	while(((RandomButton == Exclude1) || (RandomButton == Exclude2) || (RandomButton == Exclude3) || (RandomButton == Exclude4)) && (Retries<MAX_RANDOM_RETRIES) )
+	{
+		Retries++;
+		RandomButton = (BYTE)(rand()) % NUM_BUTTONS;
+	}
+	
+	if(Retries >= MAX_RANDOM_RETRIES)
+	{
+		for(i=0;i<NUM_BUTTONS;i++)
+		{
+			if((i!=Exclude1)&&(i!=Exclude2)&&(i!=Exclude3)&&(i!=Exclude4))
+			{
+			 	RandomButton = i;
+			 	break;
+			}
+		}
+		
+	}
+	
+	return RandomButton;
+}
+
+
+
 BYTE SelectRandomDirection()
 {
 	return rand()&0x01;

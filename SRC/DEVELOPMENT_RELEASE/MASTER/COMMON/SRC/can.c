@@ -71,7 +71,7 @@ WORD GetNumMessagesInQueue(CANMessageQueue *MessageQueue)
 	}
 	else if (MessageQueue->WritePtr > MessageQueue->ReadPtr)
 	{
-		return 	(MessageQueue->WritePtr - MessageQueue->ReadPtr);
+ 		return 	(MessageQueue->WritePtr - MessageQueue->ReadPtr);
 	}
 	else
 	{
@@ -280,7 +280,6 @@ void CANRxProcess(void)
 				if(IncomingCANMsg.Data[0] == NODE_PONG)
 				{
 					NumPongs++;
-					
 					MyNodes[IncomingCANMsg.Data[1]].Pongs++;
 				}
 				
@@ -288,8 +287,6 @@ void CANRxProcess(void)
 				{
 					PacketsRecieved++;
 					LoopBackResponse = TRUE;
-					
-					
 				}
 				
 				

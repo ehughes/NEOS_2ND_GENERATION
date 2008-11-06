@@ -40,25 +40,21 @@ BYTE PingRetries;
 BOOL NodesAddressed;
 BYTE NodeToPing;
 BYTE NodeToAddress = 0;
-WORD BusVoltage = 0;
+DWORD BusVoltage = 0;
 WORD BusVoltageMeasurementCnt = 0;
 BYTE PowerSequenceButton=0;
 DWORD PacketsRecieved = 0;
 DWORD PacketsSent = 0;
 
 DWORD AverageBusSpeed;
-volatile BOOL LoopBackResponse = FALSE;
 
+volatile BOOL LoopBackResponse = FALSE;
 volatile BYTE NodeTestData[8];
 volatile BOOL WaitingForTestDataResponse = FALSE;
 
 BYTE DataRateMeasurementCount = 0;
 BYTE CurrentNodeForBusMeasurement = 0;
 BYTE ErrorFlash = 0;
-
-
-
-
 
 
 #define VBUS_10V				3100

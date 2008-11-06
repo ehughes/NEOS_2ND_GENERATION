@@ -9,14 +9,14 @@
 #include "CANCommands.h"
 #include "DataTypes.h"
 
-unsigned char AudioStreamTransmitFlag[4];  //Set to 1 after every 128 words are sent to codec 
-unsigned char AudioStreamCounter[4]={0,0,0,0,};		// Counts to 3F in interrupt
-unsigned long AudioStreamAddress[4];	//moving addresses for the 4 current sounds
-unsigned long AudioStreamStartAddress[4];	//Starting addresses for the 4 current sounds
-unsigned long AudioStreamLength[4];		//and their lengths
+BYTE AudioStreamTransmitFlag[4];  //Set to 1 after every 128 words are sent to codec 
+BYTE AudioStreamCounter[4]={0,0,0,0,};		// Counts to 3F in interrupt
+DWORD AudioStreamAddress[NUM_AUDIO_STREAMS];	//moving addresses for the 4 current sounds
+DWORD AudioStreamStartAddress[NUM_AUDIO_STREAMS];	//Starting addresses for the 4 current sounds
+DWORD AudioStreamLength[NUM_AUDIO_STREAMS];		//and their lengths
 
 
-void AudioNodeEnableAll(unsigned char strm, unsigned char vol)
+void AudioNodeEnableAll(BYTE strm, BYTE vol)
 {
 	AudioNodeEnable(0,strm,strm,1,0,0xFFFF,vol,0xFF);	
 	AudioNodeEnable(1,strm,strm,1,0,0xFFFF,vol,0xFF);	
@@ -37,21 +37,23 @@ void AudioNodeEnableAll(unsigned char strm, unsigned char vol)
 }
 
 
-// MASTER - check all audio streams for update needs
-//Queue up another 128 words if it's needed. 
-
 CANMsg AudioOutCANMsg;
 
 void AudioStreamCheck(void)
 {
 	int stream,temp,temp2;
 
+
+// MASTER - check all audio streams for update needs
+//Queue up another 128 words if it's needed. 
+
+
 	if(InhibitAudio == FALSE)
 	{
 		
 //	if (InactivityTimer != 0)
 	{
-	for (stream=0; stream<=3; stream++)		//TEMPORARY - only check 2 streams
+	for (stream=0; stream<=(NUM_AUDIO_STREAMS-1); stream++)		//TEMPORARY - only check 2 streams
 	{
 		if (AudioStreamTransmitFlag[stream])
 		{
@@ -63,47 +65,39 @@ void AudioStreamCheck(void)
 			if (AudioStreamAddress[stream] >= (AudioStreamStartAddress[stream]+AudioStreamLength[stream]) )
 				AudioStreamAddress[stream] = AudioStreamStartAddress[stream];
 
-			//11/6/06 - queue 128 BYTES, not 128 words now
-			//Bytes are packed 8 to a message so there's 16 messages now
-			//Queue up 16  sound messages to CAN
 			for (temp=0; temp <8; temp++)   //16 iterations 
 			{
 				/* check if writing upper half or lower half of buffer */
-//				CANTxBuff[CANTxBuffNextAvailable][0] = CANMakeTxSID( (temp) + 0x100 + (stream * 0x40) + ((AudioStreamTransmitFlag[stream]-1)*0x20) );
+
 				if ((AudioStreamTransmitFlag[stream] & 1)==0)
 					temp2 = 8;  // upper half
 				else
 					temp2=0;
 
-
 				AudioOutCANMsg.SID = (temp) + 0x100 + (temp2)	+ (stream * 0x40) + (((AudioStreamTransmitFlag[stream]-1)/2)*0x20);
 							
 				temp2 = temp*8;  //each message skips 8 bytes from SPI
 
-
 				AudioOutCANMsg.Data[0] =SPIRxBuffer[temp2];
-				AudioOutCANMsg.Data[1] =SPIRxBuffer [temp2+1]; 
+				AudioOutCANMsg.Data[1] =SPIRxBuffer[temp2+1]; 
 				AudioOutCANMsg.Data[2] =SPIRxBuffer[temp2+2];
-				AudioOutCANMsg.Data[3] =SPIRxBuffer [temp2+3]; 
+				AudioOutCANMsg.Data[3] =SPIRxBuffer[temp2+3]; 
 				AudioOutCANMsg.Data[4] =SPIRxBuffer[temp2+4];
-				AudioOutCANMsg.Data[5] =SPIRxBuffer [temp2+5];
+				AudioOutCANMsg.Data[5] =SPIRxBuffer[temp2+5];
 				AudioOutCANMsg.Data[6] =SPIRxBuffer[temp2+6];
-				AudioOutCANMsg.Data[7] =SPIRxBuffer [temp2+7]; 
+				AudioOutCANMsg.Data[7] =SPIRxBuffer[temp2+7]; 
 				
 				CANMesssageEnqueue((CANMessageQueue *)&CANTxQueue,&AudioOutCANMsg);
-
-				
 			}
 			AudioStreamTransmitFlag[stream]=0;
 		}
+	  }
 	}
-	}
-	
-	}
+}
 }
 
 
-
+/*
 //Play a sound routine - initiates the playing of a recorded sound
 //All that is needed is to give it the sound number, stream & volume
 //this routine starts from the beginning of the sound 
@@ -148,11 +142,11 @@ void AudioPlaySound(unsigned int sound, unsigned char stream)
 	AudioStreamCounter[stream]=0;			//Even if int happens between these instrs it is OK
 	AudioStreamTransmitFlag[stream]=1;	//flag may have just been set anyway
 }
-
+*/
 //Play a sound routine - initiates the playing of a recorded sound
 //All that is needed is to give it the sound number, stream & volume
 //this routine starts from the beginning of the sound 
-void EAudioPlaySound(unsigned char stream,unsigned int esound)
+void EAudioPlaySound(BYTE stream,WORD esound)
 {
 //	unsigned int temp;
 	unsigned long temp1,temp2,temp3;
@@ -195,8 +189,8 @@ void EAudioPlaySound(unsigned char stream,unsigned int esound)
 	AudioStreamTransmitFlag[stream]=1;	//flag may have just been set anyway
 }
 
-void AudioEnable(unsigned char node,unsigned char status,
-unsigned char volume, unsigned char stream)
+void AudioEnable(BYTE node,BYTE status,
+BYTE volume, BYTE stream)
 {
 	CANQueueTxMessage(0x8F,node,status,volume,stream);
 }
@@ -207,7 +201,7 @@ void AudioOffAllNodes(void)
 }
 
 
-void AudioReSync(unsigned int node)
+void AudioReSync(WORD node)
 {
 	CANQueueTxMessage(0x8C,0,0,0,0);	// 3 NOP's to make sure buffer gets cleared
 	CANQueueTxMessage(0x8C,0,0,0,0);
@@ -216,22 +210,21 @@ void AudioReSync(unsigned int node)
 }
 
 
-void AudioSetNodesToStream(unsigned char stream, unsigned int w1, 
-unsigned int w2, unsigned int w3, unsigned int w4)
+void AudioSetNodesToStream(BYTE stream, WORD w1,WORD w2, WORD w3, WORD w4)
 {
 	CANQueueTxMessage(0x80 + (stream & 0x3),w1,w2,w3,w4);
 
 }
 
 // Send audio enable to node with timeout
-void AudioNodeEnable(unsigned char node, unsigned char stream1, unsigned char stream2,
-	unsigned char status1, unsigned char status2, unsigned int timeout,
-	unsigned char volume1, unsigned char volume2)
+void AudioNodeEnable(BYTE node, BYTE stream1, BYTE stream2,
+					 WORD status1, BYTE status2, WORD timeout,
+				 	 WORD volume1, BYTE volume2)
 {
 
 	//Scale volumes by global value
 //	unsigned int volint;
-	unsigned int w1,w3;
+	WORD w1,w3;
 
 //	volint = volume1 * (AudioGlobalVolume+1);
 //	volume1 = volint >> 8;
@@ -244,7 +237,7 @@ void AudioNodeEnable(unsigned char node, unsigned char stream1, unsigned char st
 	CANQueueTxMessage(0x88,w1,timeout,w3,0);
 }
 
-void AudioSetNodesOnOff(unsigned int w1, unsigned int w2, unsigned int w3, unsigned int w4)
+void AudioSetNodesOnOff(WORD w1, WORD w2, WORD w3, WORD w4)
 {
 	CANQueueTxMessage(0x084,w1,w2,w3,w4);
 }

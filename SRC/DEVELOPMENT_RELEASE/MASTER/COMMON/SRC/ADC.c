@@ -2,7 +2,7 @@
 #include "ADCRoutines.h"
 #include "SystemVariables.h"
 #include <p30fxxxx.h>
-
+#include "DataTypes.h"
 
 
 void ADCInit(void)
@@ -22,9 +22,9 @@ void ADCInit(void)
 	
 }
 
-unsigned int ADCRead(void)
+WORD ADCRead(void)
 {
-	unsigned int u;
+	WORD u;
 	u=ReadADC12(0);
 	u += 217;				//Add equivalent of 0.7V diode drop
 	return(u);
