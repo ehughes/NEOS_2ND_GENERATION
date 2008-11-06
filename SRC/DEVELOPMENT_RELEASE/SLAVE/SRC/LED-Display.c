@@ -5,15 +5,13 @@
 #include "BoardSupport.h"
 #include "TimerRoutines.h"
 
-unsigned char LEDColor[3];	/* R,G,B 0-255 color values */
-unsigned char LEDStartColor[3];	/* R,G,B 0-255 color values */
-char LEDColorChange[3]; //SIGNED change values for fading colors
+BYTE LEDColor[3];	/* R,G,B 0-255 color values */
+BYTE LEDStartColor[3];	/* R,G,B 0-255 color values */
+SIGNED_BYTE LEDColorChange[3]; //SIGNED change values for fading colors
 
-unsigned int LEDTimer=0;	//10ms down counter until LED shutoff 10 BITS LONG
-unsigned int LEDFadeTimer=0; //10ms UP counter used for fading 10 BITS LONG
-unsigned int LEDFadeTime=0;  //Limit for LED 10 BITS LONG
-
-
+WORD LEDTimer=0;	//10ms down counter until LED shutoff 10 BITS LONG
+WORD LEDFadeTimer=0; //10ms UP counter used for fading 10 BITS LONG
+WORD LEDFadeTime=0;  //Limit for LED 10 BITS LONG
 
 void ResetLED()
 {
@@ -23,14 +21,12 @@ void ResetLED()
 	LEDTimer=0;
 	LEDFadeTimer=0;
 	LEDFadeTime=0;
-
 }	
-
-
 
 void LEDTimerCheck(void)
 {
-	long fadetemp;
+	DWORD fadetemp;
+
 	if (T2LED10msRefreshFlag != 0)
 	{
 		

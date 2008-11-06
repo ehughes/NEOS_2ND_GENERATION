@@ -9,9 +9,7 @@
 #include "CANCommands.h"
 #include "DataTypes.h"
 
-
-unsigned char ButtonLastState=0;
-
+BYTE ButtonLastState=0;
 CANMsg OutgoingMsg;
 
 void ButtonCheck(void)
@@ -42,7 +40,7 @@ void ButtonCheck(void)
 				if (DiagAddressSetup==TRUE)
 				{
 					EraseEE(0x7F,0xFC00,1);
-					WriteEE(&DiagTentativeAddress,0x7F,0xFC00,1);
+					WriteEE((int *)(&DiagTentativeAddress),0x7F,0xFC00,1);
 					MyNodeNumber=DiagTentativeAddress;
 					DiagAddressSetup=FALSE;
 				}

@@ -729,3 +729,5 @@ WORD CANMakeTxSID (WORD SID_Unformatted)
 {
 return ( ((SID_Unformatted & 0x3F) << 2) + ((SID_Unformatted & 0x7C0) << 5) );
 }
+
+

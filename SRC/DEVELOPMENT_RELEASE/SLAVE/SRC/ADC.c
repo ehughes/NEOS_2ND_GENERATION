@@ -3,8 +3,6 @@
 #include "SystemVariables.h"
 #include <p30fxxxx.h>
 
-
-
 void ADCInit(void)
 {
 	
@@ -25,8 +23,10 @@ void ADCInit(void)
 unsigned int ADCRead(void)
 {
 	unsigned int u;
+
 	u=ReadADC12(0);
 	u += 217;				//Add equivalent of 0.7V diode drop
+
 	return(u);
 
 	//4096 = 13.2V so it is 310 counts per volt

@@ -7,14 +7,14 @@
 #include "BoardSupport.h"
 
 
-unsigned char T210msHeartbeat=0;
-unsigned char T2DivideBy45=0;
-unsigned char T2PWMCounter=0;
-unsigned char T2LED10msRefreshFlag=0;
+BYTE T210msHeartbeat=0;
+BYTE T2DivideBy45=0;
+BYTE T2PWMCounter=0;
+BYTE T2LED10msRefreshFlag=0;
 
-unsigned long InactivityTimer=INACTIVITYTIMEOUT;
+DWORD InactivityTimer=INACTIVITYTIMEOUT;
 
-unsigned int ButtonTimer=0;
+WORD ButtonTimer=0;
 
 #define NUM_GP_TIMERS 8
 

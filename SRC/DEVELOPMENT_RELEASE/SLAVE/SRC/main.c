@@ -65,24 +65,22 @@ int main (void)
 
 	RCONbits.WDTO=0;	//Reset this if wake by watchdog
 	PortInit();
-	ReadOptionJumpers();
 
 	//Read in Node Number
 
-		MyNodeNumber=0;
-		ReadEE (0x7F,0xFC00,&temp,1);	//7FFC00 is good in both 5013 & 6014A
-		if ( (temp>=0) && (temp<=15) )
-			MyNodeNumber=temp;
+	MyNodeNumber=0;
+	ReadEE (0x7F,0xFC00,&temp,1);	//7FFC00 is good in both 5013 & 6014A
+	if ( (temp>=0) && (temp<=15) )
+		MyNodeNumber=temp;
 
 
 	ADCInit();
 	TimerInit();
 	CANInit();
-	DCIInit();			//Initialize audio Data converter interface 
-	ResetAll();  //Reset all of our background functions. I.E. Can buffers, audio, etc.
+	DCIInit();		
+	ResetAll();  
 	srand(ADCRead());
    
-
 	while (1)
 	{	
 		CLEAR_WATCHDOG;

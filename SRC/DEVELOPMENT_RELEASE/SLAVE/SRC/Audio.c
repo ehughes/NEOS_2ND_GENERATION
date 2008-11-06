@@ -64,9 +64,6 @@ void AudioTimeoutCheck (void)
 }
 
 
-
-
-
 void DCIInit(void)
 {
 	_DCIIE = 1;		//Clear the DCI Interrupt Flag    
@@ -83,13 +80,6 @@ void DCIInit(void)
 		DCI_DIS_SLOT_3 & DCI_DIS_SLOT_2 & DCI_DIS_SLOT_1,
 		DCI_DIS_SLOT_ALL);
 }
-
-
-
-//DCI interrupt is hit 8000 times per second and queues up 2 16 bit words
-//for the audio codec. It makes duplicates for the left channel */
-//4.5uS measured duration 6/21/06  125us apart = 4% CPU usage
-//void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
 
  
 void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
@@ -177,19 +167,13 @@ void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
 }
 
 
-#define INTERNAL_SOUND_POSITIVE_FEEDBACK	0
-#define INTERNAL_SOUND_SELECTION			1
-#define INTERNAL_SOUND_FF_WATER_HIT			2
-#define INTERNAL_SOUND_FF_WATER_MISS		3
-#define INTERNAL_SOUND_FF_FIRE_ON			4
-
-
 void PlayInternalSound(BYTE SoundNumber, BYTE Volume, BYTE Repeats, BYTE StreamAfterTimeout, BYTE VolumeAfterTimeout, BYTE AudioStatutsAfterTimeout)
 {
 		switch(SoundNumber)
 			{
 				case INTERNAL_SOUND_POSITIVE_FEEDBACK:
 				default:
+					
 					InternalSoundPtr = &PositiveFeedback[0];
 					InternalSoundLength = POSITIVE_FEEDBACK_LENGTH;
 					InternalSoundVolume = Volume;
@@ -210,8 +194,8 @@ void PlayInternalSound(BYTE SoundNumber, BYTE Volume, BYTE Repeats, BYTE StreamA
 				break;
 				
 				case INTERNAL_SOUND_FF_WATER_HIT:
-					InternalSoundPtr = &FF_WaterHit[0];
-					InternalSoundLength = FF_WATER_HIT_LENGTH;
+					InternalSoundPtr = &FireHit[0];
+					InternalSoundLength = FIRE_HIT_LENGTH;
 					InternalSoundVolume = Volume;
 					if(Repeats>0)
 						InteralSoundRepeats = Repeats;
@@ -221,8 +205,8 @@ void PlayInternalSound(BYTE SoundNumber, BYTE Volume, BYTE Repeats, BYTE StreamA
 				
 				
 				case INTERNAL_SOUND_FF_WATER_MISS:
-					InternalSoundPtr = &FF_WaterMiss[0];
-					InternalSoundLength = FF_WATER_MISS_LENGTH;
+					InternalSoundPtr = &FireMiss[0];
+					InternalSoundLength = FIRE_MISS_LENGTH ;
 					InternalSoundVolume = Volume;
 					if(Repeats>0)
 						InteralSoundRepeats = Repeats;
@@ -230,9 +214,9 @@ void PlayInternalSound(BYTE SoundNumber, BYTE Volume, BYTE Repeats, BYTE StreamA
 						InteralSoundRepeats = 1;
 				break;
 				
-				case INTERNAL_SOUND_FF_FIRE_ON:
-					InternalSoundPtr = &FF_FireOn[0];
-					InternalSoundLength = FF_FIRE_ON_LENGTH;
+				case INTERNAL_SOUND_FF_FIRE_APPEAR:
+					InternalSoundPtr = &FireAppear[0];
+					InternalSoundLength = FIRE_APPEAR_LENGTH;
 					InternalSoundVolume = Volume;
 					if(Repeats>0)
 						InteralSoundRepeats = Repeats;
@@ -240,7 +224,15 @@ void PlayInternalSound(BYTE SoundNumber, BYTE Volume, BYTE Repeats, BYTE StreamA
 						InteralSoundRepeats = 1;
 				break;
 				
-				
+				case INTERNAL_SOUND_FF_FIRE_OUT:
+					InternalSoundPtr = &FireOut[0];
+					InternalSoundLength = FIRE_OUT_LENGTH;
+					InternalSoundVolume = Volume;
+					if(Repeats>0)
+						InteralSoundRepeats = Repeats;
+					else
+						InteralSoundRepeats = 1;
+				break;
 			}
 		
 		
@@ -262,8 +254,6 @@ void PlayInternalSound(BYTE SoundNumber, BYTE Volume, BYTE Repeats, BYTE StreamA
 		InternalSoundPosition=0;	
 		AudioMode = INTERNAL_AUDIO;
 }
-				
 
 
-
-	
+	
