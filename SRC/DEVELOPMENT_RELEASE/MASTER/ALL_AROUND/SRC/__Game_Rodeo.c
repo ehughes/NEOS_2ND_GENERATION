@@ -47,6 +47,8 @@
 #define RODEO_DISPLAY_NEXT_PATTERN				0x02
 #define RODEO_END								0x03
 #define RODEO_LAST_NOTE							0x04
+#define RODEO_INIT								0x05
+
 
 #define PATTERN_TOP_BOTTOM 0
 #define PATTERN_SOLID_WALL 1
@@ -99,7 +101,19 @@ void Rodeo(void)
 		
 		case INIT:
 			ResetAudioAndLEDS();
-					
+			SendNodeNOP();
+			SendNodeNOP();
+			GameState = RODEO_INIT;
+			MAIN_GAME_TIMER = 0;
+		   						
+		break;
+
+		case RODEO_INIT:
+		
+		if(MAIN_GAME_TIMER>1)
+		{
+			MAIN_GAME_TIMER = 0;
+			
 		    AudioNodeEnable(0,BACKGROUND_MUSIC_STREAM_A,BACKGROUND_MUSIC_STREAM_A,AUDIO_ON_BEFORE_TIMEOUT,RODEOBACKGROUND_A_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
 		    AudioNodeEnable(1,BACKGROUND_MUSIC_STREAM_A,BACKGROUND_MUSIC_STREAM_A,AUDIO_ON_BEFORE_TIMEOUT,RODEOBACKGROUND_A_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
 		    AudioNodeEnable(4,BACKGROUND_MUSIC_STREAM_A,BACKGROUND_MUSIC_STREAM_A,AUDIO_ON_BEFORE_TIMEOUT,RODEOBACKGROUND_A_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
@@ -110,12 +124,12 @@ void Rodeo(void)
 		    AudioNodeEnable(6,BACKGROUND_MUSIC_STREAM_B,BACKGROUND_MUSIC_STREAM_B,AUDIO_ON_BEFORE_TIMEOUT,RODEOBACKGROUND_A_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
 		    AudioNodeEnable(7,BACKGROUND_MUSIC_STREAM_B,BACKGROUND_MUSIC_STREAM_B,AUDIO_ON_BEFORE_TIMEOUT,RODEOBACKGROUND_A_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
 			
-		
 			SendNodeNOP();	
 			EAudioPlaySound(BACKGROUND_MUSIC_STREAM_A,RODEOBACKGROUND_A_WAV);
 			EAudioPlaySound(BACKGROUND_MUSIC_STREAM_B,RODEOBACKGROUND_B_WAV);
-						
+		
 			GameState = RODEO;
+		
 			P1HitCount = 0;
 			P2HitCount = 0;
 			Player1Score = 0;
@@ -140,29 +154,30 @@ void Rodeo(void)
 			}
 				ScoreManagerEnabled = TRUE;
 			
-								
+		}	
+		
+		
 		break;
-
+		
 		case RODEO:
 		
 		if(MAIN_GAME_TIMER>RODEOBACKGROUND_A_WAV_LENGTH)
 		{
 			MoveToRodeoLastNote();	
-			
 		}
 				
 		break;
 		
 		
 		case RODEO_LAST_NOTE:
+		
 		if(MAIN_GAME_TIMER>RODEOEND_WAV_LENGTH)
 		{
 			MoveToRodeoEnd();	
 			
 		}
+		
 		break;
-		
-		
 		
 		case RODEO_DISPLAY_NEXT_PATTERN:
 		
@@ -173,7 +188,7 @@ void Rodeo(void)
 			switch(	PatternDisplayIndex)
 			{
 				case 0:
-						switch(CurrentRodeoPattern)
+					switch(CurrentRodeoPattern)
 						{
 						case	PATTERN_TOP_BOTTOM:
 							Sound  = RODEO_TOPBOTTOM_01_WAV;
@@ -196,13 +211,13 @@ void Rodeo(void)
 					{
 						BYTE Stream;
 							Stream = GetRodeoBackGroundStream(1);
-  				    		AudioNodeEnable(1,NEW_PATTERN_STREAM,Stream,1,1, Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+  				    		AudioNodeEnable(1,NEW_PATTERN_STREAM,Stream,AUDIO_ON_BEFORE_AFTER_TIMEOUT,Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 							Stream = GetRodeoBackGroundStream(3);
-  				    		AudioNodeEnable(3,NEW_PATTERN_STREAM,Stream,1,1, Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+  				    		AudioNodeEnable(3,NEW_PATTERN_STREAM,Stream,AUDIO_ON_BEFORE_AFTER_TIMEOUT,Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 							Stream = GetRodeoBackGroundStream(5);
-  				    		AudioNodeEnable(5,NEW_PATTERN_STREAM,Stream,1,1, Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+  				    		AudioNodeEnable(5,NEW_PATTERN_STREAM,Stream,AUDIO_ON_BEFORE_AFTER_TIMEOUT,Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 							Stream = GetRodeoBackGroundStream(7);
-  				    		AudioNodeEnable(7,NEW_PATTERN_STREAM,Stream,1,1, Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+  				    		AudioNodeEnable(7,NEW_PATTERN_STREAM,Stream,AUDIO_ON_BEFORE_AFTER_TIMEOUT,Length,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 						
 					
 					}
@@ -548,7 +563,7 @@ void PlayRodeoBonus(BYTE button)
 	
 		Stream = GetRodeoBackGroundStream(button);
 	
-		AudioNodeEnable(button,BONUS_HIT_STREAM,Stream,1,1, BONUSSOUND_WAV_LENGTH,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+		AudioNodeEnable(button,BONUS_HIT_STREAM,Stream,AUDIO_ON_BEFORE_AFTER_TIMEOUT, BONUSSOUND_WAV_LENGTH,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 		  	
 		SendNodeNOP();	
 		EAudioPlaySound(BONUS_HIT_STREAM,BONUSSOUND_WAV);
@@ -562,7 +577,8 @@ void PlayRodeoHitSound(BYTE button)
 	BYTE Stream;
 	
 	Stream = GetRodeoBackGroundStream(button);
-	PlayInternalNodeSound(button,INTERNAL_SOUND_POSITIVE_FEEDBACK,CurrentGameSettings.GameSoundEffectVolume,1,Stream,CurrentGameSettings.GameBackgroundMusicVolume,NO_CHANGE);
+	
+	PlayInternalNodeSound(button,INTERNAL_SOUND_POSITIVE_FEEDBACK,CurrentGameSettings.GameSoundEffectVolume,1,Stream,CurrentGameSettings.GameBackgroundMusicVolume,1);
 		
 	
 }	

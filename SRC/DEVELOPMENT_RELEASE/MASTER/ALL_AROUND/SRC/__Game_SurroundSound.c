@@ -21,8 +21,10 @@
 
 #define NUM_SOUNDS_PER_BUTTON	3
 #define ROCK					1
+#define SOUTHERN_ROCK			2
 
 #define NUM_SOUND_CHANNELS	3
+
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
 //*************************************************
@@ -54,11 +56,12 @@
 //*************************************************
 //*******Game Variables****************************
 //*************************************************
-WORD SurroundSoundsBaseLocation = 150;
 
-BYTE NextAvailableSoundChannel = 0;
+static WORD SurroundSoundsBaseLocation = 150;
+static WORD GameTime;
+static BYTE NextAvailableSoundChannel = 0;
 
-struct {
+static struct {
 	
 		BOOL Active;
 		DWORD CurrentSoundLength;
@@ -66,7 +69,7 @@ struct {
 	
 }	SoundChannelInfo[3];	
 
-struct{
+static struct{
 	
 	WORD Index[NUM_BUTTONS];
 	DWORD Length[NUM_BUTTONS];
@@ -84,6 +87,7 @@ void InitButtonSounds(BYTE SurroundSoundProfile);
 void ResetSoundChannelTimer(BYTE  Channel);
 BYTE MatchButtonToActiveSoundChannel(BYTE button);
 BYTE GetNextSoundChannel(BYTE button);
+void StartBackgroundMusic(BYTE SurroundSoundProfile);
 
 #define NO_MATCH	0xFF
 
@@ -103,15 +107,18 @@ void SurroundSound(void)
 		
 		case SURROUND_SOUND_SELECT:
 		
-			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ROCKBACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
-			SendNodeNOP();	
-			EAudioPlaySound(BACKGROUND_MUSIC_STREAM,ROCKBACKGROUND_WAV);
-			
-			InitButtonSounds(ROCK);
-			
-			MAIN_GAME_TIMER = 0;
-			GameState = SURROUND_SOUND;
-		SHOW_TIMER = 0;
+			if(MAIN_GAME_TIMER > 5)
+			{
+					
+				InitButtonSounds(SOUTHERN_ROCK);
+				StartBackgroundMusic(SOUTHERN_ROCK);
+					
+				MAIN_GAME_TIMER = 0;
+				GameState = SURROUND_SOUND;
+				SHOW_TIMER = 0;
+
+			}		
+	
 		break;
 		
 		
@@ -147,7 +154,7 @@ void SurroundSound(void)
 			
 		
 		
-			if(MAIN_GAME_TIMER>ROCKBACKGROUND_WAV_LENGTH)
+			if(MAIN_GAME_TIMER>GameTime)
 			{
 				GameState = SURROUND_SOUND_END;
 				AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ENDING_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
@@ -333,16 +340,48 @@ void InitSurroundSoundChannels()
 
 }	
 
-void InitButtonSounds(BYTE SurroundSoundProfile)
-{
 
-	BYTE i;
-	
+
+
+
+void StartBackgroundMusic(BYTE SurroundSoundProfile)
+{
 
 	switch(SurroundSoundProfile)
 	{
 		
 		case ROCK:
+		
+			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ROCKBACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
+			SendNodeNOP();	
+			EAudioPlaySound(BACKGROUND_MUSIC_STREAM,ROCKBACKGROUND_WAV);
+			GameTime = ROCKBACKGROUND_WAV_LENGTH - 25;
+
+		break;
+		
+		case SOUTHERN_ROCK:
+			
+			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,0);
+			SendNodeNOP();	
+			EAudioPlaySound(BACKGROUND_MUSIC_STREAM,SOUTHERNROCK_BACKGROUND_WAV);
+			GameTime = (SOUTHERNROCK_BACKGROUND_WAV_LENGTH*5) - 25;
+
+		break;
+
+		default:
+		break;
+	}
+	
+}
+
+void InitButtonSounds(BYTE SurroundSoundProfile)
+{
+
+	switch(SurroundSoundProfile)
+	{
+		
+		case ROCK:
+		
 			ButtonSound.Index[0] = GTR1A_WAV;
 			ButtonSound.Index[1] = GTR1B_WAV;
 		    ButtonSound.Index[2] = GTR1C_WAV;
@@ -363,6 +402,28 @@ void InitButtonSounds(BYTE SurroundSoundProfile)
 			
 		break;
 		
+		case SOUTHERN_ROCK:
+		
+			ButtonSound.Index[0] = SOUTHERNROCK_HARP1_WAV;  
+			ButtonSound.Index[1] = SOUTHERNROCK_HARP2_WAV;
+		    ButtonSound.Index[2] = SOUTHERNROCK_ORGAN1_WAV;
+			ButtonSound.Index[3] = SOUTHERNROCK_ORGAN2_WAV;
+			ButtonSound.Index[4] = SOUTHERNROCK_PIANO1_WAV;
+			ButtonSound.Index[5] = SOUTHERNROCK_PIANO2_WAV;
+			ButtonSound.Index[6] = SOUTHERNROCK_GUITAR1_WAV;
+			ButtonSound.Index[7] = SOUTHERNROCK_GUITAR2_WAV;
+	
+			ButtonSound.Length[0] = SOUTHERNROCK_HARP1_WAV_LENGTH;
+			ButtonSound.Length[1] = SOUTHERNROCK_HARP2_WAV_LENGTH;
+		    ButtonSound.Length[2] = SOUTHERNROCK_ORGAN1_WAV_LENGTH;
+			ButtonSound.Length[3] = SOUTHERNROCK_ORGAN2_WAV_LENGTH;
+			ButtonSound.Length[4] = SOUTHERNROCK_PIANO1_WAV_LENGTH;
+			ButtonSound.Length[5] = SOUTHERNROCK_PIANO2_WAV_LENGTH;
+			ButtonSound.Length[6] = SOUTHERNROCK_GUITAR1_WAV_LENGTH;
+			ButtonSound.Length[7] = SOUTHERNROCK_GUITAR2_WAV_LENGTH;
+			
+		break;
+		
 		
 		default:
 		break;
@@ -371,3 +432,5 @@ void InitButtonSounds(BYTE SurroundSoundProfile)
 	
 	
 }	
+
+

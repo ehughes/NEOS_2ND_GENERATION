@@ -20,9 +20,11 @@
 
 #define SHOW_PATTERN_INTERVAL				 50
 #define RESPONSE_TIME						 400
-#define PAUSE_BEFORE_NEXT_PATTERN_TIME 		 75
-#define NINJA_HIT						  	 10
-#define NINJA_HIT_BONUS						 25
+#define RESPONSE_TIME_2P					 500
+#define PAUSE_BEFORE_NEXT_PATTERN_TIME 		 90
+#define PAUSE_BEFORE_NEXT_PATTERN_TIME_2P	 90
+#define NINJA_HIT						  	 5
+#define NINJA_HIT_BONUS						 15
 #define NINJA_HIT_BONUS_FIRST				 35
 #define MAX_PATTERN_ELEMENTS 				 4
 #define MIN_PATTERN_ELEMENTS 				 2
@@ -40,8 +42,7 @@
 //******** System Timer MACROS*********************
 //*************************************************
 
-
-#define MAIN_GAME_TIMER		 		GPTimer[0]
+#define MAIN_GAME_TIMER		 	  	 GPTimer[0]
 #define SHOW_PATTERN_TIMER			 GPTimer[1]
 #define WAIT_FOR_RESPONSE_TIMER		 GPTimer[2]
 
@@ -49,14 +50,14 @@
 //******** GAME STATE MACROS*** *******************
 //*************************************************
 
-#define NINJA_1P			0x01
-#define NINJA_2P			0x02
-#define NINJA_END			0x03
+#define NINJA_1P					0x01
+#define NINJA_2P					0x02
+#define NINJA_END					0x03
+#define NINJA_INIT					0x04
 
-#define NINJA_SHOW_PATTERN  0x00
-#define NINJA_WAIT_FOR_RESPONSE  0x01
-#define PAUSE_BEFORE_NEXT_PATTERN 0x02
-
+#define NINJA_SHOW_PATTERN  	  	 0x00
+#define NINJA_WAIT_FOR_RESPONSE 	 0x01
+#define PAUSE_BEFORE_NEXT_PATTERN	 0x02
 
 //*************************************************
 //*******Game Variables****************************
@@ -70,7 +71,9 @@ static BYTE P2HitCount;
 static volatile BOOL P1PatternFinished;
 static volatile BOOL P2PatternFinished;
 static BYTE RandomStartPosition;
-static const BYTE NinjaPatternBuffer[87] = {
+static BOOL MistakeMade;
+static BOOL ExtendedOnePlayerMode;
+static const BYTE NinjaPatternBuffer2Players[] = {
 							 
 							 
 							2, 1, 2,
@@ -98,13 +101,74 @@ static const BYTE NinjaPatternBuffer[87] = {
 
 							0xFF
 							};
+							
+static const BYTE NinjaPatternBuffer1Player[] = {
+					
+					
+							2, 1, 2,
+							2, 6, 5,
+							3, 1, 2, 3,
+							3, 7, 6, 5,
+							2, 1, 0,
+							2, 4, 5,
+							3, 1, 0, 7,
+							3, 3, 4, 5,
+							3, 1, 7, 0,
+							3, 4, 2, 3,
+							3, 7, 5, 6,
+							3, 2, 0, 1,
+							3, 5, 2, 7,
+							3, 3, 0, 5,
+							3, 1, 3, 2,
+							3, 6, 0, 7,
+							3, 3, 5, 4,
+							3, 0, 2, 1,
+							3, 5, 0, 3,
+							3, 7, 2, 5,
+							4, 1, 7, 0, 6,
+							4, 2, 4, 3, 5,
+						
+							4, 1, 2, 3, 4,
+							4, 4, 3, 2, 1, 
+							3, 1, 4, 7,
+							3, 3, 6, 1,
+							4, 1, 0, 7, 6,
+							4, 6, 7, 0, 1, 
+							3, 1, 6, 3,
+							3, 7, 4, 1,
+							1, 1,
+							1, 5,
+							4, 1, 2, 3, 4, 
+							4, 1, 0, 7, 6,
+							4, 1, 3, 0, 4,
+							4, 0, 2, 7, 3,
+							4, 7, 1, 6, 2,
+							4, 6, 0, 5, 1,
+							4, 5, 7, 4, 0,
+							4, 4, 6, 3, 7,
+							4, 3, 5, 2, 6,
+							4, 2, 4, 1, 5,
+							4, 1, 7, 2, 6,
+							4, 2, 0, 3, 7,
+							4, 3, 1, 4, 0,
+							4, 4, 2, 5, 1,
+							4, 5, 3, 6, 2,
+							4, 6, 4, 7, 3,
+							4, 7, 5, 0, 4,
+							4, 8, 6, 1, 5,
+
+							0xFF
+							};
 					
 	
 static WORD CurrentPatternBufferPosition = 0;
 
 typedef struct{
+				
 				BYTE PatternLength;
 				BYTE Pattern[MAX_PATTERN_ELEMENTS];
+				BYTE HitFlag[MAX_PATTERN_ELEMENTS];
+				
 			} NinjaPattern;
 		  		
 
@@ -129,6 +193,11 @@ BOOL IsPartofPatternSubset(BYTE button,NinjaPattern *PatternToCheck, BYTE SubSet
 BOOL GetNextNinjaPattern(BYTE *PatternBuffer, NinjaPattern * PatternToPopulate);
 void Generate2PPattern(NinjaPattern * P1Pattern,NinjaPattern * P2Pattern);
 void ResetNinjaPatternStateVariables();
+void ClearNinjaPattern(NinjaPattern * NPattern);
+BYTE WhereInPatternIsElement(BYTE button,NinjaPattern *PatternToCheck);
+void RenderNinjaPattern(NinjaPattern * NPattern, BYTE ColorOnR, BYTE ColorOnG, BYTE ColorOnB);
+void MoveToNinjaEnd();
+
 
 //*************************************************
 //*******Game Functions****************************
@@ -136,129 +205,142 @@ void ResetNinjaPatternStateVariables();
 
 void Ninja(void)
 {
+
 	switch (GameState)
 	{
 		
 		case INIT:
 			ResetAudioAndLEDS();
+			SendNodeNOP();
+			SendNodeNOP();
+			
+			MAIN_GAME_TIMER = 0;
+			GameState = NINJA_INIT;
 		
-		
-			if(GamePlayers == 1)
-			{
-				AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NINJABACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
-				SendNodeNOP();	
-				EAudioPlaySound(BACKGROUND_MUSIC_STREAM,NINJABACKGROUND_WAV);
-			
-				GameState = NINJA_1P;
-				
-				CurrentPatternBufferPosition = 0;
-				
-				ResetNinjaPatternStateVariables();
-				GetNextNinjaPattern((BYTE *)(&NinjaPatternBuffer[0]),&CurrentNinjaPatternP1);
-				
-				ScoreManagerEnabled = FALSE;
-				Player1Score = 0;
-				Player2Score = 0;
-				RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
-					
-				P1ScoreDisplayState = SCORE_NORMAL;
-				P2ScoreDisplayState = SCORE_BLANK;
-				
-				
-			}
-			else
-			{
-			
-		    	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NINJABACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
-				SendNodeNOP();	
-				EAudioPlaySound(BACKGROUND_MUSIC_STREAM,NINJABACKGROUND_WAV);
-				GameState = NINJA_2P;
-				MAIN_GAME_TIMER = 0;
-				CurrentPatternBufferPosition = 0;
-				ResetNinjaPatternStateVariables();
-				GetNextNinjaPattern((BYTE *)NinjaPatternBuffer,&CurrentNinjaPatternP1);
-				Generate2PPattern(&CurrentNinjaPatternP1,&CurrentNinjaPatternP2);
-				
-				Player1Score = 0;
-				Player2Score = 0;
-				
-				P1ScoreDisplayState = SCORE_NORMAL;
-				P2ScoreDisplayState = SCORE_NORMAL;
-				RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
-			}
-			
-			ScoreManagerEnabled = TRUE;
-			
-								
 		break;
 
+	 	case NINJA_INIT:
+	 	
+			 	if(MAIN_GAME_TIMER > 10)
+			 	{
+					if(GamePlayers == 1)
+					{
+						AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+						SendNodeNOP();	
+						EAudioPlaySound(BACKGROUND_MUSIC_STREAM,NINJABACKGROUND_WAV);
+					
+						GameState = NINJA_1P;
+						
+						CurrentPatternBufferPosition = 0;
+						
+						ResetNinjaPatternStateVariables();
+						GetNextNinjaPattern((BYTE *)(&NinjaPatternBuffer1Player[0]),&CurrentNinjaPatternP1);
+						
+						ScoreManagerEnabled = FALSE;
+						Player1Score = 0;
+						Player2Score = 0;
+						RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
+							
+						P1ScoreDisplayState = SCORE_NORMAL;
+						P2ScoreDisplayState = SCORE_BLANK;
+						
+						
+						MistakeMade = FALSE;
+						ExtendedOnePlayerMode = FALSE;
+					
+					}
+					else
+					{
+					
+				    	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NINJABACKGROUND_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0);
+						SendNodeNOP();	
+						EAudioPlaySound(BACKGROUND_MUSIC_STREAM,NINJABACKGROUND_WAV);
+					
+						GameState = NINJA_2P;
+						MAIN_GAME_TIMER = 0;
+						CurrentPatternBufferPosition = 0;
+						ResetNinjaPatternStateVariables();
+					
+						GetNextNinjaPattern((BYTE *)NinjaPatternBuffer2Players,&CurrentNinjaPatternP1);
+						Generate2PPattern(&CurrentNinjaPatternP1,&CurrentNinjaPatternP2);
+						
+						Player1Score = 0;
+						Player2Score = 0;
+						
+						P1ScoreDisplayState = SCORE_NORMAL;
+						P2ScoreDisplayState = SCORE_NORMAL;
+						RandomStartPosition = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
+					}
+					
+					ScoreManagerEnabled = TRUE;
+					MAIN_GAME_TIMER = 0;
+				}	
+	 	
+	 	break;
 
 		case NINJA_1P:
-		
-		if(MAIN_GAME_TIMER>NINJABACKGROUND_WAV_LENGTH)
+	
+		if(ExtendedOnePlayerMode == FALSE)
 		{
-			GameState = NINJA_END;
-			MAIN_GAME_TIMER = 0;
-			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ENDING_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
-			SendNodeNOP();	
-			EAudioPlaySound(BACKGROUND_MUSIC_STREAM,ENDING_WAV);		
-			LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,50);
-			
-			P1ScoreDisplayState = SCORE_FLASHING;
-			P2ScoreDisplayState = SCORE_BLANK;
+			if(MAIN_GAME_TIMER>=NINJABACKGROUND_WAV_LENGTH-12)
+			{
+				if(MistakeMade == TRUE)
+				{
+					MoveToNinjaEnd();
+				}
+				else
+				{
+					ExtendedOnePlayerMode = TRUE;	
+				}	
+			}
 		}
+		else
+		{
+				if(Player1Score >= 999)
+				{
+					MoveToNinjaEnd();	
+				}	
+		}		
 		
 						
 		switch(NinjaSubState)
 				{
-					case NINJA_SHOW_PATTERN:
-					
-					if(PatternElementDisplayed==FALSE)						
-						{
-								LEDSendMessage(CurrentNinjaPatternP1.Pattern[CurrentPatternElementDisplay],RED,RED,1000,0);	
-								LEDSendMessage(CurrentNinjaPatternP1.Pattern[CurrentPatternElementDisplay],RED,RED,1000,0);
-								NinjaPlayNodeSound(PLAYER_1,CurrentNinjaPatternP1.Pattern[CurrentPatternElementDisplay]);
-								PatternElementDisplayed=TRUE;
-								SHOW_PATTERN_TIMER = 0;
-						}
+				   case NINJA_SHOW_PATTERN:
 						
-					else if(SHOW_PATTERN_TIMER>SHOW_PATTERN_INTERVAL)
+				    if(SHOW_PATTERN_TIMER>SHOW_PATTERN_INTERVAL)
 					{
 						SHOW_PATTERN_TIMER = 0;
 						
+						NinjaPlayNodeSound(PLAYER_1,CurrentNinjaPatternP1.Pattern[CurrentPatternElementDisplay]);
+						SendNodeNOP();
+						RenderNinjaPattern(&CurrentNinjaPatternP1,RED);	
+							
 						CurrentPatternElementDisplay++;
 						if(CurrentPatternElementDisplay == CurrentNinjaPatternP1.PatternLength)
 						{
 							NinjaSubState = NINJA_WAIT_FOR_RESPONSE;
-							PatternElementDisplayed=FALSE;
 							WAIT_FOR_RESPONSE_TIMER = 0;
 						}
-						else
-						{
-						    PatternElementDisplayed=FALSE;
-						    SHOW_PATTERN_TIMER = 0;
-						}
-						
 					}
+					
 					break;
 					
 					case NINJA_WAIT_FOR_RESPONSE:
 					
-					
-					if(P1PatternFinished==TRUE)
-					{
-						WAIT_FOR_RESPONSE_TIMER = 0;
-						NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
-					}
-					
-					if(WAIT_FOR_RESPONSE_TIMER > RESPONSE_TIME)
-					{
-						WAIT_FOR_RESPONSE_TIMER = 0;
-						NinjaPlayBadGong();
-					    NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
-					    LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
-					   
-					}
+						if(P1PatternFinished==TRUE)
+						{
+							WAIT_FOR_RESPONSE_TIMER = 0;
+							NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
+						}
+						
+						if(WAIT_FOR_RESPONSE_TIMER > RESPONSE_TIME)
+						{
+							WAIT_FOR_RESPONSE_TIMER = 0;
+							NinjaPlayBadGong();
+							LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+						    NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
+						    MistakeMade = TRUE;
+						}
 					
 					break;	
 					
@@ -266,9 +348,16 @@ void Ninja(void)
 					
 					if(WAIT_FOR_RESPONSE_TIMER > PAUSE_BEFORE_NEXT_PATTERN_TIME)
 					{
-					    ResetNinjaPatternStateVariables();
-					    GetNextNinjaPattern((BYTE *)&NinjaPatternBuffer[0],&CurrentNinjaPatternP1);
-						LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+						if((MistakeMade == TRUE) && (ExtendedOnePlayerMode == TRUE))
+						{
+							MoveToNinjaEnd();
+						}
+						else
+						{	
+							ResetNinjaPatternStateVariables();
+							GetNextNinjaPattern((BYTE *)&NinjaPatternBuffer1Player[0],&CurrentNinjaPatternP1);
+							LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+						}
 					}
 					break;
 					
@@ -283,95 +372,62 @@ void Ninja(void)
 		
 		if(MAIN_GAME_TIMER>NINJABACKGROUND_WAV_LENGTH)
 		{
-			GameState = NINJA_END;
-			MAIN_GAME_TIMER = 0;
-			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ENDING_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
-			SendNodeNOP();	
-			EAudioPlaySound(BACKGROUND_MUSIC_STREAM,ENDING_WAV);		
-			LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,50);
-			
-			SyncDisplayFlashing();
-				if(Player1Score > Player2Score)
-				{
-					P1ScoreDisplayState = SCORE_FLASHING;
-					P2ScoreDisplayState = SCORE_NORMAL;
-				}
-				else if(Player2Score > Player1Score)
-				{
-					P2ScoreDisplayState = SCORE_FLASHING;
-					P1ScoreDisplayState = SCORE_NORMAL;
-				}
-				else 
-				{
-					P2ScoreDisplayState = SCORE_FLASHING;
-					P1ScoreDisplayState = SCORE_FLASHING;
-				}
-				
+			MoveToNinjaEnd();
 		}
+		
 		
 			switch(NinjaSubState)
 				{
-					case NINJA_SHOW_PATTERN:
-					
-					if(PatternElementDisplayed==FALSE)						
-						{
-								LEDSendMessage(CurrentNinjaPatternP1.Pattern[CurrentPatternElementDisplay],LEDOFF,RED,1000,10);
-								LEDSendMessage(CurrentNinjaPatternP2.Pattern[CurrentPatternElementDisplay],LEDOFF,GREEN,1000,10);
-									
-								NinjaPlayNodeSound(PLAYER_1,CurrentNinjaPatternP1.Pattern[CurrentPatternElementDisplay]);
-								NinjaPlayNodeSound(PLAYER_2,CurrentNinjaPatternP2.Pattern[CurrentPatternElementDisplay]);
-								
-								PatternElementDisplayed=TRUE;
-								SHOW_PATTERN_TIMER = 0;
-						}
+				   case NINJA_SHOW_PATTERN:
 						
-					if(SHOW_PATTERN_TIMER>SHOW_PATTERN_INTERVAL)
+				    if(SHOW_PATTERN_TIMER>SHOW_PATTERN_INTERVAL)
 					{
 						SHOW_PATTERN_TIMER = 0;
+						
+						NinjaPlayNodeSound(PLAYER_1,CurrentNinjaPatternP1.Pattern[CurrentPatternElementDisplay]);
+						NinjaPlayNodeSound(PLAYER_2,CurrentNinjaPatternP2.Pattern[CurrentPatternElementDisplay]);
+						SendNodeNOP();
+						RenderNinjaPattern(&CurrentNinjaPatternP1,RED);	
+						RenderNinjaPattern(&CurrentNinjaPatternP2,GREEN);		
 						
 						CurrentPatternElementDisplay++;
 						if(CurrentPatternElementDisplay == CurrentNinjaPatternP1.PatternLength)
 						{
 							NinjaSubState = NINJA_WAIT_FOR_RESPONSE;
-							PatternElementDisplayed=FALSE;
 							WAIT_FOR_RESPONSE_TIMER = 0;
 						}
-						else
-						{
-						    PatternElementDisplayed=FALSE;
-						    SHOW_PATTERN_TIMER = 0;
-						}
-						
 					}
+					
 					break;
 					
 					case NINJA_WAIT_FOR_RESPONSE:
 					
-					if(P1PatternFinished==TRUE && P2PatternFinished==TRUE)
-					{
-						WAIT_FOR_RESPONSE_TIMER = 0;
-						NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
-					}
-					
-					if(WAIT_FOR_RESPONSE_TIMER > RESPONSE_TIME)
-					{
-						WAIT_FOR_RESPONSE_TIMER = 0;
-						NinjaPlayBadGong();
-					    NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
-					    LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
-					   
-					}
+						if((P1PatternFinished==TRUE) && (P2PatternFinished==TRUE))
+						{
+							WAIT_FOR_RESPONSE_TIMER = 0;
+							NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
+						}
+						
+						if(WAIT_FOR_RESPONSE_TIMER > RESPONSE_TIME_2P)
+						{
+							WAIT_FOR_RESPONSE_TIMER = 0;
+							NinjaPlayBadGong();
+							LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+						    NinjaSubState = PAUSE_BEFORE_NEXT_PATTERN;
+						    
+						}
 					
 					break;	
 					
 					case PAUSE_BEFORE_NEXT_PATTERN:
 					
-					if(WAIT_FOR_RESPONSE_TIMER > PAUSE_BEFORE_NEXT_PATTERN_TIME)
+					if(WAIT_FOR_RESPONSE_TIMER > PAUSE_BEFORE_NEXT_PATTERN_TIME_2P)
 					{
-						ResetNinjaPatternStateVariables();
-						GetNextNinjaPattern((BYTE *)&NinjaPatternBuffer[0],&CurrentNinjaPatternP1);
-						Generate2PPattern(&CurrentNinjaPatternP1,&CurrentNinjaPatternP2);
-						LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+							ResetNinjaPatternStateVariables();
+							GetNextNinjaPattern((BYTE *)&NinjaPatternBuffer2Players[0],&CurrentNinjaPatternP1);
+							Generate2PPattern(&CurrentNinjaPatternP1,&CurrentNinjaPatternP2);
+							LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+				
 					}
 					break;
 					
@@ -379,19 +435,16 @@ void Ninja(void)
 					break;
 				}
 		
-		break;
-		
 		
 		break;
-		
 		
 		
 		case NINJA_END:
+		
 			if(MAIN_GAME_TIMER>ENDING_WAV_LENGTH)
 			{
 				ResetToGameSelector();
 			}
-					
 				
 		break;
 
@@ -406,9 +459,15 @@ void Ninja(void)
 
 void ResetNinjaPatternStateVariables()
 {
+	
+	ClearNinjaPattern(&CurrentNinjaPatternP1);
+	ClearNinjaPattern(&CurrentNinjaPatternP2);
+	ClearNinjaPattern(&UserEnteredNinjaPatternP1);
+	ClearNinjaPattern(&UserEnteredNinjaPatternP2);
+
 	NinjaSubState = NINJA_SHOW_PATTERN;
     CurrentPatternElementDisplay=0;	
-	SHOW_PATTERN_TIMER = 0;
+	SHOW_PATTERN_TIMER = SHOW_PATTERN_INTERVAL-1;
 	PatternElementDisplayed=FALSE;	
 	CurrentPatternElementDisplay=0;	
 	P1HitCount = 0;
@@ -419,29 +478,63 @@ void ResetNinjaPatternStateVariables()
 }	
 
 
+void RenderNinjaPattern(NinjaPattern * NPattern, BYTE ColorOnR, BYTE ColorOnG, BYTE ColorOnB)
+{
+	BYTE i;
+	
+	for(i=0;i<CurrentPatternElementDisplay+1;i++)
+	{
+		if(NPattern->HitFlag[i] == TRUE)
+			LEDSendMessage(NPattern->Pattern[i] ,LEDOFF,LEDOFF,0,0);	
+		else
+			LEDSendMessage(NPattern->Pattern[i] ,ColorOnR,ColorOnG,ColorOnB,ColorOnR,ColorOnG,ColorOnB,0,0);		
+	}		
+}	
+
 void OnButtonPressNinja(unsigned char button)
 {
+	
+	BYTE PatternElementLocation;
+	
 	switch(GameState)
 	{
 		case NINJA_1P:
+		case NINJA_2P:
+		
 			switch(NinjaSubState)
 			{
 				
 				case NINJA_SHOW_PATTERN:
 				case NINJA_WAIT_FOR_RESPONSE:
 				
-				 if(IsPartofPatternSubset(button,&CurrentNinjaPatternP1,CurrentPatternElementDisplay))
+				
+				 PatternElementLocation = WhereInPatternIsElement(button,&CurrentNinjaPatternP1);
+				
+				 if(PatternElementLocation != 0xFF)
 					{	
+						
+						//See if these element has already been hit
+						if(CurrentNinjaPatternP1.HitFlag[PatternElementLocation] == TRUE)
+						{
+							//if this location has already been hit, then exit;
+							return;	
+							MistakeMade = TRUE;
+						}	
+						
+						CurrentNinjaPatternP1.HitFlag[PatternElementLocation] = TRUE;
+						
+						//Record this into the actual user hit pattern struct	
+																					
 						UserEnteredNinjaPatternP1.Pattern[P1HitCount] = button;
+						
+						LEDSendMessage(button,LEDOFF,LEDOFF,0,0);
 						
 						P1HitCount++;
 										
 						if(P1HitCount == (CurrentNinjaPatternP1.PatternLength))
 						{
-								
 							NinjaPlayHugeHit(button);
-							LEDSendMessage(button,RED,LEDOFF,5,5);
-						
+							LEDSendMessage(button,LEDOFF,LEDOFF,0,0);
 							UserEnteredNinjaPatternP1.PatternLength = P1HitCount;
 							
 							P1PatternFinished=TRUE;
@@ -453,134 +546,85 @@ void OnButtonPressNinja(unsigned char button)
 							else
 							{
 								Player1Score += NINJA_HIT; 	
-								
+								MistakeMade = TRUE;
 							}
-						
 						}
 						else
 						{
 							Player1Score += NINJA_HIT;
-							
 							NinjaPlayQuickHit(PLAYER_1,button);
-							LEDSendMessage(button,RED,LEDOFF,5,5);	
+							LEDSendMessage(button,LEDOFF,LEDOFF,0,0);
 						}
-				}
+					}
+					else
+					{
+						MistakeMade = TRUE;	
+					}	
 				break;
 				
 				default:
-				break;			
-			}
-			
-			break;
-			
-		case NINJA_2P:
-			switch(NinjaSubState)
-			{
+				break;	
+			}					
+			if(GamePlayers == 2)
+			{	
+				 PatternElementLocation = WhereInPatternIsElement(button,&CurrentNinjaPatternP2);
 				
-				case NINJA_SHOW_PATTERN:
-				case NINJA_WAIT_FOR_RESPONSE:
-				
-				 if(IsPartofPatternSubset(button,&CurrentNinjaPatternP1,CurrentPatternElementDisplay))
+				 if(PatternElementLocation != 0xFF)
 					{	
-						UserEnteredNinjaPatternP1.Pattern[P1HitCount] = button;
 						
-						P1HitCount++;
-										
-						if(P1HitCount == (CurrentNinjaPatternP1.PatternLength))
+						//See if these element has already been hit
+						if(CurrentNinjaPatternP2.HitFlag[PatternElementLocation] == TRUE)
 						{
-								
-							NinjaPlayHugeHit(button);
-							LEDSendMessage(button,RED,LEDOFF,5,5);
-							UserEnteredNinjaPatternP1.PatternLength = P1HitCount;
-							
-													
-							if(PatternsEqual(&UserEnteredNinjaPatternP1,&CurrentNinjaPatternP1))
-							{
-								if(P2PatternFinished == TRUE)
-								{
-									Player1Score += NINJA_HIT_BONUS; 
-								}
-								else
-								{
-									Player1Score += NINJA_HIT_BONUS_FIRST; 
-									
-								}
-							}
-							else
-							{
-								Player1Score += NINJA_HIT; 	
-								
-							}
+							//if this location has already been hit, then exit;
+							return;	
+							MistakeMade = TRUE;
+						}	
 						
-							P1PatternFinished=TRUE;
+						CurrentNinjaPatternP2.HitFlag[PatternElementLocation] = TRUE;
 						
-						}
-						else
-						{
-							Player1Score += NINJA_HIT;
-							
-							NinjaPlayQuickHit(PLAYER_1,button);
-							LEDSendMessage(button,RED,LEDOFF,5,5);	
-						}
-						
-					}
-					
-					else if(IsPartofPatternSubset(button,&CurrentNinjaPatternP2,CurrentPatternElementDisplay))
-					{	
+						//Record this into the actual user hit pattern struct	
+																					
 						UserEnteredNinjaPatternP2.Pattern[P2HitCount] = button;
+						
+						LEDSendMessage(button,LEDOFF,LEDOFF,0,0);
 						
 						P2HitCount++;
 										
 						if(P2HitCount == (CurrentNinjaPatternP2.PatternLength))
 						{
-								
 							NinjaPlayHugeHit(button);
-							LEDSendMessage(button,GREEN,LEDOFF,5,5);
-							
+							LEDSendMessage(button,LEDOFF,LEDOFF,0,0);
 							UserEnteredNinjaPatternP2.PatternLength = P2HitCount;
-														
+							
+							P2PatternFinished=TRUE;
+							
 							if(PatternsEqual(&UserEnteredNinjaPatternP2,&CurrentNinjaPatternP2))
 							{
-								if(P1PatternFinished == TRUE)
-								{
-									Player2Score += NINJA_HIT_BONUS; 
-								}
-								else
-								{
-									Player2Score += NINJA_HIT_BONUS_FIRST; 
-									
-								}
+								Player2Score += NINJA_HIT_BONUS; 
 							}
 							else
 							{
 								Player2Score += NINJA_HIT; 	
-								
+								MistakeMade = TRUE;
 							}
-							
-							P2PatternFinished=TRUE;
-						
 						}
 						else
 						{
 							Player2Score += NINJA_HIT;
-							
 							NinjaPlayQuickHit(PLAYER_2,button);
-						
-							LEDSendMessage(button,GREEN,LEDOFF,5,5);	
+							LEDSendMessage(button,LEDOFF,LEDOFF,0,0);
 						}
-						
 					}
-					
-				
-				break;
-			
-			
-				default:
-				break;
-				
-			}
+					else
+					{
+						MistakeMade = TRUE;	
+					}	
+		}
 		
-		
+	
+	
+	
+	
 		break;
 				
 		default:
@@ -1014,7 +1058,8 @@ BOOL GetNextNinjaPattern(BYTE *PatternBuffer, NinjaPattern * PatternToPopulate)
 	
 	if(PatternBuffer[CurrentPatternBufferPosition] == 0xFF)
 	{
-		return FALSE;	
+		CurrentPatternBufferPosition = 0;
+		//return FALSE;	
 	}
 	
 	PatternToPopulate->PatternLength = PatternBuffer[CurrentPatternBufferPosition];
@@ -1046,6 +1091,23 @@ void Generate2PPattern(NinjaPattern * P1Pattern,NinjaPattern * P2Pattern)
 }
 
 
+void ClearNinjaPattern(NinjaPattern * NPattern)
+{
+	BYTE i;
+	
+	NPattern->PatternLength = 0;
+		
+	for(i=0;i<MAX_PATTERN_ELEMENTS;i++)
+	{
+	
+		NPattern->Pattern[i] = 0xFF;
+		NPattern->HitFlag[i] = FALSE;
+	}
+}
+
+
+
+
 BOOL IsPartofPattern(BYTE button,NinjaPattern *PatternToCheck)
 {
 	BYTE i;
@@ -1060,4 +1122,59 @@ BOOL IsPartofPattern(BYTE button,NinjaPattern *PatternToCheck)
 	
 	return FALSE;
 }
+
+
+BYTE WhereInPatternIsElement(BYTE button,NinjaPattern *PatternToCheck)
+{
+	BYTE i;
+	
+	for(i=0; i<PatternToCheck->PatternLength;i++)
+	{
+		if(button == PatternToCheck->Pattern[i])
+		{
+			return i;	
+		}
+	}
+	
+	return 0xFF;
+}
+
+
+void MoveToNinjaEnd()
+{
+	GameState = NINJA_END;
+	MAIN_GAME_TIMER = 0;
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,ENDING_WAV_LENGTH,CurrentGameSettings.FinaleMusicVolume,0);
+	SendNodeNOP();	
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,ENDING_WAV);		
+	LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+				
+	if(GamePlayers == 1)
+	{
+		P1ScoreDisplayState = SCORE_FLASHING;
+		P2ScoreDisplayState = SCORE_BLANK;
+	}
+		
+	else
+	{
+	  SyncDisplayFlashing();
+		if(Player1Score > Player2Score)
+			{
+				P1ScoreDisplayState = SCORE_FLASHING;
+				P2ScoreDisplayState = SCORE_NORMAL;
+			}
+		else if(Player2Score > Player1Score)
+			{
+					P2ScoreDisplayState = SCORE_FLASHING;
+					P1ScoreDisplayState = SCORE_NORMAL;
+			}
+		else 
+		{
+				P2ScoreDisplayState = SCORE_FLASHING;
+				P1ScoreDisplayState = SCORE_FLASHING;
+		}
+	}
+	
+}	
+
 

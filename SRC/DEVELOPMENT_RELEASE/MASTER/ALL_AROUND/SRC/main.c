@@ -57,7 +57,7 @@ _FGS(GEN_PROT)
 
 int main (void)
 {
-	WORD i;
+
 	void (*JumpToResetVector)() = 0x0;
 	
 	RCONbits.WDTO=0;	//Reset this if wake by watchdog
@@ -67,7 +67,7 @@ int main (void)
 	MyNodeNumber=MASTER_NODE_ADDRESS;
 	EERecover();		//Recover eeprom
 
-	 InitSystemVariables();
+	InitSystemVariables();
 	ADPCFG =0xFFFF;
 
 	CLEAR_WATCHDOG;
@@ -87,12 +87,13 @@ int main (void)
 	ResetAllSlaves();
 	CANTransmitCheck();	
 
-	SystemMode = SYSTEM_BOOT;
-	BOOT_TIMER = 0;
+//	SystemMode = SYSTEM_BOOT;
+//	BOOT_TIMER = 0;
 
-//	SystemMode = GAME_ACTIVE;
-//	GameState = INIT;
-	
+	SystemMode = GAME_ACTIVE;
+	GameState = INIT;
+	GameSelected = GAME_ROOT_GAME0;	
+
 	while (1)
 	{	
 		CLEAR_WATCHDOG;

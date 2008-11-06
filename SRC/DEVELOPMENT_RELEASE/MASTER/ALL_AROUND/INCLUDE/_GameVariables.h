@@ -18,6 +18,10 @@
 #define VOLUMESNORE	128
 
 
+#define GLOBAL_VOLUME_INDEX_MAX 10
+#define GLOBAL_VOLUME_INDEX_MIN 0
+
+
 #define INIT		0x0
 #define BOOT		0xF0
 #define BOOT_WAIT	0xF1

@@ -168,14 +168,16 @@
 #define DDEND_WAV_LENGTH                                              100
 #define FF_BACKGROUND_WAV                                             110
 #define FF_BACKGROUND_WAV_LENGTH                                      4896
-#define FF_FIREON_WAV                                                 111
-#define FF_FIREON_WAV_LENGTH                                          173
-#define FF_WATERHIT_WAV                                               112
-#define FF_WATERHIT_WAV_LENGTH                                        95
-#define FF_WATERMISS_WAV                                              113
-#define FF_WATERMISS_WAV_LENGTH                                       12
-#define FF_END_WAV                                                    114
+#define FF_END_WAV                                                    111
 #define FF_END_WAV_LENGTH                                             99
+#define FIREFIGHTER_FIREAPPEAR_WAV                                    112
+#define FIREFIGHTER_FIREAPPEAR_WAV_LENGTH                             96
+#define FIREFIGHTER_FIREOUT_WAV                                       113
+#define FIREFIGHTER_FIREOUT_WAV_LENGTH                                42
+#define FIREFIGHTER_HIT_WAV                                           114
+#define FIREFIGHTER_HIT_WAV_LENGTH                                    25
+#define FIREFIGHTER_MISS_WAV                                          115
+#define FIREFIGHTER_MISS_WAV_LENGTH                                   8
 #define BUILDUP_A_WAV                                                 128
 #define BUILDUP_A_WAV_LENGTH                                          1000
 #define BUILDUP_B_WAV                                                 129
@@ -232,6 +234,24 @@
 #define GTR4C_WAV_LENGTH                                              355
 #define ROCKBACKGROUND_WAV                                            174
 #define ROCKBACKGROUND_WAV_LENGTH                                     4613
+#define SOUTHERNROCK_HARP1_WAV                                        180
+#define SOUTHERNROCK_HARP1_WAV_LENGTH                                 200
+#define SOUTHERNROCK_HARP2_WAV                                        181
+#define SOUTHERNROCK_HARP2_WAV_LENGTH                                 200
+#define SOUTHERNROCK_ORGAN1_WAV                                       182
+#define SOUTHERNROCK_ORGAN1_WAV_LENGTH                                200
+#define SOUTHERNROCK_ORGAN2_WAV                                       183
+#define SOUTHERNROCK_ORGAN2_WAV_LENGTH                                200
+#define SOUTHERNROCK_PIANO1_WAV                                       184
+#define SOUTHERNROCK_PIANO1_WAV_LENGTH                                200
+#define SOUTHERNROCK_PIANO2_WAV                                       185
+#define SOUTHERNROCK_PIANO2_WAV_LENGTH                                200
+#define SOUTHERNROCK_GUITAR1_WAV                                      186
+#define SOUTHERNROCK_GUITAR1_WAV_LENGTH                               200
+#define SOUTHERNROCK_GUITAR2_WAV                                      187
+#define SOUTHERNROCK_GUITAR2_WAV_LENGTH                               200
+#define SOUTHERNROCK_BACKGROUND_WAV                                   188
+#define SOUTHERNROCK_BACKGROUND_WAV_LENGTH                            800
 
 
 #endif

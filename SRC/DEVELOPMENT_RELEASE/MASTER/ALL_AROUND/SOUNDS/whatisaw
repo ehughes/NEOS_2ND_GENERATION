@@ -218,81 +218,107 @@ Line [132] is blank
 Line [133] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
 Line [133] has a sound sounds\FireFighter\FF_Background.wav at sound number 110
 Line [134] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
-Line [134] has a sound sounds\FireFighter\FF_FireOn.wav at sound number 111
-Line [135] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
-Line [135] has a sound sounds\FireFighter\FF_WaterHit.wav at sound number 112
+Line [134] has a sound sounds\FireFighter\FF_End.wav at sound number 111
+Line [135] is blank
 Line [136] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
-Line [136] has a sound sounds\FireFighter\FF_WaterMiss.wav at sound number 113
+Line [136] has a sound sounds\FireFighter\FireFighter_FireAppear.wav at sound number 112
 Line [137] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
-Line [137] has a sound sounds\FireFighter\FF_End.wav at sound number 114
-Line [138] is blank
-Line [139] is blank
-Line [140] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [140] has a sound sounds\SurroundSound\Rock\Bass1A.wav at sound number 150
-Line [141] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [141] has a sound sounds\SurroundSound\Rock\Bass1B.wav at sound number 151
-Line [142] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [142] has a sound sounds\SurroundSound\Rock\Bass1C.wav at sound number 152
+Line [137] has a sound sounds\FireFighter\FireFighter_FireOut.wav at sound number 113
+Line [138] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
+Line [138] has a sound sounds\FireFighter\FireFighter_Hit.wav at sound number 114
+Line [139] has a macro replace of FIRE_FIGHTER_PATH to sounds\FireFighter
+Line [139] has a sound sounds\FireFighter\FireFighter_Miss.wav at sound number 115
+Line [140] is blank
+Line [141] is blank
+Line [142] is blank
 Line [143] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [143] has a sound sounds\SurroundSound\Rock\Bass2A.wav at sound number 153
+Line [143] has a sound sounds\SurroundSound\Rock\Bass1A.wav at sound number 150
 Line [144] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [144] has a sound sounds\SurroundSound\Rock\Bass2B.wav at sound number 154
+Line [144] has a sound sounds\SurroundSound\Rock\Bass1B.wav at sound number 151
 Line [145] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [145] has a sound sounds\SurroundSound\Rock\Bass2C.wav at sound number 155
+Line [145] has a sound sounds\SurroundSound\Rock\Bass1C.wav at sound number 152
 Line [146] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [146] has a sound sounds\SurroundSound\Rock\Drums1A.wav at sound number 156
+Line [146] has a sound sounds\SurroundSound\Rock\Bass2A.wav at sound number 153
 Line [147] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [147] has a sound sounds\SurroundSound\Rock\Drums1B.wav at sound number 157
+Line [147] has a sound sounds\SurroundSound\Rock\Bass2B.wav at sound number 154
 Line [148] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [148] has a sound sounds\SurroundSound\Rock\Drums1C.wav at sound number 158
+Line [148] has a sound sounds\SurroundSound\Rock\Bass2C.wav at sound number 155
 Line [149] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [149] has a sound sounds\SurroundSound\Rock\Drums2A.wav at sound number 159
+Line [149] has a sound sounds\SurroundSound\Rock\Drums1A.wav at sound number 156
 Line [150] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [150] has a sound sounds\SurroundSound\Rock\Drums2B.wav at sound number 160
+Line [150] has a sound sounds\SurroundSound\Rock\Drums1B.wav at sound number 157
 Line [151] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [151] has a sound sounds\SurroundSound\Rock\Drums2C.wav at sound number 161
+Line [151] has a sound sounds\SurroundSound\Rock\Drums1C.wav at sound number 158
 Line [152] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [152] has a sound sounds\SurroundSound\Rock\Gtr1A.wav at sound number 162
+Line [152] has a sound sounds\SurroundSound\Rock\Drums2A.wav at sound number 159
 Line [153] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [153] has a sound sounds\SurroundSound\Rock\Gtr1B.wav at sound number 163
+Line [153] has a sound sounds\SurroundSound\Rock\Drums2B.wav at sound number 160
 Line [154] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [154] has a sound sounds\SurroundSound\Rock\Gtr1C.wav at sound number 164
+Line [154] has a sound sounds\SurroundSound\Rock\Drums2C.wav at sound number 161
 Line [155] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [155] has a sound sounds\SurroundSound\Rock\Gtr2A.wav at sound number 165
+Line [155] has a sound sounds\SurroundSound\Rock\Gtr1A.wav at sound number 162
 Line [156] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [156] has a sound sounds\SurroundSound\Rock\Gtr2B.wav at sound number 166
+Line [156] has a sound sounds\SurroundSound\Rock\Gtr1B.wav at sound number 163
 Line [157] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [157] has a sound sounds\SurroundSound\Rock\Gtr2C.wav at sound number 167
+Line [157] has a sound sounds\SurroundSound\Rock\Gtr1C.wav at sound number 164
 Line [158] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [158] has a sound sounds\SurroundSound\Rock\Gtr3A.wav at sound number 168
+Line [158] has a sound sounds\SurroundSound\Rock\Gtr2A.wav at sound number 165
 Line [159] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [159] has a sound sounds\SurroundSound\Rock\Gtr3B.wav at sound number 169
+Line [159] has a sound sounds\SurroundSound\Rock\Gtr2B.wav at sound number 166
 Line [160] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [160] has a sound sounds\SurroundSound\Rock\Gtr3C.wav at sound number 170
+Line [160] has a sound sounds\SurroundSound\Rock\Gtr2C.wav at sound number 167
 Line [161] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [161] has a sound sounds\SurroundSound\Rock\Gtr4A.wav at sound number 171
+Line [161] has a sound sounds\SurroundSound\Rock\Gtr3A.wav at sound number 168
 Line [162] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [162] has a sound sounds\SurroundSound\Rock\Gtr4B.wav at sound number 172
+Line [162] has a sound sounds\SurroundSound\Rock\Gtr3B.wav at sound number 169
 Line [163] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [163] has a sound sounds\SurroundSound\Rock\Gtr4C.wav at sound number 173
+Line [163] has a sound sounds\SurroundSound\Rock\Gtr3C.wav at sound number 170
 Line [164] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
-Line [164] has a sound sounds\SurroundSound\Rock\RockBackground.wav at sound number 174
-Line [165] is blank
-Line [166] is blank
-Line [167] is blank
+Line [164] has a sound sounds\SurroundSound\Rock\Gtr4A.wav at sound number 171
+Line [165] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [165] has a sound sounds\SurroundSound\Rock\Gtr4B.wav at sound number 172
+Line [166] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [166] has a sound sounds\SurroundSound\Rock\Gtr4C.wav at sound number 173
+Line [167] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [167] has a sound sounds\SurroundSound\Rock\RockBackground.wav at sound number 174
 Line [168] is blank
 Line [169] is blank
 Line [170] is blank
-Line [171] is blank
-Line [172] is blank
-Line [173] is blank
-Line [174] is blank
-Line [175] is blank
-Line [176] is blank
-Line [177] is blank
-Line [178] is blank
+Line [171] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [171] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_HARP1.wav at sound number 180
+Line [172] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [172] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_HARP2.wav at sound number 181
+Line [173] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [173] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_ORGAN1.wav at sound number 182
+Line [174] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [174] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_ORGAN2.wav at sound number 183
+Line [175] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [175] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_PIANO1.wav at sound number 184
+Line [176] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [176] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_PIANO2.wav at sound number 185
+Line [177] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [177] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_GUITAR1.wav at sound number 186
+Line [178] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [178] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_GUITAR2.wav at sound number 187
 Line [179] is blank
 Line [180] is blank
-Line [181] is blank
+Line [181] has a macro replace of SURROUND_SOUND_PATH to sounds\SurroundSound
+Line [181] has a sound sounds\SurroundSound\SouthernRock\SouthernRock_Background.wav at sound number 188
 Line [182] is blank
 Line [183] is blank
+Line [184] is blank
+Line [185] is blank
+Line [186] is blank
+Line [187] is blank
+Line [188] is blank
+Line [189] is blank
+Line [190] is blank
+Line [191] is blank
+Line [192] is blank
+Line [193] is blank
+Line [194] is blank
+Line [195] is blank
+Line [196] is blank
+Line [197] is blank
+Line [198] is blank
+Line [199] is blank

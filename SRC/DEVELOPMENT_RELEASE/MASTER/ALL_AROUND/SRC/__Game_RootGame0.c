@@ -19,15 +19,22 @@
 //*************************************************
 //******** GAME STATE MACROS*** *******************
 //*************************************************
-#define WAIT1 0x01
-#define MAIN_SELECTOR 0x02
+#define WAIT1 				  0x01
+#define MAIN_SELECTOR 		  0x02
 #define SELECT_TO_START_DELAY 0x03
-#define COUNT_DOWN_TO_GAME 0x04
-#define RESYNC_DELAY	0x10
+#define COUNT_DOWN_TO_GAME    0x04
+#define RESYNC_DELAY		  0x05
+#define VOLUME_CHANGE_INIT	  0x06
+#define VOLUME_CHANGE		  0x07
+
 
 
 #define SELECTOR_STATE_SPIN					1
 #define SELECTOR_STATE_PLAYER_SELECT_FLASH 	2
+#define EASTER_EGG_DISPLAY_1			 	3
+#define EASTER_EGG_DISPLAY_2			 	4
+#define EASTER_EGG_DISPLAY_3			 	5
+
 
 #define MUSIC_IDLE					0
 #define MUSIC_MAIN_THEME			1
@@ -50,15 +57,16 @@
 //******** System Timer MACROS*********************
 //*************************************************
 
-#define MAIN_GAME_TIMER				GPTimer[0]
-#define COUNT_TIMER					GPTimer[1]
-#define SELECT_TO_START_TIMER		GPTimer[2]
-#define GAME_BUTTON_ANIMATION_TIMER	GPTimer[3]
-#define SCORE_DISPLAY_ANIMATION_TIMER GPTimer[4]
-#define START_BUTTON_ANIMATION_TIMER GPTimer[5]
-#define SELECTOR_SPIN_ANIMATION_TIMER GPTimer[6]
-#define MUSIC_TIMER					 GPTimer[7]
-
+#define MAIN_GAME_TIMER					 GPTimer[0]
+#define COUNT_TIMER					 	 GPTimer[1]
+#define SELECT_TO_START_TIMER		  	 GPTimer[2]
+#define GAME_BUTTON_ANIMATION_TIMER		 GPTimer[3]
+#define SCORE_DISPLAY_ANIMATION_TIMER	 GPTimer[4]
+#define START_BUTTON_ANIMATION_TIMER	 GPTimer[5]
+#define SELECTOR_SPIN_ANIMATION_TIMER	 GPTimer[6]
+#define MUSIC_TIMER						 GPTimer[7]
+#define VC_ENTRY_TIMER					 GPTimer[8]
+#define EASTER_EGG_TIMER				 GPTimer[9]
 
 //*************************************************
 //*******Game Parameters***************************
@@ -70,6 +78,8 @@
 #define START_BUTTON_ANIMATION_TIME	 8
 
 #define HEARTBEAT_TIME		HEARTBEAT_WAV_LENGTH * 30
+
+#define VC_ENTRY_TIME	100
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -96,6 +106,14 @@
 BYTE OnePlayerStartButton = ONE_PLAYER_START_BUTTON;
 BYTE TwoPlayerStartButton = TWO_PLAYER_START_BUTTON;
 
+
+
+BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON, LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON};
+	
+
+
+BYTE VolumeChangeEntrySequencePosition = 0;
+
 BYTE GameButtonSpin = 0;
 BYTE SpinSeg1 = 0;
 BYTE SpinSeg2 = 2;
@@ -109,9 +127,13 @@ WORD CountDownLength;
 BYTE Count;
 BYTE SelectorSpin = 0;
 BYTE SelectState;
-
-
+BYTE QueuedSelectState;
 BYTE MusicState;
+
+static BYTE ButtonHistory[4];
+static BYTE BHPointer;
+static BYTE EERepeats;
+
 
 #define TOP			0x01
 #define UPPER_RIGHT 0x02
@@ -148,8 +170,14 @@ void MusicWake();
 void StartHeartBeat();
 
 void SelectorPlayButtonFeebackSound();
+BOOL CheckVolumeChangeEntrySequence(BYTE Button);
+void MoveToVolumeChange();
+void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats);
+void ClearButtonHistory();
+void EasterEggHunt();
 
-
+WORD EasterEggDisplayTimeout;
+BYTE GetStream(BYTE button);
 //*************************************************
 //*******Game Functions****************************
 //*************************************************
@@ -162,34 +190,38 @@ void Root_Game0 (void)
 		
 		
 		case INIT:
+			ResetAudioAndLEDS();
 			RED_LED_OFF;
 			GREEN_LED_ON;
-		
 			GameState = WAIT1;
-			ScoreManagerEnabled = FALSE;
-			SpinSeg1 = 0;
-			SpinSeg2 = 2;
-			Color1 =0;
-			Color2 =0;
-			PlayerSelectFlashTick=0;
-			PlayerSelectFlash=0;
-			PendingGameSelection = 1;
-			PendingPlayerSelection = 1;
-			GAME_BUTTON_ANIMATION_TIMER = 0;
 			MAIN_GAME_TIMER = 0;
-			SCORE_DISPLAY_ANIMATION_TIMER=0;
-			SELECTOR_SPIN_ANIMATION_TIMER=0;
-			START_BUTTON_ANIMATION_TIMER=0;
-			SelectState = SELECTOR_STATE_SPIN;
-			ResetAudioAndLEDS();
-			StartHeartBeat();
 			
 			
 		break;
 		
 		case WAIT1:
-			if(MAIN_GAME_TIMER>100)
+			if(MAIN_GAME_TIMER>20)
 			{
+				VolumeChangeEntrySequencePosition = 0;
+				GameState = WAIT1;
+				ScoreManagerEnabled = FALSE;
+				SpinSeg1 = 0;
+				SpinSeg2 = 2;
+				Color1 =0;
+				Color2 =0;
+				PlayerSelectFlashTick=0;
+				PlayerSelectFlash=0;
+				PendingGameSelection = 1;
+				PendingPlayerSelection = 1;
+				GAME_BUTTON_ANIMATION_TIMER = 0;
+				MAIN_GAME_TIMER = 0;
+				SCORE_DISPLAY_ANIMATION_TIMER=0;
+				SELECTOR_SPIN_ANIMATION_TIMER=0;
+				START_BUTTON_ANIMATION_TIMER=0;
+				SelectState = SELECTOR_STATE_SPIN;
+				ClearButtonHistory();
+				StartHeartBeat();	
+				
 			   MAIN_GAME_TIMER = 0;
 			   GameState = MAIN_SELECTOR;	
 			}
@@ -224,18 +256,121 @@ void Root_Game0 (void)
 			
 		}
 		
+	
+		
 			switch (SelectState)
 			{
 				case SELECTOR_STATE_SPIN:	
+					EasterEggHunt();
 					AnimateGameButtons();
 					AnimateScoreDisplay();
 					SelectorButtonSpin();
 				break;
 				
 				case SELECTOR_STATE_PLAYER_SELECT_FLASH:
+					EasterEggHunt();
 					AnimateGameButtons();
 					AnimateScoreDisplay();
 					AnimateStartButtons();
+				break;
+				
+				case EASTER_EGG_DISPLAY_1:
+				
+					AnimateScoreDisplay();
+					AnimateStartButtons();
+				
+					if(EASTER_EGG_TIMER > (EasterEggDisplayTimeout))
+					{
+						EASTER_EGG_TIMER = 0;
+						if(EasterEggDisplayTimeout >=10)
+						{
+						EasterEggDisplayTimeout *= 0xC7;
+						EasterEggDisplayTimeout=EasterEggDisplayTimeout>>8;
+						}
+						if((EasterEggDisplayTimeout < 10) && (EERepeats >20))
+						{
+							SelectState = QueuedSelectState;	
+							EASTER_EGG_TIMER = 0;
+							PlayInternalNodeSound(0,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(0),AudioGlobalVolume,1);
+							PlayInternalNodeSound(2,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(2),AudioGlobalVolume,1);
+							PlayInternalNodeSound(4,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(4),AudioGlobalVolume,1);
+							PlayInternalNodeSound(6,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(6),AudioGlobalVolume,1);
+							LEDSendMessage(ENABLE_ALL,YELLOW,LEDOFF,50,50);
+							ClearButtonHistory();
+							
+						}
+						else
+						{
+							EERepeats++;
+							BYTE button = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
+							PlayInternalNodeSound(button,INTERNAL_SOUND_FF_WATER_HIT,AudioGlobalVolume,1,GetStream(button),AudioGlobalVolume,1);
+							LEDSendMessage(button,rand()&0x3f,rand()&0x3f,0,LEDOFF,(EasterEggDisplayTimeout),(EasterEggDisplayTimeout));
+						}		
+						
+					}	
+					
+				
+				break;
+				
+				case EASTER_EGG_DISPLAY_2:
+				
+					AnimateScoreDisplay();
+					AnimateStartButtons();
+					
+					if(EASTER_EGG_TIMER > EasterEggDisplayTimeout)
+					{
+						EASTER_EGG_TIMER = 0;
+						
+						
+							if(EasterEggDisplayTimeout<= 25)
+							{
+								BYTE button = RandomButton(NO_EXCLUDE, NO_EXCLUDE, NO_EXCLUDE);
+								EasterEggDisplayTimeout++;
+								PlayInternalNodeSound(button,INTERNAL_SOUND_FF_WATER_HIT,AudioGlobalVolume,1,GetStream(button),AudioGlobalVolume,1);
+								LEDSendMessage(button,rand()&0x3f,rand()&0x3f,0,LEDOFF,(EasterEggDisplayTimeout),(EasterEggDisplayTimeout));
+							}
+							else
+							{
+								SelectState = QueuedSelectState;	
+								EASTER_EGG_TIMER = 0;
+								PlayInternalNodeSound(0,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(0),AudioGlobalVolume,1);
+								PlayInternalNodeSound(2,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(2),AudioGlobalVolume,1);
+								PlayInternalNodeSound(4,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(4),AudioGlobalVolume,1);
+								PlayInternalNodeSound(6,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(6),AudioGlobalVolume,1);
+								LEDSendMessage(ENABLE_ALL,YELLOW,LEDOFF,50,50);
+								ClearButtonHistory();
+							}	
+					}
+				
+				break;
+				
+				case EASTER_EGG_DISPLAY_3:
+				
+					AnimateScoreDisplay();
+					AnimateStartButtons();
+					
+					if(EASTER_EGG_TIMER > EasterEggDisplayTimeout)
+					{
+						EASTER_EGG_TIMER = 0;
+						
+						PlayInternalNodeSound(BHPointer,INTERNAL_SOUND_FF_WATER_MISS,AudioGlobalVolume,1,GetStream(BHPointer),AudioGlobalVolume,1);
+						LEDSendMessage(BHPointer,rand()&0x3f,rand()&0x3f,0,LEDOFF,(EasterEggDisplayTimeout*4),(EasterEggDisplayTimeout*4));
+						BHPointer++;
+						BHPointer&=0x7;
+						EERepeats++;
+						
+						if(EERepeats == 9)
+						{
+							SelectState = QueuedSelectState;	
+							EASTER_EGG_TIMER = 0;
+							PlayInternalNodeSound(0,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(0),AudioGlobalVolume,1);
+							PlayInternalNodeSound(2,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(2),AudioGlobalVolume,1);
+							PlayInternalNodeSound(4,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(4),AudioGlobalVolume,1);
+							PlayInternalNodeSound(6,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(6),AudioGlobalVolume,1);
+							LEDSendMessage(ENABLE_ALL,YELLOW,LEDOFF,50,50);
+							ClearButtonHistory();
+						}	
+					}
 				
 				break;
 				
@@ -375,7 +510,38 @@ void Root_Game0 (void)
 		break;
 	
 		
+		case VOLUME_CHANGE_INIT:
 		
+		if(MAIN_GAME_TIMER > 25)
+		{
+			Game0PlayButtonFeebackSound(0xFF,1);
+			LEDSendVariable(DISPLAY_VOL, AudioGlobalVolumeIndex);
+			GameState = VOLUME_CHANGE;
+			MAIN_GAME_TIMER = 0xFFFF;
+			SelectState = 0;
+		}
+		
+		break;	
+		
+		
+		case VOLUME_CHANGE:
+			if(MAIN_GAME_TIMER > 50)
+			{
+				MAIN_GAME_TIMER= 0;
+				if(SelectState)
+				{
+					ScoreSendLights(248, (1<<LIGHT_GRABBER_BUTTON),0x0);
+					SelectState = 0;
+					
+				}
+				else
+				{
+					ScoreSendLights(248, (1<<MARATHON_BUTTON),0x0);
+					SelectState = 1;
+					
+				}
+			}
+		break;
 	
 		
 		default:
@@ -460,10 +626,13 @@ void AnimateGameButtons()
 	
 }	
 
-void OnButtonPressRootGame0(unsigned char button)
+void OnButtonPressRootGame0(BYTE button)
 {
-	PlaySelectorSound();
+	ButtonHistory[BHPointer] = button;
+	BHPointer++;
+	BHPointer &= 0x3;
 	
+	PlaySelectorSound();
 	MusicWake();
 		
 }
@@ -478,11 +647,60 @@ void OnMasterSwitchPressRootGame0(void)
 
 
 
-void OnSelectPressRootGame0(unsigned char button)
+
+
+void OnSelectPressRootGame0(BYTE button)
 {
 	
+
 	
-	switch(SelectState)
+	switch(GameState)
+	{
+		case VOLUME_CHANGE:
+	
+			switch(button)
+			{
+				case LIGHT_GRABBER_BUTTON:
+				
+					if(AudioGlobalVolumeIndex < GLOBAL_VOLUME_INDEX_MAX)
+					{
+						AudioGlobalVolumeIndex++;
+					}
+					
+					LEDSendVariable(DISPLAY_VOL, AudioGlobalVolumeIndex);
+					AudioGlobalVolume = VolumeIndexTable[AudioGlobalVolumeIndex];
+					Game0PlayButtonFeebackSound(AudioGlobalVolume, 1);
+				
+				break;
+				
+				case MARATHON_BUTTON:
+				
+					if(AudioGlobalVolumeIndex > GLOBAL_VOLUME_INDEX_MIN)
+					{
+						AudioGlobalVolumeIndex--;
+					}
+					
+					LEDSendVariable(DISPLAY_VOL, AudioGlobalVolumeIndex);
+					AudioGlobalVolume = VolumeIndexTable[AudioGlobalVolumeIndex];
+					Game0PlayButtonFeebackSound(AudioGlobalVolume, 1);
+				
+				break;
+				
+				default:
+				EEStoreVariable(AUDIO_VOLUME_INDEX_LOCATION,  AudioGlobalVolumeIndex);
+				GameState = INIT;
+				break;				
+				
+				
+			}
+
+		break;
+		
+		case MAIN_SELECTOR:
+		
+		if(CheckVolumeChangeEntrySequence(button) == TRUE) { MoveToVolumeChange(); return; }
+				
+		switch(SelectState)
 		{
 		
 				case SELECTOR_STATE_SPIN:
@@ -549,7 +767,17 @@ void OnSelectPressRootGame0(unsigned char button)
 				default:
 				
 				break;
+		}
+		
+		
+		
+		break;
+		
+		
+		
 	}
+	
+	
 
 
 }	
@@ -572,10 +800,10 @@ switch(MusicState)
 
 void PlaySelectorSound()
 {
-	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,0xFF,1,0,0xFF,1);
-	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,0xFF,1,1,0xFF,1);
-	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,0xFF,1,2,0xFF,1);
-	PlayInternalNodeSound(6,INTERNAL_SOUND_SELECTION,0xFF,1,3,0xFF,1);
+	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,0xFF,1,0,AudioGlobalVolume,1);
+	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,0xFF,1,1,AudioGlobalVolume,1);
+	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,0xFF,1,2,AudioGlobalVolume,1);
+	PlayInternalNodeSound(6,INTERNAL_SOUND_SELECTION,0xFF,1,3,AudioGlobalVolume,1);
 	
 	SELECT_TO_START_TIMER = 0;
 }
@@ -606,72 +834,72 @@ void UpdateGameSettings()
 	{
 		case GAME_LIGHT_GRABBER:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume =			((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
 			
 		break;
 		
 		case GAME_DOUBLE_DOTS:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xC0;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 			
 		break;
 		
 		case GAME_SURROUND_SOUND:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xA0;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xA0)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 			
 		break;
 		
 		case GAME_RODEO:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xB0)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 						
 		break;
 		
 		case GAME_MARATHON:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0x75;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0x75)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 			
 		break;
 		
 		case GAME_ZIGZAG:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
-			CurrentGameSettings.GameSoundEffectVolume = 0x80;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0x80)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 					
 		break;
 		
 		case GAME_NINJA:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0x75;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0x75)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 			
 		break;
 		
 		case GAME_FIRE_FIGHTER:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0x80;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0x80)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 					
 		break;
 	
 		default:
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.FinaleMusicVolume =			((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;
 			
 		break;
 	}
@@ -684,30 +912,59 @@ void UpdateGameSettings()
 	
 
 	
+BYTE GetStream(BYTE button)
+{
+	BYTE RetVal;
 	
+	switch(button)
+	{
+		case 0:
+		case 1:
+			RetVal=	MAINTHEME_L_STREAM;
+		break;
+		
+		case 2:
+		case 3:
+			RetVal=MAINTHEME_LS_STREAM;
+		break;
+				
+		case 4:
+		case 5:
+			RetVal=	MAINTHEME_R_STREAM;
+		break;
+		
+		case 6:
+		case 7:
+			RetVal=	MAINTHEME_RS_STREAM;
+		break;
+		
+	}	
+	
+	return RetVal;
+}		
 	
 void StartMainThemeMusic()
 {
 	MusicState = MUSIC_MAIN_THEME;
 	MUSIC_TIMER = 0;
 	
-	AudioNodeEnable(0,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,0xFF,0xFF);
+	AudioNodeEnable(0,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
 	SendNodeNOP();	
-	AudioNodeEnable(1,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,0xFF,0xFF);
-	SendNodeNOP();	
-	
-	AudioNodeEnable(2,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,0xFF,0xFF);
-	SendNodeNOP();	
-	AudioNodeEnable(3,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,0xFF,0xFF);
-	
-	AudioNodeEnable(4,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,0xFF,0xFF);
-	SendNodeNOP();	
-	AudioNodeEnable(5,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,0xFF,0xFF);
+	AudioNodeEnable(1,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
 	SendNodeNOP();	
 	
-	AudioNodeEnable(6,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,0xFF,0xFF);
+	AudioNodeEnable(2,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
 	SendNodeNOP();	
-	AudioNodeEnable(7,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,0xFF,0xFF);
+	AudioNodeEnable(3,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	
+	AudioNodeEnable(4,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	SendNodeNOP();	
+	AudioNodeEnable(5,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	SendNodeNOP();	
+	
+	AudioNodeEnable(6,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	SendNodeNOP();	
+	AudioNodeEnable(7,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
 	SendNodeNOP();	
 	
 
@@ -734,10 +991,166 @@ void StartHeartBeat()
 	AudioReSync(5);
 	AudioReSync(6);
 	AudioReSync(7);
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,1,0xFFFF,0xFF,0xFF);
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
 	SendNodeNOP();	
 	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,HEARTBEAT_WAV);
 
 	
 }
 
+BOOL CheckVolumeChangeEntrySequence(BYTE button)
+{
+	BOOL RetVal = FALSE;
+	
+
+	
+	switch(VolumeChangeEntrySequencePosition)
+	{
+		
+		case 0:
+			if(button == VolumeChangeEntrySequence[VolumeChangeEntrySequencePosition])
+			{
+				VolumeChangeEntrySequencePosition++;
+				VC_ENTRY_TIMER = 0;
+				RetVal = FALSE;
+			}
+		break;
+		
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		
+			if((button == VolumeChangeEntrySequence[VolumeChangeEntrySequencePosition])  && (VC_ENTRY_TIMER<VC_ENTRY_TIME))
+			{
+				VolumeChangeEntrySequencePosition++;
+				
+					if(VolumeChangeEntrySequencePosition == 5)
+					{
+						RetVal = TRUE;	
+					}
+					else
+					{
+						VC_ENTRY_TIMER = 0;
+						RetVal = FALSE;
+					}
+			}
+			else
+			{
+				VolumeChangeEntrySequencePosition = 0;
+				VC_ENTRY_TIMER = 0;
+				RetVal = FALSE;	
+			}
+		break;
+		
+		default:
+			VolumeChangeEntrySequencePosition = 0;	
+			VC_ENTRY_TIMER = 0;
+			RetVal = FALSE;
+		break;	
+		
+		
+	}
+	
+	return RetVal;
+	
+}		
+	
+	
+void MoveToVolumeChange()
+{
+	ResetAudioAndLEDS();
+	GameState = VOLUME_CHANGE_INIT;
+	MAIN_GAME_TIMER = 0;
+	
+}	
+	
+void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats)
+{
+
+  PlayInternalNodeSound(0xFF,INTERNAL_SOUND_POSITIVE_FEEDBACK,Volume,Repeats,0,0,0);
+
+}	
+
+
+void EasterEggHunt()
+{
+	BYTE Temp[4];
+	
+	if(EASTER_EGG_TIMER > 20)
+	{	
+			//Look for all the Bottom Row
+		
+		EASTER_EGG_TIMER = 0;
+			
+		Temp[0] = ButtonHistory[BHPointer];
+		Temp[1] = ButtonHistory[(BHPointer+1)&0x03];
+		Temp[2] = ButtonHistory[(BHPointer+2)&0x03];
+		Temp[3] = ButtonHistory[(BHPointer+3)&0x03];
+			
+		
+		if( (!(Temp[3]&0x01)) && (((Temp[3]-Temp[2])&0x03)==2)
+							 && (((Temp[2]-Temp[1])&0x03)==2)
+						   	 && (((Temp[1]-Temp[0])&0x03)==2))
+		{
+		
+			 
+			 QueuedSelectState = SelectState;
+			 SelectState = EASTER_EGG_DISPLAY_1;
+			 EASTER_EGG_TIMER = 0xFFFF;
+			 EasterEggDisplayTimeout = 60;
+			 EERepeats=0;
+		}					   	 
+		
+		if( ((Temp[3]&0x01)) && (((Temp[3]-Temp[2])&0x03)==2)
+							 && (((Temp[2]-Temp[1])&0x03)==2)
+						   	 && (((Temp[1]-Temp[0])&0x03)==2))
+		{
+		 
+			 QueuedSelectState = SelectState;
+			 SelectState = EASTER_EGG_DISPLAY_2;
+			 EASTER_EGG_TIMER = 0xFFFF;
+			 EasterEggDisplayTimeout = 5;
+			  EERepeats=0;
+		}					   	 
+			
+		if( 	(((Temp[3]-Temp[2])&0x03)==1)
+			 && (((Temp[2]-Temp[1])&0x03)==1)
+			 && (((Temp[1]-Temp[0])&0x03)==1))
+		{
+			 QueuedSelectState = SelectState;
+			 SelectState = EASTER_EGG_DISPLAY_3;
+			 EASTER_EGG_TIMER = 0xFFFF;
+			 EasterEggDisplayTimeout = 5;
+			 EERepeats=0;
+			 BHPointer = Temp[3];
+		}	
+		
+		if( 	(((Temp[3]-Temp[2])&0x03)==0x03)
+			 && (((Temp[2]-Temp[1])&0x03)==0x03)
+			 && (((Temp[1]-Temp[0])&0x03)==0x03))
+		{
+			 QueuedSelectState = SelectState;
+			 SelectState = EASTER_EGG_DISPLAY_3;
+			 EASTER_EGG_TIMER = 0xFFFF;
+			 EasterEggDisplayTimeout = 5;
+			 EERepeats=0;
+			 BHPointer = Temp[3];
+			 
+		}	
+	}
+	
+}
+
+
+void ClearButtonHistory()
+{
+	BYTE i;
+	BHPointer = 0;
+	
+	for(i=0;i<4;i++)
+	{
+		ButtonHistory[i] = 0x81;
+	}	
+
+}	

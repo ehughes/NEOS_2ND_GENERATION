@@ -131,10 +131,13 @@ sound [104] = DOUBLE_DOTS_PATH\DDEnd.wav;
 
 
 sound [110] = FIRE_FIGHTER_PATH\FF_Background.wav;
-sound [111] = FIRE_FIGHTER_PATH\FF_FireOn.wav;
-sound [112] = FIRE_FIGHTER_PATH\FF_WaterHit.wav;
-sound [113] = FIRE_FIGHTER_PATH\FF_WaterMiss.wav;
-sound [114] = FIRE_FIGHTER_PATH\FF_End.wav;
+sound [111] = FIRE_FIGHTER_PATH\FF_End.wav;
+
+sound [112] = FIRE_FIGHTER_PATH\FireFighter_FireAppear.wav;
+sound [113] = FIRE_FIGHTER_PATH\FireFighter_FireOut.wav;
+sound [114] = FIRE_FIGHTER_PATH\FireFighter_Hit.wav;
+sound [115] = FIRE_FIGHTER_PATH\FireFighter_Miss.wav;
+
 
 
 sound[150]=SURROUND_SOUND_PATH\Rock\Bass1A.wav;  
@@ -163,6 +166,19 @@ sound[172]=SURROUND_SOUND_PATH\Rock\Gtr4B.wav;
 sound[173]=SURROUND_SOUND_PATH\Rock\Gtr4C.wav;
 sound[174]=SURROUND_SOUND_PATH\Rock\RockBackground.wav;
 
+
+
+sound[180]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_HARP1.wav;
+sound[181]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_HARP2.wav;
+sound[182]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_ORGAN1.wav;
+sound[183]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_ORGAN2.wav;
+sound[184]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_PIANO1.wav;
+sound[185]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_PIANO2.wav;
+sound[186]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_GUITAR1.wav;
+sound[187]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_GUITAR2.wav;
+
+
+sound[188]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_Background.wav;
 
 
 
