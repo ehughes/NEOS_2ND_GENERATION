@@ -39,8 +39,6 @@
 #define ACK_CMD							0x80
 
 
-
-
 #define GP_BUFFER_WRITE_LOWER_CAN_ID_BOUND	0x200 //inclusive test =>
 #define GP_BUFFER_WRITE_UPPPER_CAN_ID_BOUND 0x23F //Inclusive Test =>
 
@@ -53,7 +51,6 @@
 #define WRITE_PAGE_FROM_GENERAL_PURPOSE_BUFFER	0x00
 #define READ_PAGE_INTO_GENERAL_PURPOSE_BUFFER	0x01
 #define ERASE_SECTOR							0x02
-
 
 #define NODE_OPERATIONS	0x2F2
 	

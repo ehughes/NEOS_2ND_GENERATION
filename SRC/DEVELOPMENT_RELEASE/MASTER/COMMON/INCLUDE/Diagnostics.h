@@ -25,8 +25,8 @@ void ResetNodeInfo();
 
 void EnterAddressingMode();
 
-void OnSelectPressDiagnosticsMode(unsigned int sel);
-void OnButtonPressDiagnosticsMode(unsigned char button);
+void OnSelectPressDiagnosticsMode(WORD sel);
+void OnButtonPressDiagnosticsMode(BYTE button);
 
 extern DWORD PacketsRecieved;
 extern DWORD PacketsSent;

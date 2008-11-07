@@ -11,7 +11,7 @@ void ProcessIncomingUSBMessages();
 
 
 
-extern unsigned char PacketDetect(unsigned char DataIn);
+extern BYTE PacketDetect(BYTE DataIn);
 
 void InitPacketDetect();
 

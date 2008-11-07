@@ -1,11 +1,12 @@
 #ifndef DATATYPES_H_
 #define DATATYPES_H_
 
+#define CHAR char
 #define BYTE unsigned char
 #define WORD unsigned short
 #define DWORD unsigned long
 
-#define SIGNED_BYTE signed char
+#define SIGNED_BYTE char
 #define SIGNED_WORD signed short
 #define SIGNED_DWORD signed long
 

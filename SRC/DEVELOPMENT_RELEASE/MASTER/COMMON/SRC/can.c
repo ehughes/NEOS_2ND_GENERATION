@@ -12,24 +12,21 @@
 #include "_GameVariables.h"
 #include "ADCRoutines.h"
 
-CANMsg TempCANMsg;
-CANMsg IncomingCANMsg;
-CANMsg RxIRQCANMsg;
-CANMsg TxIRQCANMsg;
-
-volatile CANMessageQueue CANRxQueue,CANTxQueue;
-
 #define CAN_REJECTION_RANGE_LOW 	0x100
 #define CAN_REJECTION_RANGE_HIGH	0x1FF
-
-
 #define CAN_TX_QUEUE_SIZE	148
 #define CAN_RX_QUEUE_SIZE	128
 
 CANMsg InternalTxMessageQueueStorage[CAN_TX_QUEUE_SIZE];
 CANMsg InternalRxMessageQueueStorage[CAN_RX_QUEUE_SIZE];
+volatile CANMessageQueue CANRxQueue,CANTxQueue;
 
-WORD SupplyVoltageTemp;
+static CANMsg TempCANMsg;
+static CANMsg IncomingCANMsg;
+static CANMsg RxIRQCANMsg;
+static CANMsg TxIRQCANMsg;
+
+static WORD SupplyVoltageTemp;
 
 void CANQueueInit()
 {
@@ -122,14 +119,14 @@ void CANMesssageDequeue(CANMessageQueue *MessageQueue,CANMsg * Msg)
 
 void __attribute__((__interrupt__,,__auto_psv__)) _C1Interrupt(void)
 {
-	_C1IF=0;    /* Clear interrupt flag to acknowledge */    
+	_C1IF=0;    /* Clear Interrupt flag to acknowledge */    
 	//Check both Recieve Buffers
 	WORD TempSID;
 	
 	if (C1INTFbits.RX0IF==1)
 	{
 		TempSID = C1RX0SID>>2;
-		//only non audio streaming messages get into the queue
+		
 		if(!((TempSID>=CAN_REJECTION_RANGE_LOW) && (TempSID<=CAN_REJECTION_RANGE_HIGH)))
 		{
 						
@@ -173,8 +170,8 @@ void __attribute__((__interrupt__,,__auto_psv__)) _C1Interrupt(void)
 	if (C1INTFbits.ERRIF==1)
 	{
 		CAN1AbortAll();
-		C1INTFbits.RX0OVR=0; //RX1OVR must be cleared too in order to clear interrupt
-		C1INTFbits.RX1OVR=0; //RX1OVR must be cleared too in order to clear interrupt
+		C1INTFbits.RX0OVR=0; 
+		C1INTFbits.RX1OVR=0; 
 		C1INTFbits.ERRIF=0;	
 	}
 }
@@ -331,81 +328,7 @@ void CANRxProcess(void)
 							}
 						}
 					break;	
-							
-				/*	
-					if((IncomingCANMsg.Data[1] == MASTER_NODE_ADDRESS) || (IncomingCANMsg.Data[1] == 0xFF))
-					{
-						switch(IncomingCANMsg.Data[0])
-						{
-							case NODE_PING:
-							InitCANMsg(&TempCANMsg);
-							TempCANMsg.SID=NODE_OPERATIONS;
-							TempCANMsg.Data[0] = NODE_PONG;
-							TempCANMsg.Data[1] = MASTER_NODE_ADDRESS;
-							TempCANMsg.Data[2] = MyUID;
-							TempCANMsg.Data[3] = MyUID>>8;
-							TempCANMsg.Data[4] = MyUID>>16;
-							TempCANMsg.Data[5] = MyUID>>24;
-							TempCANMsg.Data[6] = 0;
-							TempCANMsg.Data[7] = 0;
-							CANMesssageEnqueue((CANMessageQueue *)&CANTxQueue,&TempCANMsg);
-						
-						                      
-								
-							break;
-								
-							case NODE_STATISCALLY_ACCEPT_UID:
-							
-							if(rand()<0x8000)
-							{
-								MyUID = ((DWORD)(IncomingCANMsg.Data[2])) + 
-										((DWORD)(IncomingCANMsg.Data[3])<<8) +
-										((DWORD)(IncomingCANMsg.Data[4])<<16) +
-										((DWORD)(IncomingCANMsg.Data[5])<<24); 
-								
-							}
-							InitCANMsg(&TempCANMsg);
-							TempCANMsg.SID=NODE_OPERATIONS;
-							TempCANMsg.Data[0] = NODE_PONG;
-							TempCANMsg.Data[1] = MASTER_NODE_ADDRESS;
-							TempCANMsg.Data[2] = MyUID;
-							TempCANMsg.Data[3] = MyUID>>8;
-							TempCANMsg.Data[4] = MyUID>>16;
-							TempCANMsg.Data[5] = MyUID>>24;
-							TempCANMsg.Data[6] = 0;
-							TempCANMsg.Data[7] = 0;
-							CANMesssageEnqueue((CANMessageQueue *)&CANTxQueue,&TempCANMsg);
-						
-							break;
-							
-							case NODE_UNCONDITIONALLY_ACCEPT_UID: 
-						
-								MyUID = ((DWORD)(IncomingCANMsg.Data[2])) + 
-										((DWORD)(IncomingCANMsg.Data[3])<<8) +
-										((DWORD)(IncomingCANMsg.Data[4])<<16) +
-										((DWORD)(IncomingCANMsg.Data[5])<<24); 
-								
-							InitCANMsg(&TempCANMsg);
-							TempCANMsg.SID=NODE_OPERATIONS;
-							TempCANMsg.Data[0] = NODE_PONG;
-							TempCANMsg.Data[1] = MASTER_NODE_ADDRESS;
-							TempCANMsg.Data[2] = MyUID;
-							TempCANMsg.Data[3] = MyUID>>8;
-							TempCANMsg.Data[4] = MyUID>>16;
-							TempCANMsg.Data[5] = MyUID>>24;
-							TempCANMsg.Data[6] = 0;
-							TempCANMsg.Data[7] = 0;
-							CANMesssageEnqueue((CANMessageQueue *)&CANTxQueue,&TempCANMsg);
-						
-							break;
-									
-							default:
-							break;
-						}
-					}
-				*/
 			
-		
 		    	case GENERAL_PURPOSE_BUFFER_OPERATION:
 			
 					if(IncomingCANMsg.Data[0] == MASTER_NODE_ADDRESS)
@@ -428,23 +351,25 @@ void CANRxProcess(void)
 					        	break;
 					        	
 					         	case  SET_BUFFER_ACCEPTANCE_FLAG:
+					    
 					         		GeneralPurposeBufferAcceptanceFlag = TRUE;
 					         		InitCANMsg(&TempCANMsg);
 									TempCANMsg.SID=GENERAL_PURPOSE_BUFFER_OPERATION;
 									TempCANMsg.Data[0] = MASTER_NODE_ADDRESS;
 									TempCANMsg.Data[1] = (ACK_CMD|SET_BUFFER_ACCEPTANCE_FLAG);
 									CANMesssageEnqueue((CANMessageQueue *)&CANTxQueue,&TempCANMsg);
-								
-		
+						
 							 	break;
 					        	
 					        	case  CLEAR_BUFFER_ACCEPTANCE_FLAG:
+					        	
 					        		GeneralPurposeBufferAcceptanceFlag = FALSE;
 					        		InitCANMsg(&TempCANMsg);
 									TempCANMsg.SID=GENERAL_PURPOSE_BUFFER_OPERATION;
 									TempCANMsg.Data[0] = MASTER_NODE_ADDRESS;
 									TempCANMsg.Data[1] = (ACK_CMD|CLEAR_BUFFER_ACCEPTANCE_FLAG);
 									CANMesssageEnqueue((CANMessageQueue *)&CANTxQueue,&TempCANMsg);
+							  
 							   	break;
 					        	
 					         	case  READ_BUFFER_SEGMENT:	
@@ -467,10 +392,7 @@ void CANRxProcess(void)
 			         	}
 			         	
 	         	break;
-	        			
-          	  	case   READ_BUFFER_ENTIRE_BUFFER:
-          	  	break;
-          	  	
+	              	  	
           	  	default:
           	  	break;
 	        			
@@ -660,7 +582,7 @@ CANQueueInit();
 	CAN_PHASE_SEG1_TQ(2) &			/* Phase seg 2 > jump width */
 	CAN_PROPAGATIONTIME_SEG_TQ(2) &	
 	CAN_SEG2_FREE_PROG &
-	CAN_SAMPLE1TIME);			/* take one sample at sample point (not 3) */
+	CAN_SAMPLE1TIME);			
 	
 	/* Load Acceptance filter register */
 	CAN1SetFilter(0, CAN_FILTER_SID(0) &
@@ -699,7 +621,7 @@ CANQueueInit();
 	CAN_BUF0_DBLBUFFER_EN);
 
 
-	/* Enable interrupts, highest priority */
+
 	ConfigIntCAN1(CAN_INDI_INVMESS_DIS & 
 		CAN_INDI_WAK_DIS &
 		CAN_INDI_ERR_EN &

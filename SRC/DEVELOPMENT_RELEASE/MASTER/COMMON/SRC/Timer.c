@@ -5,13 +5,11 @@
 #include "LED-Display.h"
 #include <p30fxxxx.h>
 
-
-
-unsigned char T210msHeartbeat=0;
-unsigned char T2DivideBy45=0;
-unsigned char T2PWMCounter=0;
-unsigned char MasterButtonTimer=0;
-unsigned long InactivityTimer=INACTIVITYTIMEOUT;
+BYTE  T210msHeartbeat=0;
+BYTE  T2DivideBy45=0;
+BYTE  T2PWMCounter=0;
+BYTE  MasterButtonTimer=0;
+DWORD InactivityTimer=INACTIVITYTIMEOUT;
 
 volatile WORD GPTimer[NUM_GP_TIMERS];
 
@@ -21,8 +19,6 @@ void TimerInit (void)
 	
 	BYTE i;
 	
-/* Want 64 brightness levels * 70 Hz = 4480 ints/sec
-16,384,000 / 4480 = 3657.14 instructions between ints */
 
 	CloseTimer2();	
 	ConfigIntTimer2 (T2_INT_PRIOR_4 & T2_INT_ON);
@@ -51,8 +47,6 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt( void )
 	if (T2DivideBy45 >=45)
 	{
 		T2DivideBy45=0;
-//		T210msHeartbeat=1;
-//		T210msHeartbeat=0;
 
 		for(i=0;i<NUM_GP_TIMERS;i++)
 		{
@@ -72,8 +66,6 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt( void )
 		if (InactivityTimer > 0)
 			InactivityTimer -= 1;		//Count down inactivity detector
 
-
-
 		if(	MasterButtonTimer>0)
 			MasterButtonTimer-=1;
 			
@@ -82,5 +74,5 @@ void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt( void )
 	T2PWMCounter+=1;
 	T2PWMCounter &= 0x3F;
 
- 	IFS0bits.T2IF = 0;		/* Reset interrupt flag */
+ 	IFS0bits.T2IF = 0;	
 }

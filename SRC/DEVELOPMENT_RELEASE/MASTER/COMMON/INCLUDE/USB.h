@@ -1,13 +1,14 @@
+#include "DataTypes.h"
+
 #ifndef _USB_H
 #define _USB_H
 
-
 #define RX_BUFFER_SIZE      1024
 
-WORD UartTx(unsigned char *Buf, unsigned short len);
+WORD UartTx(BYTE *Buf, WORD len);
 void InitUSB(void);
 BYTE GrabSingleRxByte();
-WORD CopyFromRxBuf(unsigned char *Buf, unsigned int Cnt);
+WORD CopyFromRxBuf(BYTE *Buf, WORD Cnt);
 WORD RxAvailable();
 WORD TxBusy();
 void FlushRxBuf();

@@ -4,7 +4,6 @@
 #include <p30fxxxx.h>
 #include "DataTypes.h"
 
-
 void ADCInit(void)
 {
 	
@@ -24,17 +23,18 @@ void ADCInit(void)
 
 WORD ADCRead(void)
 {
+	//4096 = 13.2V ---> 310 counts per volt
+		
 	WORD u;
+
 	u=ReadADC12(0);
 	u += 217;				//Add equivalent of 0.7V diode drop
-	return(u);
 
-	//4096 = 13.2V so it is 310 counts per volt
+	return(u);
 
 }
 
 
-//void __attribute__((__interrupt__,__auto_psv__)) _ADCInterrupt(void)
 void __attribute__((__interrupt__,__auto_psv__)) _ADCInterrupt(void)
 {
         

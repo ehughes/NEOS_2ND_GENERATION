@@ -5,15 +5,14 @@
 #include "USB.h"
 
 struct   {
-  					unsigned char *TxBuf; //This is the pointer for the next byte to go out
-					unsigned short TxCnt;  //This keeps track of how many bytes are left to send in the specified buffer
+  					BYTE *TxBuf; //This is the pointer for the next byte to go out
+					WORD TxCnt;  //This keeps track of how many bytes are left to send in the specified buffer
 		        				 //When this is at zero, there isn't any more data to send
 							
-	    		 	unsigned char RxBuf[RX_BUFFER_SIZE];   //THis is a circular FIFO buffer that stores
+	    		 	BYTE RxBuf[RX_BUFFER_SIZE];   //THis is a circular FIFO buffer that stores
 								 																	 //data from the serial port.
-
-					unsigned short RxBufBasePtr; //This keeps a pointer to the base of the ,recieve FIFO
-					unsigned short RxCnt; //This is the number bytes that are waiting to
+					WORD RxBufBasePtr; //This keeps a pointer to the base of the ,recieve FIFO
+					WORD RxCnt; //This is the number bytes that are waiting to
 																//be read
 
 			} Uart0; 
@@ -21,7 +20,7 @@ struct   {
 
 void InitUSB(void)
 {
-int i;
+WORD i;
 
 	
 ConfigIntUART2(UART_RX_INT_EN & UART_RX_INT_PR2 & 
@@ -51,6 +50,7 @@ for(i=0;i<RX_BUFFER_SIZE;i++)
 {
 	Uart0.RxBuf[i] = 0;
 }
+
 Uart0.TxCnt = 0;
 
 // initialize the software transmit info
@@ -66,7 +66,6 @@ void __attribute__((__interrupt__,__auto_psv__)) _U2TXInterrupt(void)
 {
 	if(Uart0.TxCnt != 0)
 	{
-		
 		Uart0.TxCnt--;
 		WriteUART2(*(Uart0.TxBuf))			; //send out the next byte
 		Uart0.TxBuf++;
@@ -84,12 +83,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _U2TXInterrupt(void)
 
 void __attribute__((__interrupt__,__auto_psv__)) _U2RXInterrupt(void)
 {
-//This service routine grabs data from the port when read and places into a circular buffer.
-//This if no one reads the buffer after its full, there will be data loss of the OLD
-//data.  A function will be made so one can see if there is data and 
-//if there was a overrun. Note the RX_BUFFER_SIZE must be a power of 2
 
-	/* Read the receive buffer till atleast one or more character can be read */
 	while( DataRdyUART2())
 	{
 			Uart0.RxBuf[(Uart0.RxBufBasePtr + Uart0.RxCnt) & (RX_BUFFER_SIZE - 1)] = ReadUART2();
@@ -100,13 +94,10 @@ void __attribute__((__interrupt__,__auto_psv__)) _U2RXInterrupt(void)
 }
 
 
-WORD UartTx(unsigned char *Buf, unsigned short len)
+WORD UartTx(BYTE *Buf, WORD len)
 {
 
-	//to transmit a buffer we just simply copy the data point to our structure
-	//reduce the length by one, send the first by to to the hardware FIFO and
-	//let the interrupt routine take care of the rest
-	//first, lets see if we are sending another buffer
+
 	if(Uart0.TxCnt != 0)
 	  {
 		return Uart0.TxCnt;
@@ -133,9 +124,9 @@ WORD UartTx(unsigned char *Buf, unsigned short len)
 
 
 
-WORD CopyFromRxBuf(unsigned char *Buf, unsigned int Cnt)
+WORD CopyFromRxBuf(BYTE *Buf, WORD Cnt)
 {
-	unsigned int i;
+	WORD i;
 
 //If more bytes are request than available, return the number of bytes available	
 	if(Cnt > Uart0.RxCnt)
@@ -144,7 +135,7 @@ WORD CopyFromRxBuf(unsigned char *Buf, unsigned int Cnt)
 	}
 	else
 		{
-					//Copy data into the users Buffer, and update the circular buffer
+			
 			for(i=0;i<Cnt;i++)
 				{
 					Buf[i] = Uart0.RxBuf[Uart0.RxBufBasePtr];
@@ -162,9 +153,8 @@ WORD CopyFromRxBuf(unsigned char *Buf, unsigned int Cnt)
 
 BYTE GrabSingleRxByte()
 {
-	unsigned char RetVal;
+	BYTE RetVal;
 		
-	
 	RetVal = Uart0.RxBuf[Uart0.RxBufBasePtr];
 	Uart0.RxBufBasePtr++; 
 	//Make sure to perform circular wrap
@@ -176,19 +166,12 @@ BYTE GrabSingleRxByte()
 
 WORD RxAvailable()
 {
-
 	return Uart0.RxCnt;
-
 }
-
-
-
 
 WORD TxBusy()
 {
-
 	return Uart0.TxCnt;
-
 }
 
 void FlushRxBuf()
@@ -213,9 +196,9 @@ WORD CalcCRC(BYTE *data, WORD length)
 	crc = 0xffff;
 	for (i=0;i<length;i++)
 	{
-		crc = (unsigned char)(crc >> 8) | (crc << 8); 
+		crc = (BYTE)(crc >> 8) | (crc << 8); 
 		crc ^= data[i];
-		crc ^= (unsigned char)(crc & 0xff) >> 4;
+		crc ^= (BYTE)(crc & 0xff) >> 4;
 		crc ^= (crc << 8) << 4;
 		crc ^= ((crc & 0xff) << 4) << 1;
 	}

@@ -31,36 +31,36 @@
 #define BAD_CRC						    0x02
 
 		
-unsigned char PacketResponse [300];
-unsigned short TempCRC;
-unsigned char ReadCheck[256];
-unsigned long Page;
-unsigned char UnknownResponse [16];
-unsigned char FirmwareResponse [16];
-unsigned char WritingPageResponse [16];
-unsigned char WriteCompleteResponse [16];
-unsigned char WriteFailureResponse [16];
+BYTE PacketResponse [300];
+WORD TempCRC;
+BYTE ReadCheck[256];
+DWORD Page;
+BYTE UnknownResponse [16];
+BYTE FirmwareResponse [16];
+BYTE WritingPageResponse [16];
+BYTE WriteCompleteResponse [16];
+BYTE WriteFailureResponse [16];
 
-unsigned char FLASHStatusByte=0;
-unsigned short ij;
-unsigned short Retries = 0;
+BYTE FLASHStatusByte=0;
+WORD ij;
+WORD Retries = 0;
 
 
 
 
 struct {
 
-		 unsigned char  Header1;
-		 unsigned char  Header2;
-         unsigned short Length;
-		 unsigned char  Payload[MAX_PACKET_SIZE];
-		 unsigned short CRC;
+		 BYTE  Header1;
+		 BYTE  Header2;
+         WORD Length;
+		 BYTE  Payload[MAX_PACKET_SIZE];
+		 WORD CRC;
        
        } IncomingPacket;
 
-unsigned char DetectState=SCAN_FOR_HEADER1;
-unsigned short DataCnt=0;
-unsigned short CheckCRC;
+BYTE DetectState=SCAN_FOR_HEADER1;
+WORD DataCnt=0;
+WORD CheckCRC;
 
 void InitPacketDetect()
 {
@@ -90,8 +90,8 @@ FirmwareResponse[4] = GET_FIRMWARE_VERSION;
 FirmwareResponse[5] = FIRMWARE_MAJOR;
 FirmwareResponse[6] = FIRMWARE_MINOR;
 TempCRC = CalcCRC( &FirmwareResponse[0], 7);
-FirmwareResponse[7] = (unsigned char)TempCRC;
-FirmwareResponse[8] = (unsigned char)(TempCRC>>8);
+FirmwareResponse[7] = (BYTE)TempCRC;
+FirmwareResponse[8] = (BYTE)(TempCRC>>8);
 
 WritingPageResponse[0] = 0xAA;
 WritingPageResponse[1] = 0xAA;
@@ -99,8 +99,8 @@ WritingPageResponse[2] = 0x1;
 WritingPageResponse[3] = 0x0;
 WritingPageResponse[4] =  WRITE_PAGE ;
 TempCRC = CalcCRC( &WritingPageResponse[0], 5);
-WritingPageResponse[5] = (unsigned char)TempCRC;
-WritingPageResponse[6] = (unsigned char)(TempCRC>>8);
+WritingPageResponse[5] = (BYTE)TempCRC;
+WritingPageResponse[6] = (BYTE)(TempCRC>>8);
 
 WriteCompleteResponse[0] = 0xAA;
 WriteCompleteResponse[1] = 0xAA;
@@ -108,8 +108,8 @@ WriteCompleteResponse[2] = 0x1;
 WriteCompleteResponse[3] = 0x0;
 WriteCompleteResponse[4] =  WRITING_COMPLETE ;
 TempCRC = CalcCRC( &WriteCompleteResponse[0], 5);
-WriteCompleteResponse[5] = (unsigned char)TempCRC;
-WriteCompleteResponse[6] = (unsigned char)(TempCRC>>8);
+WriteCompleteResponse[5] = (BYTE)TempCRC;
+WriteCompleteResponse[6] = (BYTE)(TempCRC>>8);
 
 WriteFailureResponse[0] = 0xAA;
 WriteFailureResponse[1] = 0xAA;
@@ -117,8 +117,8 @@ WriteFailureResponse[2] = 0x1;
 WriteFailureResponse[3] = 0x0;
 WriteFailureResponse[4] =  WRITING_ERROR ;
 TempCRC = CalcCRC( &WriteCompleteResponse[0], 5);
-WriteFailureResponse[5] = (unsigned char)TempCRC;
-WriteFailureResponse[6] = (unsigned char)(TempCRC>>8);
+WriteFailureResponse[5] = (BYTE)TempCRC;
+WriteFailureResponse[6] = (BYTE)(TempCRC>>8);
 
 UnknownResponse[0] = 0xAA;
 UnknownResponse[1] = 0xAA;
@@ -126,19 +126,19 @@ UnknownResponse[2] = 0x1;
 UnknownResponse[3] = 0x0;
 UnknownResponse[4] =  UNKNOWN_COMMAND ;
 TempCRC = CalcCRC( &UnknownResponse[0], 5);
-UnknownResponse[5] = (unsigned char)TempCRC;
-UnknownResponse[6] = (unsigned char)(TempCRC>>8);
+UnknownResponse[5] = (BYTE)TempCRC;
+UnknownResponse[6] = (BYTE)(TempCRC>>8);
 
 
 
 }
 		
 
-unsigned char PacketDetect(unsigned char DataIn)
+BYTE PacketDetect(BYTE DataIn)
 {
    //Detect Status will be our return value to indicate if a packet is
    //available to copy.
-   unsigned char DetectStatus = 0;
+   BYTE DetectStatus = 0;
 
     //implement out packet detection StateMachine
    switch(DetectState)
@@ -183,7 +183,7 @@ unsigned char PacketDetect(unsigned char DataIn)
       break;
       
 	case GRAB_LENGTH_HIGH:
-              IncomingPacket.Length += ((unsigned short)DataIn)<<8;
+              IncomingPacket.Length += ((WORD)DataIn)<<8;
 			  DataCnt = 0;									
               DetectState = GRAB_PAYLOAD;
                
@@ -208,13 +208,13 @@ unsigned char PacketDetect(unsigned char DataIn)
 
       case GRAB_CRC_LOW:
               IncomingPacket.CRC = 0;
-              IncomingPacket.CRC = (unsigned short)DataIn;
+              IncomingPacket.CRC = (WORD)DataIn;
               DetectState = GRAB_CRC_HIGH;
               DetectStatus =  NO_PACKET_DETECTED;
       break;
       
       case GRAB_CRC_HIGH:
-              IncomingPacket.CRC += (unsigned short)(DataIn)<<8;
+              IncomingPacket.CRC += (WORD)(DataIn)<<8;
               DetectState = SCAN_FOR_HEADER1;
 
 			//Check CRC of everything (including header Bytes)
@@ -316,15 +316,15 @@ void ProcessPacket()
 			
 			
 			//Make the LSB Zero as we are doing page aligned read
-			Page =  (unsigned long)(IncomingPacket.Payload[1])<<8;
-			Page |= ((unsigned long)(IncomingPacket.Payload[2])<<16)& 0xFF0000;
+			Page =  (DWORD)(IncomingPacket.Payload[1])<<8;
+			Page |= ((DWORD)(IncomingPacket.Payload[2])<<16)& 0xFF0000;
 						
 			M25PXX_READ(Page,&PacketResponse[5]);
 				
 			TempCRC=CalcCRC(&PacketResponse[0],261);
 						
-			PacketResponse[261] = (unsigned char)TempCRC;
-			PacketResponse[262] = (unsigned char)(TempCRC>>8);
+			PacketResponse[261] = (BYTE)TempCRC;
+			PacketResponse[262] = (BYTE)(TempCRC>>8);
 			
 			UartTx(&PacketResponse[0],263);
 			
@@ -346,9 +346,9 @@ void ProcessPacket()
 			{
 		  		     Page = 0;				   					
 					//Make the LSB Zero as we are doing page aligned read
-					Page =  (unsigned long)(IncomingPacket.Payload[1])<<8;
-					Page |= (((unsigned long)(IncomingPacket.Payload[2])<<16)& 0xFF0000);
-					Page |= (((unsigned long)(IncomingPacket.Payload[3])<<24)& 0xFF000000);
+					Page =  (DWORD)(IncomingPacket.Payload[1])<<8;
+					Page |= (((DWORD)(IncomingPacket.Payload[2])<<16)& 0xFF0000);
+					Page |= (((DWORD)(IncomingPacket.Payload[3])<<24)& 0xFF000000);
 					
 			//THis code is very spaghetti like
 				//	Retries = 0;

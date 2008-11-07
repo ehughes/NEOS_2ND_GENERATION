@@ -9,11 +9,11 @@
 #include "CANCommands.h"
 #include "DataTypes.h"
 
-BYTE AudioStreamTransmitFlag[4];  //Set to 1 after every 128 words are sent to codec 
-BYTE AudioStreamCounter[4]={0,0,0,0,};		// Counts to 3F in interrupt
-DWORD AudioStreamAddress[NUM_AUDIO_STREAMS];	//moving addresses for the 4 current sounds
+BYTE AudioStreamTransmitFlag[4];  					//Set to 1 after every 128 words are sent to codec 
+BYTE AudioStreamCounter[4]={0,0,0,0,};				// Counts to 3F in interrupt
+DWORD AudioStreamAddress[NUM_AUDIO_STREAMS];		//moving addresses for the 4 current sounds
 DWORD AudioStreamStartAddress[NUM_AUDIO_STREAMS];	//Starting addresses for the 4 current sounds
-DWORD AudioStreamLength[NUM_AUDIO_STREAMS];		//and their lengths
+DWORD AudioStreamLength[NUM_AUDIO_STREAMS];			//and their lengths
 
 
 void AudioNodeEnableAll(BYTE strm, BYTE vol)
@@ -41,18 +41,14 @@ CANMsg AudioOutCANMsg;
 
 void AudioStreamCheck(void)
 {
-	int stream,temp,temp2;
-
+	SIGNED_WORD stream,temp,temp2;
 
 // MASTER - check all audio streams for update needs
 //Queue up another 128 words if it's needed. 
 
-
 	if(InhibitAudio == FALSE)
 	{
 		
-//	if (InactivityTimer != 0)
-	{
 	for (stream=0; stream<=(NUM_AUDIO_STREAMS-1); stream++)		//TEMPORARY - only check 2 streams
 	{
 		if (AudioStreamTransmitFlag[stream])
@@ -93,63 +89,18 @@ void AudioStreamCheck(void)
 		}
 	  }
 	}
+
 }
-}
 
 
-/*
-//Play a sound routine - initiates the playing of a recorded sound
-//All that is needed is to give it the sound number, stream & volume
-//this routine starts from the beginning of the sound 
-void AudioPlaySound(unsigned int sound, unsigned char stream)
-{
-//	unsigned int temp;
-	unsigned long temp1,temp2,temp3;
-	stream &= 0x3;	//Limit value to allowable range
-	// Find the sound by reading appropriate 256 byte page from index
-	//sound values are 0 through 8191
-	//for sound value = 8191 (0x1FFF)  we want Flash address 0x0000FF00
 
-	SPISendInstruction(0x33 , (sound * 8) );		//8 Byte read
-
-
-	//That page is now in SPIRxBuffer
-	//Look up the address & length of this sound
-	temp1 = SPIRxBuffer[1];
-	temp2 = SPIRxBuffer[2];
-	temp3 = SPIRxBuffer[3];
-	AudioStreamAddress[stream] = (temp1<<8) + (temp2<<16) + (temp3<<24) + SPIRxBuffer[0];
-
-	AudioStreamStartAddress[stream]=AudioStreamAddress[stream];
-	temp1 = SPIRxBuffer[5];
-	temp2 = SPIRxBuffer[6];
-	temp3 = SPIRxBuffer[7];
-	AudioStreamLength[stream] = (temp1<<8) + (temp2<<16) + (temp3<<24) + SPIRxBuffer[4];
-
-	//Note AudioStreamCounter, AudioStreamTransmitFlag are affected by interrupt
-	//Be careful what order they are changed
-	//flag an update is needed instantly on that stream
-
-	//Set the nodes playing this stream to start at the beginning of the upper half
-	//of the buffer
-
-	//Must make sure any prior instruction to set node to stream is processed
-	//BEFORE this sync request
-	CANQueueTxMessage(0x8C,0,0,0,0);		//nop
-	CANQueueTxMessage(0x8C,0,0,0,0);		//nop
-	CANQueueTxMessage(0x8C,0,0,0,0);		//nop
-	CANQueueTxMessage(0x8A,stream,0,0,0);		// Indicate sync needed on this stream
-	AudioStreamCounter[stream]=0;			//Even if int happens between these instrs it is OK
-	AudioStreamTransmitFlag[stream]=1;	//flag may have just been set anyway
-}
-*/
 //Play a sound routine - initiates the playing of a recorded sound
 //All that is needed is to give it the sound number, stream & volume
 //this routine starts from the beginning of the sound 
 void EAudioPlaySound(BYTE stream,WORD esound)
 {
-//	unsigned int temp;
-	unsigned long temp1,temp2,temp3;
+//	WORD temp;
+	DWORD temp1,temp2,temp3;
 	stream &= 0x3;	//Limit value to allowable range
 	// Find the sound by reading appropriate 256 byte page from index
 	//sound values are 0 through 8191
@@ -172,15 +123,7 @@ void EAudioPlaySound(BYTE stream,WORD esound)
 	temp3 = SPIRxBuffer[7];
 	AudioStreamLength[stream] = (temp1<<8) + (temp2<<16) + (temp3<<24)+ SPIRxBuffer[0] ;
 
-	//Note AudioStreamCounter, AudioStreamTransmitFlag are affected by interrupt
-	//Be careful what order they are changed
-	//flag an update is needed instantly on that stream
-
-	//Set the nodes playing this stream to start at the beginning of the upper half
-	//of the buffer
-
-	//Must make sure any prior instruction to set node to stream is processed
-	//BEFORE this sync request
+	
 	CANQueueTxMessage(0x8C,0,0,0,0);		//nop
 	CANQueueTxMessage(0x8C,0,0,0,0);		//nop
 	CANQueueTxMessage(0x8C,0,0,0,0);		//nop
@@ -221,19 +164,11 @@ void AudioNodeEnable(BYTE node, BYTE stream1, BYTE stream2,
 					 WORD status1, BYTE status2, WORD timeout,
 				 	 WORD volume1, BYTE volume2)
 {
-
-	//Scale volumes by global value
-//	unsigned int volint;
 	WORD w1,w3;
-
-//	volint = volume1 * (AudioGlobalVolume+1);
-//	volume1 = volint >> 8;
-
-//	volint = volume2 * (AudioGlobalVolume+1);
-//	volume2 = volint >> 8;
 
 	w1= node + (stream1<<8) + (stream2<<10) + (status1<<12) + (status2<<13);
 	w3 = volume1 + (volume2<<8);
+
 	CANQueueTxMessage(0x88,w1,timeout,w3,0);
 }
 
@@ -244,7 +179,7 @@ void AudioSetNodesOnOff(WORD w1, WORD w2, WORD w3, WORD w4)
 
 void DCIInit(void)
 {
-	_DCIIE = 1;		//Clear the DCI Interrupt Flag    
+	_DCIIE = 1;		//Clear the DCI interrupt Flag    
 	ConfigIntDCI(DCI_INT_PRI_7 & DCI_INT_ON);
 	OpenDCI(
 		DCI_EN & DCI_IDLE_STOP & DCI_DIGI_LPBACK_DIS & DCI_SCKD_OUP &
@@ -261,13 +196,13 @@ void DCIInit(void)
 
 
 
-int t1,t2;
 
 //DCI interrupt is hit 8000 times per second and queues up 2 16 bit words
 //Used to time data to the slaves.
 void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
 {
-
+	
+	SIGNED_WORD t1,t2;
 	
 	//For master Operation, we only need a counter to time when to send out more data.
 	//Most of the slave streaming code has been stripped. See slave code for more info.
@@ -289,10 +224,10 @@ void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
 	t1 = RXBUF2;
 	t1 = RXBUF3;
 		
-TXBUF0 =	t2 ;			//Right channel
-TXBUF1 	=t2 ;			//Left channel							// Left Channel/
-TXBUF2 =t2 ;			//Right Channel
-TXBUF3 =	t2 ;			// Left channel							// Left Channel
+	TXBUF0 =	t2 ;			//Right channel
+	TXBUF1 =	t2 ;			//Left channel						
+	TXBUF2 =	t2 ;			//Right Channel
+	TXBUF3 =	t2 ;			// Left channel						
 
 
 }
@@ -305,8 +240,6 @@ void PlayInternalNodeSound(BYTE NodeNumber,BYTE InternalSoundNumber,BYTE Volume,
 											,	(WORD)(Repeats<<8) | (WORD)(Volume)
 											,	(WORD)(StreamVolumeWhenComplete<<8) | (WORD)(StreamWhenComplete)
 											,	 (WORD)(AudioStatusWhenComplete));	
-	
-	
 	
 }	
 

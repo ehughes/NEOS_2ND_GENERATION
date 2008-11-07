@@ -18,30 +18,29 @@
 
 #define DISPLAY_ADDRESS	248
 
-
 #define DISPLAY_VOL	0
 #define DISPLAY_BRI 1
-#define DISPLAY_ERR 7
-#define DISPLAY_DIA 8
-
+#define DISPLAY_ERR 2
+#define DISPLAY_DIA 3
+#define DISPLAY_VER 4
 
 void LEDMaster(void);
 void LEDRefresh(void);
-void LEDEncode(unsigned int score1, unsigned int score2); //Encode 2 scores to 7 segment patterns
-unsigned int LEDMake7Seg (unsigned int value);		//Convert 0-9 to 7-segment pattern
-void LEDSendScoreP1P2(unsigned int node, unsigned int brightness, unsigned int players);
-void LEDSendScores(unsigned int node, unsigned int brightness, unsigned int score1, unsigned int score2);
-void LEDSendScoreAddress(unsigned int node, unsigned int brightness, unsigned int score1, unsigned int score2);
-void LEDSendCharsandVar(unsigned int node, unsigned int brightness, unsigned int score1,unsigned int score2,unsigned char c1, unsigned char c2, unsigned char c3);
-void LEDSendChars(unsigned int node, unsigned int brightness, unsigned char c1, unsigned char c2, unsigned char c3, unsigned char c4, unsigned char c5, unsigned char c6);
+void LEDEncode(WORD  score1, WORD  score2); //Encode 2 scores to 7 segment patterns
+WORD  LEDMake7Seg (WORD  value);		//Convert 0-9 to 7-segment pattern
+void LEDSendScoreP1P2(WORD  node, WORD  brightness, WORD  players);
+void LEDSendScores(WORD  node, WORD  brightness, WORD  score1, WORD  score2);
+void LEDSendScoreAddress(WORD  node, WORD  brightness, WORD  score1, WORD  score2);
+void LEDSendCHARsandVar(WORD  node, WORD  brightness, WORD  score1,WORD  score2,BYTE  c1, BYTE  c2, BYTE  c3);
+void LEDSendCHARs(WORD  node, WORD  brightness, BYTE  c1, BYTE  c2, BYTE  c3, BYTE  c4, BYTE  c5, BYTE  c6);
 void LEDCANCommand(void);
 void LEDTimerCheck(void);
-void LEDSendMessage(unsigned char nodenumber, unsigned char redbrt, unsigned char greenbrt, unsigned char bluebrt,
-unsigned char redfade, unsigned char greenfade, unsigned char bluefade,
-unsigned int ledtime, unsigned int fadetime);
-void LEDSendVariable(unsigned int indx, unsigned int value);
-void ScoreSendLights(unsigned char nodenumber, unsigned int Data0to15, unsigned int Data16to19);
-extern unsigned int LEDSegmentPattern[3];	// encoded 7-segment patterns for 6 digits
+void LEDSendMessage(BYTE  nodenumber, BYTE  redbrt, BYTE  greenbrt, BYTE  bluebrt,
+BYTE  redfade, BYTE  greenfade, BYTE  bluefade,
+WORD  ledtime, WORD  fadetime);
+void LEDSendVariable(WORD  indx, WORD  value);
+void ScoreSendLights(BYTE  nodenumber, WORD  Data0to15, WORD  Data16to19);
+extern WORD  LEDSegmentPattern[3];	// encoded 7-segment patterns for 6 digits
 void LEDSendDigits(WORD node, BYTE brightness, BYTE d1, BYTE d2, BYTE d3, BYTE d4, BYTE d5, BYTE d6);
 
 

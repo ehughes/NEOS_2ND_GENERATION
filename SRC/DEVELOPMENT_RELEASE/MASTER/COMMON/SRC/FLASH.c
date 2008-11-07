@@ -7,13 +7,12 @@
 *
 *********************************************************/
 
-
 #include "FLASH.h"
 #include "DataTypes.h"
 #include "SystemVariables.h"
+
  
- 
- #define WIP 0x01
+#define WIP 0x01
 #define WREN  0x06
 #define WRDI 0x04
 #define RDID 0x9f 
@@ -48,31 +47,39 @@ void FlashEnable(DWORD StartAddress)
 	switch((StartAddress>>23))
 	{
 		case 0:
-			LATAbits.LATA12=0;
-			LATAbits.LATA13=1;
-			LATAbits.LATA14=1;
-			LATAbits.LATA15=1;
+					
+			MEM0_ENABLE;
+			MEM1_DISABLE;
+			MEM2_DISABLE;
+			MEM3_DISABLE;
+
 		break;
 		
 		case 1:
-			LATAbits.LATA12=1;
-			LATAbits.LATA13=0;
-			LATAbits.LATA14=1;
-			LATAbits.LATA15=1;
+		
+			MEM0_DISABLE
+			MEM1_ENABLE;
+			MEM2_DISABLE;
+			MEM3_DISABLE;
+			
 		break;
 		
 		case 2:
-			LATAbits.LATA12=1;
-			LATAbits.LATA13=1;
-			LATAbits.LATA14=0;
-			LATAbits.LATA15=1;
+					
+			MEM0_DISABLE
+			MEM1_DISABLE;
+			MEM2_ENABLE;
+			MEM3_DISABLE;
+			
 		break;
 		
 		case 3:
-			LATAbits.LATA12=1;
-			LATAbits.LATA13=1;
-			LATAbits.LATA14=1;
-			LATAbits.LATA15=0                                                           ;
+		
+			MEM0_DISABLE
+			MEM1_DISABLE;
+			MEM2_DISABLE;
+			MEM3_ENABLE;
+			                                                         ;
 		break;
 	}
 }	
@@ -80,10 +87,11 @@ void FlashEnable(DWORD StartAddress)
 
  void FlashDisable()
 {
-	LATAbits.LATA12=1;
-	LATAbits.LATA13=1;
-	LATAbits.LATA14=1;
-	LATAbits.LATA15=1;
+		MEM0_DISABLE
+		MEM1_DISABLE;
+		MEM2_DISABLE;
+		MEM3_DISABLE;
+			
 }
 
 //A high level function to read up to 65k bytes from the Flash device

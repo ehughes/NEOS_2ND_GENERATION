@@ -14,39 +14,39 @@
 #include "InternalButtonSoundMapping.h"
 #include "ADCRoutines.h"
 #include "stdlib.h"
+#include "BoardSupport.h"
 
-CANMsg DiagnosticCANMsg;
 
-#define DIAGNOSTIC_TIMER GPTimer[8]
-#define PING_DELAY_TIMER GPTimer[1]
-#define BOOTUP_SOUND_TIMER GPTimer[2]
-
+#define PING_DELAY_TIMER 		GPTimer[1]
+#define BOOTUP_SOUND_TIMER		GPTimer[2]
 #define BUTTON_BLINK_TIMER		GPTimer[3]
 #define COMPLETION_WAIT_TIMER	GPTimer[4]
 #define RESPONSE_RESET_TIMER	GPTimer[5]
+#define DIAGNOSTIC_TIMER 		GPTimer[6]
 
-#define PONG_RESPONSE_TIME 	400
-#define PING_DELAY_TIME 10  
-#define DATA_RATE_THRES 320
+#define PONG_RESPONSE_TIME 		400
+#define PING_DELAY_TIME 		10  
+#define DATA_RATE_THRES 		320
+#define VBUS_10V				3100
+#define VBUS_8V					2480
 
-
+static CANMsg DiagnosticCANMsg;
 
 volatile BYTE NumPongs;
 volatile NodeInfo MyNodes[NUM_BUTTONS];
 
-WORD ErrorCode;
+static WORD ErrorCode;
 BYTE DiagnosticsState = INIT;
-BYTE PingRetries;
-BOOL NodesAddressed;
-BYTE NodeToPing;
-BYTE NodeToAddress = 0;
-DWORD BusVoltage = 0;
-WORD BusVoltageMeasurementCnt = 0;
-BYTE PowerSequenceButton=0;
+static BYTE PingRetries;
+static BOOL NodesAddressed;
+static BYTE NodeToPing;
+static BYTE NodeToAddress = 0;
+static DWORD BusVoltage = 0;
+static WORD BusVoltageMeasurementCnt = 0;
+static BYTE PowerSequenceButton=0;
 DWORD PacketsRecieved = 0;
 DWORD PacketsSent = 0;
-
-DWORD AverageBusSpeed;
+static DWORD AverageBusSpeed;
 
 volatile BOOL LoopBackResponse = FALSE;
 volatile BYTE NodeTestData[8];
@@ -54,17 +54,12 @@ volatile BOOL WaitingForTestDataResponse = FALSE;
 
 BYTE DataRateMeasurementCount = 0;
 BYTE CurrentNodeForBusMeasurement = 0;
-BYTE ErrorFlash = 0;
-
-
-#define VBUS_10V				3100
-#define VBUS_8V				2480
+static BYTE ErrorFlash = 0;
 
 
 void DiagnosticsPlayButtonFeebackSound();
 void PlayBootupSound();
 void WriteTestDataToNode(BYTE Node);
-
 void RequestNodeVoltages();
 void ResetNodeDataRateInfo();
 void ResetNodeBusVoltageInfo();
@@ -73,8 +68,8 @@ WORD GetVoltageDrop();
 void EnterAddressingMode()
 {
 	
-SystemMode = SYSTEM_DIAGNOSTICS;
-DiagnosticsState = 	ADDRESS_BUTTONS;	
+	SystemMode = SYSTEM_DIAGNOSTICS;
+	DiagnosticsState = 	ADDRESS_BUTTONS;	
 	
 }	
 
@@ -90,8 +85,7 @@ void SystemsDiagnostics()
 			GREEN_LED_OFF;
 		
 			DiagnosticsState = CHECK_FOR_ALL_NODES_PRESENT;
-		//	DiagnosticsState = DATA_BUS_TEST;
-			
+	
 		break;
 		
 		
@@ -246,17 +240,14 @@ void SystemsDiagnostics()
 
 				if(NodesAddressed == TRUE)
 				{
-					//Boot the Game, Everthing is OK!
-				//	SystemMode = GAME_ACTIVE;
-				//	GameState=BOOT;			
-				//	GameSelected = GAME_ROOT_GAME0;
+		
 					DiagnosticsState = DATA_BUS_TEST;
 					SystemMode = SYSTEM_DIAGNOSTICS;
 				
 				}
 				else
 				{
-					//If we are not addressed, go directly into the addressing Mode
+				
 					DiagnosticsState = ADDRESS_BUTTONS;
 					SystemMode = SYSTEM_DIAGNOSTICS;
 	   			}
@@ -307,7 +298,7 @@ void SystemsDiagnostics()
 		break;
 		
 		case INIT_ADDRESS_ON_DISPLAY:
-			LEDSendScoreAddress(DISPLAY_ADDRESS,ScoreBrightness,NodeToAddress,NodeToAddress);
+			LEDSendScoreAddress(DISPLAY_ADDRESS,0xFF,NodeToAddress,NodeToAddress);
 			DiagnosticsState=ADDRESS_NEXT_NODE;
 		break;	
 		
@@ -428,14 +419,17 @@ void SystemsDiagnostics()
 							ScoreSendLights(DISPLAY_ADDRESS, 0xFFFF,0xFFFF);
 							CANQueueTxMessage(0x70,DISPLAY_ADDRESS + (0xFF << 8),0xFFFF,0xFFFF,0xFFFF);
 							DiagnosticsState = POWER_SEQUENCE_SCORE_DISPLAY;
-								BusVoltage = 0;
+							BusVoltage = 0;
 						
 						}
 						else
 						{
-							LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
-							LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + PowerSequenceButton);
-							LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
+							for(i=0;i<PowerSequenceButton+1;i++)
+							{
+								LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
+								LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + PowerSequenceButton);
+								LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
+							}
 						}
 						
 						BusVoltage = 0;
@@ -448,8 +442,6 @@ void SystemsDiagnostics()
 						ErrorCode = POWER_ERROR_BASE_CODE + PowerSequenceButton + 1;
 						DiagnosticsState = DISPLAY_ERROR_CODE_FOREVER;	
 					}
-				
-				
 				
 				}
 				
@@ -598,7 +590,7 @@ void ResetNodeInfo()
 //When a button press comes back acknowledging address, 
 //Flash an acknowledge & move on to the next
 
-void OnButtonPressDiagnosticsMode(unsigned char button)
+void OnButtonPressDiagnosticsMode(BYTE button)
 {
 	switch(DiagnosticsState)
 	{
@@ -609,9 +601,10 @@ void OnButtonPressDiagnosticsMode(unsigned char button)
 			//Audio feedback
 			DiagnosticsPlayButtonFeebackSound(NodeToAddress);
 			NodeToAddress++;
-			LEDSendScoreAddress(248,ScoreBrightness,NodeToAddress,NodeToAddress);
+			LEDSendScoreAddress(248,0xFF,NodeToAddress,NodeToAddress);
 			COMPLETION_WAIT_TIMER=0;
 			DiagnosticsState=CHECK_FOR_ADDRESSING_COMPLETION;
+	
 		break;
 		
 		default:
@@ -620,8 +613,8 @@ void OnButtonPressDiagnosticsMode(unsigned char button)
 
 }
 
-//Select button advances without defining an address
-void OnSelectPressDiagnosticsMode(unsigned int sel)
+
+void OnSelectPressDiagnosticsMode(WORD sel)
 {
 
 }

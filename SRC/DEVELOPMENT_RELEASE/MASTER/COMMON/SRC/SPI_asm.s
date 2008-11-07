@@ -1,4 +1,3 @@
-
 .include "P30F6014A.INC"
 
 .global _asmSPITransfer
