@@ -25,8 +25,6 @@ sound[128]=GLOBAL_SOUNDS_PATH\BuildUp_A.wav;
 sound[129]=GLOBAL_SOUNDS_PATH\BuildUp_B.wav;
 sound[130]=GLOBAL_SOUNDS_PATH\Heartbeat.wav;
  
-//sound[8]=GLOBAL_SOUNDS_PATH\thump2.wav; 
- 
 sound[10]=LIGHT_GRABBER_PATH\Nodes\Node0.wav;
 sound[11]=LIGHT_GRABBER_PATH\Nodes\Node1.wav;
 sound[12]=LIGHT_GRABBER_PATH\Nodes\Node2.wav;
@@ -176,9 +174,21 @@ sound[184]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_PIANO1.wav;
 sound[185]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_PIANO2.wav;
 sound[186]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_GUITAR1.wav;
 sound[187]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_GUITAR2.wav;
-
-
 sound[188]=SURROUND_SOUND_PATH\SouthernRock\SouthernRock_Background.wav;
+
+
+sound[190]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle1.wav;
+sound[191]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle2.wav;
+sound[192]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle3.wav;
+sound[193]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle4.wav;
+sound[194]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle5.wav;
+sound[195]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle6.wav;
+sound[196]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle7.wav;
+sound[197]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle8.wav;
+sound[198]=SURROUND_SOUND_PATH\DrumCircle\DrumCircle_Background.wav;
+
+
+
 
 
 

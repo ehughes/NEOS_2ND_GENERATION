@@ -15,7 +15,8 @@
 #include "USB.h"
 #include "InternalButtonSoundMapping.h"
 #include "TimerRoutines.h"
-#include "TimerRoutines.h"
+#include "BoardSupport.h"
+
 //*************************************************
 //******** GAME STATE MACROS*** *******************
 //*************************************************
@@ -34,6 +35,7 @@
 #define EASTER_EGG_DISPLAY_1			 	3
 #define EASTER_EGG_DISPLAY_2			 	4
 #define EASTER_EGG_DISPLAY_3			 	5
+#define DISPLAY_TRAIL					 	6
 
 
 #define MUSIC_IDLE					0
@@ -67,6 +69,7 @@
 #define MUSIC_TIMER						 GPTimer[7]
 #define VC_ENTRY_TIMER					 GPTimer[8]
 #define EASTER_EGG_TIMER				 GPTimer[9]
+#define VOLUME_CHANGE_TIMER				 GPTimer[10]
 
 //*************************************************
 //*******Game Parameters***************************
@@ -128,11 +131,16 @@ BYTE Count;
 BYTE SelectorSpin = 0;
 BYTE SelectState;
 BYTE QueuedSelectState;
+BYTE QueuedEasterEggDisplay;
 BYTE MusicState;
 
 static BYTE ButtonHistory[4];
 static BYTE BHPointer;
 static BYTE EERepeats;
+
+static BYTE ButtonTrail[4];
+
+static BYTE HitsSinceLastClear;
 
 
 #define TOP			0x01
@@ -150,9 +158,6 @@ const BYTE SpinBig2[10]={0	,TOP,0	,0			,0			,0		,BOTTOM ,0		,0			,0		   };
 const BYTE SpinBig3[10]={0  ,0	,TOP,UPPER_RIGHT,LOWER_RIGHT,BOTTOM ,0		,0		,0			,0		   };	
 
 
-BOOL IntroMusicOn = FALSE;
-
-
 //*************************************************
 //*******Game Helper Function Declarations*********
 //*************************************************
@@ -160,7 +165,7 @@ BOOL IntroMusicOn = FALSE;
 void StartCountDown();
 void UpdateGameSettings();
 void PlayCountDown();
-void StartMainThemeMusic();
+void StartMainthemeMusic();
 void AnimateGameButtons();
 void AnimateScoreDisplay();
 void SelectorButtonSpin();
@@ -178,6 +183,8 @@ void EasterEggHunt();
 
 WORD EasterEggDisplayTimeout;
 BYTE GetStream(BYTE button);
+
+
 //*************************************************
 //*******Game Functions****************************
 //*************************************************
@@ -221,6 +228,7 @@ void Root_Game0 (void)
 				SelectState = SELECTOR_STATE_SPIN;
 				ClearButtonHistory();
 				StartHeartBeat();	
+				ClearButtonHistory();
 				
 			   MAIN_GAME_TIMER = 0;
 			   GameState = MAIN_SELECTOR;	
@@ -236,7 +244,7 @@ void Root_Game0 (void)
 			break;
 			
 			case MUSIC_MAIN_THEME:
-				if(MUSIC_TIMER > MAINTHEME_L_WAV_LENGTH-10 )
+				if(MUSIC_TIMER > MAINTHEME_L_WAV_LENGTH-40 )
 				{
 					StartHeartBeat();	
 				}
@@ -359,7 +367,7 @@ void Root_Game0 (void)
 						BHPointer&=0x7;
 						EERepeats++;
 						
-						if(EERepeats == 9)
+						if(EERepeats == 17)
 						{
 							SelectState = QueuedSelectState;	
 							EASTER_EGG_TIMER = 0;
@@ -369,6 +377,26 @@ void Root_Game0 (void)
 							PlayInternalNodeSound(6,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(6),AudioGlobalVolume,1);
 							LEDSendMessage(ENABLE_ALL,YELLOW,LEDOFF,50,50);
 							ClearButtonHistory();
+						}	
+					}
+				
+				break;
+				
+				
+				case DISPLAY_TRAIL:
+					if(EASTER_EGG_TIMER > 20)
+					{
+						EASTER_EGG_TIMER = 0;
+						LEDSendMessage(ButtonTrail[0],RED,LEDOFF,12,12);
+						LEDSendMessage(ButtonTrail[1],RED,LEDOFF,12,12);
+						LEDSendMessage(ButtonTrail[2],RED,LEDOFF,12,12);
+						LEDSendMessage(ButtonTrail[3],RED,LEDOFF,12,12);
+						EERepeats++;
+						if(EERepeats > 5)
+						{
+							EERepeats = 0;
+							EASTER_EGG_TIMER = 0xFFFF;
+							SelectState = QueuedEasterEggDisplay;	
 						}	
 					}
 				
@@ -406,33 +434,33 @@ void Root_Game0 (void)
 				case 3:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,3,BLANK_DIGIT,BLANK_DIGIT, 3,BLANK_DIGIT, BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,3,BLANK_DIGIT,BLANK_DIGIT, 3,BLANK_DIGIT, BLANK_DIGIT);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,3,BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,3,BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT);
 					}
 				break;	
 				
 				case 2:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,2,BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,2,BLANK_DIGIT);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);	
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);	
 					}
 				break;
 				
 				case 1:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,1);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,1);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
 					}
 				break;
 				
@@ -441,11 +469,11 @@ void Root_Game0 (void)
 				default:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,0);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,0);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
 					}
 				break;
 					
@@ -457,7 +485,7 @@ void Root_Game0 (void)
 			{
 				GameState = INIT;
 		
-				LEDSendScores(DISPLAY_ADDRESS,ScoreBrightness, BLANK_SCORE,BLANK_SCORE);		
+				LEDSendScores(DISPLAY_ADDRESS,0xFF, BLANK_SCORE,BLANK_SCORE);		
 				Player1Score = 0;
 				Player2Score = 0;		
 				InitRandomButton();	
@@ -518,6 +546,7 @@ void Root_Game0 (void)
 			LEDSendVariable(DISPLAY_VOL, AudioGlobalVolumeIndex);
 			GameState = VOLUME_CHANGE;
 			MAIN_GAME_TIMER = 0xFFFF;
+			VOLUME_CHANGE_TIMER = 0;
 			SelectState = 0;
 		}
 		
@@ -525,6 +554,12 @@ void Root_Game0 (void)
 		
 		
 		case VOLUME_CHANGE:
+		
+			if(VOLUME_CHANGE_TIMER>1000)
+			{
+				GameState = INIT;		
+				
+			}	
 			if(MAIN_GAME_TIMER > 50)
 			{
 				MAIN_GAME_TIMER= 0;
@@ -596,7 +631,7 @@ void AnimateScoreDisplay()
 		if(SCORE_DISPLAY_ANIMATION_TIMER > SCORE_DISPLAY_ANIMATION_TIME)
 		{
 			SCORE_DISPLAY_ANIMATION_TIMER = 0;
-	  		CANQueueTxMessage(0x70,248+(ScoreBrightness<<8),SpinBig1[SpinSeg1]+(SpinBig2[SpinSeg1]<<8),SpinBig3[SpinSeg1]+(SpinBig1[SpinSeg2]<<8),SpinBig2[SpinSeg2]+(SpinBig3[SpinSeg2]<<8));
+	  		CANQueueTxMessage(0x70,248+(0xFF<<8),SpinBig1[SpinSeg1]+(SpinBig2[SpinSeg1]<<8),SpinBig3[SpinSeg1]+(SpinBig1[SpinSeg2]<<8),SpinBig2[SpinSeg2]+(SpinBig3[SpinSeg2]<<8));
 		   	SpinSeg1++;if(SpinSeg1>9)SpinSeg1=0;
 		   	SpinSeg2--;if(SpinSeg2>9)SpinSeg2=9;
 	   }			 
@@ -632,7 +667,13 @@ void OnButtonPressRootGame0(BYTE button)
 	BHPointer++;
 	BHPointer &= 0x3;
 	
-	PlaySelectorSound();
+	if(HitsSinceLastClear < 255)
+	{
+		HitsSinceLastClear++;
+	}
+	
+		
+//	PlaySelectorSound();
 	MusicWake();
 		
 }
@@ -657,7 +698,9 @@ void OnSelectPressRootGame0(BYTE button)
 	switch(GameState)
 	{
 		case VOLUME_CHANGE:
-	
+		
+			VOLUME_CHANGE_TIMER = 0;
+			
 			switch(button)
 			{
 				case LIGHT_GRABBER_BUTTON:
@@ -789,7 +832,7 @@ switch(MusicState)
 	{
 		case MUSIC_IDLE:
 		case MUSIC_HEARTBEAT:
-			StartMainThemeMusic();
+			StartMainthemeMusic();
 		break;
 		
 		default:
@@ -943,7 +986,7 @@ BYTE GetStream(BYTE button)
 	return RetVal;
 }		
 	
-void StartMainThemeMusic()
+void StartMainthemeMusic()
 {
 	MusicState = MUSIC_MAIN_THEME;
 	MUSIC_TIMER = 0;
@@ -1075,69 +1118,82 @@ void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats)
 
 void EasterEggHunt()
 {
-	BYTE Temp[4];
+
 	
 	if(EASTER_EGG_TIMER > 20)
 	{	
 			//Look for all the Bottom Row
 		
 		EASTER_EGG_TIMER = 0;
-			
-		Temp[0] = ButtonHistory[BHPointer];
-		Temp[1] = ButtonHistory[(BHPointer+1)&0x03];
-		Temp[2] = ButtonHistory[(BHPointer+2)&0x03];
-		Temp[3] = ButtonHistory[(BHPointer+3)&0x03];
-			
 		
-		if( (!(Temp[3]&0x01)) && (((Temp[3]-Temp[2])&0x03)==2)
-							 && (((Temp[2]-Temp[1])&0x03)==2)
-						   	 && (((Temp[1]-Temp[0])&0x03)==2))
-		{
 		
+		if(HitsSinceLastClear >3)
+		{	
+			ButtonTrail[0] = ButtonHistory[BHPointer];
+			ButtonTrail[1] = ButtonHistory[(BHPointer+1)&0x03];
+			ButtonTrail[2] = ButtonHistory[(BHPointer+2)&0x03];
+			ButtonTrail[3] = ButtonHistory[(BHPointer+3)&0x03];
+				
+			
+			if( (!(ButtonTrail[3]&0x01)) && (((ButtonTrail[3]-ButtonTrail[2])&0x03)==2)
+								 && (((ButtonTrail[2]-ButtonTrail[1])&0x03)==2)
+							   	 && (((ButtonTrail[1]-ButtonTrail[0])&0x03)==2))
+			{
+			
+				 
+				 QueuedSelectState = SelectState;
+				 QueuedEasterEggDisplay = EASTER_EGG_DISPLAY_1;
+				 SelectState = DISPLAY_TRAIL;
+				 
+				 EASTER_EGG_TIMER = 0xFFFF;
+				 EasterEggDisplayTimeout = 60;
+				 EERepeats=0;
+			}					   	 
+			
+			if( ((ButtonTrail[3]&0x01)) && (((ButtonTrail[3]-ButtonTrail[2])&0x03)==2)
+								 && (((ButtonTrail[2]-ButtonTrail[1])&0x03)==2)
+							   	 && (((ButtonTrail[1]-ButtonTrail[0])&0x03)==2))
+			{
 			 
-			 QueuedSelectState = SelectState;
-			 SelectState = EASTER_EGG_DISPLAY_1;
-			 EASTER_EGG_TIMER = 0xFFFF;
-			 EasterEggDisplayTimeout = 60;
-			 EERepeats=0;
-		}					   	 
-		
-		if( ((Temp[3]&0x01)) && (((Temp[3]-Temp[2])&0x03)==2)
-							 && (((Temp[2]-Temp[1])&0x03)==2)
-						   	 && (((Temp[1]-Temp[0])&0x03)==2))
-		{
-		 
-			 QueuedSelectState = SelectState;
-			 SelectState = EASTER_EGG_DISPLAY_2;
-			 EASTER_EGG_TIMER = 0xFFFF;
-			 EasterEggDisplayTimeout = 5;
-			  EERepeats=0;
-		}					   	 
+				 QueuedSelectState = SelectState;
+			 	 QueuedEasterEggDisplay = EASTER_EGG_DISPLAY_2;
+				 SelectState = DISPLAY_TRAIL;
+				 EASTER_EGG_TIMER = 0xFFFF;
+				 EasterEggDisplayTimeout = 5;
+				  EERepeats=0;
+			}					   	 
+				
+			if( 	(((ButtonTrail[3]-ButtonTrail[2])&0x03)==1)
+				 && (((ButtonTrail[2]-ButtonTrail[1])&0x03)==1)
+				 && (((ButtonTrail[1]-ButtonTrail[0])&0x03)==1))
+			{
+				
+				 QueuedSelectState = SelectState;
+			 	 QueuedEasterEggDisplay = EASTER_EGG_DISPLAY_3;
+				 SelectState = DISPLAY_TRAIL;
+				 
+				 EASTER_EGG_TIMER = 0xFFFF;
+				 EasterEggDisplayTimeout = 5;
+				 EERepeats=0;
+				 BHPointer = ButtonTrail[3];
+			}	
 			
-		if( 	(((Temp[3]-Temp[2])&0x03)==1)
-			 && (((Temp[2]-Temp[1])&0x03)==1)
-			 && (((Temp[1]-Temp[0])&0x03)==1))
-		{
-			 QueuedSelectState = SelectState;
-			 SelectState = EASTER_EGG_DISPLAY_3;
-			 EASTER_EGG_TIMER = 0xFFFF;
-			 EasterEggDisplayTimeout = 5;
-			 EERepeats=0;
-			 BHPointer = Temp[3];
-		}	
-		
-		if( 	(((Temp[3]-Temp[2])&0x03)==0x03)
-			 && (((Temp[2]-Temp[1])&0x03)==0x03)
-			 && (((Temp[1]-Temp[0])&0x03)==0x03))
-		{
-			 QueuedSelectState = SelectState;
-			 SelectState = EASTER_EGG_DISPLAY_3;
-			 EASTER_EGG_TIMER = 0xFFFF;
-			 EasterEggDisplayTimeout = 5;
-			 EERepeats=0;
-			 BHPointer = Temp[3];
-			 
-		}	
+			if( 	(((ButtonTrail[3]-ButtonTrail[2])&0x03)==0x03)
+				 && (((ButtonTrail[2]-ButtonTrail[1])&0x03)==0x03)
+				 && (((ButtonTrail[1]-ButtonTrail[0])&0x03)==0x03))
+			{
+				 QueuedSelectState = SelectState;
+			 	 QueuedEasterEggDisplay = EASTER_EGG_DISPLAY_3;
+				 SelectState = DISPLAY_TRAIL;
+				 
+				 EASTER_EGG_TIMER = 0xFFFF;
+				 EasterEggDisplayTimeout = 5;
+				 EERepeats=0;
+				 BHPointer = ButtonTrail[3];
+				 
+			}	
+	 }
+	
 	}
 	
 }
@@ -1147,10 +1203,10 @@ void ClearButtonHistory()
 {
 	BYTE i;
 	BHPointer = 0;
-	
+	HitsSinceLastClear = 0;
 	for(i=0;i<4;i++)
 	{
 		ButtonHistory[i] = 0x81;
 	}	
 
-}	
+}	

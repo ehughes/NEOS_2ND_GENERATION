@@ -228,7 +228,7 @@ void FireFighter(void)
 
 
 
-void OnButtonPressFireFighter(unsigned char button)
+void OnButtonPressFireFighter(BYTE  button)
 {
 
 	switch(GameState)
@@ -445,7 +445,6 @@ void PlayWaterHit(BYTE button)
 
 void PlayWaterMiss(BYTE button)
 {
-//	PlayInternalNodeSound(button,INTERNAL_SOUND_FF_WATER_MISS,CurrentGameSettings.GameSoundEffectVolume,1,BACKGROUND_MUSIC_STREAM,CurrentGameSettings.GameBackgroundMusicVolume,1);
 }	
 
 

@@ -468,7 +468,7 @@ void ScoreDecrement2P()
 	
 }	
 
-void OnButtonPressZigZag(unsigned char button)
+void OnButtonPressZigZag(BYTE button)
 {
 
 switch(GameState)

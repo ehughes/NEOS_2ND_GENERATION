@@ -22,6 +22,7 @@
 #define NUM_SOUNDS_PER_BUTTON	3
 #define ROCK					1
 #define SOUTHERN_ROCK			2
+#define DRUM_CIRCLE				3
 
 #define NUM_SOUND_CHANNELS	3
 
@@ -52,14 +53,11 @@
 #define SOUND_CHANNEL2_TIMER	GPTimer[3]
 #define SHOW_TIMER				GPTimer[4]
 
-
 //*************************************************
 //*******Game Variables****************************
 //*************************************************
 
-static WORD SurroundSoundsBaseLocation = 150;
 static WORD GameTime;
-static BYTE NextAvailableSoundChannel = 0;
 
 static struct {
 	
@@ -110,8 +108,8 @@ void SurroundSound(void)
 			if(MAIN_GAME_TIMER > 5)
 			{
 					
-				InitButtonSounds(SOUTHERN_ROCK);
-				StartBackgroundMusic(SOUTHERN_ROCK);
+				InitButtonSounds(DRUM_CIRCLE);
+				StartBackgroundMusic(DRUM_CIRCLE);
 					
 				MAIN_GAME_TIMER = 0;
 				GameState = SURROUND_SOUND;
@@ -187,7 +185,7 @@ void SurroundSound(void)
 
 
 
-void OnButtonPressSurroundSound(unsigned char button)
+void OnButtonPressSurroundSound(BYTE button)
 {
 	
 	BYTE SoundChannelTemp;
@@ -367,6 +365,17 @@ void StartBackgroundMusic(BYTE SurroundSoundProfile)
 			GameTime = (SOUTHERNROCK_BACKGROUND_WAV_LENGTH*5) - 25;
 
 		break;
+		
+		case DRUM_CIRCLE:
+			
+			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,0);
+			SendNodeNOP();	
+			EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DRUMCIRCLE_BACKGROUND_WAV );
+			GameTime = (DRUMCIRCLE_BACKGROUND_WAV_LENGTH*10) - 25;
+
+		break;
+
+		
 
 		default:
 		break;
@@ -423,6 +432,33 @@ void InitButtonSounds(BYTE SurroundSoundProfile)
 			ButtonSound.Length[7] = SOUTHERNROCK_GUITAR2_WAV_LENGTH;
 			
 		break;
+		
+		
+		case DRUM_CIRCLE:
+		
+			ButtonSound.Index[0] = DRUMCIRCLE1_WAV;  
+			ButtonSound.Index[1] = DRUMCIRCLE2_WAV;
+		    ButtonSound.Index[2] = DRUMCIRCLE3_WAV;
+			ButtonSound.Index[3] = DRUMCIRCLE4_WAV;
+			ButtonSound.Index[4] = DRUMCIRCLE5_WAV;
+			ButtonSound.Index[5] = DRUMCIRCLE6_WAV;
+			ButtonSound.Index[6] = DRUMCIRCLE7_WAV;
+			ButtonSound.Index[7] = DRUMCIRCLE8_WAV;
+	
+			ButtonSound.Length[0] = DRUMCIRCLE1_WAV_LENGTH;
+			ButtonSound.Length[1] = DRUMCIRCLE2_WAV_LENGTH;
+		    ButtonSound.Length[2] = DRUMCIRCLE3_WAV_LENGTH;
+			ButtonSound.Length[3] = DRUMCIRCLE4_WAV_LENGTH;
+			ButtonSound.Length[4] = DRUMCIRCLE5_WAV_LENGTH;
+			ButtonSound.Length[5] = DRUMCIRCLE6_WAV_LENGTH;
+			ButtonSound.Length[6] = DRUMCIRCLE7_WAV_LENGTH;
+			ButtonSound.Length[7] = DRUMCIRCLE8_WAV_LENGTH;
+			
+		break;
+		
+		
+		
+		
 		
 		
 		default:

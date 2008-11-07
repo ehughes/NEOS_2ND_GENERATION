@@ -3,7 +3,7 @@
 
 
 void Rodeo();
-void OnButtonPressRodeo(unsigned char button);
+void OnButtonPressRodeo(BYTE button);
 
 #endif
 

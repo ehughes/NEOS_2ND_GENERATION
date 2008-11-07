@@ -18,8 +18,6 @@
 //*************************************************
 
 #define DOUBLE_DOTS_TRANSITION_TIME 100
-//#define HIT_THRESHOLD	250
-//#define MAX_HIT_TIME	250
 #define HIT_THRESHOLD	50
 #define MAX_HIT_TIME	75
 #define DOUBLE_DOTS_POINT_1P	25
@@ -184,7 +182,7 @@ void DoubleDots(void)
 
 
 
-void OnButtonPressDoubleDots(unsigned char button)
+void OnButtonPressDoubleDots( BYTE  button)
 {
 	switch(GameState)
 	{
@@ -508,4 +506,6 @@ void DoubleDotsPlayCorrect(BYTE Player)
 	
 	
 	
-	
+	
+
+

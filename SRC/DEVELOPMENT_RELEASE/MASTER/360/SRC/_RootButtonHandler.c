@@ -17,12 +17,12 @@
 #include "SystemUtilities.h"
 #include "Diagnostics.h"
 
-unsigned char ScoreBoardButtons[3];	// status of piezo bits
-unsigned char ScoreBoardButtonsLast[3];	//Previous state
-unsigned char MasterButtonLastState=0;
+BYTE ScoreBoardButtons[3];	// status of piezo bits
+BYTE ScoreBoardButtonsLast[3];	//Previous state
+BYTE MasterButtonLastState=0;
 
 
-void OnButtonPress(unsigned char button)
+void OnButtonPress(BYTE button)
 {
 	
 	switch(SystemMode)
@@ -79,7 +79,7 @@ void OnButtonPress(unsigned char button)
 }
 
 
-void OnSelectPress(unsigned int button)
+void OnSelectPress(WORD button)
 {
 	
 	switch(SystemMode)
@@ -135,7 +135,7 @@ void OnMasterSwitchPress(void)
 
 void MasterButtonCheck(void)
 {
-	unsigned int MasterButtonState;
+	WORD MasterButtonState;
 
 	MasterButtonState = PORTG & BUTTON_LOCATION;
 	
@@ -163,7 +163,7 @@ void MasterButtonCheck(void)
 
 void SelectSwitchCheck(void)
 {
-	unsigned int temp,temp2,mask;
+	WORD temp,temp2,mask;
 	for (temp=0; temp <=2; temp+=1)
 	{
 		mask=0x0001;

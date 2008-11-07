@@ -115,7 +115,7 @@ void Marathon(void)
 			   	PlayMarathonSection(MarathonSection);
 				P1Position = rand() &0x07;
 				MarathonDisplayPlayerPosition();
-				LEDSendScores(248, 	ScoreBrightness, 0,0);
+				
 				P1HitCount = 0;
 				Player1Score = 0;
 				P1Time_Seconds = 0;
@@ -312,7 +312,7 @@ void Marathon(void)
 
 
 
-void OnButtonPressMarathon(unsigned char button)
+void OnButtonPressMarathon(BYTE button)
 {
 
 switch(GameState)

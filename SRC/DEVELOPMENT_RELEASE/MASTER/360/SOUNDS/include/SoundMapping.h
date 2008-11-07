@@ -252,6 +252,24 @@
 #define SOUTHERNROCK_GUITAR2_WAV_LENGTH                               200
 #define SOUTHERNROCK_BACKGROUND_WAV                                   188
 #define SOUTHERNROCK_BACKGROUND_WAV_LENGTH                            800
+#define DRUMCIRCLE1_WAV                                               190
+#define DRUMCIRCLE1_WAV_LENGTH                                        50
+#define DRUMCIRCLE2_WAV                                               191
+#define DRUMCIRCLE2_WAV_LENGTH                                        50
+#define DRUMCIRCLE3_WAV                                               192
+#define DRUMCIRCLE3_WAV_LENGTH                                        100
+#define DRUMCIRCLE4_WAV                                               193
+#define DRUMCIRCLE4_WAV_LENGTH                                        100
+#define DRUMCIRCLE5_WAV                                               194
+#define DRUMCIRCLE5_WAV_LENGTH                                        100
+#define DRUMCIRCLE6_WAV                                               195
+#define DRUMCIRCLE6_WAV_LENGTH                                        100
+#define DRUMCIRCLE7_WAV                                               196
+#define DRUMCIRCLE7_WAV_LENGTH                                        50
+#define DRUMCIRCLE8_WAV                                               197
+#define DRUMCIRCLE8_WAV_LENGTH                                        50
+#define DRUMCIRCLE_BACKGROUND_WAV                                     198
+#define DRUMCIRCLE_BACKGROUND_WAV_LENGTH                              400
 
 
 #endif

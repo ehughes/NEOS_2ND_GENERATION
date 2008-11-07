@@ -48,7 +48,7 @@ extern GameSettings CurrentGameSettings;
 extern BYTE AudioBackgroundVolume;
 extern BYTE ScoreBrightness;
 
-extern unsigned long GameCount;		//Total number of games played
+extern DWORD GameCount;		//Total number of games played
 
 #define PLAYER_1 0x00
 #define PLAYER_2 0x01

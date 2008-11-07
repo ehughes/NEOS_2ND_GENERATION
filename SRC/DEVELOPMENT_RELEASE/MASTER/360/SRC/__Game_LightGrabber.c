@@ -143,9 +143,7 @@ void LightGrabber(void)
 				P1_LIGHT_GRAB_FLASH_TIMER=0;		
 				BONUS_LED_FLASH_TIMER = 0;
 				P1_NODE_AUDIO_REPEAT_TIMER = 0;	
-				
-				LEDSendScores(248, 	ScoreBrightness, 0,BLANK_SCORE);
-				
+			
 				Player1Score = 0;
 				Player2Score = 0;
 								
@@ -370,7 +368,7 @@ void LightGrabber(void)
 
 
 
-void OnButtonPressLightGrabber(unsigned char button)
+void OnButtonPressLightGrabber( BYTE  button)
 {
 	switch(GameState)
 	{
@@ -497,7 +495,7 @@ void LightGrabberPlayBonusSound(BYTE button)
 void LightGrabberPlayButtonFeebackSound(BYTE button)
 {
 
-  PlayInternalNodeSound(button,INTERNAL_SOUND_POSITIVE_FEEDBACK,CurrentGameSettings.GameSoundEffectVolume,1,BACKGROUND_MUSIC_STREAM,CurrentGameSettings.GameBackgroundMusicVolume,1);
+  	PlayInternalNodeSound(button,INTERNAL_SOUND_POSITIVE_FEEDBACK,CurrentGameSettings.GameSoundEffectVolume,1,BACKGROUND_MUSIC_STREAM,CurrentGameSettings.GameBackgroundMusicVolume,1);
 
 }	
 

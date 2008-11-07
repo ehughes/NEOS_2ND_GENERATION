@@ -18,7 +18,7 @@
 //*******Game Parameters***************************
 //*************************************************
 
-#define SHOW_PATTERN_INTERVAL				 50
+#define SHOW_PATTERN_SIGNED_INTERVAL				 50
 #define RESPONSE_TIME						 400
 #define RESPONSE_TIME_2P					 500
 #define PAUSE_BEFORE_NEXT_PATTERN_TIME 		 90
@@ -307,7 +307,7 @@ void Ninja(void)
 				{
 				   case NINJA_SHOW_PATTERN:
 						
-				    if(SHOW_PATTERN_TIMER>SHOW_PATTERN_INTERVAL)
+				    if(SHOW_PATTERN_TIMER>SHOW_PATTERN_SIGNED_INTERVAL)
 					{
 						SHOW_PATTERN_TIMER = 0;
 						
@@ -380,7 +380,7 @@ void Ninja(void)
 				{
 				   case NINJA_SHOW_PATTERN:
 						
-				    if(SHOW_PATTERN_TIMER>SHOW_PATTERN_INTERVAL)
+				    if(SHOW_PATTERN_TIMER>SHOW_PATTERN_SIGNED_INTERVAL)
 					{
 						SHOW_PATTERN_TIMER = 0;
 						
@@ -467,7 +467,7 @@ void ResetNinjaPatternStateVariables()
 
 	NinjaSubState = NINJA_SHOW_PATTERN;
     CurrentPatternElementDisplay=0;	
-	SHOW_PATTERN_TIMER = SHOW_PATTERN_INTERVAL-1;
+	SHOW_PATTERN_TIMER = SHOW_PATTERN_SIGNED_INTERVAL-1;
 	PatternElementDisplayed=FALSE;	
 	CurrentPatternElementDisplay=0;	
 	P1HitCount = 0;
@@ -491,7 +491,7 @@ void RenderNinjaPattern(NinjaPattern * NPattern, BYTE ColorOnR, BYTE ColorOnG, B
 	}		
 }	
 
-void OnButtonPressNinja(unsigned char button)
+void OnButtonPressNinja(BYTE button)
 {
 	
 	BYTE PatternElementLocation;
