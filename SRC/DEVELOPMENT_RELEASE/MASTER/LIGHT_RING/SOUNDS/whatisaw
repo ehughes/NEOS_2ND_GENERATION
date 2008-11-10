@@ -169,37 +169,38 @@ Line [96] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
 Line [96] has a sound sounds\DuckDuckGoose\GooseChaseMusic.wav at sound number 84
 Line [97] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
 Line [97] has a sound sounds\DuckDuckGoose\GooseHit.wav at sound number 85
-Line [98] is blank
+Line [98] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [98] has a sound sounds\DuckDuckGoose\DuckDuck_Background_No_Quacks.wav at sound number 86
 Line [99] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [99] has a sound sounds\DuckDuckGoose\DuckDuck_Background_No_Quacks.wav at sound number 86
+Line [99] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Quacks.wav at sound number 87
 Line [100] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [100] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Quacks.wav at sound number 87
+Line [100] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Goose_Quacks.wav at sound number 88
 Line [101] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [101] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Goose_Quacks.wav at sound number 88
+Line [101] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase.wav at sound number 89
 Line [102] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [102] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase.wav at sound number 89
+Line [102] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase_No_Goose.wav at sound number 90
 Line [103] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [103] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase_No_Goose.wav at sound number 90
+Line [103] has a sound sounds\DuckDuckGoose\Duck.wav at sound number 91
 Line [104] is blank
 Line [105] is blank
 Line [106] is blank
-Line [107] has a macro replace of COMET_PATH to sounds\Comet
-Line [107] has a sound sounds\Comet\CometBackground.wav at sound number 150
+Line [107] is blank
 Line [108] has a macro replace of COMET_PATH to sounds\Comet
-Line [108] has a sound sounds\Comet\LaserBlast.wav at sound number 151
+Line [108] has a sound sounds\Comet\CometBackground.wav at sound number 150
 Line [109] has a macro replace of COMET_PATH to sounds\Comet
-Line [109] has a sound sounds\Comet\Miss.wav at sound number 152
+Line [109] has a sound sounds\Comet\LaserBlast.wav at sound number 151
 Line [110] has a macro replace of COMET_PATH to sounds\Comet
-Line [110] has a sound sounds\Comet\NewComet.wav at sound number 153
-Line [111] is blank
+Line [110] has a sound sounds\Comet\Miss.wav at sound number 152
+Line [111] has a macro replace of COMET_PATH to sounds\Comet
+Line [111] has a sound sounds\Comet\NewComet.wav at sound number 153
 Line [112] is blank
-Line [113] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
-Line [113] has a sound sounds\FlipFlop\FlipFlopBackground.wav at sound number 160
+Line [113] is blank
 Line [114] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
-Line [114] has a sound sounds\FlipFlop\Flop1.wav at sound number 161
+Line [114] has a sound sounds\FlipFlop\FlipFlopBackground.wav at sound number 160
 Line [115] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
-Line [115] has a sound sounds\FlipFlop\Flop2.wav at sound number 162
-Line [116] is blank
+Line [115] has a sound sounds\FlipFlop\Flop1.wav at sound number 161
+Line [116] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
+Line [116] has a sound sounds\FlipFlop\Flop2.wav at sound number 162
 Line [117] is blank
 Line [118] is blank
 Line [119] is blank
@@ -224,3 +225,5 @@ Line [137] is blank
 Line [138] is blank
 Line [139] is blank
 Line [140] is blank
+Line [141] is blank
+Line [142] is blank

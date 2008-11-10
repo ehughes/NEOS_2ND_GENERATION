@@ -136,6 +136,8 @@
 #define DUCKDUCK_FULLCHASE_WAV_LENGTH                                 1073
 #define DUCKDUCK_FULLCHASE_NO_GOOSE_WAV                               90
 #define DUCKDUCK_FULLCHASE_NO_GOOSE_WAV_LENGTH                        1073
+#define DUCK_WAV                                                      91
+#define DUCK_WAV_LENGTH                                               132
 #define RINGSE0_WAV                                                   100
 #define RINGSE0_WAV_LENGTH                                            27
 #define RINGSE1_WAV                                                   101

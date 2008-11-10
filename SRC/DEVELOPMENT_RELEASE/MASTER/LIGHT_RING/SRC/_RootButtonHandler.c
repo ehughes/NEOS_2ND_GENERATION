@@ -43,10 +43,6 @@ void OnButtonPress(unsigned char button)
 					 OnButtonPressTeatherBall(button);
 				break;
 				
-				case GAME_COMET:
-					OnButtonPressComet(button);
-				break;
-				
 				case GAME_DUCKDUCKGOOSE:
 					OnButtonPressDuckDuckGoose(button);
 				break;

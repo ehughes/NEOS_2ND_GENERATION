@@ -16,6 +16,9 @@
 #include "InternalButtonSoundMapping.h"
 #include "TimerRoutines.h"
 #include "config.h"
+#include "BoardSupport.h"
+
+
 //*************************************************
 //******** GAME STATE MACROS*** *******************
 //*************************************************
@@ -25,6 +28,8 @@
 #define COUNT_DOWN_TO_GAME 		0x04
 #define SLEEP					0x05				
 #define BOOT_DELAY				0x06
+#define VOLUME_CHANGE_INIT	  	0x07
+#define VOLUME_CHANGE		  	0x08
 
 #define MUSIC_IDLE					0
 #define MUSIC_MAIN_THEME			1
@@ -36,7 +41,7 @@
 #define LIGHT_GRABBER_1P_BUTTON		10
 #define DUCK_DUCK_GOOSE_BUTTON 		11
 #define TEATHER_BALL_BUTTON			12
-#define COMET_BUTTON 				13
+#define FLIP_FLOP_BUTTON 			13
 #define JAM_CIRCLE_BUTTON 			14
 
 #define TIME_TO_SLEEP				18000
@@ -45,28 +50,30 @@
 //******** System Timer MACROS*********************
 //*************************************************
 
-#define MAIN_GAME_TIMER				GPTimer[0]
-#define COUNT_TIMER					GPTimer[1]
-#define SELECT_TO_START_TIMER		GPTimer[2]
-#define GAME_BUTTON_ANIMATION_TIMER	GPTimer[3]
-#define SCORE_DISPLAY_ANIMATION_TIMER GPTimer[4]
-#define START_BUTTON_ANIMATION_TIMER GPTimer[5]
-#define SELECTOR_SPIN_ANIMATION_TIMER GPTimer[6]
-#define MUSIC_TIMER					 GPTimer[7]
-#define SOUND_CHANNEL0_TIMER	GPTimer[8]
-#define SOUND_CHANNEL1_TIMER	GPTimer[9]
-#define SOUND_CHANNEL2_TIMER	GPTimer[10]
+#define MAIN_GAME_TIMER					GPTimer[0]
+#define COUNT_TIMER						GPTimer[1]
+#define SELECT_TO_START_TIMER			GPTimer[2]
+#define GAME_BUTTON_ANIMATION_TIMER		GPTimer[3]
+#define SCORE_DISPLAY_ANIMATION_TIMER 	GPTimer[4]
+#define START_BUTTON_ANIMATION_TIMER 	GPTimer[5]
+#define SELECTOR_SPIN_ANIMATION_TIMER 	GPTimer[6]
+#define MUSIC_TIMER					 	GPTimer[7]
+#define SOUND_CHANNEL0_TIMER			GPTimer[8]
+#define SOUND_CHANNEL1_TIMER			GPTimer[9]
+//#define SOUND_CHANNEL2_TIMER			GPTimer[10]
+#define VC_ENTRY_TIMER					GPTimer[10]
+#define VOLUME_CHANGE_TIMER				GPTimer[11]
 
 //*************************************************
 //*******Game Parameters***************************
 //*************************************************
 
-#define GAME_BUTTON_ANIMATION_TIME	 15
-#define SCORE_DISPLAY_ANIMATION_TIME 8
-#define SELECTOR_SPIN_ANIMATION_TIME 8
-#define START_BUTTON_ANIMATION_TIME	 8
-
-#define HEARTBEAT_TIME		HEARTBEAT_WAV_LENGTH * 30
+#define GAME_BUTTON_ANIMATION_TIME	     15
+#define SCORE_DISPLAY_ANIMATION_TIME	 8
+#define SELECTOR_SPIN_ANIMATION_TIME 	 8
+#define START_BUTTON_ANIMATION_TIME		 8
+#define HEARTBEAT_TIME				 	 HEARTBEAT_WAV_LENGTH * 30
+#define VC_ENTRY_TIME					 100
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -83,7 +90,7 @@
 						  LIGHT_GRABBER_1P_BUTTON,
 						  DUCK_DUCK_GOOSE_BUTTON,
 						  TEATHER_BALL_BUTTON,
-						  COMET_BUTTON,
+						  FLIP_FLOP_BUTTON,
 						  JAM_CIRCLE_BUTTON,
 	};					
 						  
@@ -97,8 +104,12 @@ WORD CountDownLength;
 BYTE Count;
 BYTE SelectorSpin = 0;
 BYTE SelectState;
-
 BYTE MusicState;
+
+BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON};
+BYTE VolumeChangeEntrySequencePosition = 0;
+
+
 
 #define TOP			0x01
 #define UPPER_RIGHT 0x02
@@ -163,6 +174,9 @@ void LRResetSoundChannelTimer(BYTE  Channel);
 void PlayLightRingSoundEffect(BYTE button);
 void MoveToMainSelector();
 void MoveToSleep();
+void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats);
+void MoveToVolumeChange();
+BOOL CheckVolumeChangeEntrySequence(BYTE button);
 
 //*************************************************
 //*******Game Functions****************************
@@ -199,6 +213,9 @@ void Root_Game0 (void)
 			SCORE_DISPLAY_ANIMATION_TIMER=0;
 			SELECTOR_SPIN_ANIMATION_TIMER=0;
 			START_BUTTON_ANIMATION_TIMER=0;
+			
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xC8)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
 					
 		break;
 		
@@ -284,33 +301,33 @@ void Root_Game0 (void)
 				case 3:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,3,BLANK_DIGIT,BLANK_DIGIT, 3,BLANK_DIGIT, BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,3,BLANK_DIGIT,BLANK_DIGIT, 3,BLANK_DIGIT, BLANK_DIGIT);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,3,BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,3,BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT,BLANK_DIGIT, BLANK_DIGIT);
 					}
 				break;	
 				
 				case 2:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,2,BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,2,BLANK_DIGIT);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);	
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,BLANK_DIGIT,2,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);	
 					}
 				break;
 				
 				case 1:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,1);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,1);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,BLANK_DIGIT,BLANK_DIGIT,1,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
 					}
 				break;
 				
@@ -319,11 +336,11 @@ void Root_Game0 (void)
 				default:
 					if(GamePlayers == 2)
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,0);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,0);
 					}
 					else
 					{
-						LEDSendDigits(DISPLAY_ADDRESS, ScoreBrightness,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
+						LEDSendDigits(DISPLAY_ADDRESS, 0xFF ,BLANK_DIGIT,BLANK_DIGIT,0,BLANK_DIGIT,BLANK_DIGIT,BLANK_DIGIT);
 					}
 				break;
 					
@@ -335,7 +352,7 @@ void Root_Game0 (void)
 			{
 				GameState = INIT;
 		
-				LEDSendScores(DISPLAY_ADDRESS,ScoreBrightness, BLANK_SCORE,BLANK_SCORE);		
+				LEDSendScores(DISPLAY_ADDRESS,0xFF , BLANK_SCORE,BLANK_SCORE);		
 				Player1Score = 0;
 				Player2Score = 0;		
 				InitRandomButton();	
@@ -357,7 +374,7 @@ void Root_Game0 (void)
 						GameSelected = GAME_TEATHERBALL;
 					break;
 				
-					case COMET_BUTTON:
+					case FLIP_FLOP_BUTTON:
 						GamePlayers =1;
 						GameSelected = GAME_FLIP_FLOP;
 					break;
@@ -387,7 +404,45 @@ void Root_Game0 (void)
 		break;
 	
 		
+			case VOLUME_CHANGE_INIT:
 		
+		if(MAIN_GAME_TIMER > 25)
+		{
+			Game0PlayButtonFeebackSound(0xFF,1);
+			LEDSendVariable(DISPLAY_VOL, AudioGlobalVolumeIndex);
+			GameState = VOLUME_CHANGE;
+			MAIN_GAME_TIMER = 0xFFFF;
+			VOLUME_CHANGE_TIMER = 0;
+			SelectState = 0;
+		}
+		
+		break;	
+		
+		
+		case VOLUME_CHANGE:
+		
+			if(VOLUME_CHANGE_TIMER>1000)
+			{
+				GameState = INIT;		
+				
+			}	
+			if(MAIN_GAME_TIMER > 50)
+			{
+				MAIN_GAME_TIMER= 0;
+				if(SelectState)
+				{
+					ScoreSendLights(248, (1<<LIGHT_GRABBER_1P_BUTTON),0x0);
+					SelectState = 0;
+					
+				}
+				else
+				{
+					ScoreSendLights(248, (1<<FLIP_FLOP_BUTTON),0x0);
+					SelectState = 1;
+					
+				}
+			}
+		break;
 	
 		
 		default:
@@ -403,7 +458,7 @@ void AnimateScoreDisplay()
 		if(SCORE_DISPLAY_ANIMATION_TIMER > SCORE_DISPLAY_ANIMATION_TIME)
 		{
 			SCORE_DISPLAY_ANIMATION_TIMER = 0;
-	  		CANQueueTxMessage(0x70,248+(ScoreBrightness<<8),SpinBig1[SpinSeg1]+(SpinBig2[SpinSeg1]<<8),SpinBig3[SpinSeg1]+(SpinBig1[SpinSeg2]<<8),SpinBig2[SpinSeg2]+(SpinBig3[SpinSeg2]<<8));
+	  		CANQueueTxMessage(0x70,248+(0xFF<<8),SpinBig1[SpinSeg1]+(SpinBig2[SpinSeg1]<<8),SpinBig3[SpinSeg1]+(SpinBig1[SpinSeg2]<<8),SpinBig2[SpinSeg2]+(SpinBig3[SpinSeg2]<<8));
 		   	SpinSeg1++;if(SpinSeg1>9)SpinSeg1=0;
 		   	SpinSeg2--;if(SpinSeg2>9)SpinSeg2=9;
 	   }			 
@@ -519,12 +574,53 @@ void OnSelectPressRootGame0(unsigned char button)
 			PendingGameSelection = button;
 			ScoreSendLights(248,  1<<(PendingGameSelection),0x0);
 			
+		break;
 		
 		
+			case VOLUME_CHANGE:
+		
+			VOLUME_CHANGE_TIMER = 0;
 			
+			switch(button)
+			{
+				case LIGHT_GRABBER_1P_BUTTON:
+				
+					if(AudioGlobalVolumeIndex < GLOBAL_VOLUME_INDEX_MAX)
+					{
+						AudioGlobalVolumeIndex++;
+					}
+					
+					LEDSendVariable(DISPLAY_VOL, AudioGlobalVolumeIndex);
+					AudioGlobalVolume = VolumeIndexTable[AudioGlobalVolumeIndex];
+					Game0PlayButtonFeebackSound(AudioGlobalVolume, 1);
+				
+				break;
+				
+				case FLIP_FLOP_BUTTON:
+				
+					if(AudioGlobalVolumeIndex > GLOBAL_VOLUME_INDEX_MIN)
+					{
+						AudioGlobalVolumeIndex--;
+					}
+					
+					LEDSendVariable(DISPLAY_VOL, AudioGlobalVolumeIndex);
+					AudioGlobalVolume = VolumeIndexTable[AudioGlobalVolumeIndex];
+					Game0PlayButtonFeebackSound(AudioGlobalVolume, 1);
+				
+				break;
+				
+				default:
+				EEStoreVariable(AUDIO_VOLUME_INDEX_LOCATION,  AudioGlobalVolumeIndex);
+				GameState = INIT;
+				break;				
+				
+				
+			}
 		break;
 		
 		case MAIN_SELECTOR:
+
+				if(CheckVolumeChangeEntrySequence(button) == TRUE) { MoveToVolumeChange(); return; }
 
 				switch(button)
 				{
@@ -573,9 +669,9 @@ void MusicWake()
 
 void PlaySelectorSound()
 {
-	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,0xFF,1,MAINTHEME_L_STREAM,0xFF,1);
-	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,0xFF,1,MAINTHEME_L_STREAM,0xFF,1);
-	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,0xFF,1,MAINTHEME_R_STREAM,0xFF,1);
+	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,MAINTHEME_L_STREAM	,CurrentGameSettings.GameBackgroundMusicVolume,1);
+	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,MAINTHEME_L_STREAM	,CurrentGameSettings.GameBackgroundMusicVolume,1);
+	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,MAINTHEME_L_STREAM	,CurrentGameSettings.GameBackgroundMusicVolume,1);
 	
 	SELECT_TO_START_TIMER = 0;
 }
@@ -593,7 +689,7 @@ void StartCountDown()
 
 void PlayCountDown()
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,0,CountDownLength,0xFF,0x00);
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,0,CountDownLength,CurrentGameSettings.GameSoundEffectVolume,0x00);
 	SendNodeNOP();				
 	EAudioPlaySound( BACKGROUND_MUSIC_STREAM,COUNTDOWN_WAV);	
 }	
@@ -606,34 +702,34 @@ void UpdateGameSettings()
 	{
 		case GAME_LIGHT_GRABBER:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.GameSoundEffectVolume =		 ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.FinaleMusicVolume = ((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;;
 			
 		break;
 		
 		
 	 	case GAME_JAM_CIRCLE:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0x50;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xA0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0x50)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.GameSoundEffectVolume = ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.FinaleMusicVolume = ((WORD)(0xA0)*(WORD)(AudioGlobalVolume))>>8;;
 			
 		break;
 		
 		case GAME_DUCKDUCKGOOSE:
 		
-			CurrentGameSettings.GameBackgroundMusicVolume = 0x60;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xA0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0x60)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xA0)*(WORD)(AudioGlobalVolume))>>8;;
 			
 		break;
 		
 	
 		default:
-			CurrentGameSettings.GameBackgroundMusicVolume = 0xFF;
-			CurrentGameSettings.GameSoundEffectVolume = 0xFF;
-			CurrentGameSettings.FinaleMusicVolume = 0xC0;
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;;
+			CurrentGameSettings.FinaleMusicVolume = 		((WORD)(0xC0)*(WORD)(AudioGlobalVolume))>>8;;
 			
 		break;
 	}
@@ -641,30 +737,23 @@ void UpdateGameSettings()
 }	
 
 
-
-
-	
-
-	
-	
-	
 void StartMainThemeMusic()
 {
 	MusicState = MUSIC_MAIN_THEME;
 	MUSIC_TIMER = 0;
 	
-	AudioNodeEnable(0,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_L_WAV_LENGTH,0xFF,0x00);
+	AudioNodeEnable(0,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_L_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0x00);
 	SendNodeNOP();	
-	AudioNodeEnable(1,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_L_WAV_LENGTH,0xFF,0x00);
+	AudioNodeEnable(1,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_L_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0x00);
 	SendNodeNOP();	
 	
-	AudioNodeEnable(2,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_L_WAV_LENGTH,0xFF,0x00);
+	AudioNodeEnable(2,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_L_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0x00);
 	SendNodeNOP();	
-	AudioNodeEnable(3,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_R_WAV_LENGTH,0xFF,0x0);
+	AudioNodeEnable(3,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_R_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0x0);
 	
-	AudioNodeEnable(4,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_R_WAV_LENGTH,0xFF,0x0);
+	AudioNodeEnable(4,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_R_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0x0);
 	SendNodeNOP();	
-	AudioNodeEnable(5,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_R_WAV_LENGTH,0xFF,0x0);
+	AudioNodeEnable(5,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,AUDIO_ON_BEFORE_TIMEOUT,LIGHTRINGMAINTHEME_R_WAV_LENGTH,CurrentGameSettings.GameBackgroundMusicVolume,0x0);
 	SendNodeNOP();	
 
 	
@@ -815,7 +904,7 @@ void LRResetSoundChannelTimer(BYTE  Channel)
 			break;
 			
 			case 2:
-				SOUND_CHANNEL2_TIMER =0;
+			//	SOUND_CHANNEL2_TIMER =0;
 			break;
 			
 			default:
@@ -896,6 +985,79 @@ BYTE SoundChannelTemp;
 		
 }	
 
+BOOL CheckVolumeChangeEntrySequence(BYTE button)
+{
+	BOOL RetVal = FALSE;
+	
 
+	
+	switch(VolumeChangeEntrySequencePosition)
+	{
+		
+		case 0:
+			if(button == VolumeChangeEntrySequence[VolumeChangeEntrySequencePosition])
+			{
+				VolumeChangeEntrySequencePosition++;
+				VC_ENTRY_TIMER = 0;
+				RetVal = FALSE;
+			}
+		break;
+		
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		
+			if((button == VolumeChangeEntrySequence[VolumeChangeEntrySequencePosition])  && (VC_ENTRY_TIMER<VC_ENTRY_TIME))
+			{
+				VolumeChangeEntrySequencePosition++;
+				
+					if(VolumeChangeEntrySequencePosition == 5)
+					{
+						RetVal = TRUE;	
+					}
+					else
+					{
+						VC_ENTRY_TIMER = 0;
+						RetVal = FALSE;
+					}
+			}
+			else
+			{
+				VolumeChangeEntrySequencePosition = 0;
+				VC_ENTRY_TIMER = 0;
+				RetVal = FALSE;	
+			}
+		break;
+		
+		default:
+			VolumeChangeEntrySequencePosition = 0;	
+			VC_ENTRY_TIMER = 0;
+			RetVal = FALSE;
+		break;	
+		
+		
+	}
+	
+	return RetVal;
+	
+}		
+	
+	
+void MoveToVolumeChange()
+{
+	ResetAudioAndLEDS();
+	GameState = VOLUME_CHANGE_INIT;
+	MAIN_GAME_TIMER = 0;
+	
+}	
+	
+void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats)
+{
 
+  PlayInternalNodeSound(0xFF,INTERNAL_SOUND_POSITIVE_FEEDBACK,Volume,Repeats,0,0,0);
+
+}	
+
+	
 	

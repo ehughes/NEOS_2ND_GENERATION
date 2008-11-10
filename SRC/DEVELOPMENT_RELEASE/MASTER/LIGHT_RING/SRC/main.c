@@ -42,7 +42,7 @@
 #include "USB.h"
 #include "FLASH.h"
 #include "Diagnostics.h"
-
+#include "BoardSupport.h"
 
 /* We have 8.192 MHZ xtal with PLL * 8 for 65MHZ internal, 16MIPS */
 /* 
@@ -53,7 +53,8 @@ _FWDT (WDT_ON & WDTPSA_8 & WDTPSB_16);		//Watchdog now ON (3.9 Hz)
 _FBORPOR(MCLR_EN & PWRT_OFF);   /* Enable MCLR reset pin and turn off the power-up timers. */
 _FGS(GEN_PROT)
 
-#define BOOT_TIMER GPTimer[0]
+#define BOOT_TIMER 				GPTimer[0]
+#define VERSION_DISPLAY_TIMER   GPTimer[1]
 
 int main (void)
 {
@@ -62,13 +63,12 @@ int main (void)
 	
 	RCONbits.WDTO=0;	//Reset this if wake by watchdog
 	PortInit();
-	ReadOptionJumpers();
-
+	
 	MyNodeNumber=MASTER_NODE_ADDRESS;
 	EERecover();		//Recover eeprom
 
 	 InitSystemVariables();
-	ADPCFG =0xFFFF;
+	 ADPCFG =0xFFFF;
 
 	CLEAR_WATCHDOG;
 
@@ -86,11 +86,7 @@ int main (void)
 	ResetAudioAndLEDS();
 	ResetAllSlaves();
 	CANTransmitCheck();	
-	
-//	SystemMode = SYSTEM_DIAGNOSTICS;
-//	GameState = INIT;
-	
-	
+
 	SystemMode = SYSTEM_BOOT;
 	BOOT_TIMER = 0;
 
@@ -102,6 +98,13 @@ int main (void)
 		{
 			
 			case SYSTEM_BOOT:
+			
+			if(VERSION_DISPLAY_TIMER >= 25)
+			{
+				VERSION_DISPLAY_TIMER = 0;
+				LEDSendVariable(DISPLAY_VER, VERSION);
+				CANTransmitCheck();
+			}
 			
 			if(BOOT_TIMER > 200)
 			{

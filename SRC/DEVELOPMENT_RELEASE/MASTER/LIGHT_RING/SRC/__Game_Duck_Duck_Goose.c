@@ -25,13 +25,16 @@
 #define DUCK_HIT_POINT	10
 #define GOOSE_HIT_POINT	25
 
+#define GOOSE_FLICKER_TIME 5 
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
 //*************************************************
 
-#define	HIT_SFX_STREAM 2
-#define	BACKGROUND_MUSIC_STREAM 0
+#define	HIT_SFX_STREAM				 3
+#define	GOOSE_SFX_STREAM 		 	 2
+#define	DUCK_SFX_STREAM 			 1
+#define	BACKGROUND_MUSIC_STREAM		 0
 
 
 //*************************************************
@@ -62,6 +65,13 @@ BYTE NumDucks;
 BYTE Position;
 BYTE Direction;
 BYTE MovesUntilSwitch;
+BYTE GooseMoves;
+WORD DuckAnimationTime;
+BYTE DuckLightStartRed=0;
+BYTE DuckLightStartGreen=0;
+BYTE DuckLightStopRed=0;
+BYTE DuckLightStopGreen=0;
+BYTE GooseLightState=0;
 
 #define DUCK_DIRECTION  Direction
 #define DUCK_POSITION	Position
@@ -83,6 +93,10 @@ void PlayGooseSound(BYTE button);
 void MoveGoose();
 void LightGoosePosition();
 void FlashGooseLight();	
+void StartDuckSoundEffect();
+void AnimateDuckLight();
+void AnimateGooseLight();
+
 
 void DuckDuckGoose(void)
 {
@@ -94,20 +108,22 @@ void DuckDuckGoose(void)
 	
 			MAIN_GAME_TIMER = 0;
 			GameState = DUCK_CHASE_INIT;		
-	
+			DUCK_POSITION = RandomButton(NO_EXCLUDE, NO_EXCLUDE,NO_EXCLUDE);
 		break;
 		
 		case DUCK_CHASE_INIT:
-		
-			DUCK_POSITION = RandomButton(NO_EXCLUDE, NO_EXCLUDE,NO_EXCLUDE);	
+			LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+				
 			DUCK_DIRECTION = SelectRandomDirection();
 			NumDucks = 3 + (rand()&0x03);
 			DUCK_LIGHT_TIMER = 0xFFFF;
 			StartDuckChaseMusic();
+			StartDuckSoundEffect();
 			GameState = DUCK_CHASE;
 			ScoreManagerEnabled = TRUE;
 			P1ScoreDisplayState = SCORE_NORMAL;
 			P2ScoreDisplayState = SCORE_BLANK;
+			GooseMoves = 0;
 			
 		break;
 		
@@ -118,12 +134,9 @@ void DuckDuckGoose(void)
 			MoveToDuckDuckGooseEnd();
 		}
 		
-		if(DUCK_LIGHT_TIMER>DUCK_LIGHT_FLASH_INTERVAL)
-		{
-			DUCK_LIGHT_TIMER = 0;
-			FlashDuckLight();	
-			
-		}
+		AnimateDuckLight();
+		
+		break;
 		
 		case GOOSE_CALL:
 		
@@ -132,11 +145,7 @@ void DuckDuckGoose(void)
 			MoveToDuckDuckGooseEnd();
 		}
 		
-		if(DUCK_LIGHT_TIMER>DUCK_LIGHT_FLASH_INTERVAL)
-		{
-			DUCK_LIGHT_TIMER = 0;
-			FlashGooseLight();	
-		}
+		AnimateGooseLight();
 		
 		break;
 	
@@ -151,10 +160,18 @@ void DuckDuckGoose(void)
 			{
 				GOOSE_RUN_TIMER = 0;		
 			
+				GooseMoves++;
 				
-				
-				MoveGoose();
-				PlayGooseSound(GOOSE_POSITION);
+				if(GooseMoves > 9)
+				{
+					GameState = DUCK_CHASE_INIT;
+		
+				}	
+				else
+				{
+					MoveGoose();
+					PlayGooseSound(GOOSE_POSITION);
+				}
 				
 			}
 			
@@ -201,6 +218,10 @@ void OnButtonPressDuckDuckGoose(unsigned char button)
 				{
 					MoveToGooseCall();
 				
+				}
+				else
+				{
+					StartDuckSoundEffect();
 				}
 			}
 		
@@ -252,9 +273,9 @@ void MoveToGooseChase()
 void MoveToGooseCall()
 {
 	GameState = GOOSE_CALL;
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+	AudioNodeEnable(GOOSE_POSITION,GOOSE_SFX_STREAM,GOOSE_SFX_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKDUCK_BACKGROUND_GOOSE_QUACKS_WAV);
+	EAudioPlaySound(GOOSE_SFX_STREAM,GOOSECALL_WAV);
 	DUCK_LIGHT_TIMER = 0xFFFF;
 	GOOSE_RUN_TIMER = 0xFFFF;
 }
@@ -295,7 +316,7 @@ void StartDuckChaseMusic()
 {
 	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKDUCK_BACKGROUND_QUACKS_WAV);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKDUCK_BACKGROUND_NO_QUACKS_WAV);
 }		
 
 void PlayDuckHitSound(BYTE button)
@@ -312,6 +333,15 @@ void PlayGooseSound(BYTE button)
 	EAudioPlaySound(HIT_SFX_STREAM,GOOSE_WAV );
 	
 }	
+
+
+void StartDuckSoundEffect()
+{
+	AudioNodeEnable(DUCK_POSITION,DUCK_SFX_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_AFTER_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+	SendNodeNOP();	
+	EAudioPlaySound(DUCK_SFX_STREAM,DUCK_WAV );
+}	
+
 
 void MoveDuck()
 {
@@ -369,4 +399,55 @@ void MoveGoose()
 	LEDSendMessage(GOOSE_POSITION,RED,RED,0, 0);
 	LEDSendMessage(GOOSE_POSITION,RED,RED,0, 0);
 }	
+
+
+
+void AnimateDuckLight()
+{
+	if(DUCK_LIGHT_TIMER>DuckAnimationTime)
+	{
+		DUCK_LIGHT_TIMER = 0;
+
+		DuckAnimationTime = 32 +(rand()&0x1F);
+		DuckLightStartRed = DuckLightStopRed;
+		DuckLightStartGreen = DuckLightStopGreen;
+	
+		DuckLightStopRed = 32+(rand()&0x1F);
+		DuckLightStopGreen = DuckLightStopRed;
+		
+		LEDSendMessage(DUCK_POSITION,DuckLightStartRed,DuckLightStartGreen,0,DuckLightStopRed,DuckLightStopGreen,0,DuckAnimationTime,DuckAnimationTime);
+	
+	}
+	
+}
+
+void AnimateGooseLight()
+{
+	if(DUCK_LIGHT_TIMER>GOOSE_FLICKER_TIME)
+	{
+		DUCK_LIGHT_TIMER = 0;
+	
+		switch(GooseLightState)
+		{
+			case 0:
+				LEDSendMessage(GOOSE_POSITION,RED,LEDOFF,GOOSE_FLICKER_TIME,GOOSE_FLICKER_TIME);
+				GooseLightState = 1;
+			break;
+			
+			case 1:
+				LEDSendMessage(GOOSE_POSITION,LEDOFF,LEDOFF,GOOSE_FLICKER_TIME,GOOSE_FLICKER_TIME);
+				GooseLightState = 0;
+			break;
+		
+			default:
+			GooseLightState = 0;
+			break;
+			
+		}		
+	
+	
+	}	
+	
+}
+
 

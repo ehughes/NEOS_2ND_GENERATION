@@ -144,7 +144,7 @@ void LightGrabber(void)
 				BONUS_LED_FLASH_TIMER = 0;
 				P1_NODE_AUDIO_REPEAT_TIMER = 0;	
 				
-				LEDSendScores(248, 	ScoreBrightness, 0,BLANK_SCORE);
+				LEDSendScores(248, 	0xFF , 0,BLANK_SCORE);
 				
 				Player1Score = 0;
 				Player2Score = 0;

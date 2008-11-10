@@ -30,9 +30,6 @@ void GameProcess(void)
 			DuckDuckGoose();
 		break;
 		
-		case GAME_COMET:
-			Comet();
-		break;
 		
 		case GAME_FLIP_FLOP:
 			FlipFlop();
