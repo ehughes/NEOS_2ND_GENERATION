@@ -15,7 +15,7 @@
 #include "ADCRoutines.h"
 #include "stdlib.h"
 #include "BoardSupport.h"
-
+#include "EEPROMRoutines.h"
 
 #define PING_DELAY_TIMER 		GPTimer[1]
 #define BOOTUP_SOUND_TIMER		GPTimer[2]
@@ -426,9 +426,9 @@ void SystemsDiagnostics()
 						{
 							for(i=0;i<PowerSequenceButton+1;i++)
 							{
-								LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
+								LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0xFFFF,0x0000);
 								LEDSendVariable(DISPLAY_DIA, POWER_ERROR_BASE_CODE + PowerSequenceButton);
-								LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0,0);
+								LEDSendMessage(PowerSequenceButton,YELLOW,YELLOW,0xFFFF,0x0000);
 							}
 						}
 						
@@ -635,9 +635,9 @@ void PlayBootupSound()
  	
  	for(k=0;k<3;k++)
 	{
-	AudioNodeEnable((2*k),0,0,AUDIO_ON_BEFORE_TIMEOUT,BUILDUP_A_WAV_LENGTH,0xFF,0);
+	AudioNodeEnable((2*k),0,0,AUDIO_ON_BEFORE_TIMEOUT,BUILDUP_A_WAV_LENGTH,AudioGlobalVolume,0);
 	SendNodeNOP();
-	AudioNodeEnable(((2*k)+1),1,1,AUDIO_ON_BEFORE_TIMEOUT,BUILDUP_B_WAV_LENGTH,0xFF,0);
+	AudioNodeEnable(((2*k)+1),1,1,AUDIO_ON_BEFORE_TIMEOUT,BUILDUP_B_WAV_LENGTH,AudioGlobalVolume,0);
 	SendNodeNOP();
  	}
 	InhibitAudio = FALSE;               

@@ -5,14 +5,14 @@
 #include "SystemUtilities.h"
 #include "DataTypes.h"
 
-BYTE EEDefaults[8] = {0,GLOBAL_VOLUME_INDEX_MAX,63,0,0,0,0,0};
+BYTE EEDefaults[8] = {0,GLOBAL_VOLUME_INDEX_DEFAULT,63,0,0,0,0,0};
 BYTE EELowLimits[8] = {0,GLOBAL_VOLUME_INDEX_MIN,3,0,0,0,0,0};
 BYTE EEHighLimits[8] = {255,GLOBAL_VOLUME_INDEX_MAX,63,255,255,255,255,255};
 BYTE VolumeIndexTable[11] = {0,25,51,76,102,127,153,178,204,229,255};
 
 BYTE MyNodeNumber;		
-BYTE AudioGlobalVolume=GLOBALVOLUMEINIT;
-BYTE AudioGlobalVolumeIndex = 10;
+BYTE AudioGlobalVolume;
+BYTE AudioGlobalVolumeIndex;
 
 void EEStoreVariable(WORD index,  int value)
 {
