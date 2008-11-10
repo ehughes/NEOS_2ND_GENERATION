@@ -112,10 +112,8 @@ BYTE TwoPlayerStartButton = TWO_PLAYER_START_BUTTON;
 
 
 BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON, LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON};
-	
-
-
 BYTE VolumeChangeEntrySequencePosition = 0;
+
 
 BYTE GameButtonSpin = 0;
 BYTE SpinSeg1 = 0;
@@ -226,12 +224,11 @@ void Root_Game0 (void)
 				SELECTOR_SPIN_ANIMATION_TIMER=0;
 				START_BUTTON_ANIMATION_TIMER=0;
 				SelectState = SELECTOR_STATE_SPIN;
-				ClearButtonHistory();
+				UpdateGameSettings();
 				StartHeartBeat();	
 				ClearButtonHistory();
-				
-			   MAIN_GAME_TIMER = 0;
-			   GameState = MAIN_SELECTOR;	
+				MAIN_GAME_TIMER = 0;
+				GameState = MAIN_SELECTOR;	
 			}
 		break;
 		
@@ -299,10 +296,10 @@ void Root_Game0 (void)
 						{
 							SelectState = QueuedSelectState;	
 							EASTER_EGG_TIMER = 0;
-							PlayInternalNodeSound(0,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(0),AudioGlobalVolume,1);
-							PlayInternalNodeSound(2,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(2),AudioGlobalVolume,1);
-							PlayInternalNodeSound(4,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(4),AudioGlobalVolume,1);
-							PlayInternalNodeSound(6,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(6),AudioGlobalVolume,1);
+							PlayInternalNodeSound(ButtonTrail[0],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(0),CurrentGameSettings.GameBackgroundMusicVolume,1);
+							PlayInternalNodeSound(ButtonTrail[1],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(2),CurrentGameSettings.GameBackgroundMusicVolume,1);
+							PlayInternalNodeSound(ButtonTrail[2],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(4),CurrentGameSettings.GameBackgroundMusicVolume,1);
+							PlayInternalNodeSound(ButtonTrail[3],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(6),CurrentGameSettings.GameBackgroundMusicVolume,1);
 							LEDSendMessage(ENABLE_ALL,YELLOW,LEDOFF,50,50);
 							ClearButtonHistory();
 							
@@ -341,10 +338,10 @@ void Root_Game0 (void)
 							{
 								SelectState = QueuedSelectState;	
 								EASTER_EGG_TIMER = 0;
-								PlayInternalNodeSound(0,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(0),AudioGlobalVolume,1);
-								PlayInternalNodeSound(2,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(2),AudioGlobalVolume,1);
-								PlayInternalNodeSound(4,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(4),AudioGlobalVolume,1);
-								PlayInternalNodeSound(6,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(6),AudioGlobalVolume,1);
+								PlayInternalNodeSound(ButtonTrail[0],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(0),CurrentGameSettings.GameBackgroundMusicVolume,1);
+								PlayInternalNodeSound(ButtonTrail[1],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(2),CurrentGameSettings.GameBackgroundMusicVolume,1);
+								PlayInternalNodeSound(ButtonTrail[2],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(4),CurrentGameSettings.GameBackgroundMusicVolume,1);
+								PlayInternalNodeSound(ButtonTrail[3],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(6),CurrentGameSettings.GameBackgroundMusicVolume,1);
 								LEDSendMessage(ENABLE_ALL,YELLOW,LEDOFF,50,50);
 								ClearButtonHistory();
 							}	
@@ -371,10 +368,10 @@ void Root_Game0 (void)
 						{
 							SelectState = QueuedSelectState;	
 							EASTER_EGG_TIMER = 0;
-							PlayInternalNodeSound(0,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(0),AudioGlobalVolume,1);
-							PlayInternalNodeSound(2,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(2),AudioGlobalVolume,1);
-							PlayInternalNodeSound(4,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(4),AudioGlobalVolume,1);
-							PlayInternalNodeSound(6,INTERNAL_SOUND_FF_FIRE_OUT,AudioGlobalVolume,1,GetStream(6),AudioGlobalVolume,1);
+							PlayInternalNodeSound(ButtonTrail[0],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(0),CurrentGameSettings.GameBackgroundMusicVolume,1);
+							PlayInternalNodeSound(ButtonTrail[1],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(2),CurrentGameSettings.GameBackgroundMusicVolume,1);
+							PlayInternalNodeSound(ButtonTrail[2],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(4),CurrentGameSettings.GameBackgroundMusicVolume,1);
+							PlayInternalNodeSound(ButtonTrail[3],INTERNAL_SOUND_FF_FIRE_OUT,CurrentGameSettings.GameSoundEffectVolume,1,GetStream(6),CurrentGameSettings.GameBackgroundMusicVolume,1);
 							LEDSendMessage(ENABLE_ALL,YELLOW,LEDOFF,50,50);
 							ClearButtonHistory();
 						}	
@@ -680,21 +677,11 @@ void OnButtonPressRootGame0(BYTE button)
 
 void OnMasterSwitchPressRootGame0(void)
 {
-	AudioNodeEnable(ENABLE_ALL,3,1,1,0,BUTTONFEEDBACK_WAV_LENGTH,0xFF,0xFF);
-	SendNodeNOP();
-	EAudioPlaySound(3,BUTTONFEEDBACK_WAV);
-}
-
-
-
-
+}	
 
 
 void OnSelectPressRootGame0(BYTE button)
 {
-	
-
-	
 	switch(GameState)
 	{
 		case VOLUME_CHANGE:
@@ -843,10 +830,10 @@ switch(MusicState)
 
 void PlaySelectorSound()
 {
-	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,0xFF,1,0,AudioGlobalVolume,1);
-	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,0xFF,1,1,AudioGlobalVolume,1);
-	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,0xFF,1,2,AudioGlobalVolume,1);
-	PlayInternalNodeSound(6,INTERNAL_SOUND_SELECTION,0xFF,1,3,AudioGlobalVolume,1);
+	PlayInternalNodeSound(0,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,0,CurrentGameSettings.GameBackgroundMusicVolume,1);
+	PlayInternalNodeSound(2,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,1,CurrentGameSettings.GameBackgroundMusicVolume,1);
+	PlayInternalNodeSound(4,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,2,CurrentGameSettings.GameBackgroundMusicVolume,1);
+	PlayInternalNodeSound(6,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,3,CurrentGameSettings.GameBackgroundMusicVolume,1);
 	
 	SELECT_TO_START_TIMER = 0;
 }
@@ -864,7 +851,7 @@ void StartCountDown()
 
 void PlayCountDown()
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,0,CountDownLength,0xFF,0x00);
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,0,CountDownLength,CurrentGameSettings.GameSoundEffectVolume,0x00);
 	SendNodeNOP();				
 	EAudioPlaySound( BACKGROUND_MUSIC_STREAM,COUNTDOWN_WAV);	
 }	
@@ -939,6 +926,13 @@ void UpdateGameSettings()
 					
 		break;
 	
+		case GAME_ROOT_GAME0:
+		
+			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xDF)*(WORD)(AudioGlobalVolume))>>8;
+			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
+		
+		break;
+
 		default:
 			CurrentGameSettings.GameBackgroundMusicVolume = ((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
 			CurrentGameSettings.GameSoundEffectVolume = 	((WORD)(0xFF)*(WORD)(AudioGlobalVolume))>>8;
@@ -991,23 +985,23 @@ void StartMainthemeMusic()
 	MusicState = MUSIC_MAIN_THEME;
 	MUSIC_TIMER = 0;
 	
-	AudioNodeEnable(0,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	AudioNodeEnable(0,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
-	AudioNodeEnable(1,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
-	SendNodeNOP();	
-	
-	AudioNodeEnable(2,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
-	SendNodeNOP();	
-	AudioNodeEnable(3,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
-	
-	AudioNodeEnable(4,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
-	SendNodeNOP();	
-	AudioNodeEnable(5,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	AudioNodeEnable(1,MAINTHEME_L_STREAM,MAINTHEME_L_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
 	
-	AudioNodeEnable(6,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	AudioNodeEnable(2,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
-	AudioNodeEnable(7,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	AudioNodeEnable(3,MAINTHEME_LS_STREAM,MAINTHEME_LS_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+	
+	AudioNodeEnable(4,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+	SendNodeNOP();	
+	AudioNodeEnable(5,MAINTHEME_R_STREAM,MAINTHEME_R_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+	SendNodeNOP();	
+	
+	AudioNodeEnable(6,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
+	SendNodeNOP();	
+	AudioNodeEnable(7,MAINTHEME_RS_STREAM,MAINTHEME_RS_STREAM,1,1,0xFFFF,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
 	
 
@@ -1034,7 +1028,7 @@ void StartHeartBeat()
 	AudioReSync(5);
 	AudioReSync(6);
 	AudioReSync(7);
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,1,0xFFFF,AudioGlobalVolume,AudioGlobalVolume);
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,1,1,0xFFFF,CurrentGameSettings.GameSoundEffectVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	SendNodeNOP();	
 	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,HEARTBEAT_WAV);
 
@@ -1209,4 +1203,5 @@ void ClearButtonHistory()
 		ButtonHistory[i] = 0x81;
 	}	
 
-}	
+}	
+

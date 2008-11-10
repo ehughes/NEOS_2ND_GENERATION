@@ -24,7 +24,7 @@
 #define SOUTHERN_ROCK			2
 #define DRUM_CIRCLE				3
 
-#define NUM_SOUND_CHANNELS	3
+#define NUM_SOUND_CHANNELS		3
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -108,8 +108,8 @@ void SurroundSound(void)
 			if(MAIN_GAME_TIMER > 5)
 			{
 					
-				InitButtonSounds(DRUM_CIRCLE);
-				StartBackgroundMusic(DRUM_CIRCLE);
+				InitButtonSounds(ROCK);
+				StartBackgroundMusic(ROCK);
 					
 				MAIN_GAME_TIMER = 0;
 				GameState = SURROUND_SOUND;

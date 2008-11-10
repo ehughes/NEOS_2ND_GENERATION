@@ -3,24 +3,15 @@
 #ifndef __GAMEVARIABLES_H
 #define __GAMEVARIABLES_H
 
-
-
 #define ENABLE_ALL    0xFF
-
 
 #define BUTTON_TIME		10
 #define GLOBALVOLUMEINIT 0xFF	// Initialized value of global volume
-#define BACKGROUNDVOLUMEINIT 40 	//00-FF background volume
-#define	BACKGROUNDVOLHI	 90		//Higher low volume
-#define BACKGROUNDVOLLO	 40
-#define BACKGROUNDVOLMUSIC 30	//Background for music games
-#define VOLUMEPHASE4	128
-#define VOLUMESNORE	128
 
 
 #define GLOBAL_VOLUME_INDEX_MAX 10
 #define GLOBAL_VOLUME_INDEX_MIN 0
-
+#define GLOBAL_VOLUME_INDEX_DEFAULT 7
 
 #define INIT		0x0
 #define BOOT		0xF0
