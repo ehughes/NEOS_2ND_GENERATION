@@ -1,0 +1,17 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: ICD_ADAPTER.PcbDoc   5/9/2008  3:19:34 PM
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : ICD_ADAPTER.TXT
+EIA File   : ICD_ADAPTER.DRL
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        35mil (0.889mm)          Round          6                1.27 Inch (32.30 mm)
+T2        65mil (1.651mm)          Round          12               2.37 Inch (60.25 mm)
+T3        128mil (3.2512mm)        Round          2         NPTH   1.64 Inch (41.59 mm)
+---------------------------------------------------------------------------
+Totals                                            20               5.28 Inch (134.14 mm)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

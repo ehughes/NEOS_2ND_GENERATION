@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [ICD_ADAPTER.PrjPcb]
+   Generated File[ICD_ADAPTER.TXT]
+   Generated File[ICD_ADAPTER.DRL]
+   Generated File[ICD_ADAPTER.LDP]
+   Generated File[ICD_ADAPTER.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 3:19:34 PM On 5/9/2008
