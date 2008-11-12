@@ -1,0 +1,21 @@
+
+
+The VERSION macro in the config.h file for the products 
+indicate the current product release version of the 
+firmware.   Each of these codes will map to a specific SVN build 
+number in the PRODUCTION_RELEASE tree.  The Mapping is below
+
+
+
+|NEOS_360
+|-------------------------------------------------
+|VERSION		|	SVN BUILD
+|-------------------------------------------------
+|100			|	42
+
+
+|NEOS_LIGHTRING
+|-------------------------------------------------
+|VERSION		|	SVN BUILD
+|-------------------------------------------------
+|100			|	42
