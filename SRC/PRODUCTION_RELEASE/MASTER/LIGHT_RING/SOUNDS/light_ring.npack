@@ -1,0 +1,126 @@
+#define GLOBAL_SOUNDS_PATH				sounds\Global
+
+#define SELECTION_SOUNDS_PATH		  sounds\selection
+#define LIGHT_GRABBER_PATH			  sounds\LightGrabber
+#define ZIG_ZAG_PATH				  sounds\ZigZag
+#define JAM_CIRCLE_PATH                    sounds\JamCircle
+#define DUCK_DUCK_GOOSE_PATH               sounds\DuckDuckGoose
+#define FLIP_FLOP_PATH                     sounds\FlipFlop
+
+
+
+sound[0]=SELECTION_SOUNDS_PATH\SelectionButton.wav;   
+sound[1]=SELECTION_SOUNDS_PATH\CountDown.wav; 
+sound[2]=GLOBAL_SOUNDS_PATH\ButtonFeedBack.wav; 
+sound[3]=GLOBAL_SOUNDS_PATH\Ending.wav; 
+sound[4]=GLOBAL_SOUNDS_PATH\LightRingMainTheme_L.wav; 
+sound[5]   =GLOBAL_SOUNDS_PATH\LightRingMainTheme_R.wav; 
+sound[6]   =GLOBAL_SOUNDS_PATH\BuildUp_A.wav;
+sound[7]   =GLOBAL_SOUNDS_PATH\BuildUp_B.wav;
+sound[8]   =GLOBAL_SOUNDS_PATH\Heartbeat.wav;
+sound[100] =GLOBAL_SOUNDS_PATH\RingSE0.wav;
+sound[101] =GLOBAL_SOUNDS_PATH\RingSE1.wav;
+sound[102] =GLOBAL_SOUNDS_PATH\RingSE2.wav;
+sound[103] =GLOBAL_SOUNDS_PATH\RingSE3.wav;
+sound[104] =GLOBAL_SOUNDS_PATH\RingSE4.wav;
+sound[105] =GLOBAL_SOUNDS_PATH\RingSE5.wav;
+sound[106] =GLOBAL_SOUNDS_PATH\RingSE6.wav;
+sound[107] =GLOBAL_SOUNDS_PATH\RingSE7.wav;
+sound[108] =GLOBAL_SOUNDS_PATH\RingSE8.wav;
+sound[109] =GLOBAL_SOUNDS_PATH\RingSE9.wav;
+sound[110] =GLOBAL_SOUNDS_PATH\RingSE10.wav;
+sound[111] =GLOBAL_SOUNDS_PATH\RingSE11.wav;
+
+sound[10]=LIGHT_GRABBER_PATH\Nodes\Node0.wav;
+sound[11]=LIGHT_GRABBER_PATH\Nodes\Node1.wav;
+sound[12]=LIGHT_GRABBER_PATH\Nodes\Node2.wav;
+sound[13]=LIGHT_GRABBER_PATH\Nodes\Node3.wav;
+sound[14]=LIGHT_GRABBER_PATH\Nodes\Node4.wav;
+sound[15]=LIGHT_GRABBER_PATH\Nodes\Node5.wav;
+sound[16]=LIGHT_GRABBER_PATH\Nodes\Node6.wav;
+sound[17]=LIGHT_GRABBER_PATH\Nodes\Node7.wav;
+sound[18]=LIGHT_GRABBER_PATH\BonusSound.wav;
+sound[19]=LIGHT_GRABBER_PATH\LightGrabberBackGroundMusic.wav;
+sound[20]=LIGHT_GRABBER_PATH\LightGrabberBackGroundMusic_Bonus.wav;
+sound[21]=LIGHT_GRABBER_PATH\LG_End.wav;
+
+sound[31]=ZIG_ZAG_PATH\ball_serve.wav;
+sound[32]=ZIG_ZAG_PATH\ball_hit.wav;
+sound[33]=ZIG_ZAG_PATH\ball_bounce.wav;
+sound[34]=ZIG_ZAG_PATH\ZigZagSFX1.wav;
+sound[35]=ZIG_ZAG_PATH\ZigZagSFX2.wav;
+sound[36]=ZIG_ZAG_PATH\ZigZagSFX3.wav;
+sound[37]=ZIG_ZAG_PATH\ZigZagSFX4.wav;
+sound[38]=ZIG_ZAG_PATH\ZigZagSFX5.wav;
+sound[39]=ZIG_ZAG_PATH\ZigZagSFX6.wav;
+sound[40]=ZIG_ZAG_PATH\ZigZagSFX7.wav;
+sound[41]=ZIG_ZAG_PATH\ZigZagSFX8.wav;
+sound[42]=ZIG_ZAG_PATH\ZigZagSFX9.wav;
+sound[43]=ZIG_ZAG_PATH\ZigZagSFX10.wav;
+sound[44]=ZIG_ZAG_PATH\ZigZagBackgroundMusic_A.wav;
+sound[45]=ZIG_ZAG_PATH\ZigZagBackgroundMusic_B.wav;
+sound[46]=ZIG_ZAG_PATH\ZigZagEnd.wav;
+
+sound[50]=JAM_CIRCLE_PATH\Brass1.wav; 
+sound[51]=JAM_CIRCLE_PATH\Brass2.wav; 
+sound[52]=JAM_CIRCLE_PATH\Brass3.wav; 
+sound[53]=JAM_CIRCLE_PATH\flt1.wav; 
+sound[54]=JAM_CIRCLE_PATH\flt2.wav; 
+sound[55]=JAM_CIRCLE_PATH\flt3.wav; 
+sound[56]=JAM_CIRCLE_PATH\Glock1.wav; 
+sound[57]=JAM_CIRCLE_PATH\Glock2.wav; 
+sound[58]=JAM_CIRCLE_PATH\Glock3.wav; 
+sound[59]=JAM_CIRCLE_PATH\Harp1.wav;
+sound[60]=JAM_CIRCLE_PATH\Harp2.wav;
+sound[61]=JAM_CIRCLE_PATH\Harp3.wav;
+sound[62]=JAM_CIRCLE_PATH\Pno1.wav;
+sound[63]=JAM_CIRCLE_PATH\Pno2.wav;
+sound[64]=JAM_CIRCLE_PATH\Pno3.wav;
+sound[65]=JAM_CIRCLE_PATH\vln1.wav;
+sound[66]=JAM_CIRCLE_PATH\vln2.wav;
+sound[67]=JAM_CIRCLE_PATH\vln3.wav;
+sound[68]=JAM_CIRCLE_PATH\JamCircleBackground.wav;
+
+sound[80]=DUCK_DUCK_GOOSE_PATH\DuckChaseMusic.wav;
+sound[81]=DUCK_DUCK_GOOSE_PATH\DuckHit.wav;
+sound[82]=DUCK_DUCK_GOOSE_PATH\Goose.wav;
+sound[83]=DUCK_DUCK_GOOSE_PATH\GooseCall.wav;
+sound[84]=DUCK_DUCK_GOOSE_PATH\GooseChaseMusic.wav;
+sound[85]=DUCK_DUCK_GOOSE_PATH\GooseHit.wav;
+sound[86]=DUCK_DUCK_GOOSE_PATH\DuckDuck_Background_No_Quacks.wav;
+sound[87]=DUCK_DUCK_GOOSE_PATH\DuckDuck_Background_Quacks.wav;
+sound[88]=DUCK_DUCK_GOOSE_PATH\DuckDuck_Background_Goose_Quacks.wav;
+sound[89]=DUCK_DUCK_GOOSE_PATH\DuckDuck_FullChase.wav;
+sound[90]=DUCK_DUCK_GOOSE_PATH\DuckDuck_FullChase_No_Goose.wav;
+sound[91]=DUCK_DUCK_GOOSE_PATH\Duck.wav;
+
+sound[160]=FLIP_FLOP_PATH\FlipFlopBackground.wav;
+sound[161]=FLIP_FLOP_PATH\Flop1.wav;
+sound[162]=FLIP_FLOP_PATH\Flop2.wav;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
