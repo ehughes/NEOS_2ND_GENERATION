@@ -24,7 +24,7 @@ namespace Playworld
             try
                 {
 
-                    Application.Run(new AllAroundControlPanel());
+                    Application.Run(new NEOSUSBControlPanel());
                 }
             catch(Exception e)
                 {

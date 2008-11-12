@@ -30,9 +30,6 @@ namespace PlayworldMessages
        public const byte PLAY_SOUND	               =0x20;
        public const byte SWITCH_SYSTEM_MODE = 0x90;
       
-        
-     
-
         public static ushort MemPage=0;
         public static UInt16 SoundToPlay;
         public static UInt16 SoundLength;
@@ -93,13 +90,6 @@ namespace PlayworldMessages
 
                     break;
 
-
-
-          
-
-
-
-
                 case GET_FIRMWARE_VERSION:
 
                     
@@ -141,17 +131,8 @@ namespace PlayworldMessages
                
                 }
 
-
-
-
-
-
             return Packet;
-
-
             }
-      
-        
   }
 
 

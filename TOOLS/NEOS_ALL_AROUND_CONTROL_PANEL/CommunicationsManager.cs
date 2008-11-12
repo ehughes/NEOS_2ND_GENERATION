@@ -232,11 +232,7 @@ namespace HardwareInterfaceManagement
             }
 
         }
-
-
-
-
-
+        
         public void Write(byte[] BufOut)
         {
 

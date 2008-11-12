@@ -1,6 +1,6 @@
 namespace Playworld
 {
-    partial class AllAroundControlPanel
+    partial class NEOSUSBControlPanel
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Playworld
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Timer WindowUpdateManager;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllAroundControlPanel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NEOSUSBControlPanel));
             this.ConnectionManangerToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.PlayButtonTip = new System.Windows.Forms.ToolTip(this.components);
             this.MainFormTip = new System.Windows.Forms.ToolTip(this.components);
@@ -264,7 +264,7 @@ namespace Playworld
             this.ConnectButton.Size = new System.Drawing.Size(48, 32);
             this.ConnectButton.Text = "Connect to Talking Bob";
             this.ConnectButton.ToolTipText = "Connect via USB";
-            this.ConnectButton.Click += new System.EventHandler(this.ConnectToTalkingBob_Click);
+            this.ConnectButton.Click += new System.EventHandler(this.ConnectToNEOS_Click);
             // 
             // SoundFileDownloadToolButton
             // 
@@ -285,7 +285,7 @@ namespace Playworld
             this.MSPResetToolButton.Name = "MSPResetToolButton";
             this.MSPResetToolButton.Size = new System.Drawing.Size(36, 37);
             this.MSPResetToolButton.Text = "Reset Sound Module";
-            this.MSPResetToolButton.Click += new System.EventHandler(this.MSPResetToolButton_Click);
+            this.MSPResetToolButton.Click += new System.EventHandler(this.ResetToolButton_Click);
             // 
             // GetFirmwareToolButton
             // 
@@ -329,7 +329,7 @@ namespace Playworld
             this.SoundStreamTextBox.Text = "0";
             this.SoundStreamTextBox.ToolTipText = "Sound Stream";
             // 
-            // AllAroundControlPanel
+            // NEOSUSBControlPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -341,13 +341,12 @@ namespace Playworld
             this.MainMenuStrip = this.AllAroundControlPanelMenuStrip;
             this.MaximumSize = new System.Drawing.Size(1600, 1200);
             this.MinimumSize = new System.Drawing.Size(800, 100);
-            this.Name = "AllAroundControlPanel";
+            this.Name = "NEOSUSBControlPanel";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
-            this.Text = "All Around Control Panel";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AllAroundControlPanel_FormClosed);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AllAroundControlPanel_FormClosing);
+            this.Text = "NEOS USB CONTROL PANEL";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NEOSUSBControlPanel_FormClosing);
             this.AllAroundControlPanelMenuStrip.ResumeLayout(false);
             this.AllAroundControlPanelMenuStrip.PerformLayout();
             this.AllAroundUtilitiesControlStrip.ResumeLayout(false);
