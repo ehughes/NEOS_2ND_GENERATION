@@ -15,19 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_03CEB009A6414F33A209C5B9D7855967"
+        "MsmKey" = "8:_03D438D7D7F547F0B905E3813BEC6E6C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_0E519A3CE98A4F1881C0F1D302B3B255"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_18E722B4569740D8BF053BE69238C16F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,7 +39,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5FFC0B59D2F345BA80AABD07AC1574B4"
+        "MsmKey" = "8:_47D3BFEC2D794086A27E52BDF839551F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4C159E082D2E476C8CE3D3DFCE43B34D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_53ADA51295C547C1AF567E8243475FDD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -75,12 +81,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9AC676FFBCB740D188EA449F5A3CCD09"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_ACE74F6B297542499403405552EBBC7E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -99,7 +99,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F24951A61DB2440289656249CD30DB06"
+        "MsmKey" = "8:_E659F1D6353846D38B3A86D2788C6AF8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -214,10 +214,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03CEB009A6414F33A209C5B9D7855967"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03D438D7D7F547F0B905E3813BEC6E6C"
             {
-            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\360_LIGHTRING_BUTTON\\360_LIGHTRING_BUTTON.DEV.9"
-            "TargetName" = "8:360_LIGHTRING_BUTTON.DEV.9"
+            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\360_LIGHTRING_BUTTON\\360_LIGHTRING_BUTTON.1.0"
+            "TargetName" = "8:360_LIGHTRING_BUTTON.1.0"
             "Tag" = "8:"
             "Folder" = "8:_EB1C1CA4BC65471A8986C465C9DA9CCD"
             "Condition" = "8:"
@@ -254,26 +254,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_18E722B4569740D8BF053BE69238C16F"
-            {
-            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\LIGHTRING_MASTER\\FlashImage.bin"
-            "TargetName" = "8:FlashImage.bin"
-            "Tag" = "8:"
-            "Folder" = "8:_3E4A22263531478191821674814D9831"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3285D5E3E2EC485B81C24E3AB9740F3F"
             {
             "SourcePath" = "8:..\\bin\\Debug\\config\\programmer\\PK2V023200.hex"
@@ -294,12 +274,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5FFC0B59D2F345BA80AABD07AC1574B4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_47D3BFEC2D794086A27E52BDF839551F"
             {
             "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\360_MASTER\\FlashImage.bin"
             "TargetName" = "8:FlashImage.bin"
             "Tag" = "8:"
             "Folder" = "8:_FCCA3B8D03644F59A58EE466DFB62C03"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C159E082D2E476C8CE3D3DFCE43B34D"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\LIGHTRING_MASTER\\LIGHTRING_MASTER.1.0"
+            "TargetName" = "8:LIGHTRING_MASTER.1.0"
+            "Tag" = "8:"
+            "Folder" = "8:_3E4A22263531478191821674814D9831"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_53ADA51295C547C1AF567E8243475FDD"
+            {
+            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\LIGHTRING_MASTER\\FlashImage.bin"
+            "TargetName" = "8:FlashImage.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_3E4A22263531478191821674814D9831"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -405,26 +425,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AC676FFBCB740D188EA449F5A3CCD09"
-            {
-            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\360_MASTER\\360_MASTER.DEV.19"
-            "TargetName" = "8:360_MASTER.DEV.19"
-            "Tag" = "8:"
-            "Folder" = "8:_FCCA3B8D03644F59A58EE466DFB62C03"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACE74F6B297542499403405552EBBC7E"
             {
             "SourcePath" = "8:..\\bin\\Debug\\config\\programmer\\PK2DeviceFile.dat"
@@ -485,12 +485,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F24951A61DB2440289656249CD30DB06"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E659F1D6353846D38B3A86D2788C6AF8"
             {
-            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\LIGHTRING_MASTER\\LIGHTRING_MASTER.DEV.18"
-            "TargetName" = "8:LIGHTRING_MASTER.DEV.18"
+            "SourcePath" = "8:..\\bin\\Debug\\config\\profiles\\360_MASTER\\360_MASTER.1.00"
+            "TargetName" = "8:360_MASTER.1.00"
             "Tag" = "8:"
-            "Folder" = "8:_3E4A22263531478191821674814D9831"
+            "Folder" = "8:_FCCA3B8D03644F59A58EE466DFB62C03"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
