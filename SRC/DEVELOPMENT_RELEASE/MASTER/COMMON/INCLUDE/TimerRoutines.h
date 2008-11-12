@@ -7,6 +7,7 @@
 
 void TimerInit (void);
 void __attribute__((__interrupt__)) _T2Interrupt( void );
+void ResetGPTimers();
 
 extern BYTE MasterButtonTimer;
 extern BYTE T210msHeartbeat;

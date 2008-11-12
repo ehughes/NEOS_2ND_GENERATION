@@ -14,6 +14,32 @@ BYTE MyNodeNumber;
 BYTE AudioGlobalVolume;
 BYTE AudioGlobalVolumeIndex;
 
+DWORD GameCount;
+
+void RecallGameCount()
+{
+	WORD t1,t2;
+	
+	t1 = EEReadVariable(GAME_COUNT_LOW_LOCATION);
+	t2 = EEReadVariable(GAME_COUNT_HIGH_LOCATION);
+
+	GameCount = (((DWORD)(t2))<<16)	+ ((DWORD)(t1));
+	
+	if(GameCount >= 1000000)
+	{
+		GameCount = 0;		
+		StoreGameCount();
+	}	
+}	
+
+void StoreGameCount()
+{
+	EEStoreVariable(GAME_COUNT_LOW_LOCATION,  (WORD)(GameCount));
+	EEStoreVariable(GAME_COUNT_HIGH_LOCATION, (WORD)(GameCount>>16));
+}	
+
+
+
 void EEStoreVariable(WORD index,  int value)
 {
 	EraseEE(0x7F,0xFC00+(index*2),1);
@@ -33,6 +59,7 @@ void EERecover(void)
 {
 	AudioGlobalVolumeIndex=EERecoverVariable(AUDIO_VOLUME_INDEX_LOCATION);
 	AudioGlobalVolume = VolumeIndexTable[AudioGlobalVolumeIndex];
+	RecallGameCount();
 }
 
 WORD EERecoverVariable(WORD index)

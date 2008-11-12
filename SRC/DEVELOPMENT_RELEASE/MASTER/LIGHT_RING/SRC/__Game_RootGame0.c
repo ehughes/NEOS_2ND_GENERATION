@@ -30,6 +30,7 @@
 #define BOOT_DELAY				0x06
 #define VOLUME_CHANGE_INIT	  	0x07
 #define VOLUME_CHANGE		  	0x08
+#define DISPLAY_GAME_COUNT	  	0x09
 
 #define MUSIC_IDLE					0
 #define MUSIC_MAIN_THEME			1
@@ -60,9 +61,10 @@
 #define MUSIC_TIMER					 	GPTimer[7]
 #define SOUND_CHANNEL0_TIMER			GPTimer[8]
 #define SOUND_CHANNEL1_TIMER			GPTimer[9]
-//#define SOUND_CHANNEL2_TIMER			GPTimer[10]
 #define VC_ENTRY_TIMER					GPTimer[10]
+#define GC_ENTRY_TIMER					GPTimer[2]
 #define VOLUME_CHANGE_TIMER				GPTimer[11]
+
 
 //*************************************************
 //*******Game Parameters***************************
@@ -73,7 +75,8 @@
 #define SELECTOR_SPIN_ANIMATION_TIME 	 8
 #define START_BUTTON_ANIMATION_TIME		 8
 #define HEARTBEAT_TIME				 	 HEARTBEAT_WAV_LENGTH * 30
-#define VC_ENTRY_TIME					 100
+#define VC_ENTRY_TIME					 150
+#define GC_ENTRY_TIME					 100
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -106,8 +109,12 @@ BYTE SelectorSpin = 0;
 BYTE SelectState;
 BYTE MusicState;
 
-BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON,LIGHT_GRABBER_1P_BUTTON};
+BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_1P_BUTTON,FLIP_FLOP_BUTTON,LIGHT_GRABBER_2P_BUTTON,TEATHER_BALL_BUTTON,DUCK_DUCK_GOOSE_BUTTON};
 BYTE VolumeChangeEntrySequencePosition = 0;
+
+
+BYTE GameCountEntrySequence [5] = {DUCK_DUCK_GOOSE_BUTTON,DUCK_DUCK_GOOSE_BUTTON,DUCK_DUCK_GOOSE_BUTTON,DUCK_DUCK_GOOSE_BUTTON,DUCK_DUCK_GOOSE_BUTTON};
+BYTE GameCountEntrySequencePosition = 0;
 
 
 
@@ -177,6 +184,9 @@ void MoveToSleep();
 void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats);
 void MoveToVolumeChange();
 BOOL CheckVolumeChangeEntrySequence(BYTE button);
+BOOL CheckGameCountEntrySequence(BYTE button);
+void MoveToGameCountDisplay();
+
 
 //*************************************************
 //*******Game Functions****************************
@@ -396,10 +406,20 @@ void Root_Game0 (void)
 							
 				}
 				
+				UpdateGameSettings();
+			
+				if(GameCount >= 999999)
+				{
+					GameCount = 999999;	
+				}		
+				else
+				{
+					GameCount++;
+					StoreGameCount();	
+				}	
+				
 			}
-			UpdateGameSettings();
-			
-			
+		
 			
 		break;
 	
@@ -443,6 +463,18 @@ void Root_Game0 (void)
 				}
 			}
 		break;
+		
+		
+			
+		case DISPLAY_GAME_COUNT:
+		
+			if(MAIN_GAME_TIMER > 1000)
+			{
+				GameState = INIT;	
+			}	
+			
+		break;
+	
 	
 		
 		default:
@@ -576,6 +608,11 @@ void OnSelectPressRootGame0(unsigned char button)
 			
 		break;
 		
+		case DISPLAY_GAME_COUNT:
+			
+			ResetToGameSelector();
+			
+		break;
 		
 			case VOLUME_CHANGE:
 		
@@ -611,7 +648,7 @@ void OnSelectPressRootGame0(unsigned char button)
 				
 				default:
 				EEStoreVariable(AUDIO_VOLUME_INDEX_LOCATION,  AudioGlobalVolumeIndex);
-				GameState = INIT;
+				ResetToGameSelector();
 				break;				
 				
 				
@@ -621,7 +658,8 @@ void OnSelectPressRootGame0(unsigned char button)
 		case MAIN_SELECTOR:
 
 				if(CheckVolumeChangeEntrySequence(button) == TRUE) { MoveToVolumeChange(); return; }
-
+				if(CheckGameCountEntrySequence(button) == TRUE) { MoveToGameCountDisplay(); return; }
+	
 				switch(button)
 				{
 					case START_BUTTON:
@@ -1043,6 +1081,62 @@ BOOL CheckVolumeChangeEntrySequence(BYTE button)
 	
 }		
 	
+BOOL CheckGameCountEntrySequence(BYTE button)
+{
+	BOOL RetVal = FALSE;
+	
+
+	switch(GameCountEntrySequencePosition)
+	{
+		
+		case 0:
+			if(button == GameCountEntrySequence[GameCountEntrySequencePosition])
+			{
+				GameCountEntrySequencePosition++;
+				GC_ENTRY_TIMER = 0;
+				RetVal = FALSE;
+			}
+		break;
+		
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		
+			if((button == GameCountEntrySequence[GameCountEntrySequencePosition])  && (GC_ENTRY_TIMER<GC_ENTRY_TIME))
+			{
+			GameCountEntrySequencePosition++;
+				
+					if(GameCountEntrySequencePosition == 5)
+					{
+						RetVal = TRUE;	
+					}
+					else
+					{
+						GC_ENTRY_TIMER = 0;
+						RetVal = FALSE;
+					}
+			}
+			else
+			{
+				GameCountEntrySequencePosition = 0;
+				GC_ENTRY_TIMER = 0;
+				RetVal = FALSE;	
+			}
+		break;
+		
+		default:
+			GameCountEntrySequencePosition = 0;	
+			GC_ENTRY_TIMER = 0;
+			RetVal = FALSE;
+		break;	
+		
+		
+	}
+	
+	return RetVal;
+	
+}			
 	
 void MoveToVolumeChange()
 {
@@ -1051,6 +1145,16 @@ void MoveToVolumeChange()
 	MAIN_GAME_TIMER = 0;
 	
 }	
+
+void MoveToGameCountDisplay()
+{
+
+	GameState = DISPLAY_GAME_COUNT;
+	DisplayGameCount();
+	Game0PlayButtonFeebackSound(AudioGlobalVolume, 1);
+	MAIN_GAME_TIMER = 0;
+	
+}
 	
 void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats)
 {

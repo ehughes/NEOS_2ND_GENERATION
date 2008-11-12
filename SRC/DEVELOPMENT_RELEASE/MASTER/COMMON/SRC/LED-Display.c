@@ -236,6 +236,23 @@ void LEDSendDigits(WORD node, BYTE brightness, BYTE d1, BYTE d2, BYTE d3, BYTE d
 }
 
 
+void DisplayGameCount()
+{
+	BYTE Digit[6];
+	
+	Digit[5] = ((GameCount %10));
+	Digit[4] = ((GameCount / 10) % 10);
+	Digit[3] = ((GameCount / 100) % 10);
+	Digit[2] = ((GameCount / 1000) % 10);
+	Digit[1] = ((GameCount / 10000) % 10);
+	Digit[0] = ((GameCount / 100000) % 10);
+	 
+	LEDSendDigits(DISPLAY_ADDRESS,0xFF, Digit[0], Digit[1], Digit[2], Digit[3], Digit[4], Digit[5]);
+}
+
+
+
+
 
 
 void InitScoreDisplayerManager()

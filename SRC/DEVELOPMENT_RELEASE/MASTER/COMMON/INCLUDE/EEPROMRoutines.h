@@ -7,6 +7,10 @@ int EEReadVariable(WORD index);
 WORD EERecoverVariable(WORD index);
 void EERecover(void);
 void EEStoreVariable(WORD index, int value);
+void RecallGameCount();
+void StoreGameCount();
+
+extern DWORD GameCount;		//Total number of games played
 
 extern BYTE EEDefaults[8];
 extern BYTE EELowLimits[8];
@@ -18,6 +22,10 @@ extern BYTE AudioGlobalVolumeIndex;
 extern BYTE VolumeIndexTable[11];
 
 #define AUDIO_VOLUME_INDEX_LOCATION 1
+#define GAME_COUNT_LOW_LOCATION 	2
+#define GAME_COUNT_HIGH_LOCATION 	3
+
+
 
 #endif
 

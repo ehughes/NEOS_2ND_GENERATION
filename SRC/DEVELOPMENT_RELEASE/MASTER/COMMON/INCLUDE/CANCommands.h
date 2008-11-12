@@ -63,7 +63,7 @@
 #define	NODE_LOOP_BACK					0x07
 #define	NODE_LOOP_BACK_RESPONSE		    0x08		
 
-#define SET_MASTER_SYSTEM_MODE	0x2F3
+#define SET_MASTER_SYSTEM_MODE			0x2F3
 
 
 #endif

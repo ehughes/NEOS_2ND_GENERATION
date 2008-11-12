@@ -13,6 +13,7 @@ DWORD InactivityTimer=INACTIVITYTIMEOUT;
 
 volatile WORD GPTimer[NUM_GP_TIMERS];
 
+void ResetGPTimers();
 
 void TimerInit (void)
 {
@@ -37,7 +38,15 @@ void TimerInit (void)
 		}
 }
 
-
+void ResetGPTimers()
+{
+	BYTE i;
+	
+		for(i=0;i<NUM_GP_TIMERS;i++)
+		{
+			GPTimer[i]  = 0;
+		}
+}	
 
 void __attribute__((__interrupt__,__auto_psv__)) _T2Interrupt( void )
 {

@@ -12,14 +12,9 @@ WORD Player2Score=0;
 
 WORD GameState;			//For use by game
 
-unsigned long GameCount=0;		//Total number of games played
 
 GameSettings CurrentGameSettings;
 
-
-
-
-//To be deprecated
 
 
 

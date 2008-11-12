@@ -27,7 +27,7 @@
 #define RESYNC_DELAY		  0x05
 #define VOLUME_CHANGE_INIT	  0x06
 #define VOLUME_CHANGE		  0x07
-
+#define DISPLAY_GAME_COUNT	  0x08
 
 
 #define SELECTOR_STATE_SPIN					1
@@ -68,8 +68,9 @@
 #define SELECTOR_SPIN_ANIMATION_TIMER	 GPTimer[6]
 #define MUSIC_TIMER						 GPTimer[7]
 #define VC_ENTRY_TIMER					 GPTimer[8]
-#define EASTER_EGG_TIMER				 GPTimer[9]
-#define VOLUME_CHANGE_TIMER				 GPTimer[10]
+#define GC_ENTRY_TIMER					 GPTimer[9]
+#define EASTER_EGG_TIMER				 GPTimer[10]
+#define VOLUME_CHANGE_TIMER				 GPTimer[11]
 
 //*************************************************
 //*******Game Parameters***************************
@@ -82,7 +83,9 @@
 
 #define HEARTBEAT_TIME		HEARTBEAT_WAV_LENGTH * 30
 
-#define VC_ENTRY_TIME	100
+#define VC_ENTRY_TIME	150
+#define GC_ENTRY_TIME	100
+
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -111,8 +114,12 @@ BYTE TwoPlayerStartButton = TWO_PLAYER_START_BUTTON;
 
 
 
-BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON, LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON,LIGHT_GRABBER_BUTTON};
+BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_BUTTON,MARATHON_BUTTON, NINJA_BUTTON,DOUBLE_DOTS_BUTTON,LIGHT_GRABBER_BUTTON};
 BYTE VolumeChangeEntrySequencePosition = 0;
+
+
+BYTE GameCountEntrySequence [5] = {FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON};
+BYTE GameCountEntrySequencePosition = 0;
 
 
 BYTE GameButtonSpin = 0;
@@ -181,7 +188,8 @@ void EasterEggHunt();
 
 WORD EasterEggDisplayTimeout;
 BYTE GetStream(BYTE button);
-
+BOOL CheckGameCountEntrySequence(BYTE button);
+void MoveToGameCountDisplay();
 
 //*************************************************
 //*******Game Functions****************************
@@ -200,8 +208,6 @@ void Root_Game0 (void)
 			GREEN_LED_ON;
 			GameState = WAIT1;
 			MAIN_GAME_TIMER = 0;
-			
-			
 		break;
 		
 		case WAIT1:
@@ -527,11 +533,22 @@ void Root_Game0 (void)
 							
 				}
 				
+					UpdateGameSettings();
+		
+					if(GameCount >= 999999)
+					{
+						GameCount = 999999;	
+					}		
+					else
+					{
+						GameCount++;
+						StoreGameCount();	
+					}	
+				
+				
 			}
-			UpdateGameSettings();
-			
-			
-			
+		
+				
 		break;
 	
 		
@@ -574,6 +591,18 @@ void Root_Game0 (void)
 				}
 			}
 		break;
+		
+		
+		case DISPLAY_GAME_COUNT:
+		
+			if(MAIN_GAME_TIMER > 1000)
+			{
+				GameState = INIT;	
+			}	
+			
+		break;
+	
+		
 	
 		
 		default:
@@ -718,7 +747,7 @@ void OnSelectPressRootGame0(BYTE button)
 				
 				default:
 				EEStoreVariable(AUDIO_VOLUME_INDEX_LOCATION,  AudioGlobalVolumeIndex);
-				GameState = INIT;
+				ResetToGameSelector();
 				break;				
 				
 				
@@ -726,9 +755,17 @@ void OnSelectPressRootGame0(BYTE button)
 
 		break;
 		
+		case DISPLAY_GAME_COUNT:
+			
+				ResetToGameSelector();
+			
+			
+		break;
+		
 		case MAIN_SELECTOR:
 		
 		if(CheckVolumeChangeEntrySequence(button) == TRUE) { MoveToVolumeChange(); return; }
+		if(CheckGameCountEntrySequence(button) == TRUE) { MoveToGameCountDisplay(); return; }
 				
 		switch(SelectState)
 		{
@@ -1094,13 +1131,80 @@ BOOL CheckVolumeChangeEntrySequence(BYTE button)
 }		
 	
 	
+BOOL CheckGameCountEntrySequence(BYTE button)
+{
+	BOOL RetVal = FALSE;
+	
+
+	switch(GameCountEntrySequencePosition)
+	{
+		
+		case 0:
+			if(button == GameCountEntrySequence[GameCountEntrySequencePosition])
+			{
+				GameCountEntrySequencePosition++;
+				GC_ENTRY_TIMER = 0;
+				RetVal = FALSE;
+			}
+		break;
+		
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		
+			if((button == GameCountEntrySequence[GameCountEntrySequencePosition])  && (GC_ENTRY_TIMER<GC_ENTRY_TIME))
+			{
+			GameCountEntrySequencePosition++;
+				
+					if(GameCountEntrySequencePosition == 5)
+					{
+						RetVal = TRUE;	
+					}
+					else
+					{
+						GC_ENTRY_TIMER = 0;
+						RetVal = FALSE;
+					}
+			}
+			else
+			{
+				GameCountEntrySequencePosition = 0;
+				GC_ENTRY_TIMER = 0;
+				RetVal = FALSE;	
+			}
+		break;
+		
+		default:
+			GameCountEntrySequencePosition = 0;	
+			GC_ENTRY_TIMER = 0;
+			RetVal = FALSE;
+		break;	
+		
+		
+	}
+	
+	return RetVal;
+	
+}		
+		
 void MoveToVolumeChange()
 {
 	ResetAudioAndLEDS();
 	GameState = VOLUME_CHANGE_INIT;
 	MAIN_GAME_TIMER = 0;
+}
+
+void MoveToGameCountDisplay()
+{
+
+	GameState = DISPLAY_GAME_COUNT;
+	DisplayGameCount();
+	Game0PlayButtonFeebackSound(AudioGlobalVolume, 1);
+	MAIN_GAME_TIMER = 0;
 	
-}	
+}
+	
 	
 void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats)
 {
@@ -1112,7 +1216,6 @@ void Game0PlayButtonFeebackSound(BYTE Volume, BYTE Repeats)
 
 void EasterEggHunt()
 {
-
 	
 	if(EASTER_EGG_TIMER > 20)
 	{	

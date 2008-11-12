@@ -38,11 +38,12 @@ void LEDTimerCheck(void);
 void LEDSendMessage(BYTE  nodenumber, BYTE  redbrt, BYTE  greenbrt, BYTE  bluebrt,
 BYTE  redfade, BYTE  greenfade, BYTE  bluefade,
 WORD  ledtime, WORD  fadetime);
+void DisplayGameCount();
 void LEDSendVariable(WORD  indx, WORD  value);
 void ScoreSendLights(BYTE  nodenumber, WORD  Data0to15, WORD  Data16to19);
-extern WORD  LEDSegmentPattern[3];	// encoded 7-segment patterns for 6 digits
 void LEDSendDigits(WORD node, BYTE brightness, BYTE d1, BYTE d2, BYTE d3, BYTE d4, BYTE d5, BYTE d6);
 
+extern WORD  LEDSegmentPattern[3];	// encoded 7-segment patterns for 6 digits
 
 extern WORD P1ScoreUpdateTimer;
 extern WORD P2ScoreUpdateTimer;

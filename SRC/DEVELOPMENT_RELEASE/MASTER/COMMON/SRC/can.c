@@ -478,6 +478,8 @@ void CANRxProcess(void)
 			
 				SystemMode = IncomingCANMsg.Data[0];
 				DiagnosticsState = INIT;
+				ResetGPTimers();
+				GameState = INIT;
 			break;
 			
 	
