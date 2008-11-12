@@ -43,6 +43,7 @@ namespace CANInterfaceManagement
                 CANData[6] = Byte6;
                 CANData[7] = Byte7;
             }
+          
             public CANMessage(UInt32 Id, Byte [] Data)
             {
                 if (Data == null)
@@ -184,10 +185,10 @@ namespace CANInterfaceManagement
 
             public const byte CAN_INTERFACE_PING = 0x00;
             public const byte CAN_INTERFACE_PONG = 0x11;
-            public const byte SYSTEM_RESET = 0x01;
-            public const byte TX_CAN_MESSAGE = 0x03;
-            public const byte RX_CAN_MESSAGE = 0x04;
-            public const byte SET_ID_EXCLUDE_RANGE = 0x05;
+            public const byte SYSTEM_RESET =       0x01;
+            public const byte TX_CAN_MESSAGE =     0x03;
+            public const byte RX_CAN_MESSAGE =     0x04;
+            public const byte SET_ID_EXCLUDE_RANGE= 0x05;
             public const byte SET_CAN_TERMINATION = 0x06;
 
 
@@ -425,50 +426,13 @@ namespace CANInterfaceManagement
                                     ManagementState = CONNECTING;
                                 }
 
-                                /*
-                                if (Environment.OSVersion.Version.Major == 6)
-                                {
-                                  RegistryCOMPortRecord = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Enum\\FTDIBUS\\VID_0403+PID_6001+00000000A\\0000\\Device Parameters", "PortName", "Nope!");
-                                }
-                                else
-                                {
-                                    RegistryCOMPortRecord = (string)Registry.GetValue("HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Enum\\FTDIBUS\\VID_0403+PID_6001+00000000A\\0000\\Device Parameters", "PortName", "Nope!");
-                                  }
-                                //now see what com  ports are available in the system
-
-                                string[] AvailablePorts = SerialPort.GetPortNames();
-
-
-                                if (RegistryCOMPortRecord == null)
-                                {
-                                     ManagementState = WAITING_FOR_CONNECT_COMMAND;
-                                }
-                                else
-                                {
-                                    int i;
-                                    for (i = 0; i < AvailablePorts.Length; i++)
-                                    {
-                                        if (RegistryCOMPortRecord == AvailablePorts[i])
-                                        {
-                                            ManagementState = CONNECTING;
-                                            break;
-                                        }
-                                        else
-                                        {
-                                             ManagementState = WAITING_FOR_CONNECT_COMMAND;
-                                                  
-                                        }
-
-                                    }
-                                }
-                                */
+                             
                                 break;
 
                             case CONNECTING:
                                 ConnectionStatus = ManagerMessages[1];
                                 ConnectionActive = false;
-
-                                
+                               
 
                                 MyFTDIStatus = MyFTDI.OpenByIndex(0);
 
@@ -482,27 +446,6 @@ namespace CANInterfaceManagement
                                     ManagementState = WAIT_FOR_RECONNECT;
                                 }
 
-                                /*
-                                try
-                                    {
-                                    MyConnection = new SerialPort();
-                                    MyConnection.PortName = RegistryCOMPortRecord;
-                                    Port = MyConnection.PortName;
-                                    MyConnection.Open();
-                                    ManagementState = CONNECTION_ACTIVE;
-                                    BytesRead = 0;
-                                    MyConnection.DiscardInBuffer();                              
-                                    }
-
-                                catch
-                                    {
-                                    Thread.Sleep(RECONNECT_PERIOD);
-                                    ManagementState = WAITING_FOR_CONNECT_COMMAND;
-
-                                    }
-                                break;
-                                 * */
-
                                 break;
                             case CONNECTION_ACTIVE:
  
@@ -510,27 +453,21 @@ namespace CANInterfaceManagement
                                 ConnectionStatus = ManagerMessages[2];
                                 ManagementState = CONNECTION_ACTIVE;
 
-                                //See if there are any CAN messages To be sent
-                                //lock (OutgoingCANMessageQueue)
                                 {
 
                                     for (int q = 0; q < this.OutgoingCANMessageQueue.GetCount(); q++)
-                                   // while (OutgoingCANMessageQueue.GetCount() > 0)
                                     {
                                         OutgoingCANMessageQueue.Dequeue(ref OutgoingCANMessage);
                                         IncomingCANMessageQueue.Enqueue(OutgoingCANMessage);
                                         byte [] OutPacket = CANInterfaceMessages.AssembleCANTxMessage(OutgoingCANMessage);
                                         if (OutPacket != null)
                                         {
-                                            // MyConnection.Write(OutPacket,0,OutPacket.Length);
                                             uint DataBytesWritten=0;
                                             MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
                                         }
                                     }
                                 }
 
-                                
-                               // int  BytesToGrab = MyConnection.BytesToRead;
                                 uint  BytesToGrab = 0;
                                 MyFTDI.GetRxBytesAvailable(ref BytesToGrab);
 
@@ -540,7 +477,7 @@ namespace CANInterfaceManagement
                                     {
                                         BytesToGrab = 512;
                                     }
-                                   // MyConnection.Read(StreamBuffer,0,BytesToGrab);
+                                  
                                     uint FTDIBytesRead = 0;
                                     MyFTDI.Read(StreamBuffer, BytesToGrab, ref FTDIBytesRead);
 
@@ -598,10 +535,9 @@ namespace CANInterfaceManagement
             try
                 {
                     MyFTDI.Close();
-               // MyConnection.Close();
-                ConnectionStatus = ManagerMessages[0];
-                ConnectionActive = false;
-                ManagementState = WAITING_FOR_CONNECT_COMMAND;
+                    ConnectionStatus = ManagerMessages[0];
+                    ConnectionActive = false;
+                    ManagementState = WAITING_FOR_CONNECT_COMMAND;
                 }
             catch
                 {

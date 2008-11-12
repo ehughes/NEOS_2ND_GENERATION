@@ -45,11 +45,7 @@ namespace CAN_SNIFFER
 
             MyNEOSAllAroundSimulator.MdiParent = this;
             MyNEOSAllAroundSimulator.Show();
-            MyMessageRouterControl.MdiParent = this;
-            MyMessageRouterControl.Show();
-
-
-
+       
             MyNEOSLowLevelCtrl.MdiParent = this;
             MyNEOSLowLevelCtrl.Show();
             MessageRouterThread = new Thread(new ThreadStart(CANMessageRouter));
@@ -274,53 +270,6 @@ namespace CAN_SNIFFER
                     }
                 }
             }
-           // while (true)
-          //  {
-            //    Thread.Sleep(1);
-                
-                               // lock (MyCANCommunicationsManager.OutgoingCANMessageQueue)
-                          /*      {
-                                    while (MyCANMessageEntryForm.TxCANMessageQueue.Count > 0)
-                                    {
-                                       MyCANMessageEntryForm.TxCANMessageQueue.Dequeue(ref NextOutgoingMessage);
-                                       MyCANCommunicationsManager.OutgoingCANMessageQueue.Enqueue(NextOutgoingMessage);
-                                    }
-                                    while (MyNEOSAllAroundSimulator.TxCANMessageQueue.Count > 0)
-                                    {
-                                        MyNEOSAllAroundSimulator.TxCANMessageQueue.Dequeue(ref NextOutgoingMessage);
-                                        MyCANCommunicationsManager.OutgoingCANMessageQueue.Enqueue(NextOutgoingMessage);
-                                    }
-
-                                    while (MyNEOSLowLevelCtrl.TxCANMessageQueue.Count > 0)
-                                    {
-                                        MyNEOSLowLevelCtrl.TxCANMessageQueue.Dequeue(ref NextOutgoingMessage);
-                                        MyCANCommunicationsManager.OutgoingCANMessageQueue.Enqueue(NextOutgoingMessage);
-                                    }
-                               }
-
-                               // lock (MyCANCommunicationsManager.IncomingCANMessageQueue)
-                                {
-                                    while (MyCANCommunicationsManager.IncomingCANMessageQueue.Count > 0)
-                                    {
-                                        MyCANCommunicationsManager.IncomingCANMessageQueue.Dequeue(ref NextIncomingCANMessage);
-
-                                        if (MyMessageRouterControl.SuscriberEnable("RAW CAN Message View") == true)
-                                        {
-                                            MyIncomingCANMessageView.RxCANMessageQueue.Enqueue(NextIncomingCANMessage);
-                                        }
-                                        if (MyMessageRouterControl.SuscriberEnable("NEOS All Around Simulator") == true)
-                                        {
-                                           
-                                           MyNEOSAllAroundSimulator.RxCANMessageQueue.Enqueue(NextIncomingCANMessage);
-                                        }
-
-                                        if (MyMessageRouterControl.SuscriberEnable("Low Level NEOS Control") == true)
-                                        {
-                                             MyNEOSLowLevelCtrl.RxCANMessageQueue.Enqueue(NextIncomingCANMessage);
-                                        }                                   
-                                   }
-                            }*/
-               // }
                
         }
 
