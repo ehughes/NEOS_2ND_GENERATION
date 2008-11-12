@@ -191,6 +191,90 @@ ClassGenCCAutoEnabled=1
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 
+[Document13]
+DocumentPath=CAMtastic5.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[Document14]
+DocumentPath=CAMtastic6.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[Document15]
+DocumentPath=CAMtastic7.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[Document16]
+DocumentPath=CAMtastic8.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[Document17]
+DocumentPath=CAMtastic9.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
+[Document18]
+DocumentPath=CAMtastic10.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+
 [ProjectVariant1]
 Description=Master Board
 ParameterCount=0
@@ -383,13 +467,52 @@ DocumentPath=Project Outputs for ELC0100R3\Master-Slave.DRR
 DocumentPath=Project Outputs for ELC0100R3\Master-Slave.EXTREP
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for ELC0100R3\Master-Slave.LDP
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GBL
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for ELC0100R3\Master-Slave.REP
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GBO
 
 [GeneratedDocument6]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GBS
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GD1
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GG1
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GM1
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GM3
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GP1
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GP2
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GTL
+
+[GeneratedDocument14]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GTO
+
+[GeneratedDocument15]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.GTS
+
+[GeneratedDocument16]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.LDP
+
+[GeneratedDocument17]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.REP
+
+[GeneratedDocument18]
 DocumentPath=Project Outputs for ELC0100R3\Master-Slave.RUL
+
+[GeneratedDocument19]
+DocumentPath=Project Outputs for ELC0100R3\Master-Slave.TXT
 
 [Generic_SmartPDF]
 AutoOpenFile=-1

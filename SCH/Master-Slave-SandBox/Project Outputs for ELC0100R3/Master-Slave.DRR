@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
-NCDrill File Report For: Master-Slave.PcbDoc   9/4/2008  8:57:46 AM
+NCDrill File Report For: Master-Slave.PcbDoc   10/15/2008  1:48:43 PM
 ---------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
@@ -8,22 +8,21 @@ EIA File   : Master-Slave.DRL
 
 Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
 ---------------------------------------------------------------------------
-T1        12mil (0.3048mm)         Round          369              362.12 Inch (9197.81 mm)
-T2        15mil (0.381mm)          Round          64               299.18 Inch (7599.06 mm)
-T3        28mil (0.7112mm)         Round          8                284.39 Inch (7223.60 mm)
-T4        34mil (0.8636mm)         Round          1                282.90 Inch (7185.54 mm)
-T5        40mil (1.016mm)          Round          4                281.70 Inch (7155.11 mm)
-T6        45mil (1.143mm)          Round          4                283.79 Inch (7208.24 mm)
-T7        50mil (1.27mm)           Round          1                282.80 Inch (7183.09 mm)
-T8        62mil (1.5748mm)         Round          6                286.64 Inch (7280.77 mm)
-T9        91mil (2.3114mm)         Round          2                281.73 Inch (7155.95 mm)
-T10       125mil (3.175mm)         Round          13               289.13 Inch (7344.02 mm)
-T11       169mil (4.2926mm)        Round          1                283.60 Inch (7203.56 mm)
-T12       125mil (3.175mm)         Round          28        NPTH   301.53 Inch (7658.80 mm)
-T13       169mil (4.2926mm)        Round          14        NPTH   300.26 Inch (7626.63 mm)
-T14       250mil (6.35mm)          Round          10        NPTH   293.94 Inch (7465.95 mm)
-T15       390mil (9.906mm)         Round          4         NPTH   295.47 Inch (7504.95 mm)
+T1        12mil (0.3048mm)         Round          374              366.37 Inch (9305.82 mm)
+T2        15mil (0.381mm)          Round          79               308.33 Inch (7831.60 mm)
+T3        28mil (0.7112mm)         Round          4                286.94 Inch (7288.39 mm)
+T4        34mil (0.8636mm)         Round          1                286.78 Inch (7284.31 mm)
+T5        40mil (1.016mm)          Round          4                285.59 Inch (7253.89 mm)
+T6        45mil (1.143mm)          Round          4                287.68 Inch (7307.02 mm)
+T7        62mil (1.5748mm)         Round          6                290.53 Inch (7379.56 mm)
+T8        91mil (2.3114mm)         Round          2                285.62 Inch (7254.73 mm)
+T9        125mil (3.175mm)         Round          13               293.02 Inch (7442.80 mm)
+T10       169mil (4.2926mm)        Round          1                287.49 Inch (7302.34 mm)
+T11       125mil (3.175mm)         Round          27        NPTH   302.87 Inch (7692.84 mm)
+T12       169mil (4.2926mm)        Round          14        NPTH   304.15 Inch (7725.41 mm)
+T13       250mil (6.35mm)          Round          9         NPTH   296.03 Inch (7519.18 mm)
+T14       390mil (9.906mm)         Round          4         NPTH   299.36 Inch (7603.72 mm)
 ---------------------------------------------------------------------------
-Totals                                            529              4409.18 Inch (111993.09 mm)
+Totals                                            542              4180.77 Inch (106191.61 mm)
 
 Total Processing Time (hh:mm:ss) : 00:00:00

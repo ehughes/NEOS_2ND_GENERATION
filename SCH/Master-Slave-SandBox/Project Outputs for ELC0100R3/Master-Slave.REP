@@ -7,8 +7,6 @@ Generating : Top Layer
 
     Adding Layer      : Top Layer
 
-    Adding Layer      : Board Outline
-
     Adding Layer      : Multi-Layer
 
 
@@ -91,6 +89,7 @@ Used DCodes :
     D85
     D86
     D87
+    D88
 *************************************************************
 
 *************************************************************
@@ -99,16 +98,12 @@ Generating : Ground
 
     Adding Layer      : Ground
 
-    Adding Layer      : Board Outline
-
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D62
-    D70
-    D71
-    D88
+    D64
+    D67
     D89
     D90
     D91
@@ -118,6 +113,7 @@ Used DCodes :
     D95
     D96
     D97
+    D98
 *************************************************************
 
 *************************************************************
@@ -126,17 +122,13 @@ Generating : Power
 
     Adding Layer      : Power
 
-    Adding Layer      : Board Outline
-
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D60
-    D62
-    D70
-    D71
-    D88
+    D61
+    D64
+    D67
     D89
     D90
     D91
@@ -157,28 +149,26 @@ Generating : Bottom Layer
 
     Adding Layer      : Bottom Layer
 
-    Adding Layer      : Board Outline
-
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
     D10
-    D33
-    D35
-    D58
+    D13
+    D16
+    D20
+    D36
+    D38
     D59
     D60
     D61
     D62
-    D64
+    D63
     D65
     D66
-    D68
+    D67
     D69
-    D70
     D71
-    D72
     D73
     D74
     D75
@@ -194,6 +184,7 @@ Used DCodes :
     D85
     D86
     D87
+    D88
     D101
     D102
     D103
@@ -227,13 +218,10 @@ Generating : Top Overlay
 
     Adding Layer      : Top Overlay
 
-    Adding Layer      : Board Outline
-
 
 Used DCodes :
-    D61
-    D70
-    D71
+    D63
+    D64
     D125
     D126
     D127
@@ -248,15 +236,12 @@ Generating : Bottom Overlay
 
     Adding Layer      : Bottom Overlay
 
-    Adding Layer      : Board Outline
-
 
 Used DCodes :
-    D61
-    D70
-    D71
+    D63
+    D64
     D125
-    D128
+    D129
     D130
     D131
 *************************************************************
@@ -267,18 +252,13 @@ Generating : Top Solder
 
     Adding Layer      : Top Solder
 
-    Adding Layer      : Board Outline
-
     Adding Layer      : Top Layer
 
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D70
-    D71
     D73
-    D98
     D132
     D133
     D134
@@ -344,6 +324,7 @@ Used DCodes :
     D194
     D195
     D196
+    D197
 *************************************************************
 
 *************************************************************
@@ -352,18 +333,13 @@ Generating : Bottom Solder
 
     Adding Layer      : Bottom Solder
 
-    Adding Layer      : Board Outline
-
     Adding Layer      : Bottom Layer
 
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D70
-    D71
     D73
-    D98
     D101
     D102
     D103
@@ -388,9 +364,11 @@ Used DCodes :
     D122
     D123
     D124
-    D154
-    D178
-    D179
+    D134
+    D137
+    D141
+    D157
+    D159
     D180
     D181
     D182
@@ -408,6 +386,9 @@ Used DCodes :
     D194
     D195
     D196
+    D197
+    D198
+    D199
 *************************************************************
 
 *************************************************************
@@ -418,24 +399,49 @@ Generating : Board Outline
 
 
 Used DCodes :
-    D70
-    D71
+    D64
+    D126
 *************************************************************
 
 *************************************************************
 Generating : Cutouts
       File : Master-Slave.GM3
 
-    Adding Layer      : Board Outline
-
     Adding Layer      : Cutouts
 
 
 Used DCodes :
-    D61
-    D70
-    D71
+    D63
+    D64
     D131
-    D197
+    D200
+*************************************************************
+
+*************************************************************
+Generating : Drill Drawing
+      File : Master-Slave.GD1
+
+    Adding Layer      : Drill Drawing
+
+    Adding Drill Pair : Top Layer-Bottom Layer
+
+
+Used DCodes :
+    D126
+    D201
+    D202
+*************************************************************
+
+*************************************************************
+Generating : Drill Guide
+      File : Master-Slave.GG1
+
+    Adding Layer      : Drill Guide
+
+    Adding Drill Pair : Top Layer-Bottom Layer
+
+
+Used DCodes :
+    D126
 *************************************************************
 

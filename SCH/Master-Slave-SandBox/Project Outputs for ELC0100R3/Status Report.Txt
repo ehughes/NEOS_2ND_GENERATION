@@ -1,9 +1,13 @@
-Output: Bill of Materials
-Type  : BOM
-From  : Variant [EVERYTHING] of Project [Master-Slave.PrjPcb]
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Master-Slave.PrjPcb]
+   Generated File[Master-Slave.TXT]
+   Generated File[Master-Slave.DRL]
+   Generated File[Master-Slave.LDP]
+   Generated File[Master-Slave.DRR]
 
 
-Files Generated   : 0
+Files Generated   : 4
 Documents Printed : 0
 
-Finished Output Generation At 10:37:28 AM On 9/4/2008
+Finished Output Generation At 1:48:43 PM On 10/15/2008
