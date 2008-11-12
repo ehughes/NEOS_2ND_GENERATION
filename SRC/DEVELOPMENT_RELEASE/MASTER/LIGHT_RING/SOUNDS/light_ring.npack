@@ -1,12 +1,11 @@
 #define GLOBAL_SOUNDS_PATH				sounds\Global
 
-#define SELECTION_SOUNDS_PATH			sounds\selection
-#define LIGHT_GRABBER_PATH				sounds\LightGrabber
-#define ZIG_ZAG_PATH				      sounds\ZigZag
+#define SELECTION_SOUNDS_PATH		  sounds\selection
+#define LIGHT_GRABBER_PATH			  sounds\LightGrabber
+#define ZIG_ZAG_PATH				  sounds\ZigZag
 #define JAM_CIRCLE_PATH                    sounds\JamCircle
-#define DUCK_DUCK_GOOSE_PATH                   sounds\DuckDuckGoose
-#define COMET_PATH                   sounds\Comet
-#define FLIP_FLOP_PATH                   sounds\FlipFlop
+#define DUCK_DUCK_GOOSE_PATH               sounds\DuckDuckGoose
+#define FLIP_FLOP_PATH                     sounds\FlipFlop
 
 
 
@@ -31,11 +30,6 @@ sound[108] =GLOBAL_SOUNDS_PATH\RingSE8.wav;
 sound[109] =GLOBAL_SOUNDS_PATH\RingSE9.wav;
 sound[110] =GLOBAL_SOUNDS_PATH\RingSE10.wav;
 sound[111] =GLOBAL_SOUNDS_PATH\RingSE11.wav;
-
-
-
-
-
 
 sound[10]=LIGHT_GRABBER_PATH\Nodes\Node0.wav;
 sound[11]=LIGHT_GRABBER_PATH\Nodes\Node1.wav;
@@ -87,8 +81,6 @@ sound[66]=JAM_CIRCLE_PATH\vln2.wav;
 sound[67]=JAM_CIRCLE_PATH\vln3.wav;
 sound[68]=JAM_CIRCLE_PATH\JamCircleBackground.wav;
 
-
-
 sound[80]=DUCK_DUCK_GOOSE_PATH\DuckChaseMusic.wav;
 sound[81]=DUCK_DUCK_GOOSE_PATH\DuckHit.wav;
 sound[82]=DUCK_DUCK_GOOSE_PATH\Goose.wav;
@@ -102,18 +94,10 @@ sound[89]=DUCK_DUCK_GOOSE_PATH\DuckDuck_FullChase.wav;
 sound[90]=DUCK_DUCK_GOOSE_PATH\DuckDuck_FullChase_No_Goose.wav;
 sound[91]=DUCK_DUCK_GOOSE_PATH\Duck.wav;
 
-
-
-
-sound[150]=COMET_PATH\CometBackground.wav;
-sound[151]=COMET_PATH\LaserBlast.wav;
-sound[152]=COMET_PATH\Miss.wav;
-sound[153]=COMET_PATH\NewComet.wav;
-
-
 sound[160]=FLIP_FLOP_PATH\FlipFlopBackground.wav;
 sound[161]=FLIP_FLOP_PATH\Flop1.wav;
 sound[162]=FLIP_FLOP_PATH\Flop2.wav;
+
 
 
 

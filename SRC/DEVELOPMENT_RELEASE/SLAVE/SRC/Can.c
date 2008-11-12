@@ -720,10 +720,6 @@ void CANRxProcess(void)
 }
 
 
-
-
-
-
 /* Transmitted SID word is in a strange format with 3 blank bytes in the middle */
 WORD CANMakeTxSID (WORD SID_Unformatted)
 {

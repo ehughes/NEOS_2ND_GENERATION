@@ -137,7 +137,7 @@
 #define DUCKDUCK_FULLCHASE_NO_GOOSE_WAV                               90
 #define DUCKDUCK_FULLCHASE_NO_GOOSE_WAV_LENGTH                        1073
 #define DUCK_WAV                                                      91
-#define DUCK_WAV_LENGTH                                               120
+#define DUCK_WAV_LENGTH                                               132
 #define RINGSE0_WAV                                                   100
 #define RINGSE0_WAV_LENGTH                                            27
 #define RINGSE1_WAV                                                   101
@@ -162,14 +162,6 @@
 #define RINGSE10_WAV_LENGTH                                           42
 #define RINGSE11_WAV                                                  111
 #define RINGSE11_WAV_LENGTH                                           25
-#define COMETBACKGROUND_WAV                                           150
-#define COMETBACKGROUND_WAV_LENGTH                                    4438
-#define LASERBLAST_WAV                                                151
-#define LASERBLAST_WAV_LENGTH                                         120
-#define MISS_WAV                                                      152
-#define MISS_WAV_LENGTH                                               37
-#define NEWCOMET_WAV                                                  153
-#define NEWCOMET_WAV_LENGTH                                           50
 #define FLIPFLOPBACKGROUND_WAV                                        160
 #define FLIPFLOPBACKGROUND_WAV_LENGTH                                 4438
 #define FLOP1_WAV                                                     161
@@ -179,3 +171,4 @@
 
 
 #endif
+

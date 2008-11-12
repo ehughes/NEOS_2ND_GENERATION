@@ -156,6 +156,8 @@ void DuckDuckGoose(void)
 				MoveToDuckDuckGooseEnd();
 			}
 		
+			AnimateGooseLight();	
+		
 			if(GOOSE_RUN_TIMER > GOOSE_SPEED)
 			{
 				GOOSE_RUN_TIMER = 0;		
@@ -261,7 +263,7 @@ void MoveToGooseChase()
 	GameState = GOOSE_CHASE;
 	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,CurrentGameSettings.GameBackgroundMusicVolume,CurrentGameSettings.GameBackgroundMusicVolume);
 	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,DUCKDUCK_FULLCHASE_WAV);
-	GOOSE_RUN_TIMER = 0;
+	GOOSE_RUN_TIMER = 0xFFFF;
 	GOOSE_MUSIC_TIMER = 0;
 	MovesUntilSwitch = 0;
 	LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0, 0);
@@ -435,6 +437,16 @@ void AnimateGooseLight()
 			break;
 			
 			case 1:
+				LEDSendMessage(GOOSE_POSITION,LEDOFF,LEDOFF,GOOSE_FLICKER_TIME,GOOSE_FLICKER_TIME);
+				GooseLightState = 2;
+			break;
+
+			case 2:
+				LEDSendMessage(GOOSE_POSITION,GREEN,LEDOFF,GOOSE_FLICKER_TIME,GOOSE_FLICKER_TIME);
+				GooseLightState = 3;
+			break;
+			
+			case 3:
 				LEDSendMessage(GOOSE_POSITION,LEDOFF,LEDOFF,GOOSE_FLICKER_TIME,GOOSE_FLICKER_TIME);
 				GooseLightState = 0;
 			break;

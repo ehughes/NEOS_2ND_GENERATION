@@ -118,7 +118,7 @@ BYTE VolumeChangeEntrySequence [5] = {LIGHT_GRABBER_BUTTON,MARATHON_BUTTON, NINJ
 BYTE VolumeChangeEntrySequencePosition = 0;
 
 
-BYTE GameCountEntrySequence [5] = {FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON,FIRE_FIGHTER_BUTTON};
+BYTE GameCountEntrySequence [5] = { MARATHON_BUTTON, MARATHON_BUTTON, MARATHON_BUTTON, MARATHON_BUTTON, MARATHON_BUTTON};
 BYTE GameCountEntrySequencePosition = 0;
 
 
@@ -698,8 +698,8 @@ void OnButtonPressRootGame0(BYTE button)
 		HitsSinceLastClear++;
 	}
 	
-		
-//	PlaySelectorSound();
+	PlayInternalNodeSound(button,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,0,CurrentGameSettings.GameBackgroundMusicVolume,1);
+	
 	MusicWake();
 		
 }

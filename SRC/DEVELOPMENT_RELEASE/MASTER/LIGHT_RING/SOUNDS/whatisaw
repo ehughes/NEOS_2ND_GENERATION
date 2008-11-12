@@ -5,202 +5,198 @@ Line [4] has a macro LIGHT_GRABBER_PATH with a value of sounds\LightGrabber
 Line [5] has a macro ZIG_ZAG_PATH with a value of sounds\ZigZag
 Line [6] has a macro JAM_CIRCLE_PATH with a value of sounds\JamCircle
 Line [7] has a macro DUCK_DUCK_GOOSE_PATH with a value of sounds\DuckDuckGoose
-Line [8] has a macro COMET_PATH with a value of sounds\Comet
-Line [9] has a macro FLIP_FLOP_PATH with a value of sounds\FlipFlop
+Line [8] has a macro FLIP_FLOP_PATH with a value of sounds\FlipFlop
+Line [9] is blank
 Line [10] is blank
 Line [11] is blank
-Line [12] is blank
+Line [12] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
+Line [12] has a sound sounds\selection\SelectionButton.wav at sound number 0
 Line [13] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
-Line [13] has a sound sounds\selection\SelectionButton.wav at sound number 0
-Line [14] has a macro replace of SELECTION_SOUNDS_PATH to sounds\selection
-Line [14] has a sound sounds\selection\CountDown.wav at sound number 1
+Line [13] has a sound sounds\selection\CountDown.wav at sound number 1
+Line [14] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
+Line [14] has a sound sounds\Global\ButtonFeedBack.wav at sound number 2
 Line [15] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [15] has a sound sounds\Global\ButtonFeedBack.wav at sound number 2
+Line [15] has a sound sounds\Global\Ending.wav at sound number 3
 Line [16] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [16] has a sound sounds\Global\Ending.wav at sound number 3
+Line [16] has a sound sounds\Global\LightRingMainTheme_L.wav at sound number 4
 Line [17] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [17] has a sound sounds\Global\LightRingMainTheme_L.wav at sound number 4
+Line [17] has a sound sounds\Global\LightRingMainTheme_R.wav at sound number 5
 Line [18] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [18] has a sound sounds\Global\LightRingMainTheme_R.wav at sound number 5
+Line [18] has a sound sounds\Global\BuildUp_A.wav at sound number 6
 Line [19] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [19] has a sound sounds\Global\BuildUp_A.wav at sound number 6
+Line [19] has a sound sounds\Global\BuildUp_B.wav at sound number 7
 Line [20] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [20] has a sound sounds\Global\BuildUp_B.wav at sound number 7
+Line [20] has a sound sounds\Global\Heartbeat.wav at sound number 8
 Line [21] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [21] has a sound sounds\Global\Heartbeat.wav at sound number 8
+Line [21] has a sound sounds\Global\RingSE0.wav at sound number 100
 Line [22] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [22] has a sound sounds\Global\RingSE0.wav at sound number 100
+Line [22] has a sound sounds\Global\RingSE1.wav at sound number 101
 Line [23] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [23] has a sound sounds\Global\RingSE1.wav at sound number 101
+Line [23] has a sound sounds\Global\RingSE2.wav at sound number 102
 Line [24] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [24] has a sound sounds\Global\RingSE2.wav at sound number 102
+Line [24] has a sound sounds\Global\RingSE3.wav at sound number 103
 Line [25] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [25] has a sound sounds\Global\RingSE3.wav at sound number 103
+Line [25] has a sound sounds\Global\RingSE4.wav at sound number 104
 Line [26] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [26] has a sound sounds\Global\RingSE4.wav at sound number 104
+Line [26] has a sound sounds\Global\RingSE5.wav at sound number 105
 Line [27] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [27] has a sound sounds\Global\RingSE5.wav at sound number 105
+Line [27] has a sound sounds\Global\RingSE6.wav at sound number 106
 Line [28] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [28] has a sound sounds\Global\RingSE6.wav at sound number 106
+Line [28] has a sound sounds\Global\RingSE7.wav at sound number 107
 Line [29] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [29] has a sound sounds\Global\RingSE7.wav at sound number 107
+Line [29] has a sound sounds\Global\RingSE8.wav at sound number 108
 Line [30] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [30] has a sound sounds\Global\RingSE8.wav at sound number 108
+Line [30] has a sound sounds\Global\RingSE9.wav at sound number 109
 Line [31] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [31] has a sound sounds\Global\RingSE9.wav at sound number 109
+Line [31] has a sound sounds\Global\RingSE10.wav at sound number 110
 Line [32] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [32] has a sound sounds\Global\RingSE10.wav at sound number 110
-Line [33] has a macro replace of GLOBAL_SOUNDS_PATH to sounds\Global
-Line [33] has a sound sounds\Global\RingSE11.wav at sound number 111
-Line [34] is blank
-Line [35] is blank
-Line [36] is blank
-Line [37] is blank
-Line [38] is blank
-Line [39] is blank
+Line [32] has a sound sounds\Global\RingSE11.wav at sound number 111
+Line [33] is blank
+Line [34] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [34] has a sound sounds\LightGrabber\Nodes\Node0.wav at sound number 10
+Line [35] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [35] has a sound sounds\LightGrabber\Nodes\Node1.wav at sound number 11
+Line [36] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [36] has a sound sounds\LightGrabber\Nodes\Node2.wav at sound number 12
+Line [37] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [37] has a sound sounds\LightGrabber\Nodes\Node3.wav at sound number 13
+Line [38] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [38] has a sound sounds\LightGrabber\Nodes\Node4.wav at sound number 14
+Line [39] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
+Line [39] has a sound sounds\LightGrabber\Nodes\Node5.wav at sound number 15
 Line [40] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [40] has a sound sounds\LightGrabber\Nodes\Node0.wav at sound number 10
+Line [40] has a sound sounds\LightGrabber\Nodes\Node6.wav at sound number 16
 Line [41] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [41] has a sound sounds\LightGrabber\Nodes\Node1.wav at sound number 11
+Line [41] has a sound sounds\LightGrabber\Nodes\Node7.wav at sound number 17
 Line [42] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [42] has a sound sounds\LightGrabber\Nodes\Node2.wav at sound number 12
+Line [42] has a sound sounds\LightGrabber\BonusSound.wav at sound number 18
 Line [43] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [43] has a sound sounds\LightGrabber\Nodes\Node3.wav at sound number 13
+Line [43] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic.wav at sound number 19
 Line [44] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [44] has a sound sounds\LightGrabber\Nodes\Node4.wav at sound number 14
+Line [44] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic_Bonus.wav at sound number 20
 Line [45] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [45] has a sound sounds\LightGrabber\Nodes\Node5.wav at sound number 15
-Line [46] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [46] has a sound sounds\LightGrabber\Nodes\Node6.wav at sound number 16
-Line [47] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [47] has a sound sounds\LightGrabber\Nodes\Node7.wav at sound number 17
-Line [48] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [48] has a sound sounds\LightGrabber\BonusSound.wav at sound number 18
-Line [49] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [49] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic.wav at sound number 19
-Line [50] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [50] has a sound sounds\LightGrabber\LightGrabberBackGroundMusic_Bonus.wav at sound number 20
-Line [51] has a macro replace of LIGHT_GRABBER_PATH to sounds\LightGrabber
-Line [51] has a sound sounds\LightGrabber\LG_End.wav at sound number 21
-Line [52] is blank
+Line [45] has a sound sounds\LightGrabber\LG_End.wav at sound number 21
+Line [46] is blank
+Line [47] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [47] has a sound sounds\ZigZag\ball_serve.wav at sound number 31
+Line [48] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [48] has a sound sounds\ZigZag\ball_hit.wav at sound number 32
+Line [49] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [49] has a sound sounds\ZigZag\ball_bounce.wav at sound number 33
+Line [50] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [50] has a sound sounds\ZigZag\ZigZagSFX1.wav at sound number 34
+Line [51] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [51] has a sound sounds\ZigZag\ZigZagSFX2.wav at sound number 35
+Line [52] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
+Line [52] has a sound sounds\ZigZag\ZigZagSFX3.wav at sound number 36
 Line [53] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [53] has a sound sounds\ZigZag\ball_serve.wav at sound number 31
+Line [53] has a sound sounds\ZigZag\ZigZagSFX4.wav at sound number 37
 Line [54] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [54] has a sound sounds\ZigZag\ball_hit.wav at sound number 32
+Line [54] has a sound sounds\ZigZag\ZigZagSFX5.wav at sound number 38
 Line [55] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [55] has a sound sounds\ZigZag\ball_bounce.wav at sound number 33
+Line [55] has a sound sounds\ZigZag\ZigZagSFX6.wav at sound number 39
 Line [56] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [56] has a sound sounds\ZigZag\ZigZagSFX1.wav at sound number 34
+Line [56] has a sound sounds\ZigZag\ZigZagSFX7.wav at sound number 40
 Line [57] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [57] has a sound sounds\ZigZag\ZigZagSFX2.wav at sound number 35
+Line [57] has a sound sounds\ZigZag\ZigZagSFX8.wav at sound number 41
 Line [58] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [58] has a sound sounds\ZigZag\ZigZagSFX3.wav at sound number 36
+Line [58] has a sound sounds\ZigZag\ZigZagSFX9.wav at sound number 42
 Line [59] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [59] has a sound sounds\ZigZag\ZigZagSFX4.wav at sound number 37
+Line [59] has a sound sounds\ZigZag\ZigZagSFX10.wav at sound number 43
 Line [60] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [60] has a sound sounds\ZigZag\ZigZagSFX5.wav at sound number 38
+Line [60] has a sound sounds\ZigZag\ZigZagBackgroundMusic_A.wav at sound number 44
 Line [61] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [61] has a sound sounds\ZigZag\ZigZagSFX6.wav at sound number 39
+Line [61] has a sound sounds\ZigZag\ZigZagBackgroundMusic_B.wav at sound number 45
 Line [62] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [62] has a sound sounds\ZigZag\ZigZagSFX7.wav at sound number 40
-Line [63] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [63] has a sound sounds\ZigZag\ZigZagSFX8.wav at sound number 41
-Line [64] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [64] has a sound sounds\ZigZag\ZigZagSFX9.wav at sound number 42
-Line [65] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [65] has a sound sounds\ZigZag\ZigZagSFX10.wav at sound number 43
-Line [66] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [66] has a sound sounds\ZigZag\ZigZagBackgroundMusic_A.wav at sound number 44
-Line [67] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [67] has a sound sounds\ZigZag\ZigZagBackgroundMusic_B.wav at sound number 45
-Line [68] has a macro replace of ZIG_ZAG_PATH to sounds\ZigZag
-Line [68] has a sound sounds\ZigZag\ZigZagEnd.wav at sound number 46
-Line [69] is blank
+Line [62] has a sound sounds\ZigZag\ZigZagEnd.wav at sound number 46
+Line [63] is blank
+Line [64] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
+Line [64] has a sound sounds\JamCircle\Brass1.wav at sound number 50
+Line [65] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
+Line [65] has a sound sounds\JamCircle\Brass2.wav at sound number 51
+Line [66] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
+Line [66] has a sound sounds\JamCircle\Brass3.wav at sound number 52
+Line [67] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
+Line [67] has a sound sounds\JamCircle\flt1.wav at sound number 53
+Line [68] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
+Line [68] has a sound sounds\JamCircle\flt2.wav at sound number 54
+Line [69] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
+Line [69] has a sound sounds\JamCircle\flt3.wav at sound number 55
 Line [70] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [70] has a sound sounds\JamCircle\Brass1.wav at sound number 50
+Line [70] has a sound sounds\JamCircle\Glock1.wav at sound number 56
 Line [71] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [71] has a sound sounds\JamCircle\Brass2.wav at sound number 51
+Line [71] has a sound sounds\JamCircle\Glock2.wav at sound number 57
 Line [72] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [72] has a sound sounds\JamCircle\Brass3.wav at sound number 52
+Line [72] has a sound sounds\JamCircle\Glock3.wav at sound number 58
 Line [73] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [73] has a sound sounds\JamCircle\flt1.wav at sound number 53
+Line [73] has a sound sounds\JamCircle\Harp1.wav at sound number 59
 Line [74] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [74] has a sound sounds\JamCircle\flt2.wav at sound number 54
+Line [74] has a sound sounds\JamCircle\Harp2.wav at sound number 60
 Line [75] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [75] has a sound sounds\JamCircle\flt3.wav at sound number 55
+Line [75] has a sound sounds\JamCircle\Harp3.wav at sound number 61
 Line [76] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [76] has a sound sounds\JamCircle\Glock1.wav at sound number 56
+Line [76] has a sound sounds\JamCircle\Pno1.wav at sound number 62
 Line [77] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [77] has a sound sounds\JamCircle\Glock2.wav at sound number 57
+Line [77] has a sound sounds\JamCircle\Pno2.wav at sound number 63
 Line [78] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [78] has a sound sounds\JamCircle\Glock3.wav at sound number 58
+Line [78] has a sound sounds\JamCircle\Pno3.wav at sound number 64
 Line [79] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [79] has a sound sounds\JamCircle\Harp1.wav at sound number 59
+Line [79] has a sound sounds\JamCircle\vln1.wav at sound number 65
 Line [80] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [80] has a sound sounds\JamCircle\Harp2.wav at sound number 60
+Line [80] has a sound sounds\JamCircle\vln2.wav at sound number 66
 Line [81] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [81] has a sound sounds\JamCircle\Harp3.wav at sound number 61
+Line [81] has a sound sounds\JamCircle\vln3.wav at sound number 67
 Line [82] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [82] has a sound sounds\JamCircle\Pno1.wav at sound number 62
-Line [83] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [83] has a sound sounds\JamCircle\Pno2.wav at sound number 63
-Line [84] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [84] has a sound sounds\JamCircle\Pno3.wav at sound number 64
-Line [85] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [85] has a sound sounds\JamCircle\vln1.wav at sound number 65
-Line [86] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [86] has a sound sounds\JamCircle\vln2.wav at sound number 66
-Line [87] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [87] has a sound sounds\JamCircle\vln3.wav at sound number 67
-Line [88] has a macro replace of JAM_CIRCLE_PATH to sounds\JamCircle
-Line [88] has a sound sounds\JamCircle\JamCircleBackground.wav at sound number 68
-Line [89] is blank
-Line [90] is blank
-Line [91] is blank
+Line [82] has a sound sounds\JamCircle\JamCircleBackground.wav at sound number 68
+Line [83] is blank
+Line [84] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [84] has a sound sounds\DuckDuckGoose\DuckChaseMusic.wav at sound number 80
+Line [85] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [85] has a sound sounds\DuckDuckGoose\DuckHit.wav at sound number 81
+Line [86] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [86] has a sound sounds\DuckDuckGoose\Goose.wav at sound number 82
+Line [87] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [87] has a sound sounds\DuckDuckGoose\GooseCall.wav at sound number 83
+Line [88] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [88] has a sound sounds\DuckDuckGoose\GooseChaseMusic.wav at sound number 84
+Line [89] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [89] has a sound sounds\DuckDuckGoose\GooseHit.wav at sound number 85
+Line [90] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [90] has a sound sounds\DuckDuckGoose\DuckDuck_Background_No_Quacks.wav at sound number 86
+Line [91] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
+Line [91] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Quacks.wav at sound number 87
 Line [92] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [92] has a sound sounds\DuckDuckGoose\DuckChaseMusic.wav at sound number 80
+Line [92] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Goose_Quacks.wav at sound number 88
 Line [93] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [93] has a sound sounds\DuckDuckGoose\DuckHit.wav at sound number 81
+Line [93] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase.wav at sound number 89
 Line [94] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [94] has a sound sounds\DuckDuckGoose\Goose.wav at sound number 82
+Line [94] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase_No_Goose.wav at sound number 90
 Line [95] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [95] has a sound sounds\DuckDuckGoose\GooseCall.wav at sound number 83
-Line [96] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [96] has a sound sounds\DuckDuckGoose\GooseChaseMusic.wav at sound number 84
-Line [97] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [97] has a sound sounds\DuckDuckGoose\GooseHit.wav at sound number 85
-Line [98] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [98] has a sound sounds\DuckDuckGoose\DuckDuck_Background_No_Quacks.wav at sound number 86
-Line [99] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [99] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Quacks.wav at sound number 87
-Line [100] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [100] has a sound sounds\DuckDuckGoose\DuckDuck_Background_Goose_Quacks.wav at sound number 88
-Line [101] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [101] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase.wav at sound number 89
-Line [102] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [102] has a sound sounds\DuckDuckGoose\DuckDuck_FullChase_No_Goose.wav at sound number 90
-Line [103] has a macro replace of DUCK_DUCK_GOOSE_PATH to sounds\DuckDuckGoose
-Line [103] has a sound sounds\DuckDuckGoose\Duck.wav at sound number 91
+Line [95] has a sound sounds\DuckDuckGoose\Duck.wav at sound number 91
+Line [96] is blank
+Line [97] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
+Line [97] has a sound sounds\FlipFlop\FlipFlopBackground.wav at sound number 160
+Line [98] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
+Line [98] has a sound sounds\FlipFlop\Flop1.wav at sound number 161
+Line [99] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
+Line [99] has a sound sounds\FlipFlop\Flop2.wav at sound number 162
+Line [100] is blank
+Line [101] is blank
+Line [102] is blank
+Line [103] is blank
 Line [104] is blank
 Line [105] is blank
 Line [106] is blank
 Line [107] is blank
-Line [108] has a macro replace of COMET_PATH to sounds\Comet
-Line [108] has a sound sounds\Comet\CometBackground.wav at sound number 150
-Line [109] has a macro replace of COMET_PATH to sounds\Comet
-Line [109] has a sound sounds\Comet\LaserBlast.wav at sound number 151
-Line [110] has a macro replace of COMET_PATH to sounds\Comet
-Line [110] has a sound sounds\Comet\Miss.wav at sound number 152
-Line [111] has a macro replace of COMET_PATH to sounds\Comet
-Line [111] has a sound sounds\Comet\NewComet.wav at sound number 153
+Line [108] is blank
+Line [109] is blank
+Line [110] is blank
+Line [111] is blank
 Line [112] is blank
 Line [113] is blank
-Line [114] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
-Line [114] has a sound sounds\FlipFlop\FlipFlopBackground.wav at sound number 160
-Line [115] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
-Line [115] has a sound sounds\FlipFlop\Flop1.wav at sound number 161
-Line [116] has a macro replace of FLIP_FLOP_PATH to sounds\FlipFlop
-Line [116] has a sound sounds\FlipFlop\Flop2.wav at sound number 162
+Line [114] is blank
+Line [115] is blank
+Line [116] is blank
 Line [117] is blank
 Line [118] is blank
 Line [119] is blank
@@ -211,19 +207,3 @@ Line [123] is blank
 Line [124] is blank
 Line [125] is blank
 Line [126] is blank
-Line [127] is blank
-Line [128] is blank
-Line [129] is blank
-Line [130] is blank
-Line [131] is blank
-Line [132] is blank
-Line [133] is blank
-Line [134] is blank
-Line [135] is blank
-Line [136] is blank
-Line [137] is blank
-Line [138] is blank
-Line [139] is blank
-Line [140] is blank
-Line [141] is blank
-Line [142] is blank

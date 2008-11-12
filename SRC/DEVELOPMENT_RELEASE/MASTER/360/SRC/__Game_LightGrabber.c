@@ -18,7 +18,7 @@
 //*******Game Parameters***************************
 //*************************************************
 
-#define POINTS_TO_GET_TO_BONUS_LEVEL	300
+#define POINTS_TO_GET_TO_BONUS_LEVEL	450
 #define LIGHT_GRAB_POINT				10
 #define LIGHT_GRAB_BONUS_POINT			25
 
