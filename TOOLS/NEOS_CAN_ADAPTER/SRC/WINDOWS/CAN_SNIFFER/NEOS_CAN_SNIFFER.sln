@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEOS_CAN_SNIFFER", "NEOS_CAN_SNIFFER.csproj", "{AC11D4C9-CCDD-4266-84E2-4BF1F82DB6BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBIndustrialCtrls", "lib\LBIndustrialCtrls\LBIndustrialCtrls.csproj", "{B4218BC9-9736-42B9-BC99-7903FDBEBA28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{AC11D4C9-CCDD-4266-84E2-4BF1F82DB6BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC11D4C9-CCDD-4266-84E2-4BF1F82DB6BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC11D4C9-CCDD-4266-84E2-4BF1F82DB6BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4218BC9-9736-42B9-BC99-7903FDBEBA28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4218BC9-9736-42B9-BC99-7903FDBEBA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4218BC9-9736-42B9-BC99-7903FDBEBA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4218BC9-9736-42B9-BC99-7903FDBEBA28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

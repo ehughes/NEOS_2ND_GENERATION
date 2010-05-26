@@ -7,30 +7,24 @@ using System.Text;
 using System.Windows.Forms;
 using CANInterfaceManagement;
 using System.Threading;
+using LBSoft.IndustrialCtrls.Leds;
 
 namespace CAN_SNIFFER
 {
-    public partial class NEOSALLAroundSimulator : Form
+    public partial class NEOS360Simulator : Form
     {
         public CANMessageQueue RxCANMessageQueue = new CANMessageQueue(2048);
         public CANMessageQueue TxCANMessageQueue = new CANMessageQueue(2048);
 
         CANMessage NextMessage = new CANMessage();
-
         Int16[] ButtonLEDTimer = new short[8];
-
-        NationalInstruments.UI.WindowsForms.Led[] LEDS = new NationalInstruments.UI.WindowsForms.Led[8];
-        Thread CANProcessingThread;
-
+        LBLed [] LEDS = new LBLed[8];
         NEOSButtonLED[] MyNEOSButtonLEDS = new NEOSButtonLED[8];
         Label[] HitIndicationLabel = new Label[8];
-   
         Image SelectorPanelBackground = new Bitmap("SelectorPanel.bmp");
-
         ButtonLocation[] SelectorButtonLocation = new ButtonLocation[10];
 
-      
-
+        Thread CANProcessingThread;
 
         const byte START_BUTTON_1P = 0;
         const byte START_BUTTON_2P = 1;
@@ -57,7 +51,6 @@ namespace CAN_SNIFFER
         //Display upper Left   .26 .319
         //Display Lower Right  .713 .409
 
-
         const float SegWidth = 0.053794f;
         const float SegHieght = 0.035f;
         const float SegXPadding = .00326f;
@@ -66,12 +59,10 @@ namespace CAN_SNIFFER
         byte[] ScoreSegments = new byte[6];
         PointF [] ScoreSegmentLocation = new PointF[6];
 
-
         const Double HitAcceptanceRadius = .013;
         const float ScoreButtonLampRadius = 10;
         ushort ButtonLamps0to15;
         ushort ButtonLamps16to19;
-
 
         const byte SEG_A = 0x01;
         const byte SEG_B = 0x02;
@@ -81,7 +72,6 @@ namespace CAN_SNIFFER
         const byte SEG_F = 0x20;
         const byte SEG_G = 0x40;
        
-
 
         void InitSelectorPanelData()
         {
@@ -110,21 +100,14 @@ namespace CAN_SNIFFER
             ScoreSegments[3] = SEG_D; 
             ScoreSegments[4] = SEG_E; 
             ScoreSegments[5] = SEG_G ;
-            
-
-
-
-        }
-
-      
+      }
         
         public void Terminate()
         {
             CANProcessingThread.Abort();
-            
         }
 
-        public NEOSALLAroundSimulator()
+        public NEOS360Simulator()
         {
             InitializeComponent();
 
@@ -154,7 +137,8 @@ namespace CAN_SNIFFER
                 MyNEOSButtonLEDS[i] = new NEOSButtonLED();
                 HitIndicationLabel[i] = new  Label();
                 HitIndicationLabel[i].Text = "";
-                HitIndicationLabel[i].Location = new Point(LEDS[i].Location.X+5,LEDS[i].Location.Y-15);
+                HitIndicationLabel[i].Location = new Point(LEDS[i].Location.X,LEDS[i].Location.Y-20);
+                HitIndicationLabel[i].Font = new Font(FontFamily.GenericMonospace, 14, FontStyle.Bold);
                 this.Controls.Add(HitIndicationLabel[i]);
             }
 
@@ -263,13 +247,10 @@ namespace CAN_SNIFFER
             
         }
 
-
         void PaintSevenSegmentDigit(byte SegData, ref PaintEventArgs e, PointF ReferenceLocation, Size RescaleSize, Brush SegmentBrush)
         {
             float RescaleFactorX = RescaleSize.Width;
             float RescaleFactorY = RescaleSize.Height;
-
-
             float AngleIn = (float)(SegWidth * .12);
 
             Pen SegPen = new Pen(SegmentBrush, 2);
@@ -328,7 +309,6 @@ namespace CAN_SNIFFER
         PointF AddPoint(PointF P1, PointF P2)
         {
             return new PointF(P1.X + P2.X, P1.Y + P2.Y);
-
         }
 
         PointF SubtractPoint(PointF P1, PointF P2)
@@ -344,7 +324,6 @@ namespace CAN_SNIFFER
         Point RescalePointF(PointF P1, float RX, float RY)
         {
             return new Point((int)(P1.X * RX), (int)(P1.Y * RY));
-
         }
 
         void  SelectorPanel_Paint(object sender, PaintEventArgs e)
@@ -377,9 +356,6 @@ namespace CAN_SNIFFER
 
             switch(SelectorButton)
             {
-
-                           
-
                 case START_BUTTON_1P:
                     NEOSMessages.SCORE_BUTTONS_CHANGED_PARAMS.Buttons1to16 = (ushort)(1 << ONE_PLAYER_START_BUTTON_BIT);
                      TxCANMessageQueue.Enqueue(NEOSMessages.AssembleNEOSCANMessage(NEOSMessages.SCORE_BUTTONS_CHANGED));
@@ -449,37 +425,43 @@ namespace CAN_SNIFFER
                 TransmitSelectorButtonCode(NINJA);
             if (ButtonLocation.Distance(ClickLocation, SelectorButtonLocation[RODEO]) < HitAcceptanceRadius)
                 TransmitSelectorButtonCode(RODEO);
-
-
         }
+        
         void NEOSButtonHit_0(object sender, EventArgs e)
         {
             NEOSButtonHit(0);
         }
+     
         void NEOSButtonHit_1(object sender, EventArgs e)
         {
             NEOSButtonHit(1);
         }
+        
         void NEOSButtonHit_2(object sender, EventArgs e)
         {
             NEOSButtonHit(2);
         }
+        
         void NEOSButtonHit_3(object sender, EventArgs e)
         {
             NEOSButtonHit(3);
         }
+        
         void NEOSButtonHit_4(object sender, EventArgs e)
         {
             NEOSButtonHit(4);
         }
+        
         void NEOSButtonHit_5(object sender, EventArgs e)
         {
             NEOSButtonHit(5);
         }
+        
         void NEOSButtonHit_6(object sender, EventArgs e)
         {
             NEOSButtonHit(6);
         }
+        
         void NEOSButtonHit_7(object sender, EventArgs e)
         {
             NEOSButtonHit(7);
@@ -489,9 +471,7 @@ namespace CAN_SNIFFER
         {
             NEOSMessages.BUTTON_PRESS_PARAMS.Node = Button;
             CANMessage Outgoing = NEOSMessages.AssembleNEOSCANMessage(NEOSMessages.BUTTON_PRESSED);
-
             TxCANMessageQueue.Enqueue(Outgoing);
-
         }
 
         public void CANRxProcess()
@@ -528,10 +508,7 @@ namespace CAN_SNIFFER
                                        ButtonLamps0to15 = (ushort)(NextMessage.CANData[2] + (NextMessage.CANData[3] << 8));
                                        ButtonLamps16to19 = (ushort)(NextMessage.CANData[4] + (NextMessage.CANData[5] << 8));
                                        SelectorPanel.Invalidate();
-
-
-
-                                    break;
+                                        break;
 
                                 case NEOSMessages.LED_COMMAND:
 
@@ -540,40 +517,10 @@ namespace CAN_SNIFFER
                                     byte Green = (byte)(((((NextMessage.CANData[1] & 0xf) << 6) | ((NextMessage.CANData[0] & 0xC0) >> 6))) * 0x3f);
 
                                     Red = (byte)(Red * 4);
-
                                     Green = (byte)(Green * 4);
 
-                                  /*  if (Red > 0)
-                                    {
-                                        Int32 temp = Red + 16;
-                                        if (temp > 255)
-                                        {
-                                            Red = (byte)255;
-                                        }
-                                        else
-                                        {
-                                            Red = (byte)temp;
-                                        }
-                                    }
-
-                                    if (Green > 0)
-                                    {
-                                        Int32 temp = Green + 16;
-                                        if (temp > 255)
-                                        {
-                                            Green = (byte)255;
-                                        }
-                                        else
-                                        {
-                                            Green = (byte)temp;
-                                        }
-                                    }*/
-
                                     short LEDTimeOut = (short)(((NextMessage.CANData[4] >> 4) & 0xf) | ((NextMessage.CANData[5] & 0x3f) << 4));
-
-
-
-                                    byte RedTarget = (byte)(NextMessage.CANData[2] & 0xFC);
+                                    byte RedTarget =  (byte)(NextMessage.CANData[2] & 0xFC);
                                     byte GreenTarget = (byte)((NextMessage.CANData[3] & 0x3F) << 2);
 
                                     short LEDFadeTime = (short)(((NextMessage.CANData[5] & 0xC0) >> 6) | (NextMessage.CANData[6] << 2));
@@ -591,10 +538,7 @@ namespace CAN_SNIFFER
                                     {
                                         RedFadeStep = 0;
                                         GreenFadeStep = 0;
-
                                     }
-
-
 
                                     if (NextMessage.CANData[7] == 0xff)
                                     {
@@ -682,37 +626,19 @@ namespace CAN_SNIFFER
                 }
             }
         }
-
       
         private void NEOSCtrlPanel_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
         }
-
-        private void led5_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
-        {
-
-        }
-
-        private void led2_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
-        {
-
-        }
-
+      
         private void NEOSCtrlPanel_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void led6_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
-        {
-
-        }
-          
-
         private void ButtonStateTimer_Tick_1(object sender, EventArgs e)
         {
-          
                 LEDTimeoutCheck();
                 PerformFade();
                 HitIndicator();
@@ -741,6 +667,7 @@ namespace CAN_SNIFFER
             }
 
         }
+       
         void LEDTimeoutCheck()
         {
             for (int i = 0; i < 8; i++)
@@ -819,7 +746,7 @@ namespace CAN_SNIFFER
 
                    // if ( MyNEOSButtonLEDS[i].State== true)
                    // {
-                        LEDS[i].Value = true;
+                        LEDS[i].Enabled= true;
                    // }
                    // else
                   //  {
@@ -827,18 +754,12 @@ namespace CAN_SNIFFER
                    // }
 
                 
-                    LEDS[i].OnColor = Color.FromArgb((byte)MyNEOSButtonLEDS[i].Red, (byte)MyNEOSButtonLEDS[i].Green, 0);
+                    LEDS[i].LedColor = Color.FromArgb((byte)MyNEOSButtonLEDS[i].Red, (byte)MyNEOSButtonLEDS[i].Green, 0);
                             
             }
             SelectorPanel.Invalidate();
         }
 
-        private void CANRxTimer_Tick(object sender, EventArgs e)
-        {
-            //CANRxProcess();
-        }
-
-      
         class ButtonLocation
         {
             public double X;
@@ -860,14 +781,7 @@ namespace CAN_SNIFFER
                 return Math.Sqrt(Math.Pow((P2.X - P1.X),2) + Math.Pow((P2.Y - P1.Y),2));
             }
         }
-
-       
-
-
-
     }
-
- 
 
     public class NEOSButtonLED
     {

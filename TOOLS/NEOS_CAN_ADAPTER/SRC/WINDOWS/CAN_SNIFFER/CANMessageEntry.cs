@@ -10,20 +10,20 @@ using CANInterfaceManagement;
 
 public class CANMessageEntryForm : Form
 {
-    Size FormSize = new Size(350,54);
-    TextBox CANMessageTextBox = new TextBox();
-
     public CANMessageQueue TxCANMessageQueue = new CANMessageQueue(256);
 
+    Size FormSize = new Size(350,60);
+    TextBox CANMessageTextBox = new TextBox();
     CANMessage UserEnteredCANMessage = new CANMessage();
-
-    AutoCompleteSource MyCANMessageHistory = new AutoCompleteSource();
     AutoCompleteStringCollection MyCANStringCollection = new AutoCompleteStringCollection();
+
+    public CANMessageEntryForm()
+    {
+        InitForm();
+    }
 
     void InitForm()
     {
-
-
         this.Size = FormSize;
         this.MaximumSize = FormSize;
         this.MinimumSize = FormSize;
@@ -35,23 +35,16 @@ public class CANMessageEntryForm : Form
         CANMessageTextBox.Size = new Size(350, 40);
         CANMessageTextBox.Multiline = false;
         CANMessageTextBox.Font = new Font(FontFamily.GenericMonospace, 8.0f);
-        CANMessageTextBox.DoubleClick += new EventHandler(CANMessageTextBox_DoubleClick);
-
+  
         CANMessageTextBox.AutoCompleteMode = AutoCompleteMode.Suggest;
         CANMessageTextBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
         CANMessageTextBox.AutoCompleteCustomSource = MyCANStringCollection;
 
-        
-
-         
         this.Controls.Add(CANMessageTextBox);
-
-    
     }
 
     void Transmit()
     {
-
         ValidateInput();
         if (TxCANMessageQueue != null)
         {
@@ -59,25 +52,13 @@ public class CANMessageEntryForm : Form
         }
     }
 
-    void CANMessageTextBox_DoubleClick(object sender, EventArgs e)
-    {
-        
-    }
-
     void CANMessageEntryForm_FormClosing(object sender, FormClosingEventArgs e)
     {
         e.Cancel = true;
     }
 
-    public CANMessageEntryForm()
-    {
-        InitForm();   
-
-    }
-
     void ValidateInput()
     {
-
         String StringToCheck = CANMessageTextBox.Text;
         String RegexString= @"(\s*0x\w+\s*)";
 
@@ -108,8 +89,8 @@ public class CANMessageEntryForm : Form
           
         }
 
-
         UserEnteredCANMessage.CANId = 0;
+        
         for(int i=0;i<8;i++)
         {
             UserEnteredCANMessage.CANData[i]=0;
@@ -200,6 +181,5 @@ public class CANMessageEntryForm : Form
         // then process the signal as usual
         return base.ProcessCmdKey(ref m, k);
     }
-
 
 }

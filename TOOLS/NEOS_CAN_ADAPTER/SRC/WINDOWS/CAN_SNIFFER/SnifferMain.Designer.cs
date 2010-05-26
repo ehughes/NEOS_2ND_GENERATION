@@ -56,7 +56,7 @@ namespace CAN_SNIFFER
             this.ResetInterfaceButton});
             this.MainCANSnifferToolStrip.Location = new System.Drawing.Point(0, 0);
             this.MainCANSnifferToolStrip.Name = "MainCANSnifferToolStrip";
-            this.MainCANSnifferToolStrip.Size = new System.Drawing.Size(1022, 25);
+            this.MainCANSnifferToolStrip.Size = new System.Drawing.Size(1225, 25);
             this.MainCANSnifferToolStrip.TabIndex = 0;
             this.MainCANSnifferToolStrip.Text = "toolStrip1";
             // 
@@ -82,7 +82,7 @@ namespace CAN_SNIFFER
             this.SetCANTerminationButton.Image = ((System.Drawing.Image)(resources.GetObject("SetCANTerminationButton.Image")));
             this.SetCANTerminationButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SetCANTerminationButton.Name = "SetCANTerminationButton";
-            this.SetCANTerminationButton.Size = new System.Drawing.Size(84, 22);
+            this.SetCANTerminationButton.Size = new System.Drawing.Size(95, 22);
             this.SetCANTerminationButton.Text = "Termination On";
             this.SetCANTerminationButton.ToolTipText = "Turn on internal CAN Termination";
             this.SetCANTerminationButton.Click += new System.EventHandler(this.SetCANTermination_Click);
@@ -98,7 +98,7 @@ namespace CAN_SNIFFER
             this.SetExcludeRangeButton.Image = ((System.Drawing.Image)(resources.GetObject("SetExcludeRangeButton.Image")));
             this.SetExcludeRangeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SetExcludeRangeButton.Name = "SetExcludeRangeButton";
-            this.SetExcludeRangeButton.Size = new System.Drawing.Size(101, 22);
+            this.SetExcludeRangeButton.Size = new System.Drawing.Size(106, 22);
             this.SetExcludeRangeButton.Text = "Set Exclude Range";
             this.SetExcludeRangeButton.Click += new System.EventHandler(this.SetExcludeRangeButton_Click);
             // 
@@ -134,14 +134,14 @@ namespace CAN_SNIFFER
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1022, 624);
+            this.ClientSize = new System.Drawing.Size(1225, 737);
             this.Controls.Add(this.MainCANSnifferToolStrip);
             this.IsMdiContainer = true;
             this.Name = "CANSnifferMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CAN Adapter - No Active Connection";
-            this.Load += new System.EventHandler(this.CANSnifferMainForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CANSnifferMainForm_FormClosing);
+            this.Load += new System.EventHandler(this.CANSnifferMainForm_Load);
             this.MainCANSnifferToolStrip.ResumeLayout(false);
             this.MainCANSnifferToolStrip.PerformLayout();
             this.ResumeLayout(false);

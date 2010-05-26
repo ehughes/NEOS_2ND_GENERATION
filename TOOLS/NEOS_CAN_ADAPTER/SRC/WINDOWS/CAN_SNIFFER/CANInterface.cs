@@ -76,111 +76,102 @@ namespace CANInterfaceManagement
             }
         }
 
-
-    public class CANMessageQueue
-    {
-        CANMessage[] MessageStore;
-        UInt32 ReadPtr = 0;
-        UInt32 WritePtr = 0;
+        public class CANMessageQueue
+        {
+            CANMessage[] MessageStore;
+            UInt32 ReadPtr = 0;
+            UInt32 WritePtr = 0;
        
-
-        public CANMessageQueue()
-        {
-            MessageStore = new CANMessage[256];
-            for (int i = 0; i < MessageStore.Length; i++)
+            public CANMessageQueue()
             {
-                MessageStore[i] = new CANMessage();
-            }
-            ReadPtr = 0;
-            WritePtr = 0;
-           
-        }
-
-        public CANMessageQueue(UInt32 CANQueueSize)
-        {
-            MessageStore = new CANMessage[CANQueueSize];
-            for (int i = 0; i < MessageStore.Length; i++)
-            {
-                MessageStore[i] = new CANMessage();
-            }
-            ReadPtr = 0;
-            WritePtr = 0;
-           
-        }
-
-
-        public void Clear()
-        {
-            for (int i = 0; i < MessageStore.Length; i++)
-            {
-                MessageStore[i].CANId = 0;
-
-                for (int j = 0; j < 8; j++)
+                MessageStore = new CANMessage[256];
+                for (int i = 0; i < MessageStore.Length; i++)
                 {
-                
-                    MessageStore[i].CANData[j] = 0;
+                    MessageStore[i] = new CANMessage();
                 }
-            }
-            ReadPtr = 0;
-            WritePtr = 0;
-            
-
-        }
-        public void Enqueue(CANMessage Message)
-        {
-            this.MessageStore[WritePtr].CANId= Message.CANId;
-            for (int i = 0; i < 8; i++)
-            {
-                this.MessageStore[WritePtr].CANData[i] = Message.CANData[i];
-
-            }
-            
-            this.WritePtr++;
-            if (WritePtr == MessageStore.Length)
-            {
+                ReadPtr = 0;
                 WritePtr = 0;
             }
-          
-        }
-        public void Dequeue(ref CANMessage Message)
-        {
-            Message.CANId = this.MessageStore[ReadPtr].CANId;
 
-            for (int i = 0; i < 8; i++)
+            public CANMessageQueue(UInt32 CANQueueSize)
             {
-                Message.CANData[i] = this.MessageStore[ReadPtr].CANData[i];
-            }
-
-           
-            this.ReadPtr++;
-            
-            if (ReadPtr == this.MessageStore.Length)
-            {
+                MessageStore = new CANMessage[CANQueueSize];
+                for (int i = 0; i < MessageStore.Length; i++)
+                {
+                    MessageStore[i] = new CANMessage();
+                }
                 ReadPtr = 0;
+                WritePtr = 0;
             }
-           
+            
+            public void Clear()
+            {
+                for (int i = 0; i < MessageStore.Length; i++)
+                {
+                    MessageStore[i].CANId = 0;
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                
+                        MessageStore[i].CANData[j] = 0;
+                    }
+                }
+                ReadPtr = 0;
+                WritePtr = 0;
+            }
+            
+            public void Enqueue(CANMessage Message)
+            {
+                this.MessageStore[WritePtr].CANId= Message.CANId;
+                for (int i = 0; i < 8; i++)
+                {
+                    this.MessageStore[WritePtr].CANData[i] = Message.CANData[i];
+                }
+            
+                this.WritePtr++;
+            
+                if (WritePtr == MessageStore.Length)
+                {
+                    WritePtr = 0;
+                }
+            }
+            
+            public void Dequeue(ref CANMessage Message)
+            {
+                Message.CANId = this.MessageStore[ReadPtr].CANId;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    Message.CANData[i] = this.MessageStore[ReadPtr].CANData[i];
+                }
+
+                this.ReadPtr++;
+            
+                if (ReadPtr == this.MessageStore.Length)
+                {
+                    ReadPtr = 0;
+                }
+            }
+
+            public uint GetCount()
+            {
+                if (ReadPtr > WritePtr)
+                {
+                    return (uint)(this.MessageStore.Length - ReadPtr + WritePtr);
+                }
+                else if (WritePtr > ReadPtr)
+                {
+
+                    return (WritePtr - ReadPtr);
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
 
-        public uint GetCount()
-        {
-            if (ReadPtr > WritePtr)
-            {
-                return (uint)(this.MessageStore.Length - ReadPtr + WritePtr);
-            }
-            else if (WritePtr > ReadPtr)
-            {
-
-                return (WritePtr - ReadPtr);
-            }
-            else
-            {
-                return 0;
-            }
-
-        }
-    }
-
-    static class CANInterfaceMessages
+        static class CANInterfaceMessages
         {
 
             public const byte CAN_INTERFACE_PING = 0x00;
@@ -190,7 +181,6 @@ namespace CANInterfaceManagement
             public const byte RX_CAN_MESSAGE =     0x04;
             public const byte SET_ID_EXCLUDE_RANGE= 0x05;
             public const byte SET_CAN_TERMINATION = 0x06;
-
 
             public static UInt32 IDExcludeLow = 0x100;
             public static UInt32 IDExcludeHigh = 0x1FF;
@@ -233,6 +223,7 @@ namespace CANInterfaceManagement
                         
                         return Packet;
             }   
+          
             public static byte[] AssembleMessage(byte Type)
             {
                 byte[] Packet;
@@ -316,10 +307,7 @@ namespace CANInterfaceManagement
             }
         }
 
-
-
-   
-     public class CANCommunicationsManager
+        public class CANCommunicationsManager
         {
 
          public CANMessageQueue OutgoingCANMessageQueue = new CANMessageQueue(65535);
@@ -356,7 +344,6 @@ namespace CANInterfaceManagement
          protected ushort CheckCRC = 0;
   
          private int ManagementState = 0 ;
-         private SerialPort MyConnection;
 	   
          const int WAITING_FOR_CONNECT_COMMAND = 0x00;
          const int SCANNING_FOR_MODULE = 0x01;
@@ -364,14 +351,13 @@ namespace CANInterfaceManagement
          const int CONNECTION_ACTIVE = 0x05;
          const int WAIT_FOR_RECONNECT = 0x06;
 	     const int RECONNECT_PERIOD = 1000;
-    
-         private string RegistryCOMPortRecord;
+
          private bool AttemptToConnect = false;
          private byte[] StreamBuffer = new byte[512];
          private string[] ManagerMessages = { "Disconnected [Press Blue USB Icon to Connect]", "Connecting", "Connected", "Waiting before retry", "Connection Exception" };
          private Thread CommunicationsManagerThread;
        
-        public CANCommunicationsManager()
+         public CANCommunicationsManager()
             {
                 ManagementState = WAITING_FOR_CONNECT_COMMAND;
                 ConnectionStatus = ManagerMessages[0];
@@ -386,7 +372,7 @@ namespace CANInterfaceManagement
                 while (true)
                 {
                     Thread.Sleep(1);
-                    //This Entire Routine Needs to be in a try catch for Virtual Com ports.  
+          
                     try
                     {
                         //here is the main state machine 
@@ -407,8 +393,7 @@ namespace CANInterfaceManagement
                                 break;
                             
                             case SCANNING_FOR_MODULE:
-
-                                //First, check to see if there is a Virutalcom port available in the registry
+                                
                                 ConnectionActive = false;
                                 ConnectionStatus = ManagerMessages[1];
 
@@ -425,17 +410,12 @@ namespace CANInterfaceManagement
                                 {
                                     ManagementState = CONNECTING;
                                 }
-
-                             
                                 break;
 
                             case CONNECTING:
                                 ConnectionStatus = ManagerMessages[1];
                                 ConnectionActive = false;
-                               
-
                                 MyFTDIStatus = MyFTDI.OpenByIndex(0);
-
                                 if (MyFTDIStatus == FTDI.FT_STATUS.FT_OK)
                                 {
                                     ManagementState = CONNECTION_ACTIVE;
@@ -453,21 +433,18 @@ namespace CANInterfaceManagement
                                 ConnectionStatus = ManagerMessages[2];
                                 ManagementState = CONNECTION_ACTIVE;
 
+                                for (int q = 0; q < this.OutgoingCANMessageQueue.GetCount(); q++)
                                 {
-
-                                    for (int q = 0; q < this.OutgoingCANMessageQueue.GetCount(); q++)
+                                    OutgoingCANMessageQueue.Dequeue(ref OutgoingCANMessage);
+                                    IncomingCANMessageQueue.Enqueue(OutgoingCANMessage);
+                                    byte [] OutPacket = CANInterfaceMessages.AssembleCANTxMessage(OutgoingCANMessage);
+                                    if (OutPacket != null)
                                     {
-                                        OutgoingCANMessageQueue.Dequeue(ref OutgoingCANMessage);
-                                        IncomingCANMessageQueue.Enqueue(OutgoingCANMessage);
-                                        byte [] OutPacket = CANInterfaceMessages.AssembleCANTxMessage(OutgoingCANMessage);
-                                        if (OutPacket != null)
-                                        {
-                                            uint DataBytesWritten=0;
-                                            MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
-                                        }
+                                        uint DataBytesWritten=0;
+                                        MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
                                     }
                                 }
-
+                                
                                 uint  BytesToGrab = 0;
                                 MyFTDI.GetRxBytesAvailable(ref BytesToGrab);
 
@@ -516,7 +493,6 @@ namespace CANInterfaceManagement
 
                     catch 
                     {
-
                         ConnectionActive = false;
                         ConnectionStatus = ManagerMessages[4];
                         Thread.Sleep(RECONNECT_PERIOD);
@@ -531,7 +507,6 @@ namespace CANInterfaceManagement
          public void Close()
         {
             
-
             try
                 {
                     MyFTDI.Close();
@@ -548,10 +523,8 @@ namespace CANInterfaceManagement
          public void Terminate()
          {
 
-           
             CommunicationsManagerThread.Abort();
             this.Close();
-
          }
 
          public void Connect()
@@ -600,7 +573,6 @@ namespace CANInterfaceManagement
          public void ParseStream(byte DataIn)
             {
 
-
                 switch (DetectState)
                 {
 
@@ -610,16 +582,11 @@ namespace CANInterfaceManagement
                             DetectState = SCAN_FOR_HEADER2;
                             IncomingPacket.Header1 = DataIn;
                             Temp[0] = DataIn;
-
-
                         }
                         else
                         {
                             DetectState = SCAN_FOR_HEADER1;
-
                         }
-
-
                         break;
 
                     case SCAN_FOR_HEADER2:
@@ -636,17 +603,11 @@ namespace CANInterfaceManagement
                         }
                         break;
 
-
                     case GRAB_LENGTH_LOW:
 
                         IncomingPacket.Length = (ushort)DataIn;
                         Temp[2] = DataIn;
-
-
                         DetectState = GRAB_LENGTH_HIGH;
-
-
-
                         break;
 
                     case GRAB_LENGTH_HIGH:
@@ -654,44 +615,33 @@ namespace CANInterfaceManagement
                         DataCnt = 0;
                         Temp[3] = DataIn;
                         DetectState = GRAB_PAYLOAD;
-
-
                         break;
 
 
                     case GRAB_PAYLOAD:
                         IncomingPacket.Payload[DataCnt] = DataIn;
                         Temp[4 + DataCnt] = DataIn;
-
                         DataCnt++;
-
-
                         if (DataCnt == (IncomingPacket.Length))
                         {
                             DetectState = GRAB_CRC_LOW;
                         }
-
                         else
                         {
                             DetectState = GRAB_PAYLOAD;
                         }
-
                         break;
 
                     case GRAB_CRC_LOW:
-
                         IncomingPacket.CRC = 0;
                         IncomingPacket.CRC = (ushort)DataIn;
                         DetectState = GRAB_CRC_HIGH;
                         break;
 
                     case GRAB_CRC_HIGH:
-
                         IncomingPacket.CRC += (ushort)(((ushort)(DataIn)) << 8);
                         DetectState = SCAN_FOR_HEADER1;
-
                         CheckCRC = CRC.Calculate(Temp, (ushort)(IncomingPacket.Length + 4));
-
                         if (CheckCRC == IncomingPacket.CRC)
                         {
                             ParseIncomingPacket();
@@ -704,18 +654,18 @@ namespace CANInterfaceManagement
                         DetectState = SCAN_FOR_HEADER1;
                         break;
 
-
                 }
 
             }
-
 
          public void PingCANInterface()
          {
              if(ConnectionActive == true)
              {
+
                  byte[] OutPacket = CANInterfaceMessages.AssembleMessage(CANInterfaceMessages.CAN_INTERFACE_PING);
-                 MyConnection.Write(OutPacket,0,OutPacket.Length);
+                 uint DataBytesWritten = 0;
+                 MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
              }
          }
 
@@ -724,7 +674,8 @@ namespace CANInterfaceManagement
             CANInterfaceMessages.IDExcludeLow = RangeLow;
             CANInterfaceMessages.IDExcludeHigh = RangeHigh;
             byte[] OutPacket = CANInterfaceMessages.AssembleMessage(CANInterfaceMessages.SET_ID_EXCLUDE_RANGE);
-            this.MyConnection.Write(OutPacket, 0, OutPacket.Length);
+            uint DataBytesWritten = 0;
+            MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
    
          }
 
@@ -736,31 +687,33 @@ namespace CANInterfaceManagement
                  {
                      CANInterfaceMessages.CANTermination = 1;
                      byte[] OutPacket = CANInterfaceMessages.AssembleMessage(CANInterfaceMessages.SET_CAN_TERMINATION);
-                     this.MyConnection.Write(OutPacket, 0, OutPacket.Length);
+
+                     uint DataBytesWritten = 0;
+                     MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
                  }
                  else
                  {
 
                      CANInterfaceMessages.CANTermination = 0;
                      byte[] OutPacket = CANInterfaceMessages.AssembleMessage(CANInterfaceMessages.SET_CAN_TERMINATION);
-                     this.MyConnection.Write(OutPacket, 0, OutPacket.Length);
+                     uint DataBytesWritten = 0;
+                     MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
                  }
              }
 
          }
+     
          public void ResetCANInterface()
          {
              byte[] OutPacket = CANInterfaceMessages.AssembleMessage(CANInterfaceMessages.SYSTEM_RESET);
-             this.MyConnection.Write(OutPacket, 0, OutPacket.Length);
+             uint DataBytesWritten = 0;
+             MyFTDI.Write(OutPacket, OutPacket.Length, ref DataBytesWritten);
          }
     }
 
-
-
-    static class CRC
-    {
-
-        static public ushort Calculate(byte[] Data, ushort Length)
+        static class CRC
+        {
+             static public ushort Calculate(byte[] Data, ushort Length)
         {
 
             ushort i, ecrc;
@@ -775,17 +728,16 @@ namespace CANInterfaceManagement
             }
             return ecrc;
         }
+        }
 
-    }
-
-    static class IncomingPacket
-    {
-        static public byte Header1;
-        static public byte Header2;
-        static public ushort Length;
-        static public byte[] Payload = new byte[1024];
-        static public ushort CRC;
-     }
+        static class IncomingPacket
+        {
+            static public byte Header1;
+            static public byte Header2;
+            static public ushort Length;
+            static public byte[] Payload = new byte[1024];
+            static public ushort CRC;
+         }
 
   
 }

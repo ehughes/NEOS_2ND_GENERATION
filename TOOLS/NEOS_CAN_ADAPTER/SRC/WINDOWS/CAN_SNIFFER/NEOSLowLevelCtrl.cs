@@ -47,7 +47,7 @@ namespace CAN_SNIFFER
 
         bool MemoryDisplayUpdated = false;
         bool LastOperationSuccessful = false;
-        bool UpdatePONGInfo = false;
+       // bool UpdatePONGInfo = false;
         int TotalPongs;
 
         public void PostStatusMessage(String Message)
@@ -85,8 +85,6 @@ namespace CAN_SNIFFER
         bool EraseFlashBeforeProgramming;
 
         bool QuietMessaging = false;
-
-        String NodeVoltageText = "";
 
         public class NodeInfo
         {
@@ -188,7 +186,6 @@ namespace CAN_SNIFFER
             MasterSystemModeComboBox.SelectedIndex = 0;
             
         }
-
 
         void CANRxProcess()
         {
@@ -312,7 +309,6 @@ namespace CAN_SNIFFER
               
             }
         }
-
         
         void UpdateGeneralPurposeMemoryDisplay()
         {
@@ -333,7 +329,6 @@ namespace CAN_SNIFFER
             GeneralPurposeBufferView.Text = View;
 
         }
-
 
         void ValidateGeneralPurposeMemoryDisplay()
         {
@@ -393,8 +388,6 @@ namespace CAN_SNIFFER
              UpdateGeneralPurposeMemoryDisplay();
         }
 
-
-
         void Cmd_ClearGeneralPurposeBuffer(byte Node)
         {
             MyNodes[Node].ClearBufferAck = false;
@@ -450,7 +443,6 @@ namespace CAN_SNIFFER
 
         }
 
-
         void Cmd_ReadFlashPageIntoGeneralPurposeBuffer(byte Node, UInt32 FlashAddress)
         {
             MyNodes[Node].ReadFlashPageAck = false;
@@ -481,23 +473,7 @@ namespace CAN_SNIFFER
             CANMessage Outgoing = NEOSMessages.AssembleNEOSCANMessage(NEOSMessages.NODE_FLASH_MEMORY_OPERATION);
             TxCANMessageQueue.Enqueue(Outgoing);
         }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ResetNodeInfo();
-            PONGResponseDisplay.Text = "";
-
-            for (int i = 0; i < 8; i++)
-            {
-                NEOSMessages.NODE_OPERATIONS_PARAMS.Node = (byte)i;
-                NEOSMessages.NODE_OPERATIONS_PARAMS.Command = NEOSMessages.NODE_OPERATIONS_PARAMS.NODE_PING;
-                CANMessage Outgoing = NEOSMessages.AssembleNEOSCANMessage(NEOSMessages.NODE_OPERATIONS);
-                TxCANMessageQueue.Enqueue(Outgoing);
-            }
-            
-        }
-
+          
         private void PongResponseTimer_Tick(object sender, EventArgs e)
         {
             this.Text = "Pongs :" + TotalPongs;               
@@ -538,36 +514,7 @@ namespace CAN_SNIFFER
             Thread E = new Thread(new ThreadStart(ReadGPBuffer));
             E.Start();
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-          
-
-            Thread TxTestThread = new Thread(new ThreadStart(TestThread));
-            TxTestThread.Start();
-        } 
-        void TestThread()
-        {
-            int OperationTimeout;
-
-            CANMessage TestMessage = new CANMessage();
-
-            for (uint i = 0; i <130;i++ )
-            {
-                TestMessage.CANId = i;
-            lock (TxCANMessageQueue)
-            {
-                TxCANMessageQueue.Enqueue(TestMessage);
-            }
-            }
-
-           
-        }
-
-
-
-
-
+     
         void ClearGPBuffer()
         {
             int OperationTimeout;
@@ -775,8 +722,6 @@ namespace CAN_SNIFFER
             }
         }
 
-        
-
         void SetMasterMode(byte Mode)
         {
             NEOSMessages.SET_MASTER_SYSTEM_MODE_PARAMS.Mode = Mode;
@@ -835,8 +780,6 @@ namespace CAN_SNIFFER
             }
         }
 
-     
-
         private void GeneralPurposeBufferGroupBox_Enter(object sender, EventArgs e)
         {
 
@@ -848,7 +791,6 @@ namespace CAN_SNIFFER
             FlashOperationAddress = (uint)FlashAddressControl.Value;
             ReadFlashPageIntoGeneralPurposeBuffer();
         }
-
 
         void ReadFlashPageIntoGeneralPurposeBuffer()
         {
@@ -880,14 +822,10 @@ namespace CAN_SNIFFER
             NodeForOperation = (byte)GPTargetNode.Value;
             FlashOperationAddress = (uint)FlashAddressControl.Value;
             WriteFlashPagefromGPBuffer();
-
         }
-
 
         private void WriteFlashPagefromGPBuffer()
         {
-
-
             int FlashOperationTimer = 0;
             Cmd_WriteFlashPageFromGeneralPurposeBuffer(NodeForOperation, FlashOperationAddress);
        
@@ -909,6 +847,7 @@ namespace CAN_SNIFFER
             return;
 
         }
+
         private void EraseSectorButton_Click(object sender, EventArgs e)
         {
             NodeForOperation = (byte)GPTargetNode.Value;
@@ -939,29 +878,7 @@ namespace CAN_SNIFFER
             return;
 
         }
-
-/*
-        bool EraseFLASHSector(byte Node, UInt32 FlashAddress)
-        {
-            int FlashOperationTimer = 0;
-
-            Cmd_EraseFlashSector(Node, FlashAddress);
-            Thread.Sleep(10);
-            while (MyNodes[Node].EraseFlashSectorAck == false)
-            {
-                FlashOperationTimer++;
-                if (FlashOperationTimer > FLASH_OPERATION_TIMEOUT)
-                {
-                    ResetCANQueue();    
-                    return false;
-                }
-                Thread.Sleep(10);
-            }
-            
-            PostStatusMessage("Sector " + FlashAddress + " on node " + Node + "Successfully Erased");
-            return true;
-        }*/
-
+     
         bool WriteFLASHPage(byte Node, UInt32 FlashAddress,  byte [] Data)
         {
            
@@ -987,9 +904,6 @@ namespace CAN_SNIFFER
             return LastOperationSuccessful;   
 
         }
-
-      
-
 
         public void DownloadBinaryKeyFile()
         {
@@ -1184,11 +1098,6 @@ namespace CAN_SNIFFER
             ClearBufferAcceptanceFlag();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            TestThread();
-        }
-
         private void NEOSLowLevelCtrl_Load(object sender, EventArgs e)
         {
 
@@ -1236,7 +1145,6 @@ namespace CAN_SNIFFER
 
         }
 
-
         void GetSupplyVoltages()
         {
             CANMessage Outgoing;
@@ -1262,6 +1170,20 @@ namespace CAN_SNIFFER
             if (GetNodeVoltagesCB.Checked == true)
             {
                 GetSupplyVoltages();
+            }
+        }
+
+        private void PingButton_Click(object sender, EventArgs e)
+        {
+            ResetNodeInfo();
+            PONGResponseDisplay.Text = "";
+
+            for (int i = 0; i < 8; i++)
+            {
+                NEOSMessages.NODE_OPERATIONS_PARAMS.Node = (byte)i;
+                NEOSMessages.NODE_OPERATIONS_PARAMS.Command = NEOSMessages.NODE_OPERATIONS_PARAMS.NODE_PING;
+                CANMessage Outgoing = NEOSMessages.AssembleNEOSCANMessage(NEOSMessages.NODE_OPERATIONS);
+                TxCANMessageQueue.Enqueue(Outgoing);
             }
         }
     }

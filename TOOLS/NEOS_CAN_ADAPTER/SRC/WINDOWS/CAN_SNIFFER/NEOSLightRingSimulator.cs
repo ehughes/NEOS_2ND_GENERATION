@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using CANInterfaceManagement;
 using System.Threading;
-
+using LBSoft.IndustrialCtrls.Leds;
 
 namespace CAN_SNIFFER
 {
@@ -17,30 +17,26 @@ namespace CAN_SNIFFER
         public CANMessageQueue RxCANMessageQueue = new CANMessageQueue(2048);
         public CANMessageQueue TxCANMessageQueue = new CANMessageQueue(2048);
 
-        CANMessage NextMessage = new CANMessage();
-
         const byte NUM_BUTTONS = 6;
-
+    
+        CANMessage NextMessage = new CANMessage();
         Int16[] ButtonLEDTimer = new short[NUM_BUTTONS];
-
-        NationalInstruments.UI.WindowsForms.Led[] LEDS = new NationalInstruments.UI.WindowsForms.Led[NUM_BUTTONS];
+        LBLed[] LEDS = new LBLed[NUM_BUTTONS];
         Thread CANProcessingThread;
-
         NEOSButtonLED[] MyNEOSButtonLEDS = new NEOSButtonLED[NUM_BUTTONS];
         Label[] HitIndicationLabel = new Label[NUM_BUTTONS];
-
         Image SelectorPanelBackground = new Bitmap("LightRingSelectorPanel.bmp");
-
         ButtonLocation[] SelectorButtonLocation = new ButtonLocation[7];
+
         int ButtonPressRejectCnt;
        
-         const byte  LIGHT_GRABBER_2P_BUTTON	=	0;
-         const byte  START_BUTTON 			=	    1;
-          const byte  LIGHT_GRABBER_1P_BUTTON=		2;
-         const byte  DUCK_DUCK_GOOSE_BUTTON =		3;
+        const byte  LIGHT_GRABBER_2P_BUTTON	=	0;
+        const byte  START_BUTTON 			=	    1;
+        const byte  LIGHT_GRABBER_1P_BUTTON=		2;
+        const byte  DUCK_DUCK_GOOSE_BUTTON =		3;
         const byte TEATHER_BALL_BUTTON = 4;
-         const byte  COMET_BUTTON 			=	    5;
-         const byte   JAM_CIRCLE_BUTTON = 6;
+        const byte  COMET_BUTTON 			=	    5;
+        const byte   JAM_CIRCLE_BUTTON = 6;
 
         const byte LIGHT_GRABBER_2P_BUTTON_BIT = 5;
         const byte START_BUTTON_BIT = 6;
@@ -49,7 +45,6 @@ namespace CAN_SNIFFER
         const byte TEATHER_BALL_BUTTON_BIT = 12;
         const byte COMET_BUTTON_BIT = 13;
         const byte JAM_CIRCLE_BUTTON_BIT = 14;
-
 
         //Display upper Left   .26 .319
         //Display Lower Right  .713 .409
@@ -62,12 +57,10 @@ namespace CAN_SNIFFER
         byte[] ScoreSegments = new byte[6];
         PointF[] ScoreSegmentLocation = new PointF[6];
 
-
         const Double HitAcceptanceRadius = .013;
         const float ScoreButtonLampRadius = 10;
         ushort ButtonLamps0to15;
         ushort ButtonLamps16to19;
-
 
         const byte SEG_A = 0x01;
         const byte SEG_B = 0x02;
@@ -132,7 +125,8 @@ namespace CAN_SNIFFER
                 MyNEOSButtonLEDS[i] = new NEOSButtonLED();
                 HitIndicationLabel[i] = new Label();
                 HitIndicationLabel[i].Text = "";
-                HitIndicationLabel[i].Location = new Point(LEDS[i].Location.X + 5, LEDS[i].Location.Y - 15);
+                HitIndicationLabel[i].Location = new Point(LEDS[i].Location.X, LEDS[i].Location.Y - 20);
+                HitIndicationLabel[i].Font = new Font(FontFamily.GenericMonospace, 14, FontStyle.Bold);
                 this.Controls.Add(HitIndicationLabel[i]);
             }
 
@@ -145,7 +139,7 @@ namespace CAN_SNIFFER
             InitSelectorPanelData();
         }
 
-         void PaintSelectorButtonLamps(ushort ButtonLamps0to15, ref PaintEventArgs e)
+        void PaintSelectorButtonLamps(ushort ButtonLamps0to15, ref PaintEventArgs e)
         {
 
             if ((ButtonLamps0to15 & (1 << START_BUTTON_BIT)) > 0)
@@ -212,7 +206,6 @@ namespace CAN_SNIFFER
                 }
 
         }
-
 
         void PaintSevenSegmentDigit(byte SegData, ref PaintEventArgs e, PointF ReferenceLocation, Size RescaleSize, Brush SegmentBrush)
         {
@@ -391,26 +384,32 @@ namespace CAN_SNIFFER
                MessageBox.Show(ClickLocation.X + ":" + ClickLocation.Y);
             }
         }
+        
         void NEOSButtonHit_0(object sender, EventArgs e)
         {
             NEOSButtonHit(0);
         }
+        
         void NEOSButtonHit_1(object sender, EventArgs e)
         {
             NEOSButtonHit(1);
         }
+        
         void NEOSButtonHit_2(object sender, EventArgs e)
         {
             NEOSButtonHit(2);
         }
+        
         void NEOSButtonHit_3(object sender, EventArgs e)
         {
             NEOSButtonHit(3);
         }
+        
         void NEOSButtonHit_4(object sender, EventArgs e)
         {
             NEOSButtonHit(4);
         }
+     
         void NEOSButtonHit_5(object sender, EventArgs e)
         {
             NEOSButtonHit(5);
@@ -596,35 +595,21 @@ namespace CAN_SNIFFER
                 }
             }
         }
-
       
         private void NEOSCtrlPanel_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
         }
 
-        private void led5_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
-        {
-
-        }
-
-        private void led2_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
-        {
-
-        }
-
         private void NEOSCtrlPanel_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void led6_StateChanged(object sender, NationalInstruments.UI.ActionEventArgs e)
+     
+        public void Terminate()
         {
-
+            CANProcessingThread.Abort();
         }
-          
-
-      
 
         void HitIndicator()
         {
@@ -649,6 +634,7 @@ namespace CAN_SNIFFER
             }
 
         }
+        
         void LEDTimeoutCheck()
         {
             for (int i = 0; i < NUM_BUTTONS; i++)
@@ -723,20 +709,14 @@ namespace CAN_SNIFFER
         {
             for (int i = 0; i < NUM_BUTTONS; i++)
             {
-                LEDS[i].Value = true;
-                LEDS[i].OnColor = Color.FromArgb((int)MyNEOSButtonLEDS[i].Red, (int)MyNEOSButtonLEDS[i].Green, 0);
-                            
+
+                LEDS[i].Enabled = true;
+                LEDS[i].LedColor = Color.FromArgb((int)MyNEOSButtonLEDS[i].Red, (int)MyNEOSButtonLEDS[i].Green, 0);
             }
             SelectorPanel.Invalidate();
         }
 
-        private void CANRxTimer_Tick(object sender, EventArgs e)
-        {
-           
-        }
-
-      
-       class ButtonLocation
+        class ButtonLocation
         {
             public double X;
             public double Y;
@@ -766,26 +746,11 @@ namespace CAN_SNIFFER
             HitIndicator();
         }
 
-    
-    
-
-
+        private void NEOSLightRingSimulator_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+        }
 
     }
-    /*
- 
-    class NEOSButtonLED
-    {
-        public double Red = 0;
-        public double Green = 0;
-        public double RedFadeStep = 0;
-        public double GreenFadeStep = 0;
-        public bool NoTimeOut = false;     
-        public short LEDTimer = 0;
-        public short FadeStepsRemaining=0;
 
-        public bool BeenHit = true;
-        public int HitDisplayTimer = 0;
-    }*/
-     
 }

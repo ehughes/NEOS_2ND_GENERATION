@@ -14,17 +14,14 @@ using CANInterfaceManagement;
 
 public class IncomingCANMessageView : Form
 {
-    
-    private RichTextBox MessageViewOutput = new RichTextBox();
-    private System.Windows.Forms.Timer UpdateTimer = new System.Windows.Forms.Timer();
-
-    private const int MESSAGE_HISTORY = 64;
-    string[] MessageBuffer = new string[MESSAGE_HISTORY];
-    int MessagePtr = 0;
-    CANMessage NextCANMessage = new CANMessage();
-
     public CANMessageQueue RxCANMessageQueue = new CANMessageQueue(1024);
 
+    private RichTextBox MessageViewOutput = new RichTextBox();
+    private System.Windows.Forms.Timer UpdateTimer = new System.Windows.Forms.Timer();
+    private const int MESSAGE_HISTORY = 64;
+    private string[] MessageBuffer = new string[MESSAGE_HISTORY];
+    private int MessagePtr = 0;
+    CANMessage NextCANMessage = new CANMessage();
 
     public IncomingCANMessageView()
     {
@@ -46,9 +43,7 @@ public class IncomingCANMessageView : Form
     {
         for (int i = 0; i < MESSAGE_HISTORY; i++)
         {
-
             MessageBuffer[i] = "";
-
         }
     }
 
@@ -56,8 +51,6 @@ public class IncomingCANMessageView : Form
     {
         string[] Sort = new String[MESSAGE_HISTORY];
         
-
-       
             if (RxCANMessageQueue != null)
             {
 
@@ -110,9 +103,6 @@ public class IncomingCANMessageView : Form
          
         }
     }
-
-    
-   
 
     void InitComponent()
     {

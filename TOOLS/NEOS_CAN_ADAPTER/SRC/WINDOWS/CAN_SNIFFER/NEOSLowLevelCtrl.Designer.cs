@@ -29,7 +29,7 @@ namespace CAN_SNIFFER
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
+            this.PingButton = new System.Windows.Forms.Button();
             this.PONGResponseDisplay = new System.Windows.Forms.TextBox();
             this.PongResponseTimer = new System.Windows.Forms.Timer(this.components);
             this.NodeOperationsGroupBox = new System.Windows.Forms.GroupBox();
@@ -61,8 +61,8 @@ namespace CAN_SNIFFER
             this.SendUIDButton = new System.Windows.Forms.Button();
             this.NodeVoltage = new System.Windows.Forms.TextBox();
             this.NodeVoltageGroupBox = new System.Windows.Forms.GroupBox();
-            this.RequestNodeVoltages = new System.Windows.Forms.Timer(this.components);
             this.GetNodeVoltagesCB = new System.Windows.Forms.CheckBox();
+            this.RequestNodeVoltages = new System.Windows.Forms.Timer(this.components);
             this.NodeOperationsGroupBox.SuspendLayout();
             this.GeneralPurposeBufferGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FlashAddressControl)).BeginInit();
@@ -74,15 +74,15 @@ namespace CAN_SNIFFER
             this.NodeVoltageGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // PingButton
             // 
-            this.button1.Location = new System.Drawing.Point(6, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(204, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Ping";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.PingButton.Location = new System.Drawing.Point(6, 19);
+            this.PingButton.Name = "PingButton";
+            this.PingButton.Size = new System.Drawing.Size(204, 23);
+            this.PingButton.TabIndex = 0;
+            this.PingButton.Text = "Ping";
+            this.PingButton.UseVisualStyleBackColor = true;
+            this.PingButton.Click += new System.EventHandler(this.PingButton_Click);
             // 
             // PONGResponseDisplay
             // 
@@ -102,7 +102,7 @@ namespace CAN_SNIFFER
             // NodeOperationsGroupBox
             // 
             this.NodeOperationsGroupBox.Controls.Add(this.PONGResponseDisplay);
-            this.NodeOperationsGroupBox.Controls.Add(this.button1);
+            this.NodeOperationsGroupBox.Controls.Add(this.PingButton);
             this.NodeOperationsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.NodeOperationsGroupBox.Name = "NodeOperationsGroupBox";
             this.NodeOperationsGroupBox.Size = new System.Drawing.Size(216, 162);
@@ -423,12 +423,6 @@ namespace CAN_SNIFFER
             this.NodeVoltageGroupBox.TabStop = false;
             this.NodeVoltageGroupBox.Text = "Node Voltage";
             // 
-            // RequestNodeVoltages
-            // 
-            this.RequestNodeVoltages.Enabled = true;
-            this.RequestNodeVoltages.Interval = 333;
-            this.RequestNodeVoltages.Tick += new System.EventHandler(this.RequestNodeVoltages_Tick);
-            // 
             // GetNodeVoltagesCB
             // 
             this.GetNodeVoltagesCB.AutoSize = true;
@@ -438,6 +432,12 @@ namespace CAN_SNIFFER
             this.GetNodeVoltagesCB.TabIndex = 14;
             this.GetNodeVoltagesCB.Text = "Get Voltages";
             this.GetNodeVoltagesCB.UseVisualStyleBackColor = true;
+            // 
+            // RequestNodeVoltages
+            // 
+            this.RequestNodeVoltages.Enabled = true;
+            this.RequestNodeVoltages.Interval = 333;
+            this.RequestNodeVoltages.Tick += new System.EventHandler(this.RequestNodeVoltages_Tick);
             // 
             // NEOSLowLevelCtrl
             // 
@@ -451,8 +451,8 @@ namespace CAN_SNIFFER
             this.Controls.Add(this.NodeOperationsGroupBox);
             this.Name = "NEOSLowLevelCtrl";
             this.Text = "Low Level NEOS Control";
-            this.Load += new System.EventHandler(this.NEOSLowLevelCtrl_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NEOSLowLevelCtrl_FormClosing);
+            this.Load += new System.EventHandler(this.NEOSLowLevelCtrl_Load);
             this.NodeOperationsGroupBox.ResumeLayout(false);
             this.NodeOperationsGroupBox.PerformLayout();
             this.GeneralPurposeBufferGroupBox.ResumeLayout(false);
@@ -474,7 +474,7 @@ namespace CAN_SNIFFER
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button PingButton;
         private System.Windows.Forms.TextBox PONGResponseDisplay;
         private System.Windows.Forms.Timer PongResponseTimer;
         private System.Windows.Forms.GroupBox NodeOperationsGroupBox;

@@ -17,19 +17,16 @@ namespace CAN_SNIFFER
         public SystemMessageView MySystemMessageView = new SystemMessageView();
         public CANMessageEntryForm MyCANMessageEntryForm = new CANMessageEntryForm();
         public IncomingCANMessageView MyIncomingCANMessageView = new IncomingCANMessageView();
-        public NEOSALLAroundSimulator MyNEOSAllAroundSimulator = new NEOSALLAroundSimulator();
+        public NEOS360Simulator MyNEOSAllAroundSimulator = new NEOS360Simulator();
         public NEOSLightRingSimulator MyNEOSLightRingSimulator = new NEOSLightRingSimulator();
         public bool CurrentCANTerminationState;
         public Thread MessageRouterThread;
-        public MessageRouterControl MyMessageRouterControl = new MessageRouterControl();
         public NEOSLowLevelCtrl MyNEOSLowLevelCtrl = new NEOSLowLevelCtrl();
-
 
         CANMessage NextOutgoingMessage = new CANMessage();
         CANMessage NextIncomingMessage = new CANMessage();
-
-
         CANMessage NextIncomingCANMessage = new CANMessage();
+
         public CANSnifferMainForm()
         {
             InitializeComponent();
@@ -192,7 +189,6 @@ namespace CAN_SNIFFER
             MyCANCommunicationsManager.ResetCANInterface();
         }
 
-
         public void CANMessageRouter()
         {
             while (true)
@@ -275,9 +271,11 @@ namespace CAN_SNIFFER
 
         private void CANSnifferMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
             MyCANCommunicationsManager.Terminate();
             MyNEOSAllAroundSimulator.Terminate();
+            MyNEOSLightRingSimulator.Terminate();
+            MessageRouterThread.Abort();
+            MyNEOSLowLevelCtrl.Terminate();
             Application.ExitThread();
             Application.Exit();
         }
