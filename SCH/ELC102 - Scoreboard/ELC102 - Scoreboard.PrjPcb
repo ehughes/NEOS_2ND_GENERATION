@@ -1,18 +1,18 @@
 [Design]
 Version=1.0
-HierarchyMode=1
+HierarchyMode=3
 ChannelRoomNamingStyle=0
 OutputPath=Project Outputs for Score
 LogFolderPath=
 ChannelDesignatorFormatString=$Component_$RoomName
 ChannelRoomLevelSeperator=_
-OpenOutputs=1
+OpenOutputs=0
 ArchiveProject=0
 TimestampOutput=0
 SeparateFolders=0
 PinSwapBy_Netlabel=1
 PinSwapBy_Pin=1
-AllowPortNetNames=0
+AllowPortNetNames=1
 AllowSheetEntryNetNames=1
 AppendSheetNumberToLocalNets=0
 NetlistSinglePinNets=0
@@ -111,7 +111,7 @@ AnnotateScope=All
 AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
+ClassGenCCAutoEnabled=0
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
@@ -126,13 +126,28 @@ AnnotateScope=All
 AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
+ClassGenCCAutoEnabled=0
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document8]
 DocumentPath=ELC102 - Outjob Script.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+
+[Document9]
+DocumentPath=ELC102 - Scoreboard.SCHLIB
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -240,6 +255,10 @@ Variation87=Designator=JP2|UniqueId=\RGIJYWTA|Kind=1|AlternatePart=
 Variation88=Designator=JP3|UniqueId=\XMOJPITB|Kind=1|AlternatePart= 
 Variation89=Designator=JP4|UniqueId=\ESLWAVII|Kind=1|AlternatePart= 
 ParamVariationCount=0
+
+[Parameter1]
+Name=Title
+Value=ELC102 - NEOS Scoreboard
 
 [Generic_SmartPDF]
 AutoOpenFile=-1

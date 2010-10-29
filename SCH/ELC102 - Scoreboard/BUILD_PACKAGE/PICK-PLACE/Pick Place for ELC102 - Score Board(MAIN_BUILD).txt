@@ -1,0 +1,499 @@
+Designator Footprint               Mid X         Mid Y         Ref X         Ref Y         Pad X         Pad Y TB      Rotation Comment        
+
+C1         C0805                 7200mil       5900mil       7200mil       5900mil       7200mil       5937mil  T        270.00 0.1uF          
+C2         C4X5.8                7050mil       5900mil       7050mil       5900mil       7050mil       5970mil  T        360.00 10uF 16V       
+C3         C0805                 6750mil       5400mil       6750mil       5400mil       6750mil       5437mil  T        270.00 0.1uF          
+C4         C0805                 7050mil       4100mil       7050mil       4100mil       7050mil       4137mil  T        270.00 0.1uF          
+C8         C_EIA7343-43_(X)      10655mil       5380mil      10655mil       5380mil  10780.984mil       5380mil  T        180.00 47uF 35V       
+C9         C_EIA7343-43_(X)      10660mil       4955mil      10660mil       4955mil  10785.984mil       4955mil  T        180.00 47uF 35V       
+C10        C0805                 6670mil        800mil       6670mil        800mil       6670mil        763mil  T         90.00 0.1uF          
+C11        C0805                10300mil       5400mil      10300mil       5400mil      10300mil       5437mil  T        270.00 0.1uF          
+C15        C0805                 9885mil       5250mil       9885mil       5250mil       9922mil       5250mil  T        180.00 .01uF          
+C17        C0805                 5065mil       6035mil       5065mil       6035mil       5065mil       5998mil  T         90.00 0.1uF          
+C20        C7343                 9900mil       4900mil       9900mil       4900mil       9900mil       4775mil  T         90.00 68uF 16V       
+C22        C0805                 7350mil       4750mil       7350mil       4750mil       7387mil       4750mil  T        180.00 18pF           
+C23        C4X5.8                5515mil       6035mil       5515mil       6035mil       5515mil       5965mil  T        180.00 10uF 16V       
+C24        C7343                10100mil       4900mil      10100mil       4900mil      10100mil       4775mil  T         90.00 68uF 16V       
+C26        C0805                 7150mil       4750mil       7150mil       4750mil       7113mil       4750mil  T          0.00 18pF           
+C28        C0805                13350mil       3835mil      13350mil       3835mil      13350mil       3798mil  T         90.00 0.1uF          
+C30        C0805                 7050mil       1700mil       7050mil       1700mil       7050mil       1737mil  T        270.00 0.1uF          
+C31        C0805                 8250mil       5950mil       8250mil       5950mil       8287mil       5950mil  T        180.00 0.1uF          
+C32        C4X5.8               13800mil       3835mil      13800mil       3835mil      13800mil       3765mil  T        180.00 10uF 16V       
+C37        C0805                 7050mil       2400mil       7050mil       2400mil       7050mil       2437mil  T        270.00 0.1uF          
+C46        C0805                 7050mil       3400mil       7050mil       3400mil       7050mil       3437mil  T        270.00 0.1uF          
+C47        C0805                 5200mil       1400mil       5200mil       1400mil       5200mil       1437mil  T        270.00 0.1uF          
+C48        C0805                 5900mil       1400mil       5900mil       1400mil       5900mil       1437mil  T        270.00 0.1uF          
+C49        C0805                 6600mil       1400mil       6600mil       1400mil       6600mil       1437mil  T        270.00 0.1uF          
+C50        C0805                 9200mil       1400mil       9200mil       1400mil       9200mil       1437mil  T        270.00 0.1uF          
+C51        C0805                 9900mil       1400mil       9900mil       1400mil       9900mil       1437mil  T        270.00 0.1uF          
+C52        C0805                10600mil       1400mil      10600mil       1400mil      10600mil       1437mil  T        270.00 0.1uF          
+D1         DIODE_SMC            13990mil       4250mil      13990mil       4250mil  14120.118mil       4250mil  T        180.00 3A 600V SMC    
+D2         D2PAK                 9500mil     5512.5mil       9500mil       5700mil       9400mil       5325mil  T        360.00 8A 80V         
+DS1        LED_T1-3/4_Flush     2448.9mil     4585.8mil     2398.9mil     4585.8mil     2398.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS2        LED_T1-3/4_Flush     2693.9mil     4585.8mil     2643.9mil     4585.8mil     2643.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS3        LED_T1-3/4_Flush     4073.9mil     4585.8mil     4023.9mil     4585.8mil     4023.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS4        LED_T1-3/4_Flush     4318.9mil     4585.8mil     4268.9mil     4585.8mil     4268.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS5        LED_T1-3/4_Flush     5698.9mil     4585.8mil     5648.9mil     4585.8mil     5648.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS6        LED_T1-3/4_Flush     5943.9mil     4585.8mil     5893.9mil     4585.8mil     5893.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS7        LED_T1-3/4_Flush     8948.9mil     4585.8mil     8898.9mil     4585.8mil     8898.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS8        LED_T1-3/4_Flush     9193.9mil     4585.8mil     9143.9mil     4585.8mil     9143.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS9        LED_T1-3/4_Flush    10573.9mil     4585.8mil    10523.9mil     4585.8mil    10523.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS10       LED_T1-3/4_Flush    10818.9mil     4585.8mil    10768.9mil     4585.8mil    10768.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS11       LED_T1-3/4_Flush    12198.9mil     4585.8mil    12148.9mil     4585.8mil    12148.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS12       LED_T1-3/4_Flush    12443.9mil     4585.8mil    12393.9mil     4585.8mil    12393.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS13       LED_T1-3/4_Flush     2938.9mil     4585.8mil     2888.9mil     4585.8mil     2888.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS14       LED_T1-3/4_Flush     3183.9mil     4585.8mil     3133.9mil     4585.8mil     3133.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS15       LED_T1-3/4_Flush     4563.9mil     4585.8mil     4513.9mil     4585.8mil     4513.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS16       LED_T1-3/4_Flush     4808.9mil     4585.8mil     4758.9mil     4585.8mil     4758.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS17       LED_T1-3/4_Flush     6188.9mil     4585.8mil     6138.9mil     4585.8mil     6138.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS18       LED_T1-3/4_Flush     6433.9mil     4585.8mil     6383.9mil     4585.8mil     6383.9mil     4585.8mil  T          0.00 RED T1-3/4     
+DS19       LED_T1-3/4_Flush     9438.9mil     4585.8mil     9388.9mil     4585.8mil     9388.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS20       LED_T1-3/4_Flush     9683.9mil     4585.8mil     9633.9mil     4585.8mil     9633.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS21       LED_T1-3/4_Flush    11063.9mil     4585.8mil    11013.9mil     4585.8mil    11013.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS22       LED_T1-3/4_Flush    11308.9mil     4585.8mil    11258.9mil     4585.8mil    11258.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS23       LED_T1-3/4_Flush    12688.9mil     4585.8mil    12638.9mil     4585.8mil    12638.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS24       LED_T1-3/4_Flush    12933.9mil     4585.8mil    12883.9mil     4585.8mil    12883.9mil     4585.8mil  T          0.00 GREEN T1-3/4   
+DS25       LED_T1-3/4_Flush       3333mil     4372.9mil       3283mil     4372.9mil       3283mil     4372.9mil  T          0.00 RED T1-3/4     
+DS26       LED_T1-3/4_Flush     3290.5mil     4131.6mil     3240.5mil     4131.6mil     3240.5mil     4131.6mil  T          0.00 RED T1-3/4     
+DS27       LED_T1-3/4_Flush       4958mil     4372.9mil       4908mil     4372.9mil       4908mil     4372.9mil  T          0.00 RED T1-3/4     
+DS28       LED_T1-3/4_Flush     4915.5mil     4131.6mil     4865.5mil     4131.6mil     4865.5mil     4131.6mil  T          0.00 RED T1-3/4     
+DS29       LED_T1-3/4_Flush       6583mil     4372.9mil       6533mil     4372.9mil       6533mil     4372.9mil  T          0.00 RED T1-3/4     
+DS30       LED_T1-3/4_Flush     6540.5mil     4131.6mil     6490.5mil     4131.6mil     6490.5mil     4131.6mil  T          0.00 RED T1-3/4     
+DS31       LED_T1-3/4_Flush       9833mil     4372.9mil       9783mil     4372.9mil       9783mil     4372.9mil  T          0.00 GREEN T1-3/4   
+DS32       LED_T1-3/4_Flush     9790.5mil     4131.6mil     9740.5mil     4131.6mil     9740.5mil     4131.6mil  T          0.00 GREEN T1-3/4   
+DS33       LED_T1-3/4_Flush      11458mil     4372.9mil      11408mil     4372.9mil      11408mil     4372.9mil  T          0.00 GREEN T1-3/4   
+DS34       LED_T1-3/4_Flush    11415.5mil     4131.6mil    11365.5mil     4131.6mil    11365.5mil     4131.6mil  T          0.00 GREEN T1-3/4   
+DS35       LED_T1-3/4_Flush      13083mil     4372.9mil      13033mil     4372.9mil      13033mil     4372.9mil  T          0.00 GREEN T1-3/4   
+DS36       LED_T1-3/4_Flush    13040.5mil     4131.6mil    12990.5mil     4131.6mil    12990.5mil     4131.6mil  T          0.00 GREEN T1-3/4   
+DS37       LED_T1-3/4_Flush     3247.9mil     3890.3mil     3197.9mil     3890.3mil     3197.9mil     3890.3mil  T          0.00 RED T1-3/4     
+DS38       LED_T1-3/4_Flush     3205.4mil     3649.1mil     3155.4mil     3649.1mil     3155.4mil     3649.1mil  T          0.00 RED T1-3/4     
+DS39       LED_T1-3/4_Flush     4872.9mil     3890.3mil     4822.9mil     3890.3mil     4822.9mil     3890.3mil  T          0.00 RED T1-3/4     
+DS40       LED_T1-3/4_Flush     4830.4mil     3649.1mil     4780.4mil     3649.1mil     4780.4mil     3649.1mil  T          0.00 RED T1-3/4     
+DS41       LED_T1-3/4_Flush     6497.9mil     3890.3mil     6447.9mil     3890.3mil     6447.9mil     3890.3mil  T          0.00 RED T1-3/4     
+DS42       LED_T1-3/4_Flush     6455.4mil     3649.1mil     6405.4mil     3649.1mil     6405.4mil     3649.1mil  T          0.00 RED T1-3/4     
+DS43       LED_T1-3/4_Flush     9747.9mil     3890.3mil     9697.9mil     3890.3mil     9697.9mil     3890.3mil  T          0.00 GREEN T1-3/4   
+DS44       LED_T1-3/4_Flush     9705.4mil     3649.1mil     9655.4mil     3649.1mil     9655.4mil     3649.1mil  T          0.00 GREEN T1-3/4   
+DS45       LED_T1-3/4_Flush    11372.9mil     3890.3mil    11322.9mil     3890.3mil    11322.9mil     3890.3mil  T          0.00 GREEN T1-3/4   
+DS46       LED_T1-3/4_Flush    11330.4mil     3649.1mil    11280.4mil     3649.1mil    11280.4mil     3649.1mil  T          0.00 GREEN T1-3/4   
+DS47       LED_T1-3/4_Flush    12997.9mil     3890.3mil    12947.9mil     3890.3mil    12947.9mil     3890.3mil  T          0.00 GREEN T1-3/4   
+DS48       LED_T1-3/4_Flush    12955.4mil     3649.1mil    12905.4mil     3649.1mil    12905.4mil     3649.1mil  T          0.00 GREEN T1-3/4   
+DS49       LED_T1-3/4_Flush     3141.6mil     3287.1mil     3091.6mil     3287.1mil     3091.6mil     3287.1mil  T          0.00 RED T1-3/4     
+DS50       LED_T1-3/4_Flush       3099mil     3045.9mil       3049mil     3045.9mil       3049mil     3045.9mil  T          0.00 RED T1-3/4     
+DS51       LED_T1-3/4_Flush     4766.6mil     3287.1mil     4716.6mil     3287.1mil     4716.6mil     3287.1mil  T          0.00 RED T1-3/4     
+DS52       LED_T1-3/4_Flush       4724mil     3045.9mil       4674mil     3045.9mil       4674mil     3045.9mil  T          0.00 RED T1-3/4     
+DS53       LED_T1-3/4_Flush     6391.6mil     3287.1mil     6341.6mil     3287.1mil     6341.6mil     3287.1mil  T          0.00 RED T1-3/4     
+DS54       LED_T1-3/4_Flush       6349mil     3045.9mil       6299mil     3045.9mil       6299mil     3045.9mil  T          0.00 RED T1-3/4     
+DS55       LED_T1-3/4_Flush     9641.6mil     3287.1mil     9591.6mil     3287.1mil     9591.6mil     3287.1mil  T          0.00 GREEN T1-3/4   
+DS56       LED_T1-3/4_Flush       9599mil     3045.9mil       9549mil     3045.9mil       9549mil     3045.9mil  T          0.00 GREEN T1-3/4   
+DS57       LED_T1-3/4_Flush    11266.6mil     3287.1mil    11216.6mil     3287.1mil    11216.6mil     3287.1mil  T          0.00 GREEN T1-3/4   
+DS58       LED_T1-3/4_Flush      11224mil     3045.9mil      11174mil     3045.9mil      11174mil     3045.9mil  T          0.00 GREEN T1-3/4   
+DS59       LED_T1-3/4_Flush    12891.6mil     3287.1mil    12841.6mil     3287.1mil    12841.6mil     3287.1mil  T          0.00 GREEN T1-3/4   
+DS60       LED_T1-3/4_Flush      12849mil     3045.9mil      12799mil     3045.9mil      12799mil     3045.9mil  T          0.00 GREEN T1-3/4   
+DS61       LED_T1-3/4_Flush     3056.5mil     2804.6mil     3006.5mil     2804.6mil     3006.5mil     2804.6mil  T          0.00 RED T1-3/4     
+DS62       LED_T1-3/4_Flush     3013.9mil     2563.3mil     2963.9mil     2563.3mil     2963.9mil     2563.3mil  T          0.00 RED T1-3/4     
+DS63       LED_T1-3/4_Flush     4681.5mil     2804.6mil     4631.5mil     2804.6mil     4631.5mil     2804.6mil  T          0.00 RED T1-3/4     
+DS64       LED_T1-3/4_Flush     4638.9mil     2563.3mil     4588.9mil     2563.3mil     4588.9mil     2563.3mil  T          0.00 RED T1-3/4     
+DS65       LED_T1-3/4_Flush     6306.5mil     2804.6mil     6256.5mil     2804.6mil     6256.5mil     2804.6mil  T          0.00 RED T1-3/4     
+DS66       LED_T1-3/4_Flush     6263.9mil     2563.3mil     6213.9mil     2563.3mil     6213.9mil     2563.3mil  T          0.00 RED T1-3/4     
+DS67       LED_T1-3/4_Flush     9556.5mil     2804.6mil     9506.5mil     2804.6mil     9506.5mil     2804.6mil  T          0.00 GREEN T1-3/4   
+DS68       LED_T1-3/4_Flush     9513.9mil     2563.3mil     9463.9mil     2563.3mil     9463.9mil     2563.3mil  T          0.00 GREEN T1-3/4   
+DS69       LED_T1-3/4_Flush    11181.5mil     2804.6mil    11131.5mil     2804.6mil    11131.5mil     2804.6mil  T          0.00 GREEN T1-3/4   
+DS70       LED_T1-3/4_Flush    11138.9mil     2563.3mil    11088.9mil     2563.3mil    11088.9mil     2563.3mil  T          0.00 GREEN T1-3/4   
+DS71       LED_T1-3/4_Flush    12806.5mil     2804.6mil    12756.5mil     2804.6mil    12756.5mil     2804.6mil  T          0.00 GREEN T1-3/4   
+DS72       LED_T1-3/4_Flush    12763.9mil     2563.3mil    12713.9mil     2563.3mil    12713.9mil     2563.3mil  T          0.00 GREEN T1-3/4   
+DS73       LED_T1-3/4_Flush     2556.1mil     2414.2mil     2506.1mil     2414.2mil     2506.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS74       LED_T1-3/4_Flush     2801.1mil     2414.2mil     2751.1mil     2414.2mil     2751.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS75       LED_T1-3/4_Flush     4181.1mil     2414.2mil     4131.1mil     2414.2mil     4131.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS76       LED_T1-3/4_Flush     4426.1mil     2414.2mil     4376.1mil     2414.2mil     4376.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS77       LED_T1-3/4_Flush     5806.1mil     2414.2mil     5756.1mil     2414.2mil     5756.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS78       LED_T1-3/4_Flush     6051.1mil     2414.2mil     6001.1mil     2414.2mil     6001.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS79       LED_T1-3/4_Flush     9056.1mil     2414.2mil     9006.1mil     2414.2mil     9006.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS80       LED_T1-3/4_Flush     9301.1mil     2414.2mil     9251.1mil     2414.2mil     9251.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS81       LED_T1-3/4_Flush    10681.1mil     2414.2mil    10631.1mil     2414.2mil    10631.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS82       LED_T1-3/4_Flush    10926.1mil     2414.2mil    10876.1mil     2414.2mil    10876.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS83       LED_T1-3/4_Flush    12306.1mil     2414.2mil    12256.1mil     2414.2mil    12256.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS84       LED_T1-3/4_Flush    12551.1mil     2414.2mil    12501.1mil     2414.2mil    12501.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS85       LED_T1-3/4_Flush     2066.1mil     2414.2mil     2016.1mil     2414.2mil     2016.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS86       LED_T1-3/4_Flush     2311.1mil     2414.2mil     2261.1mil     2414.2mil     2261.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS87       LED_T1-3/4_Flush     3691.1mil     2414.2mil     3641.1mil     2414.2mil     3641.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS88       LED_T1-3/4_Flush     3936.1mil     2414.2mil     3886.1mil     2414.2mil     3886.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS89       LED_T1-3/4_Flush     5316.1mil     2414.2mil     5266.1mil     2414.2mil     5266.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS90       LED_T1-3/4_Flush     5561.1mil     2414.2mil     5511.1mil     2414.2mil     5511.1mil     2414.2mil  T          0.00 RED T1-3/4     
+DS91       LED_T1-3/4_Flush     8566.1mil     2414.2mil     8516.1mil     2414.2mil     8516.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS92       LED_T1-3/4_Flush     8811.1mil     2414.2mil     8761.1mil     2414.2mil     8761.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS93       LED_T1-3/4_Flush    10191.1mil     2414.2mil    10141.1mil     2414.2mil    10141.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS94       LED_T1-3/4_Flush    10436.1mil     2414.2mil    10386.1mil     2414.2mil    10386.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS95       LED_T1-3/4_Flush    11816.1mil     2414.2mil    11766.1mil     2414.2mil    11766.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS96       LED_T1-3/4_Flush    12061.1mil     2414.2mil    12011.1mil     2414.2mil    12011.1mil     2414.2mil  T          0.00 GREEN T1-3/4   
+DS97       LED_T1-3/4_Flush       1917mil     2627.1mil       1867mil     2627.1mil       1867mil     2627.1mil  T          0.00 RED T1-3/4     
+DS98       LED_T1-3/4_Flush     1959.5mil     2868.4mil     1909.5mil     2868.4mil     1909.5mil     2868.4mil  T          0.00 RED T1-3/4     
+DS99       LED_T1-3/4_Flush       3542mil     2627.1mil       3492mil     2627.1mil       3492mil     2627.1mil  T          0.00 RED T1-3/4     
+DS100      LED_T1-3/4_Flush     3584.5mil     2868.4mil     3534.5mil     2868.4mil     3534.5mil     2868.4mil  T          0.00 RED T1-3/4     
+DS101      LED_T1-3/4_Flush       5167mil     2627.1mil       5117mil     2627.1mil       5117mil     2627.1mil  T          0.00 RED T1-3/4     
+DS102      LED_T1-3/4_Flush     5209.5mil     2868.4mil     5159.5mil     2868.4mil     5159.5mil     2868.4mil  T          0.00 RED T1-3/4     
+DS103      LED_T1-3/4_Flush       8417mil     2627.1mil       8367mil     2627.1mil       8367mil     2627.1mil  T          0.00 GREEN T1-3/4   
+DS104      LED_T1-3/4_Flush     8459.5mil     2868.4mil     8409.5mil     2868.4mil     8409.5mil     2868.4mil  T          0.00 GREEN T1-3/4   
+DS105      LED_T1-3/4_Flush      10042mil     2627.1mil       9992mil     2627.1mil       9992mil     2627.1mil  T          0.00 GREEN T1-3/4   
+DS106      LED_T1-3/4_Flush    10084.5mil     2868.4mil    10034.5mil     2868.4mil    10034.5mil     2868.4mil  T          0.00 GREEN T1-3/4   
+DS107      LED_T1-3/4_Flush      11667mil     2627.1mil      11617mil     2627.1mil      11617mil     2627.1mil  T          0.00 GREEN T1-3/4   
+DS108      LED_T1-3/4_Flush    11709.5mil     2868.4mil    11659.5mil     2868.4mil    11659.5mil     2868.4mil  T          0.00 GREEN T1-3/4   
+DS109      LED_T1-3/4_Flush     2002.1mil     3109.7mil     1952.1mil     3109.7mil     1952.1mil     3109.7mil  T          0.00 RED T1-3/4     
+DS110      LED_T1-3/4_Flush     2044.6mil     3350.9mil     1994.6mil     3350.9mil     1994.6mil     3350.9mil  T          0.00 RED T1-3/4     
+DS111      LED_T1-3/4_Flush     3627.1mil     3109.7mil     3577.1mil     3109.7mil     3577.1mil     3109.7mil  T          0.00 RED T1-3/4     
+DS112      LED_T1-3/4_Flush     3669.6mil     3350.9mil     3619.6mil     3350.9mil     3619.6mil     3350.9mil  T          0.00 RED T1-3/4     
+DS113      LED_T1-3/4_Flush     5252.1mil     3109.7mil     5202.1mil     3109.7mil     5202.1mil     3109.7mil  T          0.00 RED T1-3/4     
+DS114      LED_T1-3/4_Flush     5294.6mil     3350.9mil     5244.6mil     3350.9mil     5244.6mil     3350.9mil  T          0.00 RED T1-3/4     
+DS115      LED_T1-3/4_Flush     8502.1mil     3109.7mil     8452.1mil     3109.7mil     8452.1mil     3109.7mil  T          0.00 GREEN T1-3/4   
+DS116      LED_T1-3/4_Flush     8544.6mil     3350.9mil     8494.6mil     3350.9mil     8494.6mil     3350.9mil  T          0.00 GREEN T1-3/4   
+DS117      LED_T1-3/4_Flush    10127.1mil     3109.7mil    10077.1mil     3109.7mil    10077.1mil     3109.7mil  T          0.00 GREEN T1-3/4   
+DS118      LED_T1-3/4_Flush    10169.6mil     3350.9mil    10119.6mil     3350.9mil    10119.6mil     3350.9mil  T          0.00 GREEN T1-3/4   
+DS119      LED_T1-3/4_Flush    11752.1mil     3109.7mil    11702.1mil     3109.7mil    11702.1mil     3109.7mil  T          0.00 GREEN T1-3/4   
+DS120      LED_T1-3/4_Flush    11794.6mil     3350.9mil    11744.6mil     3350.9mil    11744.6mil     3350.9mil  T          0.00 GREEN T1-3/4   
+DS121      LED_T1-3/4_Flush     2108.4mil     3712.9mil     2058.4mil     3712.9mil     2058.4mil     3712.9mil  T          0.00 RED T1-3/4     
+DS122      LED_T1-3/4_Flush       2151mil     3954.1mil       2101mil     3954.1mil       2101mil     3954.1mil  T          0.00 RED T1-3/4     
+DS123      LED_T1-3/4_Flush     3733.4mil     3712.9mil     3683.4mil     3712.9mil     3683.4mil     3712.9mil  T          0.00 RED T1-3/4     
+DS124      LED_T1-3/4_Flush       3776mil     3954.1mil       3726mil     3954.1mil       3726mil     3954.1mil  T          0.00 RED T1-3/4     
+DS125      LED_T1-3/4_Flush     5358.4mil     3712.9mil     5308.4mil     3712.9mil     5308.4mil     3712.9mil  T          0.00 RED T1-3/4     
+DS126      LED_T1-3/4_Flush       5401mil     3954.1mil       5351mil     3954.1mil       5351mil     3954.1mil  T          0.00 RED T1-3/4     
+DS127      LED_T1-3/4_Flush     8608.4mil     3712.9mil     8558.4mil     3712.9mil     8558.4mil     3712.9mil  T          0.00 GREEN T1-3/4   
+DS128      LED_T1-3/4_Flush       8651mil     3954.1mil       8601mil     3954.1mil       8601mil     3954.1mil  T          0.00 GREEN T1-3/4   
+DS129      LED_T1-3/4_Flush    10233.4mil     3712.9mil    10183.4mil     3712.9mil    10183.4mil     3712.9mil  T          0.00 GREEN T1-3/4   
+DS130      LED_T1-3/4_Flush      10276mil     3954.1mil      10226mil     3954.1mil      10226mil     3954.1mil  T          0.00 GREEN T1-3/4   
+DS131      LED_T1-3/4_Flush    11858.4mil     3712.9mil    11808.4mil     3712.9mil    11808.4mil     3712.9mil  T          0.00 GREEN T1-3/4   
+DS132      LED_T1-3/4_Flush      11901mil     3954.1mil      11851mil     3954.1mil      11851mil     3954.1mil  T          0.00 GREEN T1-3/4   
+DS133      LED_T1-3/4_Flush     2193.5mil       4195mil     2143.5mil       4195mil     2143.5mil       4195mil  T          0.00 RED T1-3/4     
+DS134      LED_T1-3/4_Flush     2236.1mil     4436.7mil     2186.1mil     4436.7mil     2186.1mil     4436.7mil  T          0.00 RED T1-3/4     
+DS135      LED_T1-3/4_Flush     3818.5mil       4195mil     3768.5mil       4195mil     3768.5mil       4195mil  T          0.00 RED T1-3/4     
+DS136      LED_T1-3/4_Flush     3861.1mil     4436.7mil     3811.1mil     4436.7mil     3811.1mil     4436.7mil  T          0.00 RED T1-3/4     
+DS137      LED_T1-3/4_Flush     5443.5mil       4195mil     5393.5mil       4195mil     5393.5mil       4195mil  T          0.00 RED T1-3/4     
+DS138      LED_T1-3/4_Flush     5486.1mil     4436.7mil     5436.1mil     4436.7mil     5436.1mil     4436.7mil  T          0.00 RED T1-3/4     
+DS139      LED_T1-3/4_Flush     8693.5mil       4195mil     8643.5mil       4195mil     8643.5mil       4195mil  T          0.00 GREEN T1-3/4   
+DS140      LED_T1-3/4_Flush     8736.1mil     4436.7mil     8686.1mil     4436.7mil     8686.1mil     4436.7mil  T          0.00 GREEN T1-3/4   
+DS141      LED_T1-3/4_Flush    10318.5mil       4195mil    10268.5mil       4195mil    10268.5mil       4195mil  T          0.00 GREEN T1-3/4   
+DS142      LED_T1-3/4_Flush    10361.1mil     4436.7mil    10311.1mil     4436.7mil    10311.1mil     4436.7mil  T          0.00 GREEN T1-3/4   
+DS143      LED_T1-3/4_Flush    11943.5mil       4195mil    11893.5mil       4195mil    11893.5mil       4195mil  T          0.00 GREEN T1-3/4   
+DS144      LED_T1-3/4_Flush    11986.1mil     4436.7mil    11936.1mil     4436.7mil    11936.1mil     4436.7mil  T          0.00 GREEN T1-3/4   
+DS145      LED_T1-3/4_Flush     2257.5mil       3500mil     2207.5mil       3500mil     2207.5mil       3500mil  T          0.00 RED T1-3/4     
+DS146      LED_T1-3/4_Flush     2502.5mil       3500mil     2452.5mil       3500mil     2452.5mil       3500mil  T          0.00 RED T1-3/4     
+DS147      LED_T1-3/4_Flush     3882.5mil       3500mil     3832.5mil       3500mil     3832.5mil       3500mil  T          0.00 RED T1-3/4     
+DS148      LED_T1-3/4_Flush     4127.5mil       3500mil     4077.5mil       3500mil     4077.5mil       3500mil  T          0.00 RED T1-3/4     
+DS149      LED_T1-3/4_Flush     5507.5mil       3500mil     5457.5mil       3500mil     5457.5mil       3500mil  T          0.00 RED T1-3/4     
+DS150      LED_T1-3/4_Flush     5752.5mil       3500mil     5702.5mil       3500mil     5702.5mil       3500mil  T          0.00 RED T1-3/4     
+DS151      LED_T1-3/4_Flush     8757.5mil       3500mil     8707.5mil       3500mil     8707.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS152      LED_T1-3/4_Flush     9002.5mil       3500mil     8952.5mil       3500mil     8952.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS153      LED_T1-3/4_Flush    10382.5mil       3500mil    10332.5mil       3500mil    10332.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS154      LED_T1-3/4_Flush    10627.5mil       3500mil    10577.5mil       3500mil    10577.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS155      LED_T1-3/4_Flush    12007.5mil       3500mil    11957.5mil       3500mil    11957.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS156      LED_T1-3/4_Flush    12252.5mil       3500mil    12202.5mil       3500mil    12202.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS157      LED_T1-3/4_Flush       2745mil       3500mil       2695mil       3500mil       2695mil       3500mil  T          0.00 RED T1-3/4     
+DS158      LED_T1-3/4_Flush     2992.5mil       3500mil     2942.5mil       3500mil     2942.5mil       3500mil  T          0.00 RED T1-3/4     
+DS159      LED_T1-3/4_Flush     4372.5mil       3500mil     4322.5mil       3500mil     4322.5mil       3500mil  T          0.00 RED T1-3/4     
+DS160      LED_T1-3/4_Flush     4617.5mil       3500mil     4567.5mil       3500mil     4567.5mil       3500mil  T          0.00 RED T1-3/4     
+DS161      LED_T1-3/4_Flush     5997.5mil       3500mil     5947.5mil       3500mil     5947.5mil       3500mil  T          0.00 RED T1-3/4     
+DS162      LED_T1-3/4_Flush     6242.5mil       3500mil     6192.5mil       3500mil     6192.5mil       3500mil  T          0.00 RED T1-3/4     
+DS163      LED_T1-3/4_Flush     9247.5mil       3500mil     9197.5mil       3500mil     9197.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS164      LED_T1-3/4_Flush     9492.5mil       3500mil     9442.5mil       3500mil     9442.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS165      LED_T1-3/4_Flush    10872.5mil       3500mil    10822.5mil       3500mil    10822.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS166      LED_T1-3/4_Flush    11117.5mil       3500mil    11067.5mil       3500mil    11067.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS167      LED_T1-3/4_Flush    12497.5mil       3500mil    12447.5mil       3500mil    12447.5mil       3500mil  T          0.00 GREEN T1-3/4   
+DS168      LED_T1-3/4_Flush    12742.5mil       3500mil    12692.5mil       3500mil    12692.5mil       3500mil  T          0.00 GREEN T1-3/4   
+L1         IND/DO5022            8895mil       5300mil       8895mil       5300mil       8895mil     5602.5mil  T        270.00 Value          
+Q1         D2PAK              12312.5mil        400mil      12500mil        400mil      12125mil        500mil  T        270.00 QS/VNB14NV04Z  
+Q2         D2PAK              11412.5mil        750mil      11600mil        750mil      11225mil        850mil  T        270.00 QS/VNB14NV04Z  
+Q3         D2PAK              12312.5mil       1100mil      12500mil       1100mil      12125mil       1200mil  T        270.00 QS/VNB14NV04Z  
+Q4         D2PAK              11412.5mil       1450mil      11600mil       1450mil      11225mil       1550mil  T        270.00 QS/VNB14NV04Z  
+Q5         D2PAK              12312.5mil       1800mil      12500mil       1800mil      12125mil       1900mil  T        270.00 QS/VNB14NV04Z  
+Q6         D2PAK               2687.5mil       6600mil       2500mil       6600mil       2875mil       6500mil  T         90.00 QS/VNB14NV04Z  
+Q7         D2PAK               3587.5mil       6250mil       3400mil       6250mil       3775mil       6150mil  T         90.00 QS/VNB14NV04Z  
+Q8         D2PAK               2687.5mil       5900mil       2500mil       5900mil       2875mil       5800mil  T         90.00 QS/VNB14NV04Z  
+Q9         D2PAK               3587.5mil       5550mil       3400mil       5550mil       3775mil       5450mil  T         90.00 QS/VNB14NV04Z  
+Q10        D2PAK               2687.5mil       5200mil       2500mil       5200mil       2875mil       5100mil  T         90.00 QS/VNB14NV04Z  
+Q11        D2PAK              12312.5mil       5200mil      12500mil       5200mil      12125mil       5300mil  T        270.00 QS/VNB14NV04Z  
+Q12        D2PAK              11412.5mil       5550mil      11600mil       5550mil      11225mil       5650mil  T        270.00 QS/VNB14NV04Z  
+Q13        D2PAK              12312.5mil       5900mil      12500mil       5900mil      12125mil       6000mil  T        270.00 QS/VNB14NV04Z  
+Q14        D2PAK              11412.5mil       6250mil      11600mil       6250mil      11225mil       6350mil  T        270.00 QS/VNB14NV04Z  
+Q15        D2PAK              12312.5mil       6600mil      12500mil       6600mil      12125mil       6700mil  T        270.00 QS/VNB14NV04Z  
+Q16        D2PAK               2687.5mil       1800mil       2500mil       1800mil       2875mil       1700mil  T         90.00 QS/VNB14NV04Z  
+Q17        D2PAK               3592.5mil       1450mil       3405mil       1450mil       3780mil       1350mil  T         90.00 QS/VNB14NV04Z  
+Q18        D2PAK               2687.5mil       1100mil       2500mil       1100mil       2875mil       1000mil  T         90.00 QS/VNB14NV04Z  
+Q19        D2PAK               3587.5mil        750mil       3400mil        750mil       3775mil        650mil  T         90.00 QS/VNB14NV04Z  
+Q20        D2PAK               2687.5mil        400mil       2500mil        400mil       2875mil        300mil  T         90.00 QS/VNB14NV04Z  
+Q22        SOT23                 2750mil       4135mil       2750mil       4135mil   2712.598mil    4088.74mil  T          0.00 BCX70K         
+Q23        SOT23                 4375mil       4135mil       4375mil       4135mil   4337.598mil    4088.74mil  T          0.00 BCX70K         
+Q24        SOT23                 6000mil       4135mil       6000mil       4135mil   5962.598mil    4088.74mil  T          0.00 BCX70K         
+Q25        SOT23                 9250mil       4135mil       9250mil       4135mil   9212.598mil    4088.74mil  T          0.00 BCX70K         
+Q26        SOT23                10875mil       4135mil      10875mil       4135mil  10837.598mil    4088.74mil  T          0.00 BCX70K         
+Q27        SOT23                12500mil       4135mil      12500mil       4135mil  12462.598mil    4088.74mil  T          0.00 BCX70K         
+Q28        SOT23                 2920mil       4000mil       2920mil       4000mil   2882.598mil    3953.74mil  T          0.00 BCX70K         
+Q29        SOT23                 4545mil       4000mil       4545mil       4000mil   4507.598mil    3953.74mil  T          0.00 BCX70K         
+Q30        SOT23                 6170mil       4000mil       6170mil       4000mil   6132.598mil    3953.74mil  T          0.00 BCX70K         
+Q31        SOT23                 9420mil       4000mil       9420mil       4000mil   9382.598mil    3953.74mil  T          0.00 BCX70K         
+Q32        SOT23                11045mil       4000mil      11045mil       4000mil  11007.598mil    3953.74mil  T          0.00 BCX70K         
+Q33        SOT23                12670mil       4000mil      12670mil       4000mil  12632.598mil    3953.74mil  T          0.00 BCX70K         
+Q34        SOT23                 2730mil       2900mil       2730mil       2900mil   2692.598mil    2853.74mil  T          0.00 BCX70K         
+Q35        SOT23                 4355mil       2900mil       4355mil       2900mil   4317.598mil    2853.74mil  T          0.00 BCX70K         
+Q36        SOT23                 5980mil       2900mil       5980mil       2900mil   5942.598mil    2853.74mil  T          0.00 BCX70K         
+Q37        SOT23                 9230mil       2900mil       9230mil       2900mil   9192.598mil    2853.74mil  T          0.00 BCX70K         
+Q38        SOT23                10855mil       2900mil      10855mil       2900mil  10817.598mil    2853.74mil  T          0.00 BCX70K         
+Q39        SOT23                12480mil       2900mil      12480mil       2900mil  12442.598mil    2853.74mil  T          0.00 BCX70K         
+Q40        SOT23                 2550mil       2800mil       2550mil       2800mil   2587.402mil    2846.26mil  T        180.00 BCX70K         
+Q41        SOT23                 4175mil       2800mil       4175mil       2800mil   4212.402mil    2846.26mil  T        180.00 BCX70K         
+Q42        SOT23                 5800mil       2800mil       5800mil       2800mil   5837.402mil    2846.26mil  T        180.00 BCX70K         
+Q43        SOT23                 9050mil       2800mil       9050mil       2800mil   9087.402mil    2846.26mil  T        180.00 BCX70K         
+Q44        SOT23                10675mil       2800mil      10675mil       2800mil  10712.402mil    2846.26mil  T        180.00 BCX70K         
+Q45        SOT23                12300mil       2800mil      12300mil       2800mil  12337.402mil    2846.26mil  T        180.00 BCX70K         
+Q46        SOT23                 2370mil       2900mil       2370mil       2900mil   2332.598mil    2853.74mil  T          0.00 BCX70K         
+Q47        SOT23                 3995mil       2900mil       3995mil       2900mil   3957.598mil    2853.74mil  T          0.00 BCX70K         
+Q48        SOT23                 5620mil       2900mil       5620mil       2900mil   5582.598mil    2853.74mil  T          0.00 BCX70K         
+Q49        SOT23                 8870mil       2900mil       8870mil       2900mil   8832.598mil    2853.74mil  T          0.00 BCX70K         
+Q50        SOT23                10495mil       2900mil      10495mil       2900mil  10457.598mil    2853.74mil  T          0.00 BCX70K         
+Q51        SOT23                12120mil       2900mil      12120mil       2900mil  12082.598mil    2853.74mil  T          0.00 BCX70K         
+Q52        SOT23                 2560mil       4000mil       2560mil       4000mil   2522.598mil    3953.74mil  T          0.00 BCX70K         
+Q53        SOT23                 4185mil       4000mil       4185mil       4000mil   4147.598mil    3953.74mil  T          0.00 BCX70K         
+Q54        SOT23                 5810mil       4000mil       5810mil       4000mil   5772.598mil    3953.74mil  T          0.00 BCX70K         
+Q55        SOT23                 9060mil       4000mil       9060mil       4000mil   9022.598mil    3953.74mil  T          0.00 BCX70K         
+Q56        SOT23                10685mil       4000mil      10685mil       4000mil  10647.598mil    3953.74mil  T          0.00 BCX70K         
+Q57        SOT23                12310mil       4000mil      12310mil       4000mil  12272.598mil    3953.74mil  T          0.00 BCX70K         
+Q58        SOT23                 2740mil       3900mil       2740mil       3900mil   2777.402mil    3946.26mil  T        180.00 BCX70K         
+Q59        SOT23                 4365mil       3900mil       4365mil       3900mil   4402.402mil    3946.26mil  T        180.00 BCX70K         
+Q60        SOT23                 5990mil       3900mil       5990mil       3900mil   6027.402mil    3946.26mil  T        180.00 BCX70K         
+Q61        SOT23                 9240mil       3900mil       9240mil       3900mil   9277.402mil    3946.26mil  T        180.00 BCX70K         
+Q62        SOT23                10865mil       3900mil      10865mil       3900mil  10902.402mil    3946.26mil  T        180.00 BCX70K         
+Q63        SOT23                12490mil       3900mil      12490mil       3900mil  12527.402mil    3946.26mil  T        180.00 BCX70K         
+R3         R0805                 7015mil       6510mil       7015mil       6510mil       7052mil       6510mil  T        180.00 5.1k           
+R6         R0805                11000mil        400mil      11000mil        400mil      10963mil        400mil  T        360.00 5.1k           
+R7         R0805                11000mil        850mil      11000mil        850mil      10963mil        850mil  T        360.00 5.1k           
+R8         R0805                11000mil       1100mil      11000mil       1100mil      10963mil       1100mil  T        360.00 5.1k           
+R9         R0805                11000mil       1550mil      11000mil       1550mil      10963mil       1550mil  T        360.00 5.1k           
+R10        R0805                11000mil       1800mil      11000mil       1800mil      10963mil       1800mil  T        360.00 5.1k           
+R11        R0805                 3650mil       6600mil       3650mil       6600mil       3687mil       6600mil  T        180.00 5.1k           
+R12        R0805                 4000mil       6150mil       4000mil       6150mil       4037mil       6150mil  T        180.00 5.1k           
+R13        R0805                 4000mil       5900mil       4000mil       5900mil       4037mil       5900mil  T        180.00 5.1k           
+R14        R0805                 4000mil       5450mil       4000mil       5450mil       4037mil       5450mil  T        180.00 5.1k           
+R15        R0805                 4000mil       5200mil       4000mil       5200mil       4037mil       5200mil  T        180.00 5.1k           
+R17        R0805                10100mil       6000mil      10100mil       6000mil      10063mil       6000mil  T        360.00 5.1k           
+R18        R0805                10050mil       5250mil      10050mil       5250mil      10013mil       5250mil  T        360.00 1k             
+R19        R0805                 7300mil       5900mil       7300mil       5900mil       7300mil       5937mil  T        270.00 5.1k           
+R29        R0805                10215mil       5250mil      10215mil       5250mil      10178mil       5250mil  T        360.00 5.6k           
+R32        R0805                 7350mil       4850mil       7350mil       4850mil       7313mil       4850mil  T        360.00 0              
+R33        R0805                14550mil        775mil      14550mil        775mil      14587mil        775mil  T        180.00 5.1k           
+R34        R0805                14550mil        875mil      14550mil        875mil      14587mil        875mil  T        180.00 5.1k           
+R35        R0805                14550mil       1425mil      14550mil       1425mil      14587mil       1425mil  T        180.00 5.1k           
+R36        R0805                14550mil       1525mil      14550mil       1525mil      14587mil       1525mil  T        180.00 5.1k           
+R37        R0805                14550mil       1775mil      14550mil       1775mil      14587mil       1775mil  T        180.00 5.1k           
+R38        R0805                14550mil       1875mil      14550mil       1875mil      14587mil       1875mil  T        180.00 5.1k           
+R39        R0805                14550mil       2125mil      14550mil       2125mil      14587mil       2125mil  T        180.00 5.1k           
+R40        R0805                14550mil       2225mil      14550mil       2225mil      14587mil       2225mil  T        180.00 5.1k           
+R41        R0805                14550mil       2725mil      14550mil       2725mil      14587mil       2725mil  T        180.00 5.1k           
+R42        R0805                14550mil       2825mil      14550mil       2825mil      14587mil       2825mil  T        180.00 5.1k           
+R43        R0805                  450mil       6220mil        450mil       6220mil        413mil       6220mil  T        360.00 5.1k           
+R44        R0805                  450mil       6120mil        450mil       6120mil        413mil       6120mil  T        360.00 5.1k           
+R45        R0805                  450mil       5570mil        450mil       5570mil        413mil       5570mil  T        360.00 5.1k           
+R46        R0805                  450mil       5470mil        450mil       5470mil        413mil       5470mil  T        360.00 5.1k           
+R47        R0805                  450mil       5220mil        450mil       5220mil        413mil       5220mil  T        360.00 5.1k           
+R48        R0805                  450mil       5120mil        450mil       5120mil        413mil       5120mil  T        360.00 5.1k           
+R49        R0805                  450mil       4870mil        450mil       4870mil        413mil       4870mil  T        360.00 5.1k           
+R50        R0805                  450mil       4770mil        450mil       4770mil        413mil       4770mil  T        360.00 5.1k           
+R51        R0805                  450mil       4270mil        450mil       4270mil        413mil       4270mil  T        360.00 5.1k           
+R52        R0805                  450mil       4170mil        450mil       4170mil        413mil       4170mil  T        360.00 5.1k           
+R55        R0805                 7400mil       5900mil       7400mil       5900mil       7400mil       5937mil  T        270.00 5.1k           
+R56        R0805                 8400mil       6147mil       8400mil       6147mil       8400mil       6110mil  T         90.00 7.5k           
+R57        R0805                 8250mil       6110mil       8250mil       6110mil       8213mil       6110mil  T          0.00 2.49k          
+R62        R0805                11735mil       5125mil      11735mil       5125mil      11698mil       5125mil  T        360.00 5.1k           
+R63        R0805                11000mil       5650mil      11000mil       5650mil      10963mil       5650mil  T        360.00 5.1k           
+R64        R0805                11000mil       5900mil      11000mil       5900mil      10963mil       5900mil  T        360.00 5.1k           
+R65        R0805                11000mil       6350mil      11000mil       6350mil      10963mil       6350mil  T        360.00 5.1k           
+R66        R0805                11900mil       6700mil      11900mil       6700mil      11863mil       6700mil  T        360.00 5.1k           
+R69        R0805                 4000mil       1800mil       4000mil       1800mil       4037mil       1800mil  T        180.00 5.1k           
+R70        R0805                 4000mil       1350mil       4000mil       1350mil       4037mil       1350mil  T        180.00 5.1k           
+R71        R0805                 4000mil       1100mil       4000mil       1100mil       4037mil       1100mil  T        180.00 5.1k           
+R72        R0805                 4000mil        650mil       4000mil        650mil       4037mil        650mil  T        180.00 5.1k           
+R73        R0805                 4000mil        400mil       4000mil        400mil       4037mil        400mil  T        180.00 5.1k           
+R84        R0805                14550mil       4050mil      14550mil       4050mil      14587mil       4050mil  T        180.00 5.1k           
+R85        R0805                14550mil       4150mil      14550mil       4150mil      14587mil       4150mil  T        180.00 5.1k           
+R86        R0805                14550mil       4700mil      14550mil       4700mil      14587mil       4700mil  T        180.00 5.1k           
+R87        R0805                14550mil       4800mil      14550mil       4800mil      14587mil       4800mil  T        180.00 5.1k           
+R88        R0805                14550mil       5050mil      14550mil       5050mil      14587mil       5050mil  T        180.00 5.1k           
+R89        R0805                14550mil       5150mil      14550mil       5150mil      14587mil       5150mil  T        180.00 5.1k           
+R90        R0805                14550mil       5400mil      14550mil       5400mil      14587mil       5400mil  T        180.00 5.1k           
+R91        R0805                14550mil       5500mil      14550mil       5500mil      14587mil       5500mil  T        180.00 5.1k           
+R92        R0805                14550mil       6000mil      14550mil       6000mil      14587mil       6000mil  T        180.00 5.1k           
+R93        R0805                14550mil       6100mil      14550mil       6100mil      14587mil       6100mil  T        180.00 5.1k           
+R94        R0805                  450mil       2950mil        450mil       2950mil        413mil       2950mil  T        360.00 5.1k           
+R95        R0805                  450mil       2850mil        450mil       2850mil        413mil       2850mil  T        360.00 5.1k           
+R96        R0805                  450mil       2300mil        450mil       2300mil        413mil       2300mil  T        360.00 5.1k           
+R97        R0805                  450mil       2200mil        450mil       2200mil        413mil       2200mil  T        360.00 5.1k           
+R98        R0805                  450mil       1950mil        450mil       1950mil        413mil       1950mil  T        360.00 5.1k           
+R99        R0805                  450mil       1850mil        450mil       1850mil        413mil       1850mil  T        360.00 5.1k           
+R100       R0805                  450mil       1600mil        450mil       1600mil        413mil       1600mil  T        360.00 5.1k           
+R101       R0805                  450mil       1500mil        450mil       1500mil        413mil       1500mil  T        360.00 5.1k           
+R102       R0805                  450mil        950mil        450mil        950mil        413mil        950mil  T        360.00 5.1k           
+R103       R0805                  450mil        850mil        450mil        850mil        413mil        850mil  T        360.00 5.1k           
+R104       R0805                 7500mil       5900mil       7500mil       5900mil       7500mil       5937mil  T        270.00 5.1k           
+R105       R0805                 4500mil       1800mil       4500mil       1800mil       4500mil       1763mil  T         90.00 5.1k           
+R106       R0805                 5200mil       1800mil       5200mil       1800mil       5200mil       1763mil  T         90.00 5.1k           
+R107       R0805                 5900mil       1800mil       5900mil       1800mil       5900mil       1763mil  T         90.00 5.1k           
+R108       R0805                 8500mil       1800mil       8500mil       1800mil       8500mil       1763mil  T         90.00 5.1k           
+R109       R0805                 9200mil       1800mil       9200mil       1800mil       9200mil       1763mil  T         90.00 5.1k           
+R110       R0805                 9900mil       1800mil       9900mil       1800mil       9900mil       1763mil  T         90.00 5.1k           
+R111       R1206                 2670mil       4350mil       2670mil       4350mil       2725mil       4350mil  T        180.00 180            
+R112       R1206                 4295mil       4350mil       4295mil       4350mil       4350mil       4350mil  T        180.00 180            
+R113       R1206                 5920mil       4350mil       5920mil       4350mil       5975mil       4350mil  T        180.00 180            
+R114       R1206                 9170mil       4350mil       9170mil       4350mil       9225mil       4350mil  T        180.00 120            
+R115       R1206                10795mil       4350mil      10795mil       4350mil      10850mil       4350mil  T        180.00 120            
+R116       R1206                12420mil       4350mil      12420mil       4350mil      12475mil       4350mil  T        180.00 120            
+R117       R1206                 2900mil       4350mil       2900mil       4350mil       2845mil       4350mil  T        360.00 180            
+R118       R1206                 4525mil       4350mil       4525mil       4350mil       4470mil       4350mil  T        360.00 180            
+R119       R1206                 6150mil       4350mil       6150mil       4350mil       6095mil       4350mil  T        360.00 180            
+R120       R1206                 9400mil       4350mil       9400mil       4350mil       9345mil       4350mil  T        360.00 120            
+R121       R1206                11025mil       4350mil      11025mil       4350mil      10970mil       4350mil  T        360.00 120            
+R122       R1206                12650mil       4350mil      12650mil       4350mil      12595mil       4350mil  T        360.00 120            
+R123       R0805                 4600mil       1800mil       4600mil       1800mil       4600mil       1763mil  T         90.00 5.1k           
+R124       R0805                 5300mil       1800mil       5300mil       1800mil       5300mil       1763mil  T         90.00 5.1k           
+R125       R0805                 6000mil       1800mil       6000mil       1800mil       6000mil       1763mil  T         90.00 5.1k           
+R126       R0805                 8600mil       1800mil       8600mil       1800mil       8600mil       1763mil  T         90.00 5.1k           
+R127       R0805                 9300mil       1800mil       9300mil       1800mil       9300mil       1763mil  T         90.00 5.1k           
+R128       R0805                10000mil       1800mil      10000mil       1800mil      10000mil       1763mil  T         90.00 5.1k           
+R129       R1206                 3100mil       4150mil       3100mil       4150mil       3100mil       4095mil  T         90.00 180            
+R130       R1206                 4725mil       4150mil       4725mil       4150mil       4725mil       4095mil  T         90.00 180            
+R131       R1206                 6350mil       4150mil       6350mil       4150mil       6350mil       4095mil  T         90.00 180            
+R132       R1206                 9600mil       4150mil       9600mil       4150mil       9600mil       4095mil  T         90.00 120            
+R133       R1206                11225mil       4150mil      11225mil       4150mil      11225mil       4095mil  T         90.00 120            
+R134       R1206                12850mil       4150mil      12850mil       4150mil      12850mil       4095mil  T         90.00 120            
+R135       R1206                 3050mil       3850mil       3050mil       3850mil       3050mil       3905mil  T        270.00 180            
+R136       R1206                 4675mil       3850mil       4675mil       3850mil       4675mil       3905mil  T        270.00 180            
+R137       R1206                 6300mil       3850mil       6300mil       3850mil       6300mil       3905mil  T        270.00 180            
+R138       R1206                 9550mil       3850mil       9550mil       3850mil       9550mil       3905mil  T        270.00 120            
+R139       R1206                11175mil       3850mil      11175mil       3850mil      11175mil       3905mil  T        270.00 120            
+R140       R1206                12800mil       3850mil      12800mil       3850mil      12800mil       3905mil  T        270.00 120            
+R141       R0805                 4700mil       1800mil       4700mil       1800mil       4700mil       1763mil  T         90.00 5.1k           
+R142       R0805                 5400mil       1800mil       5400mil       1800mil       5400mil       1763mil  T         90.00 5.1k           
+R143       R0805                 6100mil       1800mil       6100mil       1800mil       6100mil       1763mil  T         90.00 5.1k           
+R144       R0805                 8700mil       1800mil       8700mil       1800mil       8700mil       1763mil  T         90.00 5.1k           
+R145       R0805                 9400mil       1800mil       9400mil       1800mil       9400mil       1763mil  T         90.00 5.1k           
+R146       R0805                10100mil       1800mil      10100mil       1800mil      10100mil       1763mil  T         90.00 5.1k           
+R147       R1206                 2900mil       3055mil       2900mil       3055mil       2900mil       3000mil  T         90.00 180            
+R148       R1206                 4525mil       3055mil       4525mil       3055mil       4525mil       3000mil  T         90.00 180            
+R149       R1206                 6150mil       3055mil       6150mil       3055mil       6150mil       3000mil  T         90.00 180            
+R150       R1206                 9400mil       3055mil       9400mil       3055mil       9400mil       3000mil  T         90.00 120            
+R151       R1206                11025mil       3055mil      11025mil       3055mil      11025mil       3000mil  T         90.00 120            
+R152       R1206                12650mil       3055mil      12650mil       3055mil      12650mil       3000mil  T         90.00 120            
+R153       R1206                 2850mil       2745mil       2850mil       2745mil       2850mil       2800mil  T        270.00 180            
+R154       R1206                 4475mil       2745mil       4475mil       2745mil       4475mil       2800mil  T        270.00 180            
+R155       R1206                 6100mil       2745mil       6100mil       2745mil       6100mil       2800mil  T        270.00 180            
+R156       R1206                 9350mil       2745mil       9350mil       2745mil       9350mil       2800mil  T        270.00 120            
+R157       R1206                10975mil       2745mil      10975mil       2745mil      10975mil       2800mil  T        270.00 120            
+R158       R1206                12600mil       2745mil      12600mil       2745mil      12600mil       2800mil  T        270.00 120            
+R159       R0805                 4800mil       1800mil       4800mil       1800mil       4800mil       1763mil  T         90.00 5.1k           
+R160       R0805                 5500mil       1800mil       5500mil       1800mil       5500mil       1763mil  T         90.00 5.1k           
+R161       R0805                 6200mil       1800mil       6200mil       1800mil       6200mil       1763mil  T         90.00 5.1k           
+R162       R0805                 8800mil       1800mil       8800mil       1800mil       8800mil       1763mil  T         90.00 5.1k           
+R163       R0805                 9500mil       1800mil       9500mil       1800mil       9500mil       1763mil  T         90.00 5.1k           
+R164       R0805                10200mil       1800mil      10200mil       1800mil      10200mil       1763mil  T         90.00 5.1k           
+R165       R1206                 2605mil       2600mil       2605mil       2600mil       2550mil       2600mil  T        360.00 180            
+R166       R1206                 4230mil       2600mil       4230mil       2600mil       4175mil       2600mil  T        360.00 180            
+R167       R1206                 5855mil       2600mil       5855mil       2600mil       5800mil       2600mil  T        360.00 180            
+R168       R1206                 9105mil       2600mil       9105mil       2600mil       9050mil       2600mil  T        360.00 120            
+R169       R1206                10730mil       2600mil      10730mil       2600mil      10675mil       2600mil  T        360.00 120            
+R170       R1206                12355mil       2600mil      12355mil       2600mil      12300mil       2600mil  T          0.00 120            
+R171       R1206                 2350mil       2600mil       2350mil       2600mil       2405mil       2600mil  T        180.00 180            
+R172       R1206                 3975mil       2600mil       3975mil       2600mil       4030mil       2600mil  T        180.00 180            
+R173       R1206                 5600mil       2600mil       5600mil       2600mil       5655mil       2600mil  T        180.00 180            
+R174       R1206                 8850mil       2600mil       8850mil       2600mil       8905mil       2600mil  T        180.00 120            
+R175       R1206                10475mil       2600mil      10475mil       2600mil      10530mil       2600mil  T        180.00 120            
+R176       R1206                12100mil       2600mil      12100mil       2600mil      12155mil       2600mil  T        180.00 120            
+R177       R0805                 4900mil       1800mil       4900mil       1800mil       4900mil       1763mil  T         90.00 5.1k           
+R178       R0805                 5600mil       1800mil       5600mil       1800mil       5600mil       1763mil  T         90.00 5.1k           
+R179       R0805                 6300mil       1800mil       6300mil       1800mil       6300mil       1763mil  T         90.00 5.1k           
+R180       R0805                 8900mil       1800mil       8900mil       1800mil       8900mil       1763mil  T         90.00 5.1k           
+R181       R0805                 9600mil       1800mil       9600mil       1800mil       9600mil       1763mil  T         90.00 5.1k           
+R182       R0805                10300mil       1800mil      10300mil       1800mil      10300mil       1763mil  T         90.00 5.1k           
+R183       R1206                 2205mil       2800mil       2205mil       2800mil       2205mil       2855mil  T        270.00 180            
+R184       R1206                 3830mil       2800mil       3830mil       2800mil       3830mil       2855mil  T        270.00 180            
+R185       R1206                 5455mil       2800mil       5455mil       2800mil       5455mil       2855mil  T        270.00 180            
+R186       R1206                 8705mil       2800mil       8705mil       2800mil       8705mil       2855mil  T        270.00 120            
+R187       R1206                10330mil       2800mil      10330mil       2800mil      10330mil       2855mil  T        270.00 120            
+R188       R1206                11955mil       2800mil      11955mil       2800mil      11955mil       2855mil  T        270.00 120            
+R189       R1206                 2250mil       3100mil       2250mil       3100mil       2250mil       3045mil  T         90.00 180            
+R190       R1206                 3875mil       3100mil       3875mil       3100mil       3875mil       3045mil  T         90.00 180            
+R191       R1206                 5500mil       3100mil       5500mil       3100mil       5500mil       3045mil  T         90.00 180            
+R192       R1206                 8750mil       3100mil       8750mil       3100mil       8750mil       3045mil  T         90.00 120            
+R193       R1206                10375mil       3100mil      10375mil       3100mil      10375mil       3045mil  T         90.00 120            
+R194       R1206                12000mil       3100mil      12000mil       3100mil      12000mil       3045mil  T         90.00 120            
+R195       R0805                 5000mil       1800mil       5000mil       1800mil       5000mil       1763mil  T         90.00 5.1k           
+R196       R0805                 5700mil       1800mil       5700mil       1800mil       5700mil       1763mil  T         90.00 5.1k           
+R197       R0805                 6400mil       1800mil       6400mil       1800mil       6400mil       1763mil  T         90.00 5.1k           
+R198       R0805                 9000mil       1800mil       9000mil       1800mil       9000mil       1763mil  T         90.00 5.1k           
+R199       R0805                 9700mil       1800mil       9700mil       1800mil       9700mil       1763mil  T         90.00 5.1k           
+R200       R0805                10400mil       1800mil      10400mil       1800mil      10400mil       1763mil  T         90.00 5.1k           
+R201       R1206                 2350mil       3900mil       2350mil       3900mil       2350mil       3955mil  T        270.00 180            
+R202       R1206                 3975mil       3900mil       3975mil       3900mil       3975mil       3955mil  T        270.00 180            
+R203       R1206                 5600mil       3900mil       5600mil       3900mil       5600mil       3955mil  T        270.00 180            
+R204       R1206                 8850mil       3900mil       8850mil       3900mil       8850mil       3955mil  T        270.00 120            
+R205       R1206                10475mil       3900mil      10475mil       3900mil      10475mil       3955mil  T        270.00 120            
+R206       R1206                12100mil       3900mil      12100mil       3900mil      12100mil       3955mil  T        270.00 120            
+R207       R1206                 2400mil       4200mil       2400mil       4200mil       2400mil       4145mil  T         90.00 180            
+R208       R1206                 4025mil       4200mil       4025mil       4200mil       4025mil       4145mil  T         90.00 180            
+R209       R1206                 5650mil       4200mil       5650mil       4200mil       5650mil       4145mil  T         90.00 180            
+R210       R1206                 8900mil       4200mil       8900mil       4200mil       8900mil       4145mil  T         90.00 120            
+R211       R1206                10525mil       4200mil      10525mil       4200mil      10525mil       4145mil  T         90.00 120            
+R212       R1206                12150mil       4200mil      12150mil       4200mil      12150mil       4145mil  T         90.00 120            
+R213       R0805                 5100mil       1800mil       5100mil       1800mil       5100mil       1763mil  T         90.00 5.1k           
+R214       R0805                 5800mil       1800mil       5800mil       1800mil       5800mil       1763mil  T         90.00 5.1k           
+R215       R0805                 6500mil       1800mil       6500mil       1800mil       6500mil       1763mil  T         90.00 5.1k           
+R216       R0805                 9100mil       1800mil       9100mil       1800mil       9100mil       1763mil  T         90.00 5.1k           
+R217       R0805                 9800mil       1800mil       9800mil       1800mil       9800mil       1763mil  T         90.00 5.1k           
+R218       R0805                10500mil       1800mil      10500mil       1800mil      10500mil       1763mil  T         90.00 5.1k           
+R219       R1206                 2550mil       3700mil       2550mil       3700mil       2605mil       3700mil  T        180.00 180            
+R220       R1206                 4175mil       3700mil       4175mil       3700mil       4230mil       3700mil  T        180.00 180            
+R221       R1206                 5800mil       3700mil       5800mil       3700mil       5855mil       3700mil  T        180.00 180            
+R222       R1206                 9050mil       3700mil       9050mil       3700mil       9105mil       3700mil  T        180.00 120            
+R223       R1206                10675mil       3700mil      10675mil       3700mil      10730mil       3700mil  T        180.00 120            
+R224       R1206                12300mil       3700mil      12300mil       3700mil      12355mil       3700mil  T        180.00 120            
+R225       R1206                 2800mil       3700mil       2800mil       3700mil       2745mil       3700mil  T        360.00 180            
+R226       R1206                 4425mil       3700mil       4425mil       3700mil       4370mil       3700mil  T        360.00 180            
+R227       R1206                 6050mil       3700mil       6050mil       3700mil       5995mil       3700mil  T        360.00 180            
+R228       R1206                 9300mil       3700mil       9300mil       3700mil       9245mil       3700mil  T        360.00 120            
+R229       R1206                10925mil       3700mil      10925mil       3700mil      10870mil       3700mil  T        360.00 120            
+R230       R1206                12550mil       3700mil      12550mil       3700mil      12495mil       3700mil  T        360.00 120            
+U1         SOIC300-20            7400mil       4100mil       7400mil       4100mil       7175mil   3918.898mil  T        360.00 IS/SN74HC573DWZ
+U3         TQFP-80               7195mil       5300mil       7195mil       5300mil   7382.008mil   5559.842mil  T        270.00 dsPIC30F6014A-30I/PT
+U5         SOIC_8                6900mil        800mil       6900mil        800mil   6794.685mil        875mil  T        270.00 CAN Transceiver
+U7         TO263\7              10000mil       5536mil      10000mil       5700mil       9850mil       5372mil  T        360.00 IS/LM2676SADJN 
+U8         D-PAK_/_TO-252AA       5265mil       5935mil       5265mil       5935mil   5175.039mil   5800.158mil  T          0.00 LP2950CDT-3.3  
+U12        D-PAK_/_TO-252AA      13550mil       3735mil      13550mil       3735mil  13460.039mil   3600.157mil  T          0.00 LP2950CDT-3.3  
+U14        SOIC300-20            7400mil       2400mil       7400mil       2400mil       7175mil   2218.898mil  T        360.00 IS/SN74HC573DWZ
+U19        SOIC300-20            4850mil       1400mil       4850mil       1400mil       4625mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
+U20        SOIC300-20            5550mil       1400mil       5550mil       1400mil       5325mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
+U21        SOIC300-20            6250mil       1400mil       6250mil       1400mil       6025mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
+U22        SOIC300-20            8850mil       1400mil       8850mil       1400mil       8625mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
+U23        SOIC300-20            9550mil       1400mil       9550mil       1400mil       9325mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
+U24        SOIC300-20           10250mil       1400mil      10250mil       1400mil      10025mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
+Y1         XTSL\CSM-7            7250mil       4600mil       7250mil       4600mil       7105mil       4600mil  T        360.00 12.288MHz      
+D3         SOD123               14550mil        990mil      14550mil        990mil  14483.071mil        990mil  T          0.00 3.0V 500mW     
+D4         SOD123               14550mil       1640mil      14550mil       1640mil  14483.071mil       1640mil  T          0.00 3.0V 500mW     
+D5         SOD123               14550mil       1990mil      14550mil       1990mil  14483.071mil       1990mil  T          0.00 3.0V 500mW     
+D6         SOD123                 450mil       4655mil        450mil       4655mil    516.929mil       4655mil  T        180.00 3.0V 500mW     
+D7         SOD123                 450mil       4050mil        450mil       4050mil    516.929mil       4050mil  T        180.00 3.0V 500mW     
+D8         SOD123               14550mil       2940mil      14550mil       2940mil  14483.071mil       2940mil  T          0.00 3.0V 500mW     
+D9         SOD123                 450mil       6005mil        450mil       6005mil    516.929mil       6005mil  T        180.00 3.0V 500mW     
+D10        SOD123                 450mil       5355mil        450mil       5355mil    516.929mil       5355mil  T        180.00 3.0V 500mW     
+D11        SOD123                 450mil       5005mil        450mil       5005mil    516.929mil       5005mil  T        180.00 3.0V 500mW     
+D15        SOD123               14550mil       4265mil      14550mil       4265mil  14483.071mil       4265mil  T          0.00 3.0V 500mW     
+D16        SOD123               14555mil       4910mil      14555mil       4910mil  14488.071mil       4910mil  T          0.00 3.0V 500mW     
+D17        SOD123               14545mil       5260mil      14545mil       5260mil  14478.071mil       5260mil  T          0.00 3.0V 500mW     
+D18        SOD123               14550mil       5630mil      14550mil       5630mil  14483.071mil       5630mil  T          0.00 3.0V 500mW     
+D19        SOD123               14545mil       6220mil      14545mil       6220mil  14478.071mil       6220mil  T          0.00 3.0V 500mW     
+D20        SOD123                 450mil       2735mil        450mil       2735mil    516.929mil       2735mil  T        180.00 3.0V 500mW     
+D21        SOD123                 450mil       2085mil        450mil       2085mil    516.929mil       2085mil  T        180.00 3.0V 500mW     
+D22        SOD123                 450mil       1735mil        450mil       1735mil    516.929mil       1735mil  T        180.00 3.0V 500mW     
+D23        SOD123                 450mil       1385mil        450mil       1385mil    516.929mil       1385mil  T        180.00 3.0V 500mW     
+D24        SOD123                 450mil        735mil        450mil        735mil    516.929mil        735mil  T        180.00 3.0V 500mW     
+U10        SOIC300-20            7400mil       1700mil       7400mil       1700mil       7175mil   1518.898mil  T          0.00 IS/SN74HC541DWZ
+U18        SOIC300-20            7400mil       3400mil       7400mil       3400mil       7175mil   3218.898mil  T          0.00 IS/SN74HC541DWZ
+D25        SOD123               14550mil       2340mil      14550mil       2340mil  14483.071mil       2340mil  T          0.00 3.0V 500mW     
+C53        C0805                 7135mil       2900mil       7135mil       2900mil       7135mil       2937mil  T        270.00 0.1uF          
+R231       R0805                 7035mil       2900mil       7035mil       2900mil       7035mil       2937mil  T        270.00 5.1k           
+U25        SOIC_16               7400mil       2900mil       7400mil       2900mil       7225mil   2794.685mil  T        360.00 IS/SN74HC138DZ 
+J13        JCPM5086VE0Z          6620mil       6770mil       7120mil       6770mil       7120mil       6770mil  T        180.00 155212-5303-RB 
+
