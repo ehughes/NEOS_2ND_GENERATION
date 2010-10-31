@@ -1,0 +1,96 @@
+[OutputJobFile]
+Version=1.0
+
+[OutputGroup1]
+Name=ELC0103 - MasterBoard.OutJob
+Description=
+TargetOutputMedium=PICK-PLACE
+IncludedInRelease=0
+TargetPrinter=Quicken PDF Printer
+PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintWhat=1
+OutputMedium1=BOM
+OutputMedium1_Type=GeneratedFiles
+OutputMedium2=PICK-PLACE
+OutputMedium2_Type=GeneratedFiles
+OutputMedium3=WIRING_NOTES
+OutputMedium3_Type=Publish
+OutputType1=BOM_PartType
+OutputName1=Bill of Materials
+OutputDocumentPath1=
+OutputVariantName1=MASTER - ELC0104
+OutputEnabled1=0
+OutputEnabled1_OutputMedium1=1
+OutputEnabled1_OutputMedium2=0
+OutputEnabled1_OutputMedium3=0
+OutputDefault1=0
+PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PaperKind=Letter|PrintScaleMode=1
+Configuration1_Name1=Filter
+Configuration1_Item1=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
+Configuration1_Name2=General
+Configuration1_Item2=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|IncludePCBData=False|ShowExportOptions=True|TemplateFilename=BUILD_BOM.XLT|BatchMode=5|FormWidth=1153|FormHeight=760|SupplierProdQty=1|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>
+Configuration1_Name3=GroupOrder
+Configuration1_Item3=Value=True
+Configuration1_Name4=OutputConfigurationParameter1
+Configuration1_Item4=Record=BOMPrintView|ShowNoERC=True|ShowParamSet=True|ShowProbe=True|ShowBlanket=True|ExpandDesignator=True|ExpandNetLabel=False|ExpandPort=False|ExpandSheetNum=False|ExpandDocNum=False
+Configuration1_Name5=SortOrder
+Configuration1_Item5=Designator=Up|Comment=Up|Footprint=Up
+Configuration1_Name6=VisibleOrder
+Configuration1_Item6=Comment=100|Description=100|Designator=100|Manufacturer=100|Manufacturer Part Number=100|Quantity=100|Supplier 1=100|Supplier Part Number 1=100|Value=100
+OutputType2=Pick Place
+OutputName2=Generates pick and place files
+OutputDocumentPath2=PCB0008.PcbDoc
+OutputVariantName2=MASTER - ELC0104
+OutputEnabled2=1
+OutputEnabled2_OutputMedium1=0
+OutputEnabled2_OutputMedium2=1
+OutputEnabled2_OutputMedium3=0
+OutputDefault2=0
+Configuration2_Name1=OutputConfigurationParameter1
+Configuration2_Item1=Record=PickPlaceView|Units=Imperial|GenerateCSVFormat=True|GenerateTextFormat=False
+OutputType3=Schematic Print
+OutputName3=Schematic Prints
+OutputDocumentPath3=ELC0103 - MasterBoard - Wiring.SchDoc
+OutputVariantName3=
+OutputEnabled3=0
+OutputEnabled3_OutputMedium1=0
+OutputEnabled3_OutputMedium2=0
+OutputEnabled3_OutputMedium3=1
+OutputDefault3=0
+PageOptions3=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=0.61|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PaperKind=Letter|PrintScaleMode=1
+Configuration3_Name1=OutputConfigurationParameter1
+Configuration3_Item1=Record=SchPrintView|ShowNoERC=False|ShowParamSet=False|ShowProbe=False|ShowBlanket=False|ExpandDesignator=True|ExpandNetLabel=False|ExpandPort=False|ExpandSheetNum=False|ExpandDocNum=False
+
+[GeneratedFilesSettings]
+RelativeOutputPath1=BUILD_PACKAGE\ELC0104_NEOS_MASTER\BOM
+OpenOutputs1=0
+AddToProject1=0
+TimestampFolder1=0
+SeparateFolderForEachOutput1=0
+UseOutputName1=0
+RelativeOutputPath2=BUILD_PACKAGE\ELC0104_NEOS_MASTER\PICK-PLACE
+OpenOutputs2=0
+AddToProject2=0
+TimestampFolder2=0
+SeparateFolderForEachOutput2=0
+UseOutputName2=0
+
+[PublishSettings]
+PublishMethod3=0
+OpenOutput3=0
+PromptOverwrite3=0
+ZoomLevel3=50
+FitSCHPrintSizeToDoc3=1
+FitPCBPrintSizeToDoc3=1
+GenerateNetsInfo3=0
+MarkPins3=0
+MarkNetLabels3=0
+MarkPortsId3=0
+OutputFilePath3=C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\SCH\ELC0103 - Master & ELC104 - Slave\BUILD_PACKAGE\ELC0104_NEOS_MASTER\WIRING_NOTES.pdf
+
+[CAMtasticOutputs]
+OpenODBOutput=False
+OpenGerberOutput=False
+OpenNCDrillOutput=False
+OpenIPCOutput=False
+EnableReload=False
+

@@ -1,0 +1,1 @@
+See PCB0010 gerbers with the slave build package.  NEOS Master and Slave Assemblies use the same PCB.
