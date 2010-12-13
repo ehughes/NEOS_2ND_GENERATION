@@ -197,7 +197,7 @@ DS165      LED_T1-3/4_Flush    10872.5mil       3500mil    10822.5mil       3500
 DS166      LED_T1-3/4_Flush    11117.5mil       3500mil    11067.5mil       3500mil    11067.5mil       3500mil  T          0.00 GREEN T1-3/4   
 DS167      LED_T1-3/4_Flush    12497.5mil       3500mil    12447.5mil       3500mil    12447.5mil       3500mil  T          0.00 GREEN T1-3/4   
 DS168      LED_T1-3/4_Flush    12742.5mil       3500mil    12692.5mil       3500mil    12692.5mil       3500mil  T          0.00 GREEN T1-3/4   
-L1         IND/DO5022            8895mil       5300mil       8895mil       5300mil       8895mil     5602.5mil  T        270.00 Value          
+L1         IND/DO5022            8895mil       5300mil       8895mil       5300mil       8895mil     5602.5mil  T        270.00 33uH 3A        
 Q1         D2PAK              12312.5mil        400mil      12500mil        400mil      12125mil        500mil  T        270.00 QS/VNB14NV04Z  
 Q2         D2PAK              11412.5mil        750mil      11600mil        750mil      11225mil        850mil  T        270.00 QS/VNB14NV04Z  
 Q3         D2PAK              12312.5mil       1100mil      12500mil       1100mil      12125mil       1200mil  T        270.00 QS/VNB14NV04Z  
@@ -458,8 +458,8 @@ R229       R1206                10925mil       3700mil      10925mil       3700m
 R230       R1206                12550mil       3700mil      12550mil       3700mil      12495mil       3700mil  T        360.00 120            
 U1         SOIC300-20            7400mil       4100mil       7400mil       4100mil       7175mil   3918.898mil  T        360.00 IS/SN74HC573DWZ
 U3         TQFP-80               7195mil       5300mil       7195mil       5300mil   7382.008mil   5559.842mil  T        270.00 dsPIC30F6014A-30I/PT
-U5         SOIC_8                6900mil        800mil       6900mil        800mil   6794.685mil        875mil  T        270.00 CAN Transceiver
-U7         TO263\7              10000mil       5536mil      10000mil       5700mil       9850mil       5372mil  T        360.00 IS/LM2676SADJN 
+U5         SOIC_8                6900mil        800mil       6900mil        800mil   6794.685mil        875mil  T        270.00 SN65HVD230DR   
+U7         TO263\7              10000mil       5536mil      10000mil       5700mil       9850mil       5372mil  T        360.00 LM2676S-ADJ/NOPB
 U8         D-PAK_/_TO-252AA       5265mil       5935mil       5265mil       5935mil   5175.039mil   5800.158mil  T          0.00 LP2950CDT-3.3  
 U12        D-PAK_/_TO-252AA      13550mil       3735mil      13550mil       3735mil  13460.039mil   3600.157mil  T          0.00 LP2950CDT-3.3  
 U14        SOIC300-20            7400mil       2400mil       7400mil       2400mil       7175mil   2218.898mil  T        360.00 IS/SN74HC573DWZ
@@ -469,7 +469,7 @@ U21        SOIC300-20            6250mil       1400mil       6250mil       1400m
 U22        SOIC300-20            8850mil       1400mil       8850mil       1400mil       8625mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
 U23        SOIC300-20            9550mil       1400mil       9550mil       1400mil       9325mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
 U24        SOIC300-20           10250mil       1400mil      10250mil       1400mil      10025mil   1218.898mil  T          0.00 IS/SN74HC573DWZ
-Y1         XTSL\CSM-7            7250mil       4600mil       7250mil       4600mil       7105mil       4600mil  T        360.00 12.288MHz      
+Y1         XTSL\CSM-7            7250mil       4600mil       7250mil       4600mil       7105mil       4600mil  T        360.00 8.192MHz       
 D3         SOD123               14550mil        990mil      14550mil        990mil  14483.071mil        990mil  T          0.00 3.0V 500mW     
 D4         SOD123               14550mil       1640mil      14550mil       1640mil  14483.071mil       1640mil  T          0.00 3.0V 500mW     
 D5         SOD123               14550mil       1990mil      14550mil       1990mil  14483.071mil       1990mil  T          0.00 3.0V 500mW     
@@ -494,6 +494,10 @@ U18        SOIC300-20            7400mil       3400mil       7400mil       3400m
 D25        SOD123               14550mil       2340mil      14550mil       2340mil  14483.071mil       2340mil  T          0.00 3.0V 500mW     
 C53        C0805                 7135mil       2900mil       7135mil       2900mil       7135mil       2937mil  T        270.00 0.1uF          
 R231       R0805                 7035mil       2900mil       7035mil       2900mil       7035mil       2937mil  T        270.00 5.1k           
-U25        SOIC_16               7400mil       2900mil       7400mil       2900mil       7225mil   2794.685mil  T        360.00 IS/SN74HC138DZ 
-J13        JCPM5086VE0Z          6620mil       6770mil       7120mil       6770mil       7120mil       6770mil  T        180.00 155212-5303-RB 
+U25        SOIC_16               7400mil       2900mil       7400mil       2900mil       7225mil   2794.685mil  T        360.00 M74HC238RM13TR 
+J13        JCPM5086VE0Z          6620mil       6770mil       7120mil       6770mil       7120mil       6770mil  T        180.00 1755778        
+J11        JDT1512PA00Z         14120mil     1862.5mil      14300mil       1425mil      14300mil       1425mil  B        360.00 DT15-12PA      
+J12        JDT1512PA00Z           880mil     5132.5mil        700mil       5570mil        700mil       5570mil  B        180.00 DT15-12PA      
+J16        JDT1512PA00Z         14120mil     5137.5mil      14300mil       4700mil      14300mil       4700mil  B        360.00 DT15-12PA      
+J17        JDT1512PA00Z           880mil     1862.5mil        700mil       2300mil        700mil       2300mil  B        180.00 DT15-12PA      
 

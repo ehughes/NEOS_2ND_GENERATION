@@ -27,7 +27,7 @@ PushECOToAnnotationFile=1
 DItemRevisionGUID=
 
 [Document1]
-DocumentPath=ELC102 - Score Board.PcbDoc
+DocumentPath=PCB0010 - Score Board.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -42,22 +42,7 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document2]
-DocumentPath=ELC102 - ScoreBoard - TopLevel.SchDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=0
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=0
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-
-[Document3]
-DocumentPath=ELC102 - Old Circuits.SchDoc
+DocumentPath=ELC0102 - Assembly Notes.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -66,13 +51,28 @@ AnnotateScope=All
 AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=0
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+
+[Document3]
+DocumentPath=ELC0102 - Green Digits.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document4]
-DocumentPath=ELC102 - Green Digits.SchDoc
+DocumentPath=ELC0102 - Old Circuits.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -81,13 +81,13 @@ AnnotateScope=All
 AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=0
-ClassGenCCAutoRoomEnabled=0
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document5]
-DocumentPath=ELC102 - Red Digits.SchDoc
+DocumentPath=ELC0102 - Outjob Script.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -96,13 +96,13 @@ AnnotateScope=All
 AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=0
-ClassGenCCAutoRoomEnabled=0
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document6]
-DocumentPath=ELC102 - Switch Interface.SchDoc
+DocumentPath=ELC0102 - Red Digits.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -111,13 +111,13 @@ AnnotateScope=All
 AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=0
+ClassGenCCAutoEnabled=1
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document7]
-DocumentPath=ELC102 - Assembly Notes.SchDoc
+DocumentPath=ELC0102 - ScoreBoard - TopLevel.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -126,13 +126,13 @@ AnnotateScope=All
 AnnotateOrder=-1
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=0
+ClassGenCCAutoEnabled=1
 ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document8]
-DocumentPath=ELC102 - Outjob Script.OutJob
+DocumentPath=ELC0102 - Scoreboard.SCHLIB
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -147,7 +147,7 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 
 [Document9]
-DocumentPath=ELC102 - Scoreboard.SCHLIB
+DocumentPath=ELC0102 - Switch Interface.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0

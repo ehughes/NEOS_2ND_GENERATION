@@ -2,9 +2,9 @@
 Version=1.0
 
 [OutputGroup1]
-Name=ELC102 - Outjob Script.OutJob
+Name=ELC0102 - Outjob Script.OutJob
 Description=
-TargetOutputMedium=GENERATE BOM
+TargetOutputMedium=Wiring Notes
 IncludedInRelease=0
 TargetPrinter=Quicken PDF Printer
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintWhat=1
@@ -18,16 +18,19 @@ OutputMedium4=PCB Prints
 OutputMedium4_Type=Publish
 OutputMedium5=Schematics
 OutputMedium5_Type=Publish
+OutputMedium6=Wiring Notes
+OutputMedium6_Type=Publish
 OutputType1=BOM_PartType
 OutputName1=Bill of Materials
 OutputDocumentPath1=
 OutputVariantName1=MAIN_BUILD
-OutputEnabled1=1
+OutputEnabled1=0
 OutputEnabled1_OutputMedium1=1
 OutputEnabled1_OutputMedium2=0
 OutputEnabled1_OutputMedium3=0
 OutputEnabled1_OutputMedium4=0
 OutputEnabled1_OutputMedium5=0
+OutputEnabled1_OutputMedium6=0
 OutputDefault1=0
 PageOptions1=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PaperKind=Letter|PrintScaleMode=1
 Configuration1_Name1=Filter
@@ -44,7 +47,7 @@ Configuration1_Name6=VisibleOrder
 Configuration1_Item6=Description=100|Designator=100|LibRef=100|Quantity=100|Manufacturer=100|Manufacturer Part Number=100|Supplier 1=100|Supplier Part Number 1=100|Value=100
 OutputType2=Gerber
 OutputName2=PCB0010
-OutputDocumentPath2=ELC102 - Score Board.PcbDoc
+OutputDocumentPath2=
 OutputVariantName2=
 OutputEnabled2=0
 OutputEnabled2_OutputMedium1=0
@@ -52,12 +55,13 @@ OutputEnabled2_OutputMedium2=1
 OutputEnabled2_OutputMedium3=0
 OutputEnabled2_OutputMedium4=0
 OutputEnabled2_OutputMedium5=0
+OutputEnabled2_OutputMedium6=0
 OutputDefault2=0
 Configuration2_Name1=OutputConfigurationParameter1
 Configuration2_Item1=AddToAllPlots.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|CentrePlots=False|DrillDrawingSymbol=GraphicsSymbol|DrillDrawingSymbolSize=500000|EmbeddedApertures=True|FilmBorderSize=10000000|FilmXSize=200000000|FilmYSize=160000000|FlashAllFills=False|FlashPadShapes=True|G54OnApertureChange=False|GenerateDRCRulesFile=True|GenerateReliefShapes=True|GerberUnit=Imperial|IncludeUnconnectedMidLayerPads=False|LeadingAndTrailingZeroesMode=SuppressLeadingZeroes|MaxApertureSize=2500000|MinusApertureTolerance=50|Mirror.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean|MirrorDrillDrawingPlots=False|MirrorDrillGuidePlots=False|NumberOfDecimals=3|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Panelize=False|Plot.Set=SerializeLayerHash.Version~2,ClassName~TLayerToBoolean,16973830~1,16973832~1,16973834~1,16777217~1,16842754~1,16842753~1,16842751~1,16973835~1,16973833~1,16973831~1,16908289~1,16908290~1,16908291~1|PlotPositivePlaneLayers=False|PlotUsedDrillDrawingLayerPairs=False|PlotUsedDrillGuideLayerPairs=False|PlusApertureTolerance=50|Record=GerberView|SoftwareArcs=False|Sorted=False
 OutputType3=NC Drill
 OutputName3=PCB0010
-OutputDocumentPath3=ELC102 - Score Board.PcbDoc
+OutputDocumentPath3=
 OutputVariantName3=
 OutputEnabled3=0
 OutputEnabled3_OutputMedium1=0
@@ -65,12 +69,13 @@ OutputEnabled3_OutputMedium2=2
 OutputEnabled3_OutputMedium3=0
 OutputEnabled3_OutputMedium4=0
 OutputEnabled3_OutputMedium5=0
+OutputEnabled3_OutputMedium6=0
 OutputDefault3=0
 Configuration3_Name1=OutputConfigurationParameter1
 Configuration3_Item1=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=3|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressTrailingZeroes
 OutputType4=PCB Print
 OutputName4=PCB Prints
-OutputDocumentPath4=ELC102 - Score Board.PcbDoc
+OutputDocumentPath4=
 OutputVariantName4=
 OutputEnabled4=0
 OutputEnabled4_OutputMedium1=0
@@ -78,6 +83,7 @@ OutputEnabled4_OutputMedium2=0
 OutputEnabled4_OutputMedium3=0
 OutputEnabled4_OutputMedium4=1
 OutputEnabled4_OutputMedium5=0
+OutputEnabled4_OutputMedium6=0
 OutputDefault4=0
 PageOptions4=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PaperKind=Letter|PrintScaleMode=1
 Configuration4_Name1=OutputConfigurationParameter1
@@ -96,7 +102,7 @@ Configuration4_Name7=OutputConfigurationParameter7
 Configuration4_Item7=CArc=Full|CFill=Full|Comment=Full|Coordinate=Full|CPad=Full|CRegion=Full|CText=Full|CTrack=Full|CVia=Full|DDSymbolKind=0|DDSymbolSize=500000|DDSymbolSortKind=0|Designator=Full|Dimension=Full|DLayer1=TopLayer|DLayer2=BottomLayer|FArc=Full|FFill=Full|FPad=Full|FRegion=Full|FText=Full|FTrack=Full|FVia=Full|Layer=TopLayer|Polygon=Full|PrintOutIndex=0|Record=PcbPrintLayer
 OutputType5=Pick Place
 OutputName5=Generates pick and place files
-OutputDocumentPath5=ELC102 - Score Board.PcbDoc
+OutputDocumentPath5=
 OutputVariantName5=MAIN_BUILD
 OutputEnabled5=0
 OutputEnabled5_OutputMedium1=0
@@ -104,6 +110,7 @@ OutputEnabled5_OutputMedium2=0
 OutputEnabled5_OutputMedium3=1
 OutputEnabled5_OutputMedium4=0
 OutputEnabled5_OutputMedium5=0
+OutputEnabled5_OutputMedium6=0
 OutputDefault5=0
 Configuration5_Name1=OutputConfigurationParameter1
 Configuration5_Item1=Record=PickPlaceView|Units=Imperial|GenerateCSVFormat=True|GenerateTextFormat=True
@@ -117,10 +124,26 @@ OutputEnabled6_OutputMedium2=0
 OutputEnabled6_OutputMedium3=0
 OutputEnabled6_OutputMedium4=0
 OutputEnabled6_OutputMedium5=1
+OutputEnabled6_OutputMedium6=0
 OutputDefault6=0
 PageOptions6=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=0.32|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PaperKind=Letter|PrintScaleMode=1
 Configuration6_Name1=OutputConfigurationParameter1
 Configuration6_Item1=Record=SchPrintView|ShowNoERC=False|ShowParamSet=False|ShowProbe=False|ShowBlanket=False|ExpandDesignator=True|ExpandNetLabel=False|ExpandPort=False|ExpandSheetNum=False|ExpandDocNum=False
+OutputType7=Schematic Print
+OutputName7=Wiring Notes
+OutputDocumentPath7=ELC0102 - Assembly Notes.SchDoc
+OutputVariantName7=
+OutputEnabled7=1
+OutputEnabled7_OutputMedium1=0
+OutputEnabled7_OutputMedium2=0
+OutputEnabled7_OutputMedium3=0
+OutputEnabled7_OutputMedium4=0
+OutputEnabled7_OutputMedium5=0
+OutputEnabled7_OutputMedium6=1
+OutputDefault7=0
+PageOptions7=Record=PageOptions|CenterHorizontal=True|CenterVertical=True|PrintScale=1.00|XCorrection=1.00|YCorrection=1.00|PrintKind=0|BorderSize=5000000|LeftOffset=0|BottomOffset=0|Orientation=2|PaperLength=1000|PaperWidth=1000|Scale=100|PaperSource=7|PrintQuality=-4|MediaType=1|DitherType=10|PaperKind=Letter|PrintScaleMode=1
+Configuration7_Name1=OutputConfigurationParameter1
+Configuration7_Item1=Record=SchPrintView|ShowNoERC=True|ShowParamSet=True|ShowProbe=True|ShowBlanket=True|ExpandDesignator=True|ExpandNetLabel=False|ExpandPort=False|ExpandSheetNum=False|ExpandDocNum=False
 
 [GeneratedFilesSettings]
 RelativeOutputPath1=BUILD_PACKAGE\BOM
@@ -144,8 +167,8 @@ UseOutputName3=0
 
 [PublishSettings]
 PublishMethod4=0
-OpenOutput4=1
-PromptOverwrite4=1
+OpenOutput4=0
+PromptOverwrite4=0
 ZoomLevel4=50
 FitSCHPrintSizeToDoc4=1
 FitPCBPrintSizeToDoc4=1
@@ -155,8 +178,8 @@ MarkNetLabels4=1
 MarkPortsId4=1
 OutputFilePath4=C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\SCH\ELC102 - Scoreboard\BUILD_PACKAGE\PCB_PRINTS\ELC102 - ScoreBoard.pdf
 PublishMethod5=0
-OpenOutput5=1
-PromptOverwrite5=1
+OpenOutput5=0
+PromptOverwrite5=0
 ZoomLevel5=50
 FitSCHPrintSizeToDoc5=1
 FitPCBPrintSizeToDoc5=1
@@ -165,6 +188,17 @@ MarkPins5=1
 MarkNetLabels5=1
 MarkPortsId5=1
 OutputFilePath5=C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\SCH\ELC102 - Scoreboard\BUILD_PACKAGE\SCHEMATICS_PRINTS\ELC102 - ScoreBoard Schematics.pdf
+PublishMethod6=0
+OpenOutput6=0
+PromptOverwrite6=0
+ZoomLevel6=50
+FitSCHPrintSizeToDoc6=1
+FitPCBPrintSizeToDoc6=1
+GenerateNetsInfo6=1
+MarkPins6=1
+MarkNetLabels6=1
+MarkPortsId6=1
+OutputFilePath6=C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\SCH\ELC102 - Scoreboard\BUILD_PACKAGE\ELC0102 - Scoreboard Post Assembly Wiring Notes.pdf
 
 [CAMtasticOutputs]
 OpenODBOutput=False
