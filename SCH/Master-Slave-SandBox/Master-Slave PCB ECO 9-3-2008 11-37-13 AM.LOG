@@ -1,6 +1,0 @@
-Added Component: Designator=C13(C0603)
-Added Component: Designator=C49(C0603)
-Added Pin To Net: NetName=NetC1_2 Pin=C13-1
-Added Pin To Net: NetName=GND Pin=C13-2
-Added Pin To Net: NetName=NetC27_2 Pin=C49-1
-Added Pin To Net: NetName=GND Pin=C49-2
