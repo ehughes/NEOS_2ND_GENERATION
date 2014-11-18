@@ -26,7 +26,7 @@ namespace NFLASH
        public const int FLASH_OPERATION_FAILED = 2;
        static volatile int FLASHOperationStatus = WAITING_FOR_SOUND_MODULE;
         static public volatile bool FLASHOperationFailed = false;
-       public const int FLASHEraseOperationTimeOut = 500;
+       public const int FLASHEraseOperationTimeOut = 2000;
        public const int FLASHWriteOperationTimeOut = 200;
 
        public const int MAX_RETRIES_AFTER_TIMEOUT = 5;
@@ -331,7 +331,19 @@ namespace NFLASH
             PutNEOSInFLASHMode(MyCommunicationsManager);
 
             //Wait for unit to take the new mode.
-            Thread.Sleep(500);
+            Thread.Sleep(100);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+
+            Thread.Sleep(100);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+            Thread.Sleep(100);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
+            PutNEOSInFLASHMode(MyCommunicationsManager);
 
             fs.Position = 0;
 
@@ -377,7 +389,7 @@ namespace NFLASH
                 }
                 else
                 {
-
+                    
                     TimeOutCnt = 0;
                     FLASHOperationStatus = WAITING_FOR_SOUND_MODULE;
 
@@ -386,7 +398,7 @@ namespace NFLASH
                         if (CheckQuit() == true) return false;
                         
                         FlashStatusCurrent = i;
-                        Thread.Sleep(1);
+                        Thread.Sleep(10);
                         TimeOutCnt++;
 
                         if (TimeOutCnt > FLASHEraseOperationTimeOut)
