@@ -16,18 +16,23 @@
 #include "TimerRoutines.h"
 #include "stdint.h"
 
+
+
+
 //*************************************************
 //*******Game Parameters***************************
 //*************************************************
 
 #define SHREK_COLOR_INDEX		0
 #define DONKEY_COLOR_INDEX		1
-#define FIONA_COLOR_INDEX		2
+#define GINGY_COLOR_INDEX		2
 #define	RANDOM_COLOR_INDEX		0xFF
 
-#define FIONA_COLOR 63,0,0
+#define GINGY_COLOR 63,0,0
 #define SHREK_COLOR 0,63,0
 #define DONKEY_COLOR 63,63,0
+
+#define MASTER_VOLUME	0x3f
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -58,7 +63,9 @@
 
 
 #define MAIN_GAME_TIMER					GPTimer[0]	
-#define NEXT_SEQUENCE_TIMER				GPTimer[1]	
+#define NEXT_SEQUENCE_TIMER				GPTimer[1]	1
+#define WELCOME_				GPTimer[1]	1
+
 	
 //*************************************************
 //*******Game Variables****************************
@@ -79,6 +86,11 @@ void SendShrekLight(uint8_t Node,uint8_t ShrekColorIndex,int8_t FadeTime);
 //*************************************************
 //*******Game Functions****************************
 //*************************************************
+void PlayAttractionSound()
+{
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,WAFFLES_WAV_LENGTH ,MASTER_VOLUME,0);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM,WAFFLES_WAV);
+}
 
 void Shrek(void)
 {
@@ -96,15 +108,11 @@ void Shrek(void)
 		break;
 		
 		case SHREK_INIT:
-			if(MAIN_GAME_TIMER > 100)
+			if(MAIN_GAME_TIMER == 100)
 			{
-					LEDSendMessage(ENABLE_ALL,LEDOFF,GREEN,100,200);
-					EAudioPlaySound(BACKGROUND_MUSIC_STREAM,WAFFLES_WAV);
-			}
-			if(MAIN_GAME_TIMER >2000)
-			{
+				PlayAttractionSound();
+				RegenerateShrekLightSequence(rand()%MAX_SEQUENCE_LENGTH);
 				GameState = SHREK_ATTRACT_DISPLAY;
-				MAIN_GAME_TIMER = 0;
 			}
 		
 		break;
@@ -112,14 +120,15 @@ void Shrek(void)
 	
 		case SHREK_ATTRACT_DISPLAY:
 			
-			if(CurrentLightSequenceIdx<CurrentLightSequenceLength)
-			{
-				if(MAIN_GAME_TIMER>25)
+			if(MAIN_GAME_TIMER>25)
 				{
 					MAIN_GAME_TIMER = 0;
 
+					if(CurrentLightSequenceIdx<CurrentLightSequenceLength)
+						{	
+			
 					SendShrekLight(LightSequence[CurrentLightSequenceIdx],
-								   RANDOM_COLOR_INDEX,25);
+								   RANDOM_COLOR_INDEX,75);
 
 					CurrentLightSequenceIdx++;
 					if(CurrentLightSequenceIdx >= CurrentLightSequenceLength)
@@ -176,6 +185,9 @@ void RegenerateShrekLightSequence(uint8_t Length)
 		Length = MAX_SEQUENCE_LENGTH;
 	}
 
+	if(Length == 0)
+		Length = 1;
+
 	CurrentLightSequenceLength = Length;
 	CurrentLightSequenceIdx = 0;
 
@@ -210,21 +222,21 @@ void SendShrekLight(uint8_t Node,uint8_t ShrekColorIndex,int8_t FadeTime)
 		case SHREK_COLOR_INDEX:
 
 				LEDSendMessage(Node,SHREK_COLOR,LEDOFF,FadeTime+1,FadeTime);
-				LEDSendMessage(Node,SHREK_COLOR,LEDOFF,FadeTime+1,FadeTime);
+				LEDSendMessage(Node+4,SHREK_COLOR,LEDOFF,FadeTime+1,FadeTime);
 
 		break;
 
 		case DONKEY_COLOR_INDEX:
 
 				LEDSendMessage(Node,DONKEY_COLOR,LEDOFF,FadeTime+1,FadeTime);
-				LEDSendMessage(Node,DONKEY_COLOR,LEDOFF,FadeTime+1,FadeTime);
+				LEDSendMessage(Node+4,DONKEY_COLOR,LEDOFF,FadeTime+1,FadeTime);
 
 		break;
 
-		case FIONA_COLOR_INDEX:
+		case GINGY_COLOR_INDEX:
 			
-				LEDSendMessage(Node,DONKEY_COLOR,LEDOFF,FadeTime+1,FadeTime);
-				LEDSendMessage(Node,DONKEY_COLOR,LEDOFF,FadeTime+1,FadeTime);
+				LEDSendMessage(Node,GINGY_COLOR,LEDOFF,FadeTime+1,FadeTime);
+				LEDSendMessage(Node+4,GINGY_COLOR,LEDOFF,FadeTime+1,FadeTime);
 
 		break;
 	}
