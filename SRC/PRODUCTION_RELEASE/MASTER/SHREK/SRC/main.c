@@ -96,10 +96,10 @@ int main (void)
 					LEDSendVariable(DISPLAY_VER, VERSION);
 					CANTransmitCheck();
 				}	
-				if(BOOT_TIMER > 300)
+				if(BOOT_TIMER > 100)
 				{
 					
-					SystemMode = SYSTEM_DIAGNOSTICS;
+					SystemMode = GAME_ACTIVE;
 					DiagnosticsState = INIT;
 					
 				}
