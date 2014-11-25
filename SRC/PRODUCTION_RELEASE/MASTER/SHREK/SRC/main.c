@@ -96,7 +96,7 @@ int main (void)
 					LEDSendVariable(DISPLAY_VER, VERSION);
 					CANTransmitCheck();
 				}	
-				if(BOOT_TIMER > 100)
+				if(BOOT_TIMER > 50)
 				{
 					
 					SystemMode = GAME_ACTIVE;
