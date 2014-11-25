@@ -26,15 +26,8 @@ void OnButtonPress(BYTE button)
 		
 		default:
 		case GAME_ACTIVE:
-			switch(GameSelected)
-			{
-				case GAME_SHREK:
+		
 					OnButtonPressShrek(button);
-				break;
-			
-				default:
-				break;
-			}  
 		break;
 	}
 }
@@ -54,7 +47,7 @@ void OnSelectPress(WORD button)
 			switch(GameSelected)
 			{
 				case GAME_ROOT_GAME0:
-	
+					
 				break;
 			
 				default:
