@@ -19,6 +19,8 @@
 
 
 
+
+
 //*************************************************
 //*******Game Parameters***************************
 //*************************************************
@@ -33,6 +35,8 @@
 #define DONKEY_COLOR 63,63,0
 
 #define MASTER_VOLUME	0x3f
+
+uint8_t  MyStationID = 0;
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -51,7 +55,7 @@
 #define SHREK_ATTRACT_DISPLAY				0x02
 #define SHREK_ATTRACT_WAIT					0x03
 #define SHREK_GENERATE_NEXT_LEVEL			0x04
-#define SHREK_PAUSE_BEFORE_NEXT_SHOW		0x05
+#define SHREK_WAIT_GET_READY				0x05
 #define SHREK_SHOW_PATTERN					0x06
 #define SHREK_PLAY_GAME						0x07
 
@@ -62,7 +66,7 @@
 #define SHREK_GAME_WAIT_BEFORE_RESTART		0x0C
 #define SHREK_NEXT_SEQUENCE_START			0x0D
 #define SHREK_TRUMPET_SUCCESS				0x0E
-#define SHREK_ATTRACT_WAIT_AFTER_START		0xF
+#define SHREK_WAIT_WELCOME					0xF
 
 //*************************************************
 //******** System Timer MACROS*********************
@@ -87,8 +91,9 @@ uint8_t CurrentLightSequenceIdx = 0;
 uint8_t CurrentLightSequenceLength = 0;
 uint8_t LightSequence[MAX_SEQUENCE_LENGTH];
 uint8_t ColorSequence[MAX_SEQUENCE_LENGTH];
-
 uint8_t IncorrectButtonPress = 0;
+
+uint16_t  CurrentTimeout = 0;
 
 //*************************************************
 //*******Game Helper Function Declarations*********
@@ -99,22 +104,85 @@ void SendShrekLight(uint8_t Node,uint8_t ShrekColorIndex,int8_t FadeTime);
 //*************************************************
 //*******Game Functions****************************
 //*************************************************
-void PlayAttractionSound()
+
+#define MAX_RAND_RETRY	0x80
+
+uint8_t LastShrekRandom = 0xFF;
+
+uint8_t ShrekRandomButton()
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,GINGY_COME_PLAY_WAV_LENGTH ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,WAFFLES_WAV);
+	uint8_t  i = 0;
+	uint8_t R;
+	
+	do
+	{
+		R = rand() % 4;
+		i++;
+	}
+	while(R!=LastShrekRandom && i < MAX_RAND_RETRY);
+
+	LastShrekRandom = R;
+
+	return R;
 }
 
-void PlayGetReady()
+void PlayIdleSound(uint8_t StationId)
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,GINGY_GET_READY_1_WAV_LENGTH ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,GINGY_GET_READY_1_WAV);
+	 uint16_t Length = 0;
+	 uint16_t Idx = 0;
+
+	switch(StationId)
+	{
+		default:
+		case 0:
+			Idx = STATION1_IDLE_WAV;
+			Length = STATION1_IDLE_LENGTH;
+		break;
+
+		case 1:
+			Idx = STATION2_IDLE_WAV;
+			Length = STATION2_IDLE_LENGTH;
+		break;
+
+		case 2:
+			Idx = STATION3_IDLE_WAV;
+			Length = STATION3_IDLE_LENGTH;
+		break;
+
+		case 3:
+			Idx = STATION4_IDLE_WAV;
+			Length = STATION41_IDLE_LENGTH;
+		break;
+
+	}
+
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,MASTER_VOLUME,0);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	, IDX);
+
+	return Length;
 }
 
-void PlayGetReady2()
+uint16_t PlayMagicMirrorWelcomeTrack()
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,GINGY_GET_READY_2_WAV_LENGTH ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,GINGY_GET_READY_2_WAV);
+   	 uint16_t Length = GINGY_GET_READY_1_WAV_LENGTH;
+	 uint16_t Idx = GINGY_GET_READY_1_WAV;
+
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,Length ,MASTER_VOLUME,0);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,Idx);
+
+	return Length;
+}
+
+uint16_t PlayGetReady()
+{
+
+    uint16_t Length = GINGY_GET_READY_1_WAV_LENGTH;
+	uint16_t Idx = GINGY_GET_READY_1_WAV;
+
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,Length ,MASTER_VOLUME,0);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,Idx);
+
+	return Length;
 }
 void PlayFailed()
 {
@@ -178,19 +246,13 @@ void Shrek(void)
 				ATTRACTION_TIMER = 0xFFFF;
 				RegenerateShrekLightSequence(rand()%MAX_SEQUENCE_LENGTH);
 				GameState = SHREK_ATTRACT_DISPLAY;
+				PlayIdleSound(MyStationID);
 			}
 		
 		break;
 
 		case SHREK_ATTRACT_DISPLAY:
-			
-			
-			if(ATTRACTION_TIMER>1000)
-			{
-					ATTRACTION_TIMER = 0;
-					PlayAttractionSound();
-			}
-
+	
 			if(MAIN_GAME_TIMER>25)
 				{
 					MAIN_GAME_TIMER = 0;
@@ -224,9 +286,9 @@ void Shrek(void)
 		break;
 
 
-		case SHREK_ATTRACT_WAIT_AFTER_START:
+		case SHREK_WAIT_WELCOME:
 		
-			if(MAIN_GAME_TIMER>300)
+			if(MAIN_GAME_TIMER>CurrentTimeout)
 			{
 					MAIN_GAME_TIMER = 0;
 					GameState = SHREK_GENERATE_NEXT_LEVEL;
@@ -263,16 +325,17 @@ void Shrek(void)
 			}
 			else
 			{
-			 	PlayGetReady2();
-				 GameState = SHREK_PAUSE_BEFORE_NEXT_SHOW;
+			 	 CurrentTimeout = PlayGetReady();
+				 GameState = SHREK_WAIT_GET_READY;
 				 MAIN_GAME_TIMER = 0;
 				 CurrentLightSequenceIdx = 0;
 			}
 		break;
 
-		case  SHREK_PAUSE_BEFORE_NEXT_SHOW:
+
+		case  SHREK_WAIT_GET_READY:
 			
-			if(MAIN_GAME_TIMER>300)
+			if(MAIN_GAME_TIMER>CurrentTimeout)
 			{
 				GameState = SHREK_SHOW_PATTERN;
 				MAIN_GAME_TIMER = 0;
@@ -347,10 +410,10 @@ void OnButtonPressShrek( BYTE  button)
 	case SHREK_ATTRACT_WAIT:
 	case SHREK_ATTRACT_DISPLAY:
 	
-		LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
-		GameState = SHREK_ATTRACT_WAIT_AFTER_START;
+		LEDSendMessage(ENABLE_ALL,GREEN,GREEN,0,0);
+		GameState = SHREK_WAIT_WELCOME;
 		CurrentLightSequenceLength = 0; //Reset so we start of with 1 light
-	    PlayGetReady();
+	    CurrentTimeout = PlayMagicMirrorWelcomeTrack()
 		MAIN_GAME_TIMER = 0;
 
 	break;
@@ -423,7 +486,7 @@ void RegenerateShrekLightSequence(uint8_t Length)
 
 	for(i=0;i<Length;i++)
 	{
-		LightSequence[i] = rand() % 4; //the modudol gives us a bitt different pattern than a bit mask to rand()
+		LightSequence[i] = ShrekRandomButton(); 
 		ColorSequence[i] = rand() % 3; //Pick a random color
 	}
 }

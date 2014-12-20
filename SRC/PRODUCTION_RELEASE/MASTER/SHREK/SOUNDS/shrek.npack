@@ -1,34 +1,31 @@
 
-sound[0]=Sounds\Shrek\gingy-come-play.wav;
-sound[1]=Sounds\Shrek\gingy-get-ready-1.wav;
-sound[2]=Sounds\Shrek\gingy-get-ready-2.wav;
-sound[3]=Sounds\Shrek\gingy-button-1.wav;
-sound[4]=Sounds\Shrek\gingy-button-2.wav;
-sound[5]=Sounds\Shrek\gingy-button-3.wav;
-sound[6]=Sounds\Shrek\shrek-button-1.wav;
-sound[7]=Sounds\Shrek\shrek-button-2.wav;
-sound[8]=Sounds\Shrek\shrek-button-3.wav;
-sound[9]=Sounds\Shrek\donkey-button-1.wav;
-sound[10]=Sounds\Shrek\donkey-button-2.wav;
-sound[11]=Sounds\Shrek\donkey-button-3.wav;
-sound[12]=Sounds\Shrek\correct-button.wav;
-sound[13]=Sounds\Shrek\gingy-good-job.wav;
-sound[14]=Sounds\Shrek\shrek-good-job.wav;
-sound[15]=Sounds\Shrek\donkey-good-job.wav;
-sound[16]=Sounds\Shrek\wrong-button-1.wav;
-sound[17]=Sounds\Shrek\wrong-button-2.wav;
-sound[18]=Sounds\Shrek\wrong-button-3.wav;
-sound[19]=Sounds\Shrek\trumpet-success.wav;
-sound[20]=Sounds\Shrek\gingy-failed.wav;
+sound[0]=Sounds\Shrek\Button1.1.wav;
+sound[1]=Sounds\Shrek\Button1.2.wav;
+sound[2]=Sounds\Shrek\Button1.3.wav;
+sound[3]=Sounds\Shrek\Button1.3.wav;
+sound[4]=Sounds\Shrek\Button2.1.wav;
+sound[5]=Sounds\Shrek\Button2.2.wav;
+sound[6]=Sounds\Shrek\Button2.3.wav;
+sound[7]=Sounds\Shrek\Button2.3.wav;
+sound[8]=Sounds\Shrek\Button3.1.wav;
+sound[9]=Sounds\Shrek\Button3.2.wav;
+sound[10]=Sounds\Shrek\Button3.3.wav;
+sound[11]=Sounds\Shrek\Button3.3.wav;
+sound[12]=Sounds\Shrek\Button4.1.wav;
+sound[13]=Sounds\Shrek\Button4.2.wav;
+sound[14]=Sounds\Shrek\Button4.3.wav;
+sound[15]=Sounds\Shrek\Button1.3.wav;
+sound[16]=Sounds\Shrek\Station1_Idle.wav;
+sound[17]=Sounds\Shrek\Station2_Idle.wav;
+sound[18]=Sounds\Shrek\Station3_Idle.wav;
+sound[19]=Sounds\Shrek\Station4_Idle.wav;
 
-
-sound[21]=Sounds\Shrek\waffles.wav;
-
-
-
-
-
-
+sound[20]=Sounds\Shrek\correct-button.wav;
+sound[21]=Sounds\Shrek\gingy-good-job.wav;
+sound[22]=Sounds\Shrek\wrong-button-1.wav;
+sound[23]=Sounds\Shrek\trumpet-success.wav;
+sound[24]=Sounds\Shrek\gingy-failed.wav;
+sound[25]=Sounds\Shrek\waffles.wav;
 
 
 
