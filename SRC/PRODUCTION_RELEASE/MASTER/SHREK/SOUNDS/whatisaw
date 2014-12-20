@@ -1,34 +1,31 @@
 Line [1] is blank
-Line [2] has a sound Sounds\Shrek\gingy-come-play.wav at sound number 0
-Line [3] has a sound Sounds\Shrek\gingy-get-ready-1.wav at sound number 1
-Line [4] has a sound Sounds\Shrek\gingy-get-ready-2.wav at sound number 2
-Line [5] has a sound Sounds\Shrek\gingy-button-1.wav at sound number 3
-Line [6] has a sound Sounds\Shrek\gingy-button-2.wav at sound number 4
-Line [7] has a sound Sounds\Shrek\gingy-button-3.wav at sound number 5
-Line [8] has a sound Sounds\Shrek\shrek-button-1.wav at sound number 6
-Line [9] has a sound Sounds\Shrek\shrek-button-2.wav at sound number 7
-Line [10] has a sound Sounds\Shrek\shrek-button-3.wav at sound number 8
-Line [11] has a sound Sounds\Shrek\donkey-button-1.wav at sound number 9
-Line [12] has a sound Sounds\Shrek\donkey-button-2.wav at sound number 10
-Line [13] has a sound Sounds\Shrek\donkey-button-3.wav at sound number 11
-Line [14] has a sound Sounds\Shrek\correct-button.wav at sound number 12
-Line [15] has a sound Sounds\Shrek\gingy-good-job.wav at sound number 13
-Line [16] has a sound Sounds\Shrek\shrek-good-job.wav at sound number 14
-Line [17] has a sound Sounds\Shrek\donkey-good-job.wav at sound number 15
-Line [18] has a sound Sounds\Shrek\wrong-button-1.wav at sound number 16
-Line [19] has a sound Sounds\Shrek\wrong-button-2.wav at sound number 17
-Line [20] has a sound Sounds\Shrek\wrong-button-3.wav at sound number 18
-Line [21] has a sound Sounds\Shrek\trumpet-success.wav at sound number 19
-Line [22] has a sound Sounds\Shrek\gingy-failed.wav at sound number 20
-Line [23] is blank
-Line [24] is blank
-Line [25] has a sound Sounds\Shrek\waffles.wav at sound number 21
-Line [26] is blank
-Line [27] is blank
-Line [28] is blank
+Line [2] has a sound Sounds\Shrek\Button1.1.wav at sound number 0
+Line [3] has a sound Sounds\Shrek\Button1.2.wav at sound number 1
+Line [4] has a sound Sounds\Shrek\Button1.3.wav at sound number 2
+Line [5] has a sound Sounds\Shrek\Button1.3.wav at sound number 3
+Line [6] has a sound Sounds\Shrek\Button2.1.wav at sound number 4
+Line [7] has a sound Sounds\Shrek\Button2.2.wav at sound number 5
+Line [8] has a sound Sounds\Shrek\Button2.3.wav at sound number 6
+Line [9] has a sound Sounds\Shrek\Button2.3.wav at sound number 7
+Line [10] has a sound Sounds\Shrek\Button3.1.wav at sound number 8
+Line [11] has a sound Sounds\Shrek\Button3.2.wav at sound number 9
+Line [12] has a sound Sounds\Shrek\Button3.3.wav at sound number 10
+Line [13] has a sound Sounds\Shrek\Button3.3.wav at sound number 11
+Line [14] has a sound Sounds\Shrek\Button4.1.wav at sound number 12
+Line [15] has a sound Sounds\Shrek\Button4.2.wav at sound number 13
+Line [16] has a sound Sounds\Shrek\Button4.3.wav at sound number 14
+Line [17] has a sound Sounds\Shrek\Button1.3.wav at sound number 15
+Line [18] has a sound Sounds\Shrek\Station1_Idle.wav at sound number 16
+Line [19] has a sound Sounds\Shrek\Station2_Idle.wav at sound number 17
+Line [20] has a sound Sounds\Shrek\Station3_Idle.wav at sound number 18
+Line [21] has a sound Sounds\Shrek\Station4_Idle.wav at sound number 19
+Line [22] is blank
+Line [23] has a sound Sounds\Shrek\correct-button.wav at sound number 20
+Line [24] has a sound Sounds\Shrek\gingy-good-job.wav at sound number 21
+Line [25] has a sound Sounds\Shrek\wrong-button-1.wav at sound number 22
+Line [26] has a sound Sounds\Shrek\trumpet-success.wav at sound number 23
+Line [27] has a sound Sounds\Shrek\gingy-failed.wav at sound number 24
+Line [28] has a sound Sounds\Shrek\waffles.wav at sound number 25
 Line [29] is blank
 Line [30] is blank
 Line [31] is blank
-Line [32] is blank
-Line [33] is blank
-Line [34] is blank

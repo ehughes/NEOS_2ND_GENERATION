@@ -2,7 +2,7 @@
 MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
 Version=1.0
 [File000]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_GameProcess.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_GameProcess.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -15,7 +15,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File001]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_GameVariables.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_GameVariables.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -28,7 +28,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File002]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_RootButtonHandler.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_RootButtonHandler.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -41,7 +41,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File003]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\ADC.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\ADC.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -54,7 +54,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File004]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Audio.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Audio.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -67,7 +67,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File005]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\can.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\can.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -80,7 +80,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File006]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\DataEEPROM.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\DataEEPROM.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -93,7 +93,7 @@ ToolArgsString=-g
 TraceCmdString=
 DebugOptions=--defsym=__DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1
 [File007]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Diagnostics.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Diagnostics.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -106,7 +106,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File008]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\EEPROM.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\EEPROM.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -119,7 +119,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File009]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\FLASH.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\FLASH.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -132,7 +132,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File010]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\LED-Display.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\LED-Display.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -145,7 +145,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File011]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\PacketProcess.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\PacketProcess.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -158,7 +158,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File012]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\spi.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\spi.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -171,7 +171,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File013]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SPI_asm.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SPI_asm.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -184,7 +184,7 @@ ToolArgsString=-g
 TraceCmdString=
 DebugOptions=--defsym=__DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1
 [File014]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemUtilities.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemUtilities.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -197,7 +197,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File015]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemVariables.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemVariables.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -210,7 +210,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File016]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Timer.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Timer.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -223,7 +223,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File017]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\USB.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\USB.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -236,7 +236,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File018]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\main.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\main.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -249,7 +249,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File019]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\BoardSupport.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\BoardSupport.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -262,7 +262,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File020]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\__Game_Shrek.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\__Game_Shrek.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -275,7 +275,7 @@ ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
 DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File021]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\.\HEX\SHREK.cof
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\.\HEX\SHREK.cof
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -288,7 +288,7 @@ ToolArgsString=--heap=0 --stack=400 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDI
 TraceCmdString=
 DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
 [File022]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\.\HEX\SHREK.hex
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\.\HEX\SHREK.hex
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
