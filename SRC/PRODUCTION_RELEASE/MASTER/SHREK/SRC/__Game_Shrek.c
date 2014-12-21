@@ -17,10 +17,6 @@
 #include "stdint.h"
 
 
-
-
-
-
 //*************************************************
 //*******Game Parameters***************************
 //*************************************************
@@ -52,6 +48,8 @@ uint8_t  MyStationID = 0;
 //*************************************************
 
 #define SHREK_INIT							0x01
+#define SHREK_STATION_ID					0x20
+
 #define SHREK_ATTRACT_DISPLAY				0x02
 #define SHREK_ATTRACT_WAIT					0x03
 #define SHREK_GENERATE_NEXT_LEVEL			0x04
@@ -113,20 +111,20 @@ uint8_t ShrekRandomButton()
 {
 	uint8_t  i = 0;
 	uint8_t R;
-	
+
 	do
 	{
 		R = rand() % 4;
 		i++;
 	}
-	while(R!=LastShrekRandom && i < MAX_RAND_RETRY);
+	while(R==LastShrekRandom && i < MAX_RAND_RETRY);
 
 	LastShrekRandom = R;
 
 	return R;
 }
 
-void PlayIdleSound(uint8_t StationId)
+uint16_t PlayIdleSound(uint8_t StationId)
 {
 	 uint16_t Length = 0;
 	 uint16_t Idx = 0;
@@ -136,39 +134,76 @@ void PlayIdleSound(uint8_t StationId)
 		default:
 		case 0:
 			Idx = STATION1_IDLE_WAV;
-			Length = STATION1_IDLE_LENGTH;
+			Length = STATION1_IDLE_WAV_LENGTH;
 		break;
 
 		case 1:
 			Idx = STATION2_IDLE_WAV;
-			Length = STATION2_IDLE_LENGTH;
+			Length = STATION2_IDLE_WAV_LENGTH;
 		break;
 
 		case 2:
 			Idx = STATION3_IDLE_WAV;
-			Length = STATION3_IDLE_LENGTH;
+			Length = STATION3_IDLE_WAV_LENGTH;
 		break;
 
 		case 3:
 			Idx = STATION4_IDLE_WAV;
-			Length = STATION41_IDLE_LENGTH;
+			Length = STATION4_IDLE_WAV_LENGTH;
+		break;
+
+	}
+
+	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,Length,MASTER_VOLUME,0);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	, Idx);
+
+	return Length;
+}
+
+uint16_t PlayStationID(uint8_t StationId)
+{ 
+     uint16_t Length = 0;
+	 uint16_t Idx = 0;
+
+	switch(StationId)
+	{
+		default:
+		case 0:
+			Idx = STATIONID_1_WAV ;
+			Length = STATIONID_1_WAV_LENGTH;
+		break;
+
+		case 1:
+			Idx = STATIONID_2_WAV ;
+			Length = STATIONID_1_WAV_LENGTH;
+		break;
+
+		case 2:
+			Idx = STATIONID_3_WAV ;
+			Length = STATIONID_1_WAV_LENGTH;
+		break;
+
+		case 3:
+			Idx = STATIONID_4_WAV ;
+			Length = STATIONID_1_WAV_LENGTH;
 		break;
 
 	}
 
 	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,NO_TIMEOUT,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	, IDX);
+	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	, Idx);
 
 	return Length;
 }
 
 uint16_t PlayMagicMirrorWelcomeTrack()
 {
-   	 uint16_t Length = GINGY_GET_READY_1_WAV_LENGTH;
-	 uint16_t Idx = GINGY_GET_READY_1_WAV;
+   //	 uint16_t Length = GINGY_GET_READY_1_WAV_LENGTH;
+    uint16_t Length = 0;
+	// uint16_t Idx = GINGY_GET_READY_1_WAV;
 
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,Length ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,Idx);
+//	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,Length ,MASTER_VOLUME,0);
+//	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,Idx);
 
 	return Length;
 }
@@ -176,30 +211,31 @@ uint16_t PlayMagicMirrorWelcomeTrack()
 uint16_t PlayGetReady()
 {
 
-    uint16_t Length = GINGY_GET_READY_1_WAV_LENGTH;
-	uint16_t Idx = GINGY_GET_READY_1_WAV;
+   // uint16_t Length = GINGY_GET_READY_1_WAV_LENGTH;
+    uint16_t Length = 0;
+//	uint16_t Idx = GINGY_GET_READY_1_WAV;
 
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,Length ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,Idx);
+//	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,Length ,MASTER_VOLUME,0);
+//	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,Idx);
 
 	return Length;
 }
 void PlayFailed()
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,GINGY_FAILED_WAV_LENGTH ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,GINGY_FAILED_WAV);
+//	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,GINGY_FAILED_WAV_LENGTH ,MASTER_VOLUME,0);
+//	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,GINGY_FAILED_WAV);
 }
 
 void PlayButtonCorrect()
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,CORRECT_BUTTON_WAV_LENGTH ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,CORRECT_BUTTON_WAV);
+//	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,CORRECT_BUTTON_WAV_LENGTH ,MASTER_VOLUME,0);
+//	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,CORRECT_BUTTON_WAV);
 }
 
 void PlayTrumpetSuccess()
 {
-	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT, TRUMPET_SUCCESS_WAV_LENGTH ,MASTER_VOLUME,0);
-	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	, TRUMPET_SUCCESS_WAV);
+//	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT, TRUMPET_SUCCESS_WAV_LENGTH ,MASTER_VOLUME,0);
+//	EAudioPlaySound(BACKGROUND_MUSIC_STREAM	, TRUMPET_SUCCESS_WAV);
 }
 
 void PlayButtonIncorrect()
@@ -208,18 +244,18 @@ void PlayButtonIncorrect()
 	{
 		default:
 		case 0:
-			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,WRONG_BUTTON_1_WAV_LENGTH ,MASTER_VOLUME,0);
-			EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,WRONG_BUTTON_1_WAV);
+		//	AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,WRONG_BUTTON_1_WAV_LENGTH ,MASTER_VOLUME,0);
+	//		EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,WRONG_BUTTON_1_WAV);
 		break;
 
 		case 1:
-			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,WRONG_BUTTON_2_WAV_LENGTH ,MASTER_VOLUME,0);
-			EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,WRONG_BUTTON_2_WAV);
+	//		AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,WRONG_BUTTON_2_WAV_LENGTH ,MASTER_VOLUME,0);
+	//		EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,WRONG_BUTTON_2_WAV);
 		break;
 		
 		case 2:
-			AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,WRONG_BUTTON_3_WAV_LENGTH ,MASTER_VOLUME,0);
-			EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,WRONG_BUTTON_3_WAV);
+	//		AudioNodeEnable(ENABLE_ALL,BACKGROUND_MUSIC_STREAM,BACKGROUND_MUSIC_STREAM,AUDIO_ON_BEFORE_TIMEOUT,WRONG_BUTTON_3_WAV_LENGTH ,MASTER_VOLUME,0);
+	//		EAudioPlaySound(BACKGROUND_MUSIC_STREAM	,WRONG_BUTTON_3_WAV);
 		break;
 	}
 
@@ -240,15 +276,28 @@ void Shrek(void)
 			
 		break;
 		
+	
+
+
 		case SHREK_INIT:
 			if(MAIN_GAME_TIMER == 25)
 			{
+				GameState = SHREK_STATION_ID;
+				CurrentTimeout = PlayStationID(MyStationID) + 100;
+			}
+		
+		break;
+
+		case SHREK_STATION_ID:
+
+			if(MAIN_GAME_TIMER > CurrentTimeout)
+				{
 				ATTRACTION_TIMER = 0xFFFF;
 				RegenerateShrekLightSequence(rand()%MAX_SEQUENCE_LENGTH);
 				GameState = SHREK_ATTRACT_DISPLAY;
 				PlayIdleSound(MyStationID);
-			}
-		
+			
+				}
 		break;
 
 		case SHREK_ATTRACT_DISPLAY:
@@ -413,7 +462,7 @@ void OnButtonPressShrek( BYTE  button)
 		LEDSendMessage(ENABLE_ALL,GREEN,GREEN,0,0);
 		GameState = SHREK_WAIT_WELCOME;
 		CurrentLightSequenceLength = 0; //Reset so we start of with 1 light
-	    CurrentTimeout = PlayMagicMirrorWelcomeTrack()
+	    CurrentTimeout = PlayMagicMirrorWelcomeTrack();
 		MAIN_GAME_TIMER = 0;
 
 	break;
