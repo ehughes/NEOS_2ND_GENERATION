@@ -133,8 +133,8 @@ file_021=INCLUDE\CANCommands.h
 file_022=INCLUDE\DataTypes.h
 file_023=INCLUDE\InternalSounds.h
 file_024=INCLUDE\ADCRoutines.h
-file_025=C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a
-file_026=C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld
+file_025=C:\Program Files (x86)\Microchip\MPLAB C30\lib\dsPIC30F\libp30F6014A-coff.a
+file_026=C:\Program Files (x86)\Microchip\MPLAB C30\support\dsPIC30F\gld\p30f6014A.gld
 [SUITE_INFO]
 suite_guid={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 suite_state=

@@ -158,8 +158,8 @@ void __attribute__((__interrupt__,,__auto_psv__)) _C1Interrupt(void)
 						
 			RxIRQCANMsg.SID = TempSID;
 			RxIRQCANMsg.Data[0] =  C1RX0B1 &0xFF;
-			RxIRQCANMsg.Data[1] = (C1RX0B1>>8) &0xFF;
-			RxIRQCANMsg.Data[2] =  C1RX0B2 &0xFF;
+		RxIRQCANMsg.Data[1] = (C1RX0B1>>8) &0xFF;
+				RxIRQCANMsg.Data[2] =  C1RX0B2 &0xFF;
 			RxIRQCANMsg.Data[3] = (C1RX0B2>>8) &0xFF;
 			RxIRQCANMsg.Data[4] =  C1RX0B3&0xFF;
 			RxIRQCANMsg.Data[5] = (C1RX0B3>>8) &0xFF;

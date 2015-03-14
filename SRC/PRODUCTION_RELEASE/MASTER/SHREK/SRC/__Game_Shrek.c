@@ -30,7 +30,7 @@
 #define SHREK_COLOR 0,63,0
 #define DONKEY_COLOR 63,63,0
 
-#define MASTER_VOLUME	0xBF
+#define MASTER_VOLUME	0xFF
 
 uint8_t  MyStationID = 4;
 
@@ -1498,7 +1498,7 @@ void OnButtonPressShrek( BYTE  button)
 	case SHREK_ATTRACT_WAIT:
 	case SHREK_ATTRACT_DISPLAY:
 	
-		LEDSendMessage(ENABLE_ALL,GREEN,GREEN,0,0);
+		LEDSendMessage(ENABLE_ALL,YELLOW,YELLOW,0,0);
 		GameState = SHREK_WAIT_WELCOME;
 		CurrentLightSequenceLength = 0; //Reset so we start of with 1 light
 	    CurrentTimeout = PlayMagicMirrorWelcomeTrack() + 100;
