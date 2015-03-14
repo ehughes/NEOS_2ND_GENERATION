@@ -25,7 +25,7 @@ namespace npack
             ProfilePackager MyProfilePackager = new ProfilePackager();
             Console.WriteLine("");
             Console.WriteLine("");
-            Console.WriteLine("NEOS Sound Packager V0.1");
+            Console.WriteLine("NEOS Sound Packager V0.2");
             Console.WriteLine("--------------------------------------------");
             Console.WriteLine("Checking Syntax of "+args[0]+".......");
         
@@ -616,6 +616,7 @@ namespace npack
                             NameCleanUp = NameCleanUp.Replace(" ", "_");
                             NameCleanUp = NameCleanUp.Replace("/", "+");
                             NameCleanUp = NameCleanUp.Replace("\\", "+");
+                            NameCleanUp = NameCleanUp.Replace("-", "_");
 
                             string[] Splits = NameCleanUp.Split('+');
                             if (Splits.Length == 0 || Splits.Length == 1)

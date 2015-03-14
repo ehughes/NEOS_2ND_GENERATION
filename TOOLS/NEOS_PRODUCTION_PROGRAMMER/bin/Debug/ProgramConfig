@@ -1,4 +1,4 @@
 PrintPreview=false
-PrintLabel=true
+PrintLabel=false
 DownloadSounds=true
-UpdateFirmware=true
+UpdateFirmware=false

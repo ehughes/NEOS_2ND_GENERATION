@@ -2,123 +2,123 @@
 MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
 Version=1.0
 [File000]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\main.o
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\main.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File001]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Timer.o
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Timer.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File002]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Can.o
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\Can.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File003]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\BoardSupport.o
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\BoardSupport.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File004]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\PacketDetect.o
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\PacketDetect.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File005]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\CRC.o
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\CRC.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File006]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\SystemVariables.o
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\SRC\OBJ\SystemVariables.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={069BD372-6CA0-40D4-BF2F-5DC806D05083}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=-g -Wall
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File007]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.cof
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.cof
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-ld.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=--heap=0 --stack=200 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=
+DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
 [File008]
-Location=E:\ELI\DEVELOPMENT\NEOS_2ND_GENERATION\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.hex
+Location=C:\eli\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\FIRMWARE\.\HEX\NEOS_USB_TO_CAN.hex
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 LanguageToolID={433C3D55-811D-409D-A6BF-159CF9355B42}
-LanguageToolLocation=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+LanguageToolLocation=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-ld.exe
 PPAD=$(BINDIR)|./HEX||$(TMPDIR)|./OBJ||$(AINDIR)||$(INCDIR)|../INCLUDE;./INCLUDE||$(LIBDIR)|C:\Program Files\Microchip\MPLAB C30\lib||$(LKRDIR)||
-SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a||<lkr>|C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld||
+SOLK=<src>|SRC\main.c|SRC\Timer.c|SRC\Can.c|SRC\BoardSupport.c|SRC\PacketDetect.c|SRC\CRC.C|SRC\SystemVariables.c||<obj>||<lib>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\lib\dsPIC30F\libp30F6014A-coff.a||<lkr>|C:\Program Files (x86)\Microchip\mplabc30\v3.25\support\dsPIC30F\gld\p30f6014A.gld||
 SuiteArgsString=
 ToolArgsString=--heap=0 --stack=200 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=
+DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
 [TOOL_LOC_STAMPS]
 tool_loc{DE18EB1A-B46B-486B-B96F-A811A635DFAC}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-as.exe
-tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-gcc.exe
-tool_loc{433C3D55-811D-409D-A6BF-159CF9355B42}=C:\Program Files\Microchip\MPLAB C30\bin\pic30-ld.exe
+tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-gcc.exe
+tool_loc{433C3D55-811D-409D-A6BF-159CF9355B42}=C:\Program Files (x86)\Microchip\mplabc30\v3.25\bin\pic30-ld.exe

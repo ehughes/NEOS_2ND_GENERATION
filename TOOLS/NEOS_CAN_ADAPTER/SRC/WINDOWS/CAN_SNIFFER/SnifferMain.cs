@@ -22,6 +22,7 @@ namespace CAN_SNIFFER
         public bool CurrentCANTerminationState;
         public Thread MessageRouterThread;
         public NEOSLowLevelCtrl MyNEOSLowLevelCtrl = new NEOSLowLevelCtrl();
+        public NEOSDisplayTestForm  MyNEOSDisplayTest = new NEOSDisplayTestForm();
 
         CANMessage NextOutgoingMessage = new CANMessage();
         CANMessage NextIncomingMessage = new CANMessage();
@@ -37,6 +38,9 @@ namespace CAN_SNIFFER
             MyIncomingCANMessageView.MdiParent = this;
             MyIncomingCANMessageView.Show();
             MyNEOSLightRingSimulator.MdiParent = this;
+
+            MyNEOSDisplayTest.MdiParent = this;
+            MyNEOSDisplayTest.Show();
 
             MyNEOSLightRingSimulator.Show();
 
@@ -221,9 +225,23 @@ namespace CAN_SNIFFER
                         {
                             MyNEOSLightRingSimulator.RxCANMessageQueue.Enqueue(NextIncomingCANMessage);
                         }
+                        lock (MyNEOSDisplayTest.RxCANMessageQueue)
+                        {
+                            MyNEOSDisplayTest.RxCANMessageQueue.Enqueue(NextIncomingCANMessage);
+                        }
                     }
                 }
 
+
+                if (MyNEOSDisplayTest.TxCANMessageQueue.GetCount() > 0)
+                {
+                    uint temp = MyNEOSDisplayTest.TxCANMessageQueue.GetCount();
+                    for (int i = 0; i < temp; i++)
+                    {
+                        MyNEOSDisplayTest.TxCANMessageQueue.Dequeue(ref NextOutgoingMessage);
+                        MyCANCommunicationsManager.OutgoingCANMessageQueue.Enqueue(NextOutgoingMessage);
+                    }
+                }
 
                 if (MyNEOSLightRingSimulator.TxCANMessageQueue.GetCount() > 0)
                 {

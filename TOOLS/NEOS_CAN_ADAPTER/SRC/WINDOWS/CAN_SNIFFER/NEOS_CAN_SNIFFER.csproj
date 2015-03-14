@@ -55,6 +55,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\FTD2XX_NET.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -72,6 +74,12 @@
     </Compile>
     <Compile Include="NEOSAllaroundSimulator.Designer.cs">
       <DependentUpon>NEOSAllaroundSimulator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NEOSDisplayTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NEOSDisplayTest.Designer.cs">
+      <DependentUpon>NEOSDisplayTest.cs</DependentUpon>
     </Compile>
     <Compile Include="NEOSLightRingSimulator.cs">
       <SubType>Form</SubType>
@@ -100,6 +108,9 @@
     <EmbeddedResource Include="NEOSAllaroundSimulator.resx">
       <DependentUpon>NEOSAllaroundSimulator.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NEOSDisplayTest.resx">
+      <DependentUpon>NEOSDisplayTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NEOSLightRingSimulator.resx">
       <SubType>Designer</SubType>

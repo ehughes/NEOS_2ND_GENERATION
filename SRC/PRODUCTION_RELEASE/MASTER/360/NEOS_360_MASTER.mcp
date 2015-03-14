@@ -92,7 +92,6 @@ file_064=GameSupport
 file_065=GameSupport
 file_066=GameSupport
 file_067=.
-file_068=.
 [GENERATED_FILES]
 file_000=no
 file_001=no
@@ -162,7 +161,6 @@ file_064=no
 file_065=no
 file_066=no
 file_067=no
-file_068=no
 [OTHER_FILES]
 file_000=no
 file_001=no
@@ -232,7 +230,6 @@ file_064=no
 file_065=no
 file_066=no
 file_067=no
-file_068=no
 [FILE_INFO]
 file_000=SRC\__Game_Double_Dots.c
 file_001=SRC\__Game_FireFighter.c
@@ -301,8 +298,7 @@ file_063=..\COMMON\INCLUDE\USBCommands.h
 file_064=..\COMMON\INCLUDE\InternalButtonSoundMapping.h
 file_065=INCLUDE\GameMapping.h
 file_066=INCLUDE\SoundMapping.h
-file_067=C:\Program Files\Microchip\MPLAB C30\lib\libp30F6014A-coff.a
-file_068=C:\Program Files\Microchip\MPLAB C30\support\gld\p30f6014A.gld
+file_067=C:\Program Files (x86)\Microchip\MPLAB C30\support\dsPIC30F\gld\p30F6014A.gld
 [SUITE_INFO]
 suite_guid={479DDE59-4D56-455E-855E-FFF59A3DB57E}
 suite_state=

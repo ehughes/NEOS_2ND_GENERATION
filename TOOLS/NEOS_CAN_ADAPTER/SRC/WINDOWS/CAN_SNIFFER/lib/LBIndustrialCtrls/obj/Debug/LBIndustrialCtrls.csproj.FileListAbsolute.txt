@@ -6,5 +6,5 @@ C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS
 C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS\CAN_SNIFFER\lib\LBIndustrialCtrls\obj\Debug\LBSoft.IndustrialCtrls.Leds.LBLed.resources
 C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS\CAN_SNIFFER\lib\LBIndustrialCtrls\obj\Debug\LBIndustrialCtrls.dll
 C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS\CAN_SNIFFER\lib\LBIndustrialCtrls\obj\Debug\LBIndustrialCtrls.pdb
-C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS\CAN_SNIFFER\lib\LBIndustrialCtrls\obj\Debug\GenerateResource-ResGen.read.1.tlog
-C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS\CAN_SNIFFER\lib\LBIndustrialCtrls\obj\Debug\GenerateResource-ResGen.write.1.tlog
+C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS\CAN_SNIFFER\lib\LBIndustrialCtrls\obj\Debug\ResGen.read.1.tlog
+C:\eli\DATA\consulting\PLAYWORLD_SYSTEMS\NEOS\TOOLS\NEOS_CAN_ADAPTER\SRC\WINDOWS\CAN_SNIFFER\lib\LBIndustrialCtrls\obj\Debug\ResGen.write.1.tlog

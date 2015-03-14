@@ -13,7 +13,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File001]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_GameVariables.o
 Folder=Intermediary
@@ -26,7 +26,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File002]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\_RootButtonHandler.o
 Folder=Intermediary
@@ -39,7 +39,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File003]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\ADC.o
 Folder=Intermediary
@@ -52,7 +52,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File004]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Audio.o
 Folder=Intermediary
@@ -65,7 +65,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File005]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\can.o
 Folder=Intermediary
@@ -78,7 +78,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File006]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\DataEEPROM.o
 Folder=Intermediary
@@ -91,7 +91,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=
+DebugOptions=--defsym=__DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1
 [File007]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Diagnostics.o
 Folder=Intermediary
@@ -104,7 +104,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File008]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\EEPROM.o
 Folder=Intermediary
@@ -117,7 +117,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File009]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\FLASH.o
 Folder=Intermediary
@@ -130,7 +130,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File010]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\LED-Display.o
 Folder=Intermediary
@@ -143,7 +143,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File011]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\PacketProcess.o
 Folder=Intermediary
@@ -156,7 +156,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File012]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\spi.o
 Folder=Intermediary
@@ -169,7 +169,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File013]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SPI_asm.o
 Folder=Intermediary
@@ -182,7 +182,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=
+DebugOptions=--defsym=__DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1
 [File014]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemUtilities.o
 Folder=Intermediary
@@ -195,7 +195,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File015]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemVariables.o
 Folder=Intermediary
@@ -208,7 +208,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File016]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Timer.o
 Folder=Intermediary
@@ -221,7 +221,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File017]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\USB.o
 Folder=Intermediary
@@ -234,7 +234,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File018]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\main.o
 Folder=Intermediary
@@ -247,7 +247,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File019]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\BoardSupport.o
 Folder=Intermediary
@@ -260,7 +260,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File020]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\SRC\OBJ\__Game_Shrek.o
 Folder=Intermediary
@@ -273,7 +273,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=
+DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
 [File021]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\.\HEX\SHREK.cof
 Folder=Output
@@ -286,7 +286,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=--heap=0 --stack=400 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=
+DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
 [File022]
 Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\SHREK\.\HEX\SHREK.hex
 Folder=Output
@@ -299,7 +299,7 @@ SOLK=<src>|SRC\_GameProcess.c|SRC\_GameVariables.c|SRC\_RootButtonHandler.c|..\C
 SuiteArgsString=
 ToolArgsString=--heap=0 --stack=400 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=
+DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
 [TOOL_LOC_STAMPS]
 tool_loc{DE18EB1A-B46B-486B-B96F-A811A635DFAC}=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-as.exe
 tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe
