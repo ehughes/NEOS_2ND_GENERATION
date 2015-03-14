@@ -54,13 +54,16 @@ void AudioStreamCheck(void)
 		if (AudioStreamTransmitFlag[stream])
 		{
 			//Get audio data from flash
-		    
-			SPISendInstruction(0x43,AudioStreamAddress[stream]);  // Get 128 bytes
-			AudioStreamAddress[stream]+=0x40;		// Advance 128 bytes
+		   
+			//For some reason this code gets 128 bytes instead of 64.  I think this is from very *OLD* code To be fixed....
+ 			SPISendInstruction(0x43,AudioStreamAddress[stream]);  // Get 128 bytes
+		   
+			AudioStreamAddress[stream]+=0x40;				    	// Advance 64 bytes
 			//Check for address beyond end
 			if (AudioStreamAddress[stream] >= (AudioStreamStartAddress[stream]+AudioStreamLength[stream]) )
 				AudioStreamAddress[stream] = AudioStreamStartAddress[stream];
-
+			
+			//Send out the next 64 bytes
 			for (temp=0; temp <8; temp++)   //16 iterations 
 			{
 				/* check if writing upper half or lower half of buffer */
@@ -70,6 +73,8 @@ void AudioStreamCheck(void)
 				else
 					temp2=0;
 
+				//Eli thinks that this code can be greatly simplified.  The AudioStreamTransmitFlag seems way to complex.....
+				//I think this can be done with a simple count value that resets at 0x20
 				AudioOutCANMsg.SID = (temp) + 0x100 + (temp2)	+ (stream * 0x40) + (((AudioStreamTransmitFlag[stream]-1)/2)*0x20);
 							
 				temp2 = temp*8;  //each message skips 8 bytes from SPI
@@ -206,15 +211,15 @@ void __attribute__((__interrupt__,__auto_psv__)) _DCIInterrupt(void)
 	
 	//For master Operation, we only need a counter to time when to send out more data.
 	//Most of the slave streaming code has been stripped. See slave code for more info.
-	AudioStreamCounter[0] += 1;		// Count 2 more words sent in each stream 
+	AudioStreamCounter[0] += 1;	
 	AudioStreamCounter[1] += 1;
 	AudioStreamCounter[2] += 1;
 	AudioStreamCounter[3] += 1;
 
-	if ((AudioStreamCounter[0] & 0x3F)==0) AudioStreamTransmitFlag[0]=1+(AudioStreamCounter[0]>>6);	//every 64 passes (128 words sent to codec)
-	if ((AudioStreamCounter[1] & 0x3F)==0) AudioStreamTransmitFlag[1]=1+(AudioStreamCounter[1]>>6);	//every 64 passes (128 words sent to codec)
-	if ((AudioStreamCounter[2] & 0x3F)==0) AudioStreamTransmitFlag[2]=1+(AudioStreamCounter[2]>>6);	//every 64 passes (128 words sent to codec)
-	if ((AudioStreamCounter[3] & 0x3F)==0) AudioStreamTransmitFlag[3]=1+(AudioStreamCounter[3]>>6);	//every 64 passes (128 words sent to codec)
+	if ((AudioStreamCounter[0] & 0x3F)==0) AudioStreamTransmitFlag[0]=1+(AudioStreamCounter[0]>>6);	//every 64 passes 
+	if ((AudioStreamCounter[1] & 0x3F)==0) AudioStreamTransmitFlag[1]=1+(AudioStreamCounter[1]>>6);	
+	if ((AudioStreamCounter[2] & 0x3F)==0) AudioStreamTransmitFlag[2]=1+(AudioStreamCounter[2]>>6);	
+	if ((AudioStreamCounter[3] & 0x3F)==0) AudioStreamTransmitFlag[3]=1+(AudioStreamCounter[3]>>6);
 
 	_DCIIF = 0;		// Clear the flag so it ain't stuck! 
 

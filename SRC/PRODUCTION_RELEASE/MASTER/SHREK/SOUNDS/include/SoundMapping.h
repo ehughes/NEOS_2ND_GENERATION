@@ -115,7 +115,7 @@
 #define MM_FL_GETREADY_03C_WAV                                        56
 #define MM_FL_GETREADY_03C_WAV_LENGTH                                 136
 #define MM_FL_GETREADY_04A_WAV                                        57
-#define MM_FL_GETREADY_04A_WAV_LENGTH                                 203
+#define MM_FL_GETREADY_04A_WAV_LENGTH                                 204
 #define MM_FL_GETREADY_04B_WAV                                        58
 #define MM_FL_GETREADY_04B_WAV_LENGTH                                 160
 #define MM_FL_GETREADY_04C_WAV                                        59
@@ -137,7 +137,7 @@
 #define MM_FL_GETREADY_07B_WAV                                        67
 #define MM_FL_GETREADY_07B_WAV_LENGTH                                 413
 #define MM_FL_GETREADY_07C_WAV                                        68
-#define MM_FL_GETREADY_07C_WAV_LENGTH                                 540
+#define MM_FL_GETREADY_07C_WAV_LENGTH                                 541
 #define MM_FL_GETREADY_08A_WAV                                        69
 #define MM_FL_GETREADY_08A_WAV_LENGTH                                 670
 #define MM_FL_GETREADY_08B_WAV                                        70
@@ -411,7 +411,7 @@
 #define MM_FL_SENDOFF_02C_WAV                                         204
 #define MM_FL_SENDOFF_02C_WAV_LENGTH                                  557
 #define MM_FL_SENDOFF_03A_WAV                                         205
-#define MM_FL_SENDOFF_03A_WAV_LENGTH                                  540
+#define MM_FL_SENDOFF_03A_WAV_LENGTH                                  541
 #define MM_FL_SENDOFF_03B_WAV                                         206
 #define MM_FL_SENDOFF_03B_WAV_LENGTH                                  667
 #define MM_FL_SENDOFF_03C_WAV                                         207

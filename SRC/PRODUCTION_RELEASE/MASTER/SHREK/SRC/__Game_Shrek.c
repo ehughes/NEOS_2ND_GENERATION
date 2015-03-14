@@ -30,9 +30,9 @@
 #define SHREK_COLOR 0,63,0
 #define DONKEY_COLOR 63,63,0
 
-#define MASTER_VOLUME	0x8f
+#define MASTER_VOLUME	0xBF
 
-uint8_t  MyStationID = 1;
+uint8_t  MyStationID = 4;
 
 //*************************************************
 //******** AUDIO STREAM MAPPING *******************
@@ -1444,18 +1444,23 @@ void Shrek(void)
 	
 			if(MAIN_GAME_TIMER>CurrentTimeout)
 				{
-			 		LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
-					 GameState = SHREK_SHOW_PATTERN;
-					 MAIN_GAME_TIMER = 0;
-					 CurrentLightSequenceIdx = 0;
-					 CurrentTimeout = 100;
+			 	  	LEDSendMessage(ENABLE_ALL,LEDOFF,LEDOFF,0,0);
+					 
+					//scott requested that we generate a pattern at the current level.  We
+					//need to subtract from the current length as the state will add one before regenerating
+
+					CurrentLightSequenceLength--;
+					GameState = SHREK_GENERATE_NEXT_LEVEL;
+					MAIN_GAME_TIMER = 0;
+					CurrentLightSequenceIdx = 0;
+					CurrentTimeout = 25;
 				}
 		
 		break;
 
 		case SHREK_PLAY_GAME:
 
-			if(MAIN_GAME_TIMER >3000)
+			if(MAIN_GAME_TIMER >1000)
 			{
 				PlayFailed();
 				MAIN_GAME_TIMER = 0;

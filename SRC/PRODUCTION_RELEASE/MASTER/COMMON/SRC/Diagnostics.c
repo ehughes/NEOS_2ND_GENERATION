@@ -241,7 +241,7 @@ void SystemsDiagnostics()
 				if(NodesAddressed == TRUE)
 				{
 		
-					DiagnosticsState = DATA_BUS_TEST;
+					DiagnosticsState = CHECK_POWER;
 					SystemMode = SYSTEM_DIAGNOSTICS;
 				
 				}
@@ -334,7 +334,7 @@ void SystemsDiagnostics()
 		case EXIT_ADDRESS_SETUP:
 			CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
 			CANQueueTxMessage(CANCEL_SET_SLAVE_TO_ADDRESS ,0,0,0,0);	//Make sure they are out of setup!
-			SystemMode = SYSTEM_DIAGNOSTICS;
+		    SystemMode = GAME_ACTIVE;
 			DiagnosticsState = INIT;
 		break;
 		
