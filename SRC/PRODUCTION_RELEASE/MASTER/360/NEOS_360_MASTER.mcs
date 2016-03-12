@@ -2,7 +2,7 @@
 MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
 Version=1.0
 [File000]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Double_Dots.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Double_Dots.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -13,9 +13,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File001]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_FireFighter.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_FireFighter.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -26,9 +26,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File002]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_LightGrabber.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_LightGrabber.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -39,9 +39,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File003]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Marathon.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Marathon.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -52,9 +52,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File004]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Ninja.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Ninja.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -65,9 +65,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File005]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Rodeo.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Rodeo.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -78,9 +78,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File006]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_RootGame0.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_RootGame0.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -91,9 +91,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File007]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_SurroundSound.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_SurroundSound.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -104,9 +104,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File008]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Zig_Zag.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\__Game_Zig_Zag.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -117,9 +117,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File009]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\_GameProcess.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\_GameProcess.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -130,9 +130,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File010]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\_GameVariables.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\_GameVariables.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -143,9 +143,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File011]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\_RootButtonHandler.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\_RootButtonHandler.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -156,9 +156,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File012]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\ADC.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\ADC.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -169,9 +169,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File013]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Audio.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Audio.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -182,9 +182,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File014]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\can.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\can.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -195,9 +195,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File015]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\DataEEPROM.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\DataEEPROM.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -208,9 +208,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=--defsym=__DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File016]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Diagnostics.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Diagnostics.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -221,9 +221,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File017]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\EEPROM.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\EEPROM.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -234,9 +234,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File018]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\FLASH.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\FLASH.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -247,9 +247,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File019]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\LED-Display.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\LED-Display.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -260,9 +260,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File020]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\PacketProcess.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\PacketProcess.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -273,9 +273,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File021]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\spi.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\spi.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -286,9 +286,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File022]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SPI_asm.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SPI_asm.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -299,9 +299,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g
 TraceCmdString=
-DebugOptions=--defsym=__DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File023]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemUtilities.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemUtilities.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -312,9 +312,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File024]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemVariables.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\SystemVariables.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -325,9 +325,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File025]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Timer.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\Timer.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -338,9 +338,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File026]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\USB.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\USB.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -351,9 +351,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File027]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\main.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\SRC\OBJ\main.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -364,9 +364,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File028]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\BoardSupport.o
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\COMMON\SRC\OBJ\BoardSupport.o
 Folder=Intermediary
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -377,9 +377,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=-g -Wall -mlarge-code -mlarge-data -mlarge-scalar -mconst-in-data
 TraceCmdString=
-DebugOptions=-D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1
+DebugOptions=
 [File029]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\.\HEX\NEOS_360_MASTER.cof
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\.\HEX\NEOS_360_MASTER.cof
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -390,9 +390,9 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=--heap=0 --stack=400 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
+DebugOptions=
 [File030]
-Location=Z:\BUSINESS\CLIENT_DATA\PLAYWORLD_SYSTEMS\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\.\HEX\NEOS_360_MASTER.hex
+Location=C:\NEOS\SRC\PRODUCTION_RELEASE\MASTER\360\.\HEX\NEOS_360_MASTER.hex
 Folder=Output
 DeviceName=dsPIC30F6014A
 LanguageToolSuiteID={479DDE59-4D56-455E-855E-FFF59A3DB57E}
@@ -403,7 +403,7 @@ SOLK=<src>|SRC\__Game_Double_Dots.c|SRC\__Game_FireFighter.c|SRC\__Game_LightGra
 SuiteArgsString=
 ToolArgsString=--heap=0 --stack=400 --defsym=__ICD2RAM=1 --report-mem -o"$(BINDIR_)$(TARGETBASE).$(TARGETSUFFIX)"
 TraceCmdString=
-DebugOptions=--defsym=__MPLAB_DEBUG=1 --defsym=__MPLAB_DEBUGGER_ICD3=1 --defsym=__ICD2RAM=1
+DebugOptions=
 [TOOL_LOC_STAMPS]
 tool_loc{DE18EB1A-B46B-486B-B96F-A811A635DFAC}=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-as.exe
 tool_loc{069BD372-6CA0-40D4-BF2F-5DC806D05083}=C:\Program Files (x86)\Microchip\MPLAB C30\bin\pic30-gcc.exe

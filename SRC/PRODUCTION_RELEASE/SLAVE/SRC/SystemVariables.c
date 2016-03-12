@@ -2,6 +2,13 @@
 #include "DataTypes.h"
 
 BYTE MyNodeNumber;	
-BOOL LEDOverride =  FALSE;
-BYTE ScoreBrightness;
 
+SIGNED_WORD DiagTentativeAddress;
+BYTE DiagAddressSetup;
+
+BOOL LEDOverride =  FALSE;
+
+BYTE GeneralPurposeBuffer[GP_BUFFER_SIZE];
+BOOL GeneralPurposeBufferAcceptanceFlag = FALSE;
+
+DWORD MyUID;
