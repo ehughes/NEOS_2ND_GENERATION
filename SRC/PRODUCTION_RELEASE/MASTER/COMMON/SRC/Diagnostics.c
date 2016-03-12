@@ -65,12 +65,12 @@ void ResetNodeDataRateInfo();
 void ResetNodeBusVoltageInfo();
 WORD GetVoltageDrop();
 
+#define PLAY_BOOTUP_SOUND			DiagnosticsState = BOOTUP_SOUND;PlayBootupSound()
+
 void EnterAddressingMode()
 {
-	
 	SystemMode = SYSTEM_DIAGNOSTICS;
 	DiagnosticsState = 	ADDRESS_BUTTONS;	
-	
 }	
 
 void SystemsDiagnostics()
@@ -84,8 +84,13 @@ void SystemsDiagnostics()
 			RED_LED_ON;
 			GREEN_LED_OFF;
 		
-			DiagnosticsState = CHECK_FOR_ALL_NODES_PRESENT;
-	
+			#ifdef SKIP_DIAGNOSTICS
+			
+				PLAY_BOOTUP_SOUND;
+
+			#else
+				DiagnosticsState = CHECK_FOR_ALL_NODES_PRESENT;
+			#endif
 		break;
 		
 		
@@ -241,9 +246,15 @@ void SystemsDiagnostics()
 				if(NodesAddressed == TRUE)
 				{
 		
-					DiagnosticsState = CHECK_POWER;
+				
 					SystemMode = SYSTEM_DIAGNOSTICS;
 				
+					#ifdef SKIP_200_TESTS
+						PLAY_BOOTUP_SOUND;
+					#else
+						DiagnosticsState = CHECK_POWER;
+					#endif
+
 				}
 				else
 				{
@@ -502,8 +513,7 @@ void SystemsDiagnostics()
 				{						
 					if(GetVoltageDrop() > VBUS_8V)
 					{
-						DiagnosticsState = BOOTUP_SOUND;
-						PlayBootupSound();
+						PLAY_BOOTUP_SOUND;
 					}
 					else
 					{
@@ -631,7 +641,6 @@ void PlayBootupSound()
 {
 
  	BYTE k;
- 	
  	
  	for(k=0;k<3;k++)
 	{

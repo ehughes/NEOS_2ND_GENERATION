@@ -73,13 +73,10 @@ int main (void)
 	ResetAllSlaves();
 	
 	CLEAR_WATCHDOG;
+
 	SystemMode = SYSTEM_BOOT;
 	BOOT_TIMER = 0;
 	VERSION_DISPLAY_TIMER = 25;
-	SystemMode = GAME_ACTIVE;
-	GameState = INIT;
-	GameSelected = GAME_ROOT_GAME0;	
-
 
 	while (1)
 	{	

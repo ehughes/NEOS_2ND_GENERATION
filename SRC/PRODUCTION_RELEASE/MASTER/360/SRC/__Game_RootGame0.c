@@ -16,6 +16,7 @@
 #include "InternalButtonSoundMapping.h"
 #include "TimerRoutines.h"
 #include "BoardSupport.h"
+#include "config.h"
 
 //*************************************************
 //******** GAME STATE MACROS*** *******************
@@ -36,7 +37,7 @@
 #define EASTER_EGG_DISPLAY_2			 	4
 #define EASTER_EGG_DISPLAY_3			 	5
 #define DISPLAY_TRAIL					 	6
-
+#define	SELECTOR_STATE_LIGHTS_OUT			7
 
 #define MUSIC_IDLE					0
 #define MUSIC_MAIN_THEME			1
@@ -81,7 +82,7 @@
 #define SELECTOR_SPIN_ANIMATION_TIME 8
 #define START_BUTTON_ANIMATION_TIME	 8
 
-#define HEARTBEAT_TIME		HEARTBEAT_WAV_LENGTH * 30
+#define HEARTBEAT_TIME		HEARTBEAT_WAV_LENGTH * 15
 
 #define VC_ENTRY_TIME	150
 #define GC_ENTRY_TIME	100
@@ -258,6 +259,15 @@ void Root_Game0 (void)
 				{
 					AudioOffAllNodes();
 					MusicState = MUSIC_IDLE;	
+
+					#ifdef LIGHTS_OFF_AFTER_HEARTBEAT
+			
+					SelectState = SELECTOR_STATE_LIGHTS_OUT;
+					ResetLeds();
+					ResetLeds();
+					
+					#endif
+					
 				}
 			break;
 			
@@ -267,10 +277,13 @@ void Root_Game0 (void)
 			
 		}
 		
-	
-		
 			switch (SelectState)
 			{
+				
+				case SELECTOR_STATE_LIGHTS_OUT:
+
+				break;
+
 				case SELECTOR_STATE_SPIN:	
 					EasterEggHunt();
 					AnimateGameButtons();
@@ -700,6 +713,11 @@ void OnButtonPressRootGame0(BYTE button)
 	
 	PlayInternalNodeSound(button,INTERNAL_SOUND_SELECTION,CurrentGameSettings.GameSoundEffectVolume,1,0,CurrentGameSettings.GameBackgroundMusicVolume,1);
 	
+	if( SelectState == SELECTOR_STATE_LIGHTS_OUT)
+	{
+		SelectState = SELECTOR_STATE_SPIN;
+	}
+
 	MusicWake();
 		
 }
@@ -757,8 +775,7 @@ void OnSelectPressRootGame0(BYTE button)
 		
 		case DISPLAY_GAME_COUNT:
 			
-				ResetToGameSelector();
-			
+		ResetToGameSelector();
 			
 		break;
 		
@@ -769,7 +786,10 @@ void OnSelectPressRootGame0(BYTE button)
 				
 		switch(SelectState)
 		{
-		
+				case SELECTOR_STATE_LIGHTS_OUT:
+
+				SelectState = SELECTOR_STATE_SPIN;
+
 				case SELECTOR_STATE_SPIN:
 				
 					MusicWake();
@@ -979,11 +999,6 @@ void UpdateGameSettings()
 	}
 	
 }	
-
-
-
-
-	
 
 	
 BYTE GetStream(BYTE button)
